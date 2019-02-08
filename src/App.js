@@ -4,6 +4,7 @@ import createHistory from 'history/createBrowserHistory';
 import { RootRouter } from './router';
 import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const history = createHistory();
 

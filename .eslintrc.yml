@@ -16,7 +16,7 @@ plugins:
   - prettier
   - react
   - import
-  - eslint-plugin-prettier
+  # - eslint-plugin-prettier
 rules:
   prettier/prettier:
     - error
