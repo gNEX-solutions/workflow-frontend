@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import TextFieldGroup from "../../../components/TextFieldGroup";
-import validateInput from "./LoginValidation";
-import { login } from "../actions/Login";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import TextFieldGroup from '../../../components/TextFieldGroup';
+import validateInput from './LoginValidation';
+import { login } from '../actions/Login';
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      identifier: "",
-      password: "",
+      identifier: '',
+      password: '',
       errors: {},
       isLoading: false
     };
@@ -29,19 +29,17 @@ class LoginForm extends Component {
   };
 
   onSubmit = e => {
+    const { login } = this.props;
     e.preventDefault();
-    console.log("=======");
     if (this.isValid()) {
       this.setState({
         errors: {},
         isLoading: true
       });
-      this.props
-        .login(this.state)
-        .then(
-          res => this.context.router.push("/"),
-          err => this.setState({ errors: err.data.errors, isLoading: false })
-        );
+      login(this.state).then(
+        res => this.context.router.push('/'),
+        err => this.setState({ errors: err.data.errors, isLoading: false })
+      );
     }
   };
 

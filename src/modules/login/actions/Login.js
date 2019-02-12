@@ -1,7 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
 
-export function login(data) {
-  return dispatch => {
-    return axios.post("api/auth", data);
-  };
+export default function login(data) {
+  return dispatch => axios.post('api/auth', data);
 }
