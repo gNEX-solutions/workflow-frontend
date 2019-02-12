@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import TextFieldGroup from '../../../components/TextFieldGroup'
 import validateInput from './LoginValidation'
 import { login } from '../actions/Login'
-import PropTypes from 'prop-types'
 
 class LoginForm extends Component {
   constructor (props) {
@@ -29,14 +29,14 @@ class LoginForm extends Component {
   }
 
   onSubmit = e => {
+    const { login } = this.props
     e.preventDefault()
-    console.log('=======')
     if (this.isValid()) {
       this.setState({
         errors: {},
         isLoading: true
       })
-      this.props.login(this.state).then(
+      login(this.state).then(
         res => this.context.router.push('/'),
         err =>
           this.setState({
@@ -58,10 +58,10 @@ class LoginForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <h1> Login </h1>
+        <h1> Login </h1>{' '}
         {errors.form && (
           <div className='alert alert-danger'> {errors.form} </div>
-        )}
+        )}{' '}
         <TextFieldGroup
           field='identifier'
           label='Username / Email'
