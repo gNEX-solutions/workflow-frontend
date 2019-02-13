@@ -1,4 +1,3 @@
-import RootRouter from './RootRouter';
-// import MainContentRouter from './MainContentRouter';
+import RootRouter from './RootRouter'
 
-export default { RootRouter };
+export { RootRouter }
