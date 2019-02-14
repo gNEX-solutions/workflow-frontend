@@ -16,6 +16,7 @@ plugins:
   - prettier
   - react
   - import
+  - eslint-plugin-prettier
 rules:
   prettier/prettier:
     - error
@@ -42,6 +43,7 @@ rules:
   react/button-has-type: off
   react/no-access-state-in-setstate: warn
   react/sort-comp: warn
+  no-console: 1
 settings:
   propWrapperFunctions:
     - forbidExtraProps
