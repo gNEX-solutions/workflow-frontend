@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export const POST_AUTHENTICATE_USER = 'POST_AUTHENTICATE_USER';
-export const POST_AUTHENTICATE_USER_SUCCESS =
-  'POSTPOST_AUTHENTICATE_USER_SUCCESS';
-export const POST_AUTHENTICATE_USER_FAILURE = 'POST_AUTHENTICATE_USER_FAILURE';
+// export const POST_AUTHENTICATE_USER = 'POST_AUTHENTICATE_USER';
+// export const POST_AUTHENTICATE_USER_SUCCESS =
+//   'POSTPOST_AUTHENTICATE_USER_SUCCESS';
+// export const POST_AUTHENTICATE_USER_FAILURE = 'POST_AUTHENTICATE_USER_FAILURE';
 
-export const SAVE_AUTH_DATA = 'SAVE_AUTH_DATA';
-export const REMOVE_AUTH_DATA = 'REMOVE_AUTH_DATA';
+// export const SAVE_AUTH_DATA = 'SAVE_AUTH_DATA';
+// export const REMOVE_AUTH_DATA = 'REMOVE_AUTH_DATA';
 
 export const LOGIN = 'LOGIN';
 
@@ -63,12 +63,12 @@ export const LOGIN = 'LOGIN';
 //   payload: {}
 // });
 
-export const login = data => ({
-  type: LOGIN,
-  payload: { data }
-});
+// export const login = data => ({
+//   type: LOGIN,
+//   payload: { data }
+// });
 
-// const login = data => dispatch => axios.post('api/auth', data);
+export const login = data => dispatch => axios.post('api/auth', data);
 
 // export function login(data) {
 //   return dispatch => axios.post('api/auth', data);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import TextFieldGroup from '../../../components/TextFieldGroup';
 import validateInput from './LoginValidation';
 import { login } from '../actions/Login';
@@ -41,7 +42,7 @@ class LoginForm extends Component {
         res => this.context.router.push('/'),
         err =>
           this.setState({
-            errors: err.response.data.errors,
+            errors: err.response,
             isLoading: false
           })
       );
@@ -104,9 +105,9 @@ LoginForm.propTypes = {
   login: PropTypes.func.isRequired
 };
 
-LoginForm.contextTypes = {
-  router: PropTypes.shape.isRequired
-};
+// LoginForm.contextTypes = {
+//   router: PropTypes.shape.isRequired
+// };
 
 export default connect(
   null,

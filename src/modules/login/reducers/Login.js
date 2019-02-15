@@ -1,4 +1,9 @@
 import { createReducer } from 'reduxsauce';
+import { LOGIN } from '../actions/types';
+
+const INITIAL_STATE = {
+  token: {}
+};
 
 // import type { SessionData } from 'ancon-flash-lib/src/types/Auth';
 // import {
@@ -42,3 +47,13 @@ import { createReducer } from 'reduxsauce';
 // };
 
 // export default createReducer(INITIAL_STATE, ACTION_HANDLERS);
+
+const login = (state = INITIAL_STATE, { payload }) => ({
+  ...state
+});
+
+const ACTION_HANDLERS = {
+  [LOGIN]: login
+};
+
+export default createReducer(INITIAL_STATE, ACTION_HANDLERS);

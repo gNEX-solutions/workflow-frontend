@@ -41,8 +41,8 @@ TextFieldGroup.propTypes = {
 TextFieldGroup.defaultProps = {
   type: 'text',
   placeholder: null,
-  checkUserExists: null,
-  error: null
+  checkUserExists: null
+  // error: null
 };
 
 export default TextFieldGroup;
