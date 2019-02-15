@@ -47,6 +47,6 @@ rules:
 settings:
   propWrapperFunctions:
     - forbidExtraProps
-  import/resolver:
-    webpack:
-      config: webpack.config.eslint.js
+  # import/resolver:
+  #   webpack:
+  #     config: webpack.config.eslint.js

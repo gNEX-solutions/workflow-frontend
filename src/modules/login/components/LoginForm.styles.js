@@ -24,4 +24,6 @@ const ButtonContainer = styled.button`
   } */
 `;
 
-export { ButtonContainer };
+const test = styled.div``;
+
+export { ButtonContainer, test };

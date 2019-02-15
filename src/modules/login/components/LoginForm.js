@@ -41,7 +41,7 @@ class LoginForm extends Component {
         res => this.context.router.push('/'),
         err =>
           this.setState({
-            errors: err.data.errors,
+            errors: err.response.data.errors,
             isLoading: false
           })
       );
@@ -105,7 +105,7 @@ LoginForm.propTypes = {
 };
 
 LoginForm.contextTypes = {
-  router: PropTypes.object.isRequired
+  router: PropTypes.shape.isRequired
 };
 
 export default connect(

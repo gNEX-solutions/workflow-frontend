@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const TextFieldGroup = ({
   field,
   value,
-  label,
+  // label,
   error,
   type,
   onChange,
@@ -30,15 +30,19 @@ const TextFieldGroup = ({
 TextFieldGroup.propTypes = {
   field: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  // label: PropTypes.string.isRequired,
   error: PropTypes.string,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  checkUserExists: PropTypes.func
+  checkUserExists: PropTypes.func,
+  placeholder: PropTypes.string
 };
 
 TextFieldGroup.defaultProps = {
-  type: 'text'
+  type: 'text',
+  placeholder: null,
+  checkUserExists: null,
+  error: null
 };
 
 export default TextFieldGroup;
