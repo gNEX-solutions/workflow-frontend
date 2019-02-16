@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import HomePage from "../modules/home/pages/HomePage";
-import HistorySection from "../modules/HistorySection/main";
-import EventExplorer from "../modules/eventExplorer/main";
+import HistorySection from "../modules/History/main";
+import EventExplorer from "../modules/EventExplorer/main";
 import CalenderSection from "../modules/Calender/main";
 
 const RootRouter = () => (

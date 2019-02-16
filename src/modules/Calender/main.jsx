@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import HeaderComponent from "../../shared/header/headerComponent";
+import MainMenuCompoannent from "../../shared/mainMenu/main";
 class CalenderSection extends Component {
   state = {};
   render() {
@@ -7,6 +8,7 @@ class CalenderSection extends Component {
       <React.Fragment>
         <header> calender section </header>
         <HeaderComponent />
+        <MainMenuCompoannent />
       </React.Fragment>
     );
   }

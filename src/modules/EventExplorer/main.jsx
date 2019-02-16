@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import HeaderComopnet from "../../shared/header/headerComponent";
+import MainMenuCompoannent from "../../shared/mainMenu/main";
 class EventExplorer extends Component {
   state = {};
   render() {
@@ -7,6 +8,7 @@ class EventExplorer extends Component {
       <React.Fragment>
         <header> event explorere section </header>
         <HeaderComopnet />
+        <MainMenuCompoannent />
       </React.Fragment>
     );
   }
