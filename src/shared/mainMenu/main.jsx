@@ -1,20 +1,21 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 class MainMenuComponent extends Component {
   state = {};
-
-  // btnCalenderClicked = () => {
-  //   alert("btn clicked");
-  // };
 
   render() {
     return (
       <React.Fragment>
         <ul>
-          <button onClick={() => alert("calender clcked")}>calender</button>
-          <button onClick={() => alert("event explorer clcked")}>
-            Event Explorer
-          </button>
-          <button onClick={() => alert("history clcked")}>History</button>
+          <li>
+            <Link to={"/calender"}>calender</Link>
+          </li>
+          <li>
+            <Link to={"/eventExp"}>Event Eplorer</Link>
+          </li>
+          <li>
+            <Link to={"/history"}>History</Link>
+          </li>
         </ul>
       </React.Fragment>
     );
