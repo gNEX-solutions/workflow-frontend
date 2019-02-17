@@ -13,7 +13,7 @@ class App extends Component {
       <Router history={history}>
         <div>
           <RootRouter />
-        </div>{" "}
+        </div>
       </Router>
     );
   }
