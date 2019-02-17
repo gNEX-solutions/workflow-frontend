@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class HomePage extends Component {
-  render () {
+  render() {
     return (
       <div>
-        <h1>Main Screen Placeholder</h1>
+        <h1> Main Screen Placeholder </h1>{' '}
       </div>
-    )
+    );
   }
 }
 
-export default HomePage
+export default HomePage;

@@ -44,6 +44,8 @@ rules:
   react/no-access-state-in-setstate: warn
   react/sort-comp: warn
   no-console: 1
+  indent: [error, 2]
+  max-len: [2, { code: 120, ignoreTrailingComments: true }]
 settings:
   propWrapperFunctions:
     - forbidExtraProps
