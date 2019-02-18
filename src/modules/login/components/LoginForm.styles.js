@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from 'reactstrap';
 
 const ButtonContainer = styled.button`
   /* text-transform: capitalize; */
@@ -16,7 +17,7 @@ const ButtonContainer = styled.button`
   /* transition: all 0.5s ease-in-out; */
   /* &:hover {
     background: ${props =>
-      props.cart ? 'var(--mainYellow)' : 'var(--lightBlue)'};
+    props.cart ? 'var(--mainYellow)' : 'var(--lightBlue)'};
     color: var(--mainBlue);
   } */
   /* &:focus {
