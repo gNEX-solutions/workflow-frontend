@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import HeaderComopnet from "../../shared/header/headerComponent";
-import MainMenuCompoannent from "../../shared/mainMenu/main";
+import MainMenuCompoannent from "../../shared/mainMenu/mainMenu";
 class EventExplorer extends Component {
   state = {};
   render() {

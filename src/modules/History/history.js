@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import HeaderComponent from "../../shared/header/headerComponent";
-import MainMenuCompoannent from "../../shared/mainMenu/main";
-class CalenderSection extends Component {
+import MainMenuComponent from "../../shared/mainMenu/mainMenu";
+class HistorySection extends Component {
   state = {};
   render() {
     return (
       <React.Fragment>
-        <header> calender section </header>
+        <header> history section </header>
         <HeaderComponent />
-        <MainMenuCompoannent />
+        <MainMenuComponent />
       </React.Fragment>
     );
   }
 }
 
-export default CalenderSection;
+export default HistorySection;
