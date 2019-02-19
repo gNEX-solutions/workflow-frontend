@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "../modules/home/pages/HomePage";
-import HistorySection from "../modules/History/history";
-import EventExplorer from "../modules/EventExplorer/eventExplorer";
-import CalenderSection from "../modules/Calender/calender";
+import HistorySection from "../modules/history/history";
+import EventExplorer from "../modules/eventExplorer/eventExplorer";
+import CalenderSection from "../modules/calender/calender";
 
 const RootRouter = () => (
   <Switch>
