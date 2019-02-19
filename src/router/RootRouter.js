@@ -5,7 +5,7 @@ import HomePage from "../modules/home/pages/HomePage";
 
 const RootRouter = () => (
   <Switch>
-    <Route exact path="/" component={HomePage} />{" "}
+    <Route exact path="/" component={HomePage} />
     <Route path="/not-found" render={() => <h1> Page Not Found </h1>} />
   </Switch>
 );
