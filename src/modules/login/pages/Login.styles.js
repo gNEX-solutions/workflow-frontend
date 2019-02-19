@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const LoginWrapper = styled.div`
   .login-container {
-    background: var(--lightBlue);
+    background: var(--mainWhite);
     /* padding: 10rem 10rem 10rem 10rem; */
     /* margin: 10rem 10rem 10rem 50rem; */
     /* justify-content: flex-end; */

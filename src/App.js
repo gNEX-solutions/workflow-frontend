@@ -19,8 +19,8 @@ class App extends Component {
         <Router history={history}>
           <div>
             <RootRouter />
-          </div>{' '}
-        </Router>{' '}
+          </div>
+        </Router>
       </Provider>
     );
   }

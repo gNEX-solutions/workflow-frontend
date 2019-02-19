@@ -9,7 +9,11 @@ class Login extends React.Component {
     return (
       <LoginWrapper className="row">
         <div className="image-container">
-          <img src="img/7.png" alt="product" className="card-img-top" />
+          <img
+            src="img/Mask Group 6.png"
+            alt="product"
+            className="card-img-top"
+          />
         </div>
         <div className="col-md-4 col-md-offset-4 login-container">
           <LoginForm />
