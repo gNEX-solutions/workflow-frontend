@@ -1,26 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Router } from "react-router-dom";
+import createHistory from "history/createBrowserHistory";
+import { RootRouter } from "./router/index";
+// import logo from './logo.svg'
+import "./App.css";
+
+export const history = createHistory();
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router history={history}>
+        <div>
+          <RootRouter />
+        </div>
+      </Router>
     );
   }
 }
