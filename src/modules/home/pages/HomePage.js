@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import HeaderComponent from "../../../shared/header/headerComponent";
 
 class HomePage extends Component {
-  render () {
+  render() {
     return (
-      <div>
+      <React.Fragment>
+        <HeaderComponent />
         <h1>Main Screen Placeholder</h1>
-      </div>
-    )
+      </React.Fragment>
+    );
   }
 }
 
-export default HomePage
+export default HomePage;
