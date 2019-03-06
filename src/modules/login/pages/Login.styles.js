@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const LoginWrapper = styled.div`
   .login-container {
@@ -16,7 +16,10 @@ const LoginWrapper = styled.div`
   .image-container {
     flex: 3;
     /* width: 100rem; */
-    /* height: 100rem; */
+    height: 95vh;
+
+    background-size: cover;
+    background-position: top;
   }
   /* justify-content: flex-end; */
   /* flex: 1; */

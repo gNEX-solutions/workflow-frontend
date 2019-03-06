@@ -1,0 +1,24 @@
+.loginContainer {
+  height: 95vh;
+  // flex-direction: row;
+  // display: flex;
+  // display: flexbox;
+
+  &__imageContainer {
+    // height: 95vh;
+    flex: 1;
+    background-image: url('../../../img/Mask Group 6.png');
+    background-size: cover;
+    background-position: top;
+    // float: left;
+    // width: 50%;
+    // background: red;
+  }
+
+  &__loginForm {
+    flex: 3;
+    // background: red;
+    // width: 50%;
+  }
+
+}
