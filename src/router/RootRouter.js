@@ -5,6 +5,7 @@ import HistorySection from "../modules/history/history";
 import EventExplorer from "../modules/eventExplorer/eventExplorer";
 import CalenderSection from "../modules/calender/calender";
 
+
 const RootRouter = () => (
   <Switch>
     <Route exact path="/" component={HomePage} />
