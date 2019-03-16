@@ -4,6 +4,7 @@ import HomePage from "../modules/home/pages/HomePage";
 import HistorySection from "../modules/history/history";
 import EventExplorer from "../modules/eventExplorer/eventExplorer";
 import CalenderSection from "../modules/calender/calender";
+import UserProfileSection from "../shared/userProfileSection/userProfileSection";
 
 const RootRouter = () => (
   <Switch>
@@ -12,6 +13,7 @@ const RootRouter = () => (
     <Route path="/history" component={HistorySection} />
     <Route path="/eventExp" component={EventExplorer} />
     <Route path="/calender" component={CalenderSection} />
+    <Route path="/profile" component={UserProfileSection} />
   </Switch>
 );
 
