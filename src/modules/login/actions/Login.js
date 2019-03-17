@@ -86,7 +86,7 @@ export const login = data => (dispatch, history) => {
 //check token and load user
 export const loadUser = () => (dispatch, getState) => {
   //user loading
-  // dispatch({ type: GET_USER });
+  dispatch({ type: LOGIN });
 
   //get token from local storage
   const token = getState().auth.token;

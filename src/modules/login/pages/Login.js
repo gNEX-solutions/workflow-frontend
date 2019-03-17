@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LoginForm from '../components/LoginForm';
 // import { LoginWrapper } from './Login.styles';
 import style from './Login.styles.scss';
