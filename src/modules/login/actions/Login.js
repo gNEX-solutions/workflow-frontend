@@ -67,7 +67,7 @@ import { LOGIN, GET_USER, LOGIN_SUCCESS } from './types';
 //   payload: { data }
 // });
 
-export const login = data => dispatch => {
+export const login = data => (dispatch, history) => {
   axios
     .post('/auth/signin', data)
     .then(res =>
@@ -76,6 +76,7 @@ export const login = data => dispatch => {
         payload: res
       })
     )
+    .then(res => history.push('/'))
     .catch(err => {
       console.log(err);
     });

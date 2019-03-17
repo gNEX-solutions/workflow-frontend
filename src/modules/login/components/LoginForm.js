@@ -20,6 +20,12 @@ class LoginForm extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.context.router.history.push('/');
+    }
+  }
+
   isValid = () => {
     const { errors, isValid } = validateInput(this.state);
 
@@ -99,14 +105,19 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-// LoginForm.contextTypes = {
-//   router: PropTypes.shape.isRequired
-// };
+LoginForm.contextTypes = {
+  router: PropTypes.shape.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 
 export default connect(
-  null,
+  mapStateToProps,
   { login }
 )(LoginForm);

@@ -3,7 +3,7 @@ import { LOGIN, LOGIN_SUCCESS } from '../../modules/login/actions/types';
 const initialState = {
   user: null,
   token: null,
-  isAuthenticated: null,
+  isAuthenticated: false,
   isLoading: false
 };
 
