@@ -42,19 +42,7 @@ class LoginForm extends Component {
         errors: {},
         isLoading: true
       });
-      login(this.state).then(
-        res =>
-          // this.setState({
-          //   token: res.token
-          // }),
-          console.log(res.token),
-        history.push('/'),
-        err =>
-          this.setState({
-            errors: err.response,
-            isLoading: false
-          })
-      );
+      login(this.state);
     }
   };
 
