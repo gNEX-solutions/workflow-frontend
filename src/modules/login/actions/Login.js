@@ -68,7 +68,7 @@ export const LOGIN = 'LOGIN';
 //   payload: { data }
 // });
 
-export const login = data => dispatch => axios.post('api/auth', data);
+export const login = data => dispatch => axios.post('/auth/signin', data);
 
 // export function login(data) {
 //   return dispatch => axios.post('api/auth', data);

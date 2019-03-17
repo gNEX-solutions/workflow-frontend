@@ -6,15 +6,17 @@ import TextFieldGroup from '../../../components/TextFieldGroup';
 import validateInput from './LoginValidation';
 import { login } from '../actions/Login';
 import { ButtonContainer } from './LoginForm.styles';
+import { history } from '../../../App';
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      identifier: '',
+      username: '',
       password: '',
       errors: {},
-      isLoading: false
+      isLoading: false,
+      token: ''
     };
   }
 
@@ -32,14 +34,21 @@ class LoginForm extends Component {
 
   onSubmit = e => {
     const { login } = this.props;
+
     e.preventDefault();
+
     if (this.isValid()) {
       this.setState({
         errors: {},
         isLoading: true
       });
       login(this.state).then(
-        res => this.context.router.push('/'),
+        res =>
+          // this.setState({
+          //   token: res.token
+          // }),
+          console.log(res.token),
+        history.push('/'),
         err =>
           this.setState({
             errors: err.response,
@@ -56,7 +65,7 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { errors, identifier, password, isLoading } = this.state;
+    const { errors, username, password, isLoading } = this.state;
 
     return (
       <div>
@@ -67,10 +76,10 @@ class LoginForm extends Component {
             <div className="alert alert-danger"> {errors.form} </div>
           )}
           <TextFieldGroup
-            field="identifier"
+            field="username"
             label="Username / Email"
-            value={identifier}
-            error={errors.identifier}
+            value={username}
+            error={errors.username}
             onChange={this.onChange}
             placeholder="Email"
           />

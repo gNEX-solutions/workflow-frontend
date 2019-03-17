@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import LoginForm from '../components/LoginForm';
-import { LoginWrapper } from './Login.styles';
+// import { LoginWrapper } from './Login.styles';
 import style from './Login.styles.scss';
+import './Login.styles.css';
 
 class Login extends React.Component {
   state = {};
@@ -12,21 +13,10 @@ class Login extends React.Component {
         <div
           className={`${
             style.__imageContainer
-          } ${'loginContainer__imageContainer'}  ${'col-md-8'}`}
-        >
-          {/* <img
-            src="img/Mask Group 6.png"
-            alt="product"
-            // className="card-img-top"
-          /> */}
-          {/* <h1>test</h1> */}
-        </div>
+          } ${'__imageContainer'}  ${'col-md-8'}`}
+        />
         {/* <div className="col-md-4 col-md-offset-4 login-container"> */}
-        <div
-          className={`${
-            style.__loginForm
-          } ${'loginContainer__loginForm'} ${'col-md-4'}`}
-        >
+        <div className={`${style.__loginForm} ${'__loginForm'} ${'col-md-4'}`}>
           <LoginForm />
         </div>
       </div>
