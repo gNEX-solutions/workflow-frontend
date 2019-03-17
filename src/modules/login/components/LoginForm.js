@@ -6,7 +6,6 @@ import TextFieldGroup from '../../../components/TextFieldGroup';
 import validateInput from './LoginValidation';
 import { login } from '../actions/Login';
 import { ButtonContainer } from './LoginForm.styles';
-import { history } from '../../../App';
 
 class LoginForm extends Component {
   constructor(props) {
