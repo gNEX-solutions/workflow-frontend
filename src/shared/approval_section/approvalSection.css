@@ -1,0 +1,11 @@
+.ApprovalSection{
+    display: flex;
+}
+
+.container{
+    background-color: whitesmoke
+}
+
+.Label{
+    font-weight: bold;
+}
