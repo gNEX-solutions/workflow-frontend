@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import TextFieldGroup from '../../../components/TextFieldGroup';
 import validateInput from './LoginValidation';
 import { login } from '../actions/Login';
+import { ButtonContainer } from './LoginForm.styles';
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      identifier: '',
+      username: '',
       password: '',
       errors: {},
-      isLoading: false
+      isLoading: false,
+      token: ''
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.context.router.history.push('/');
+    }
   }
 
   isValid = () => {
@@ -30,20 +39,15 @@ class LoginForm extends Component {
 
   onSubmit = e => {
     const { login } = this.props;
+
     e.preventDefault();
+
     if (this.isValid()) {
       this.setState({
         errors: {},
         isLoading: true
       });
-      login(this.state).then(
-        res => this.context.router.push('/'),
-        err =>
-          this.setState({
-            errors: err.data.errors,
-            isLoading: false
-          })
-      );
+      login(this.state);
     }
   };
 
@@ -54,48 +58,65 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { errors, identifier, password, isLoading } = this.state;
+    const { errors, username, password, isLoading } = this.state;
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <h1> Login </h1>{' '}
-        {errors.form && (
-          <div className="alert alert-danger"> {errors.form} </div>
-        )}{' '}
-        <TextFieldGroup
-          field="identifier"
-          label="Username / Email"
-          value={identifier}
-          error={errors.identifier}
-          onChange={this.onChange}
-        />{' '}
-        <TextFieldGroup
-          field="password"
-          label="Password"
-          value={password}
-          error={errors.password}
-          onChange={this.onChange}
-          type="password"
-        />
-        <div className="form-group">
-          <button className="btn btn-primary btn-lg" disabled={isLoading}>
-            Login{' '}
-          </button>{' '}
-        </div>{' '}
-      </form>
+      <div>
+        <h1> IMSSA </h1>
+        <h4> IMSSA Events Manager </h4>
+        <form onSubmit={this.onSubmit}>
+          {errors.form && (
+            <div className="alert alert-danger"> {errors.form} </div>
+          )}
+          <TextFieldGroup
+            field="username"
+            label="Username / Email"
+            value={username}
+            error={errors.username}
+            onChange={this.onChange}
+            placeholder="Email"
+          />
+          <TextFieldGroup
+            field="password"
+            label="Password"
+            value={password}
+            error={errors.password}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+          />
+          <div className="form-group">
+            <ButtonContainer
+              className="btn btn-primary btn-lg"
+              disabled={isLoading}
+            >
+              Login
+            </ButtonContainer>
+          </div>
+        </form>
+        <h5>Forget Password</h5>
+        <h5>
+          New...? <u>Sign up</u>
+        </h5>
+      </div>
     );
   }
 }
 
 LoginForm.propTypes = {
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 LoginForm.contextTypes = {
-  router: PropTypes.object.isRequired
+  router: PropTypes.shape.isRequired
 };
 
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { login }
 )(LoginForm);

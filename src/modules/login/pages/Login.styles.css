@@ -1,0 +1,30 @@
+.loginContainer {
+  height: 100vh;
+  background: var(--mainWhite);
+}
+
+.loginContainer .__imageContainer {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-image: url("../../../img/Mask Group 6.png");
+  background-size: cover;
+  background-position: top;
+}
+
+.loginContainer .__loginForm {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: inline-block;
+  text-align: center;
+  margin: auto;
+  padding: 0 20px 0 20px;
+}
+/*# sourceMappingURL=Login.styles.css.map */
