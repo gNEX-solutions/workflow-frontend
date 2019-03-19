@@ -1,0 +1,22 @@
+.loginContainer {
+  height: 100vh;
+  background: var(--mainWhite);
+
+  .__imageContainer {
+    flex: 1;
+    background-image: url("../../../img/Mask Group 6.png");
+    background-size: cover;
+    background-position: top;
+  }
+
+  .__loginForm {
+    flex: 3;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+    padding: 0 20px 0 20px;
+    // background-color: red;
+  }
+}
