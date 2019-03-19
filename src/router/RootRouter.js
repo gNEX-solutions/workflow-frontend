@@ -5,7 +5,7 @@ import HistorySection from "../modules/history/history";
 import EventExplorer from "../modules/eventExplorer/eventExplorer";
 import CalenderSection from "../modules/calender/calender";
 import UserProfileSection from "../shared/userProfileSection/userProfileSection";
-
+import ApprovalSection from "../shared/approval_section/approvalSectionComponent";
 
 const RootRouter = () => (
   <Switch>
@@ -15,6 +15,8 @@ const RootRouter = () => (
     <Route path="/eventExp" component={EventExplorer} />
     <Route path="/calender" component={CalenderSection} />
     <Route path="/profile" component={UserProfileSection} />
+    <Route path="/calender" component={CalenderSection} />
+    <Route path="/approvalSection" component={ApprovalSection} />
   </Switch>
 );
 
