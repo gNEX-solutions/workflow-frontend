@@ -5,6 +5,8 @@ import ApprovalSection from "../../shared/approval_section/approvalSectionCompon
 import { Row, Container, Col, Overlay, Popover } from "react-bootstrap";
 import UserProfileSection from "../../shared/userProfileSection/userProfileSection";
 import NotificationPannel from "../../shared/header/NotificationPanel";
+import EventDescription from "../../shared/eventDescription/eventDescription";
+import CalenderFooter from "../../shared/calenderFooter/calenderFooter";
 class CalenderSection extends Component {
   state = {
     showUserProfile: false,
@@ -62,7 +64,16 @@ class CalenderSection extends Component {
             {/* <ApprovalSection></ApprovalSection> */}
           </Col>
           <Col className="col-8" id="event_description">
-            <ApprovalSection></ApprovalSection>
+            <Row>
+              <EventDescription></EventDescription>
+            </Row>
+            <Row>
+              <ApprovalSection></ApprovalSection>
+            </Row>
+            <Row>
+              <CalenderFooter></CalenderFooter>
+            </Row>
+
           </Col>
         </Row>
         {/* <Row>
