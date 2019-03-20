@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import HeaderComopnet from "../../shared/header/headerComponent";
 import MainMenuCompoannent from "../../shared/mainMenu/mainMenu";
+import { Row } from 'react-bootstrap'
 class EventExplorer extends Component {
   state = {};
   render() {
@@ -8,7 +9,9 @@ class EventExplorer extends Component {
       <React.Fragment>
         <header> event explorere section </header>
         <HeaderComopnet />
-        <MainMenuCompoannent />
+        <Row>
+          <MainMenuCompoannent />
+        </Row>
       </React.Fragment>
     );
   }

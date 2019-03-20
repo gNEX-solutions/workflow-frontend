@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import HeaderComponent from "../../shared/header/headerComponent";
 import MainMenuCompoannent from "../../shared/mainMenu/mainMenu";
+import { Row } from "react-bootstrap";
 class CalenderSection extends Component {
   state = {};
   render() {
@@ -8,7 +9,10 @@ class CalenderSection extends Component {
       <React.Fragment>
         <header> calender section </header>
         <HeaderComponent />
-        <MainMenuCompoannent />
+        <Row>
+          <MainMenuCompoannent />
+        </Row>
+
       </React.Fragment>
     );
   }
