@@ -1,0 +1,27 @@
+#add_button{
+    display: flex;
+    width: 70%;
+    /* align-content: space-around; */
+    align-items: center;
+    /* background-color: rgb(24, 95, 10); */
+}
+
+#active{
+    background-color : white;
+   border: 5px;
+   border-color: black;
+    
+}
+
+.menu_item{
+    font-size: 20px;
+    color: black;
+}
+
+#button_search{
+    margin: 10px;
+}
+
+#search_group{
+    align-items: center;
+}
