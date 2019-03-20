@@ -62,17 +62,17 @@ class ApprovalSectionComponent extends Component {
 
     return (
       <React.Fragment>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm">
               <p className="Label"> Approved by - </p>
-              <div class="ApprovalSection">
+              <div className="ApprovalSection">
                 {componentsApprove}
               </div>
             </div>
-            <div class="col-sm">
+            <div className="col-sm">
               <p className="Label"> Pending Approval - </p>
-              <div class="ApprovalSection">
+              <div className="ApprovalSection">
                 {componentsPending}
               </div>
             </div>
