@@ -7,12 +7,12 @@ class CalenderSection extends Component {
   render() {
     return (
       <React.Fragment>
-        <header> calender section </header>
-        <HeaderComponent />
         <Row>
-          <MainMenuCompoannent />
+          <header> calender section </header>
         </Row>
 
+        <HeaderComponent />
+        <MainMenuCompoannent />
       </React.Fragment>
     );
   }
