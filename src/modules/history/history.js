@@ -7,8 +7,11 @@ class HistorySection extends Component {
   render() {
     return (
       <React.Fragment>
-        <header> history section </header>
+        {/* <header> history section </header> */}
         <HeaderComponent />
+        <Row>
+          <MainMenuComponent />
+        </Row>
         <Row>
           <MainMenuComponent />
         </Row>

@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import "./headerComponent.css";
 
 import styles from "./Header.styles";
+import { Row } from "react-bootstrap";
 
 let ufname = "Akalanka";
 let ulname = "Jayalth";
@@ -26,6 +27,7 @@ class HeaderComponent extends Component {
     return (
       <React.Fragment>
         <div className="heading">
+
           <AppBar className="EventManagerHeader" style={styles.AppBar}>
             <Toolbar>
               <Grid container justify="center" alignContent="flex-start">
@@ -57,6 +59,7 @@ class HeaderComponent extends Component {
               </Grid>
             </Toolbar>
           </AppBar>
+
         </div>
       </React.Fragment>
     );

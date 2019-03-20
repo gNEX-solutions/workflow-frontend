@@ -5,26 +5,26 @@ import './approvalSection.css';
 
 const ApprovedArray = [
   {
-    name: "Ruwan Wickramarachchi",
+    name: "Dr. Ruwan",
     title: "HOD"
   },
   {
-    name: "Ruwan Wickramarachchi",
+    name: "Dr. Ruwan",
     title: "HOD"
   },
   {
-    name: "Ruwan Wickramarachchi",
+    name: "Dr. Ruwan",
     title: "HOD"
   }
 ];
 
 const PendingArray = [
   {
-    name: "Dilani Wickramarachchi",
+    name: "Dr. Dilani",
     title: "Treasure"
   },
   {
-    name: "Dilani Wickramarachchi",
+    name: "Dr. Dilani",
     title: "Treasure"
   }
 ];
@@ -37,7 +37,7 @@ class ApprovalSectionComponent extends Component {
     ApprovedArray.forEach((item, index) => (
       arr.push(<AvatarComponent
         Name={item.name}
-        Title={item.title} 
+        Title={item.title}
       />)
     ));
 
@@ -49,7 +49,7 @@ class ApprovalSectionComponent extends Component {
     PendingArray.forEach((item, index) => (
       arr.push(<AvatarComponent
         Name={item.name}
-        Title={item.title} 
+        Title={item.title}
       />)
     ));
 
@@ -65,13 +65,13 @@ class ApprovalSectionComponent extends Component {
         <div class="container">
           <div class="row">
             <div class="col-sm">
-              <p className="Label"> Approved by - </p>     
+              <p className="Label"> Approved by - </p>
               <div class="ApprovalSection">
                 {componentsApprove}
               </div>
             </div>
             <div class="col-sm">
-              <p className="Label"> Pending Approval - </p>         
+              <p className="Label"> Pending Approval - </p>
               <div class="ApprovalSection">
                 {componentsPending}
               </div>

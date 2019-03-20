@@ -7,8 +7,11 @@ class EventExplorer extends Component {
   render() {
     return (
       <React.Fragment>
-        <header> event explorere section </header>
+        {/* <header> event explorere section </header> */}
         <HeaderComopnet />
+        <Row>
+          <MainMenuCompoannent />
+        </Row>
         <Row>
           <MainMenuCompoannent />
         </Row>

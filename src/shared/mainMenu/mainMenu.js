@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Col, Button } from "react-bootstrap";
+import { Col, Button, Container, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -35,6 +35,8 @@ class MainMenuComponent extends Component {
   render() {
     return (
       <React.Fragment>
+
+
         <Col className="col-1">
 
         </Col>
@@ -44,7 +46,7 @@ class MainMenuComponent extends Component {
 
             <FontAwesomeIcon icon={faPlusCircle} size="2x" />
 
-            &nbsp; &nbsp; Add New Event
+            &nbsp; &nbsp;  New Event
 
 
 
@@ -53,9 +55,9 @@ class MainMenuComponent extends Component {
         <Col className="col-2" id="calender">
           <div className={this.state.calenderStatus}>
             <Link to={"/calender"} onClick={this.calenderCicked} >
-              <h2>
+              <h3>
                 <span className="badge badge-light" id={this.state.calenderStatus}>Event Calender</span>
-              </h2>
+              </h3>
             </Link>
           </div>
 
@@ -63,9 +65,9 @@ class MainMenuComponent extends Component {
         <Col className="col-2" id="explorer">
           <div id={this.state.eventExpStatus}>
             <Link to={"/eventExp"} onClick={this.eventExpClicked}>
-              <h2>
+              <h3>
                 <span className="badge badge-light" id={this.state.eventExpStatus}>Event Explorer</span>
-              </h2>
+              </h3>
             </Link>
 
           </div>
@@ -73,9 +75,9 @@ class MainMenuComponent extends Component {
         <Col className="col-2" id="history">
           <div className={this.state.historyStatus}>
             <Link to={"/history"} >
-              <h2>
+              <h3>
                 <span className="badge badge-light" id="active" id={this.state.historyStatus}>History</span>
-              </h2>
+              </h3>
             </Link>
           </div>
         </Col>
@@ -91,6 +93,7 @@ class MainMenuComponent extends Component {
           </div>
 
         </Col>
+
 
 
 
