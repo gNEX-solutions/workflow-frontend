@@ -6,6 +6,7 @@ import { Row, Container, Col, Overlay, Popover } from "react-bootstrap";
 import UserProfileSection from "../../shared/userProfileSection/userProfileSection";
 import NotificationPannel from "../../shared/header/NotificationPanel";
 import EventDescription from "../../shared/eventDescription/eventDescription";
+import CalenderFooter from "../../shared/calenderFooter/calenderFooter";
 class CalenderSection extends Component {
   state = {
     showUserProfile: false,
@@ -68,6 +69,9 @@ class CalenderSection extends Component {
             </Row>
             <Row>
               <ApprovalSection></ApprovalSection>
+            </Row>
+            <Row>
+              <CalenderFooter></CalenderFooter>
             </Row>
 
           </Col>

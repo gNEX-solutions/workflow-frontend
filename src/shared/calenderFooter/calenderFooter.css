@@ -1,0 +1,8 @@
+#footer_main{
+    display: flex;
+
+}
+
+#comments{
+    float: left;
+}
