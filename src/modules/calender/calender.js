@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import HeaderComponent from "../../shared/header/headerComponent";
 import MainMenuCompoannent from "../../shared/mainMenu/mainMenu";
 import ApprovalSection from "../../shared/approval_section/approvalSectionComponent";
-import { Row, Container, Col, Overlay, Popover } from "react-bootstrap";
+import { Row, Col, Overlay, Popover } from "react-bootstrap";
 import UserProfileSection from "../../shared/userProfileSection/userProfileSection";
 import NotificationPannel from "../../shared/header/NotificationPanel";
 import EventDescription from "../../shared/eventDescription/eventDescription";
@@ -51,9 +51,9 @@ class CalenderSection extends Component {
             </Popover>
           </Overlay>
         </Row>
-        <Row className="cal_row" >
+        {/* <Row className="cal_row" >
           <MainMenuCompoannent />
-        </Row>
+        </Row> */}
         <Row className="cal_row" id="main_menu" >
 
           <MainMenuCompoannent />

@@ -1,6 +1,7 @@
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    width: "1920px"
 
   },
   grow: {
@@ -48,3 +49,5 @@ const styles = {
     fontSize: "60%"
   }
 };
+
+export default styles;

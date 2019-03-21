@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Col, Button, Container, Row } from "react-bootstrap";
+import { Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -76,7 +76,7 @@ class MainMenuComponent extends Component {
           <div className={this.state.historyStatus}>
             <Link to={"/history"} >
               <h3>
-                <span className="badge badge-light" id="active" id={this.state.historyStatus}>History</span>
+                <span className="badge badge-light" id="active">History</span>
               </h3>
             </Link>
           </div>
@@ -97,7 +97,7 @@ class MainMenuComponent extends Component {
 
 
 
-      </React.Fragment>
+      </React.Fragment >
     );
   }
 }
