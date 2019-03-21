@@ -1,3 +1,3 @@
-import RootRouter from './RootRouter'
+import RootRouter from './RootRouter';
 
-export { RootRouter }
+export { RootRouter };
