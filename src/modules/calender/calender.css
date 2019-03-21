@@ -2,7 +2,33 @@
     padding-top: 5%;
     background-color: aquamarine;
 } */
+#main_menu{
+    height: 100px;
+    padding-top: 20px;
+}
+
+#event_description{
+    height: 400px;
+    padding-right: 20px;
+}
+#event_description_row{
+    padding-right: 20px;
+}
+
+#app_section{
+    height: 180px;
+    padding-bottom: 10px;
+}
+#cal_footer{
+    height: 60px;
+}
+
+#app_section_row{
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+
 .cal_row{
-    display: flex;
+    /* display: flex; */
     width: 100%;
 }

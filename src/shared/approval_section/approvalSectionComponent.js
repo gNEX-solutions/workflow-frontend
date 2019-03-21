@@ -5,15 +5,15 @@ import './approvalSection.css';
 
 const ApprovedArray = [
   {
-    name: "Dr. Ruwan",
+    name: "Dr. Ruwan Wickramarachchi",
     title: "HOD"
   },
   {
-    name: "Dr. Ruwan",
+    name: "Dr. Ruwan Wickramarachchi",
     title: "HOD"
   },
   {
-    name: "Dr. Ruwan",
+    name: "Dr. Ruwan Wickramarachchi",
     title: "HOD"
   }
 ];

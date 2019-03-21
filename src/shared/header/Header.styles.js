@@ -18,7 +18,8 @@ const styles = {
   Typography: {
     color: "white",
     fontWeight: "bold",
-    fontSize: "100%"
+    fontSize: "100%",
+
   },
   IconButton: {
     color: "white"

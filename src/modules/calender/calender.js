@@ -7,6 +7,7 @@ import UserProfileSection from "../../shared/userProfileSection/userProfileSecti
 import NotificationPannel from "../../shared/header/NotificationPanel";
 import EventDescription from "../../shared/eventDescription/eventDescription";
 import CalenderFooter from "../../shared/calenderFooter/calenderFooter";
+import "./calender.css";
 class CalenderSection extends Component {
   state = {
     showUserProfile: false,
@@ -53,7 +54,7 @@ class CalenderSection extends Component {
         <Row className="cal_row" >
           <MainMenuCompoannent />
         </Row>
-        <Row className="cal_row" >
+        <Row className="cal_row" id="main_menu" >
 
           <MainMenuCompoannent />
 
@@ -63,15 +64,15 @@ class CalenderSection extends Component {
           <Col className="col-4" id="calender_section">
             {/* <ApprovalSection></ApprovalSection> */}
           </Col>
-          <Col className="col-8" id="event_description">
-            <Row>
-              <EventDescription></EventDescription>
+          <Col className="col-8" id="event_info">
+            <Row id="event_description_row">
+              <EventDescription id="event_description"></EventDescription>
+            </Row>
+            <Row id="app_section_row">
+              <ApprovalSection id="app_section"></ApprovalSection>
             </Row>
             <Row>
-              <ApprovalSection></ApprovalSection>
-            </Row>
-            <Row>
-              <CalenderFooter></CalenderFooter>
+              <CalenderFooter id="cal_footer"></CalenderFooter>
             </Row>
 
           </Col>
