@@ -11,6 +11,8 @@ import "./headerComponent.css";
 
 import styles from "./Header.styles";
 
+
+
 let ufname = "Akalanka";
 let ulname = "Jayalth";
 let udesignation = "President";
@@ -26,6 +28,7 @@ class HeaderComponent extends Component {
     return (
       <React.Fragment>
         <div className="heading">
+
           <AppBar className="EventManagerHeader" style={styles.AppBar}>
             <Toolbar>
               <Grid container justify="center" alignContent="flex-start">
@@ -34,7 +37,7 @@ class HeaderComponent extends Component {
                 </Typography>
               </Grid>
               <Grid container justify="center" alignContent="flex-end">
-                <IconButton style={styles.IconButton}>
+                <IconButton style={styles.IconButton} >
                   <Badge
                     badgeContent={this.state.numberofNotifications}
                     color="secondary"
@@ -42,14 +45,16 @@ class HeaderComponent extends Component {
                     <NotificationsIcon />
                   </Badge>
                 </IconButton>
-                <IconButton style={styles.IconButton}>
+                <IconButton style={styles.IconButton} onClick={() => this.props.onProfClick()}> {/* dj:20/03/2019 : on click method  */}
                   <Avatar
                     alt="user_icon"
                     src={userimage}
                     style={styles.Avatar}
                   />
+
                 </IconButton>
-                <div className="UserDetails" style={styles.UserDetails}>
+
+                <div className="UserDetails" style={styles.UserDetails} onClick={() => this.props.onProfClick()} > {/* dj:20/03/2019 : on click method  */}
                   <span style={styles.Fname}>{ufname}</span>
                   <span style={styles.Lname}>{ulname}</span>
                   <h6 style={styles.Designation}>{udesignation}</h6>
@@ -57,6 +62,7 @@ class HeaderComponent extends Component {
               </Grid>
             </Toolbar>
           </AppBar>
+
         </div>
       </React.Fragment>
     );

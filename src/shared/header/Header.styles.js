@@ -1,6 +1,8 @@
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    width: "1920px"
+
   },
   grow: {
     flexGrow: 1
@@ -17,7 +19,8 @@ const styles = {
   Typography: {
     color: "white",
     fontWeight: "bold",
-    fontSize: "100%"
+    fontSize: "100%",
+
   },
   IconButton: {
     color: "white"
@@ -46,3 +49,5 @@ const styles = {
     fontSize: "60%"
   }
 };
+
+export default styles;
