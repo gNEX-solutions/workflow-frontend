@@ -23,9 +23,9 @@ class CalenderSection extends Component {
     return (
       <React.Fragment>
 
-        <Row>
-          <HeaderComponent onProfClick={this.handleProfClick} />
-          <Overlay
+        {/* <Row> */}
+        <HeaderComponent onProfClick={this.handleProfClick} />
+        {/* <Overlay
             show={this.state.showUserProfile}
             placement="bottom-end"
             target={this}
@@ -42,15 +42,15 @@ class CalenderSection extends Component {
             target={this}
             container={this}
             containerPadding={2}
-          >
-            <Popover id="popover-contained" title="Popover bottom">
+          > */}
+        {/* <Popover id="popover-contained" title="Popover bottom">
               <div>
                 <NotificationPannel></NotificationPannel>
               </div>
 
             </Popover>
-          </Overlay>
-        </Row>
+          </Overlay> */}
+        {/* </Row> */}
         {/* <Row className="cal_row" >
           <MainMenuCompoannent />
         </Row> */}

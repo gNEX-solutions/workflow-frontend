@@ -8,8 +8,9 @@
 }
 
 #event_description{
-    height: 400px;
+    min-height: 350px;
     padding-right: 20px;
+    padding-top: 20px;
 }
 #event_description_row{
     padding-right: 20px;
