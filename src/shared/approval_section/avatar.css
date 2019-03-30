@@ -1,0 +1,16 @@
+.AvatarImage {
+  height: 50px;
+}
+
+.AvatarTitle {
+  font-weight: bold;
+  margin-top: -10px;
+}
+
+.Avatar{
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 5px; 
+}

@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import HeaderComponent from "../../shared/header/headerComponent";
 import MainMenuComponent from "../../shared/mainMenu/mainMenu";
+import { Row } from 'react-bootstrap';
+import './history.css';
 class HistorySection extends Component {
   state = {};
   render() {
     return (
       <React.Fragment>
-        <header> history section </header>
+        {/* <header> history section </header> */}
         <HeaderComponent />
-        <MainMenuComponent />
+        <Row id="main_menu">
+          <MainMenuComponent />
+        </Row>
       </React.Fragment>
     );
   }

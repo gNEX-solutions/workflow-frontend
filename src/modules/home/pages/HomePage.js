@@ -5,8 +5,22 @@ class HomePage extends Component {
   render() {
     return (
       <React.Fragment>
-        <HeaderComponent />
-        <h1>Main Screen Placeholder</h1>
+        <div className="content">
+          <div className="header">
+            <HeaderComponent />
+          </div>
+          <div className="menu-bar">
+            <h1>menu bar</h1>
+          </div>
+          <div className="body">
+            <div>
+              <h1>clander side</h1>
+            </div>
+            <div>
+              <h1>contentside</h1>
+            </div>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
