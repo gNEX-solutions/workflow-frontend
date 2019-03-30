@@ -4,10 +4,6 @@ table{
     margin-right: 10%;
     margin-top: 15%;
 }
-td{
-    /* align-self: center; */
-    /* align-content: center; */
-}
-p{
-    /* display: flex; */
+.current_date{
+    background-color: greenyellow;
 }

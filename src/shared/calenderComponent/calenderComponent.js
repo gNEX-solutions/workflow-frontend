@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import * as moment from 'moment';
 import './calenderComponent.css';
-import { element } from 'prop-types';
 class CalenderCompoennt extends Component {
     state = {
         week1: [1, 2, 3, 4, 5, 6, 7],
@@ -13,7 +12,7 @@ class CalenderCompoennt extends Component {
     });
     daysInMonthAmount = moment().daysInMonth();
     firstDay = moment(this.state.now).startOf('month').format('d'); // return the first day of the month
-    lastDay = moment(this.state.now).endOf('month').format('d');
+    lastDay = moment(this.state.now).endOf('month').format('d'); // last day of the month
 
     render() {
 
@@ -31,35 +30,43 @@ class CalenderCompoennt extends Component {
 
         //  blanks of the beg of the month 
         for (var i = 0; i < this.firstDay; i++) {
-            blankDaysBefore.push("");
+            blankDaysBefore.push(<td></td>);
         }
 
         // month date data 
-        for (var i = 1; i <= this.daysInMonthAmount; i++) {
-            daysInMonth.push(i.toString());
+        for (i = 1; i <= this.daysInMonthAmount; i++) {
+            let yearCurrent = this.state.now.format("Y");
+            let monthCurrent = this.state.now.format("M");
+            let dateCurrent = this.state.now.format("D");
+            if (dateCurrent == i) {
+                daysInMonth.push(<td className="current_date">{i.toString()}</td>)
+            } else {
+                daysInMonth.push(<td >{i.toString()}</td>)
+            }
+
         }
 
         // blanks after end of month
-        for (var i = 6; i > this.lastDay; i--) {
-            blankDaysAfter.push("");
+        for (i = 6; i > this.lastDay; i--) {
+            blankDaysAfter.push(<td></td>);
         }
         // console.log(this.lastDay);
         totalDays = [...blankDaysBefore, ...daysInMonth, ...blankDaysAfter];
 
         totalDays.forEach((day, i) => {
             if (i < 7) {
-                firstWeek.push(<td>{day}</td>)
+                firstWeek.push(day)
             }
             else if (i < 14) {
-                secondWeek.push(<td>{day}</td>)
+                secondWeek.push(day)
             } else if (i < 21) {
-                thirdWeek.push(<td>{day}</td>)
+                thirdWeek.push(day)
             } else if (i < 28) {
-                fouthWeek.push(<td>{day}</td>)
+                fouthWeek.push(day)
             } else if (i < 35) {
-                fifthWeek.push(<td>{day}</td>)
+                fifthWeek.push(day)
             } else {
-                sixthWeek.push(<td>{day}</td>)
+                sixthWeek.push(day)
             }
         })
         return (
