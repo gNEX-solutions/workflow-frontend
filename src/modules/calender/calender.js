@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import HeaderComponent from "../../shared/header/headerComponent";
 import MainMenuCompoannent from "../../shared/mainMenu/mainMenu";
 import ApprovalSection from "../../shared/approval_section/approvalSectionComponent";
-import { Row, Col, Overlay, Popover } from "react-bootstrap";
-import UserProfileSection from "../../shared/userProfileSection/userProfileSection";
-import NotificationPannel from "../../shared/header/NotificationPanel";
+import { Row, Col } from "react-bootstrap";
 import EventDescription from "../../shared/eventDescription/eventDescription";
 import CalenderFooter from "../../shared/calenderFooter/calenderFooter";
 import "./calender.css";
@@ -23,9 +21,9 @@ class CalenderSection extends Component {
     return (
       <React.Fragment>
 
-        <Row>
-          <HeaderComponent onProfClick={this.handleProfClick} />
-          <Overlay
+        {/* <Row> */}
+        <HeaderComponent onProfClick={this.handleProfClick} />
+        {/* <Overlay
             show={this.state.showUserProfile}
             placement="bottom-end"
             target={this}
@@ -42,15 +40,15 @@ class CalenderSection extends Component {
             target={this}
             container={this}
             containerPadding={2}
-          >
-            <Popover id="popover-contained" title="Popover bottom">
+          > */}
+        {/* <Popover id="popover-contained" title="Popover bottom">
               <div>
                 <NotificationPannel></NotificationPannel>
               </div>
 
             </Popover>
-          </Overlay>
-        </Row>
+          </Overlay> */}
+        {/* </Row> */}
         {/* <Row className="cal_row" >
           <MainMenuCompoannent />
         </Row> */}

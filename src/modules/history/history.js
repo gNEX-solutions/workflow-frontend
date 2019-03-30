@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import HeaderComponent from "../../shared/header/headerComponent";
 import MainMenuComponent from "../../shared/mainMenu/mainMenu";
-import { Row } from 'react-bootstrap'
+import { Row } from 'react-bootstrap';
+import './history.css';
 class HistorySection extends Component {
   state = {};
   render() {
@@ -9,10 +10,7 @@ class HistorySection extends Component {
       <React.Fragment>
         {/* <header> history section </header> */}
         <HeaderComponent />
-        <Row>
-          <MainMenuComponent />
-        </Row>
-        <Row>
+        <Row id="main_menu">
           <MainMenuComponent />
         </Row>
       </React.Fragment>
