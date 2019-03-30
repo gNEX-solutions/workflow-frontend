@@ -5,6 +5,7 @@ import ApprovalSection from "../../shared/approval_section/approvalSectionCompon
 import { Row, Col } from "react-bootstrap";
 import EventDescription from "../../shared/eventDescription/eventDescription";
 import CalenderFooter from "../../shared/calenderFooter/calenderFooter";
+import CalenderComponent from "../../shared/calenderComponent/calenderComponent"
 import "./calender.css";
 class CalenderSection extends Component {
   state = {
@@ -60,7 +61,7 @@ class CalenderSection extends Component {
         </Row>
         <Row>
           <Col className="col-4" id="calender_section">
-            {/* <ApprovalSection></ApprovalSection> */}
+            <CalenderComponent />
           </Col>
           <Col className="col-8" id="event_info">
             <Row id="event_description_row">

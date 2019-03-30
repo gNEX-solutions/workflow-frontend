@@ -1,0 +1,13 @@
+table{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15%;
+}
+td{
+    /* align-self: center; */
+    /* align-content: center; */
+}
+p{
+    /* display: flex; */
+}
