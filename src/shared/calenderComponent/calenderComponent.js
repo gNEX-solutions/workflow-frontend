@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Row } from "react-bootstrap";
+import { Row, Col, Dropdown } from "react-bootstrap";
 import * as moment from 'moment';
 import './calenderComponent.css';
+import DropdownMenu from 'react-bootstrap/DropdownMenu';
+import { MenuItem } from '@material-ui/core';
 class CalenderCompoennt extends Component {
     state = {
-        week1: [1, 2, 3, 4, 5, 6, 7],
-        now: moment()
+        now: moment(),
+        year: 'year'
     }
     weekDayHeaders = moment.weekdaysShort().map((weekday) => {
         return <th>{weekday}</th>
@@ -14,8 +16,21 @@ class CalenderCompoennt extends Component {
     firstDay = moment(this.state.now).startOf('month').format('d'); // return the first day of the month
     lastDay = moment(this.state.now).endOf('month').format('d'); // last day of the month
 
-    render() {
+    getDopdownYears = () => {
+        var years = [];
+        for (var i = 2010; i <= moment().get('year'); i++) {
+            years.push(<Dropdown.Item eventKey={i} onSelect={(i, this.yearItemSelected)}>{i}</Dropdown.Item>);
+        }
+        return years;
+    }
+    yearItemSelected = (year) => {
+        this.setState({
+            year: year.toString()
+        })
+    }
 
+    render() {
+        // console.log(moment().get('years'));
         let daysInMonth = [];
         let blankDaysBefore = [];
         let blankDaysAfter = [];
@@ -72,6 +87,18 @@ class CalenderCompoennt extends Component {
         return (
             <React.Fragment>
                 <div>
+                    <Row>
+                        <Col className="col-6">
+                            <Dropdown>
+                                <Dropdown.Toggle variant='outline-info' >
+                                    {this.state.year}
+                                </Dropdown.Toggle>
+                                <DropdownMenu >
+                                    {this.getDopdownYears()}
+                                </DropdownMenu>
+                            </Dropdown>
+                        </Col>
+                    </Row>
                     <Row >
                         <table className="table-condensed table-bordered table-striped">
                             <thead>
