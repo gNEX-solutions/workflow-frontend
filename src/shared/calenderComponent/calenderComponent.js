@@ -3,8 +3,10 @@ import { Row, Col, Dropdown } from "react-bootstrap";
 import * as moment from 'moment';
 import './calenderComponent.css';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
+
 import { MenuItem } from '@material-ui/core';
 import DropdownItem from 'react-bootstrap/DropdownItem';
+import DateCompoent from './dateCompoent';
 class CalenderCompoennt extends Component {
     state = {
         now: moment(),
@@ -14,6 +16,9 @@ class CalenderCompoennt extends Component {
     }
     // changing the first day of the week to monday
 
+    statusArray = [
+        '', '', '', 'warn', 'single_check', '', 'double_check', 'single_check', '', '', 'double_check', 'warn', '', '', 'warn', '', '', 'single_check'
+    ]
 
     weekDayHeaders = moment.weekdaysShort().map((weekday) => {
         return <th>{weekday}</th>
@@ -91,9 +96,15 @@ class CalenderCompoennt extends Component {
             let monthCurrent = this.state.now.format("M");
             let dateCurrent = this.state.now.format("D");
             if (dateCurrent == i) {
-                daysInMonth.push(<td className="current_date">{i.toString()}</td>)
+                daysInMonth.push(
+                    <td className="current_date">
+                        <DateCompoent date={i.toString()} status={this.statusArray[i]} />
+                    </td>)
             } else {
-                daysInMonth.push(<td >{i.toString()}</td>)
+                daysInMonth.push(
+                    <td >
+                        <DateCompoent date={i.toString()} status={this.statusArray[i]} />
+                    </td>)
             }
 
         }

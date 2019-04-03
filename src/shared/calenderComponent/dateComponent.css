@@ -1,0 +1,31 @@
+#date{
+    font-size: 23px;
+    font-weight: 700;
+    text-align: center;
+    align-self: center;
+    /* padding-top: 15%; */
+    padding-left: 10%;
+    /* color: blue; */
+}
+
+#dummy_para{
+    font-size: 13px;
+}
+
+.single_tick{
+    color: green;
+    font-size: 13px;
+}
+
+.background_icon{
+    position: absolute;
+  font-family: 'FontAwesome';
+  top: 0;
+  /* left: 10px; */
+  content: "\f005";
+}
+
+.warning{
+    color: rgb(151, 151, 14);
+    font-size: 13px;
+}
