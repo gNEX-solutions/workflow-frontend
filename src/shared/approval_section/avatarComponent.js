@@ -7,7 +7,7 @@ class AvatarComponent extends Component {
     return (
       <React.Fragment>
         <div className="Avatar">
-          <img src={require('../avatar.png')} className="AvatarImage" alt="logo"/>
+          <img src={require('../../img/avatar.png')} className="AvatarImage" alt="logo"/>
           <p className="AvatarName">{this.props.Name}</p>
           <p className="AvatarTitle">{this.props.Title}</p>
         </div>
