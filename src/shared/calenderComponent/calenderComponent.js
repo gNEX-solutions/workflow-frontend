@@ -4,18 +4,34 @@ import * as moment from 'moment';
 import './calenderComponent.css';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
 import { MenuItem } from '@material-ui/core';
+import DropdownItem from 'react-bootstrap/DropdownItem';
 class CalenderCompoennt extends Component {
     state = {
         now: moment(),
-        year: 'year'
+        year: 2019,
+        month: 1,
+        displayMonth: 'February'
     }
+    // changing the first day of the week to monday
+
+
     weekDayHeaders = moment.weekdaysShort().map((weekday) => {
         return <th>{weekday}</th>
     });
-    daysInMonthAmount = moment().daysInMonth();
-    firstDay = moment(this.state.now).startOf('month').format('d'); // return the first day of the month
-    lastDay = moment(this.state.now).endOf('month').format('d'); // last day of the month
+    daysInMonthAmount;
+    firstDay; // return the first day of the month
+    lastDay; // last day of the month
 
+    updateMoement() {
+        const updatedMoment = moment().set({ 'year': this.state.year, 'month': this.state.month });
+        this.daysInMonthAmount = updatedMoment.daysInMonth();
+        this.firstDay = updatedMoment.startOf('month').format('d');
+        this.lastDay = updatedMoment.endOf('month').format('d')
+    }
+
+
+
+    // console.log()
     getDopdownYears = () => {
         var years = [];
         for (var i = 2010; i <= moment().get('year'); i++) {
@@ -23,13 +39,34 @@ class CalenderCompoennt extends Component {
         }
         return years;
     }
+    getDropdownMonths = () => {
+        var months = moment.months().map((month, monthIndex) => {
+            return <Dropdown.Item eventKey={monthIndex} onSelect={(monthIndex, this.monthItemSelected)}>{month}</Dropdown.Item>
+        })
+        return months;
+    }
     yearItemSelected = (year) => {
         this.setState({
             year: year.toString()
-        })
+        });
+        // console.log(this.state.year);
+    }
+    monthItemSelected = (monthIndex) => {
+
+        const modifiedMonthIndex = parseInt(monthIndex) + 1;
+        this.setState({
+            displayMonth: moment(modifiedMonthIndex, 'MM').format('MMMM'),
+            month: monthIndex
+        });
+        // console.log(moment(modifiedMonthIndex, 'MM').format('MMMM'));
     }
 
     render() {
+        this.updateMoement();
+        // console.log(this.state.year);
+        // console.log(this.state.month);
+        // console.log(this.firstDay);
+        // console.log(this.lastDay);
         // console.log(moment().get('years'));
         let daysInMonth = [];
         let blankDaysBefore = [];
@@ -95,6 +132,16 @@ class CalenderCompoennt extends Component {
                                 </Dropdown.Toggle>
                                 <DropdownMenu >
                                     {this.getDopdownYears()}
+                                </DropdownMenu>
+                            </Dropdown>
+                        </Col>
+                        <Col className="col-6">
+                            <Dropdown>
+                                <Dropdown.Toggle variant='outline-info' >
+                                    {this.state.displayMonth}
+                                </Dropdown.Toggle>
+                                <DropdownMenu >
+                                    {this.getDropdownMonths()}
                                 </DropdownMenu>
                             </Dropdown>
                         </Col>
