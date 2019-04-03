@@ -76,6 +76,14 @@ export const login = data => (dispatch, history) => {
         payload: res
       })
     )
+    .then(res => {
+      // save to local storage
+      const { token } = res.data;
+      // set token to ls
+      localStorage.setItem('token', token);
+      // set token to auth header
+      // setAuthToken(token);
+    })
     .then(res => history.push('/'))
     .catch(err => {
       console.log(err);
