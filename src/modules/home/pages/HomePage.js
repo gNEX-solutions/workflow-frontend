@@ -7,8 +7,15 @@ import History from '../../history/history';
 import HeaderComponent from '../../../shared/header/headerComponent';
 import MainMenuCompoannent from '../../../shared/mainMenu/mainMenu';
 
+import { getEvent } from '../../../store/actions/DashBoardActions';
+
 type HomePageProps = {}; // TODO: Add props type here
 type HomePageState = {}; // TODO: Add state type here
+
+export const input = {
+  month: '05',
+  year: '2019'
+};
 
 export const VIEW_TYPES = {
   calendar: 1001,
@@ -25,6 +32,12 @@ class HomePage extends React.Component {
     this.state = {
       currentViewType: VIEW_TYPES.calendar
     };
+  }
+
+  componentDidMount() {
+    const { getEvent } = this.props;
+    getEvent(input);
+    console.log('test');
   }
 
   handleEventCalendarPress = () => {
@@ -75,12 +88,18 @@ class HomePage extends React.Component {
   }
 }
 
-HomePage.propTypes = {};
+HomePage.propTypes = {
+  events: PropTypes.object.isRequired
+};
 
 HomePage.defaultProps = {};
 
 const mapStateToProps = (state, ownProps) => ({
   // TODO: Map additional props here
+  events: state.events
 });
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(
+  mapStateToProps,
+  { getEvent }
+)(HomePage);

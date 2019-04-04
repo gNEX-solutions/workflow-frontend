@@ -1,27 +1,29 @@
 /* eslint-disable indent */
-import { LOGIN, LOGIN_SUCCESS } from '../../modules/login/actions/types';
+import {
+  GET_EVENT,
+  GET_EVENT_SUCCESS,
+  GET_EVENT_FAIL
+} from '../types/DashBoardTypes';
 
 const initialState = {
-  events: null
+  events: null,
   isLoading: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case LOGIN:
+    case GET_EVENT:
       return {
         ...state,
         isLoading: true
       };
-    case LOGIN_SUCCESS:
+    case GET_EVENT_SUCCESS:
       // eslint-disable-next-line no-case-declarations
-      const { data } = action.payload;
+      // const { data } = action.payload;
       return {
         ...state,
-        // ...action.payload,
-        isAuthenticated: true,
-        isLoading: false,
-        token: data.token
+        ...action.payload,
+        isLoading: false
       };
     default:
       return state;
