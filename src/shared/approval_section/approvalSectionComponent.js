@@ -20,11 +20,11 @@ const ApprovedArray = [
 
 const PendingArray = [
   {
-    name: 'Dr. Dilani',
+    name: 'Dr. Dilani Wickramarachchi',
     title: 'Treasure'
   },
   {
-    name: 'Dr. Dilani',
+    name: 'Dr. Dilani Wickramarachchi',
     title: 'Treasure'
   }
 ];
