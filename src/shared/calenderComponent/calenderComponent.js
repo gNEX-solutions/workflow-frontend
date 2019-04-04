@@ -4,8 +4,7 @@ import * as moment from 'moment';
 import './calenderComponent.css';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
 
-import { MenuItem } from '@material-ui/core';
-import DropdownItem from 'react-bootstrap/DropdownItem';
+
 import DateCompoent from './dateCompoent';
 import TableRowComponent from './tableRowComponent';
 class CalenderCompoennt extends Component {
@@ -60,13 +59,15 @@ class CalenderCompoennt extends Component {
 
     getEventInfoComponents() {
         var eventInfoComponents = [];
+        var activeString = 'active';
+        var inactiveString = 'inactive';
         this.eventInfo.forEach((eventInfo, i) => {
             var eventInfoComponent;
             if (i === this.state.activeEventNum) {
-                eventInfoComponent = <TableRowComponent info={eventInfo} id={i} style='active' onItemClick={this.eventItemSelected} />;
+                eventInfoComponent = <TableRowComponent info={eventInfo} id={i} style={activeString} onItemClick={this.eventItemSelected} />;
             }
             else {
-                eventInfoComponent = <TableRowComponent info={eventInfo} id={i} style='inactive' onItemClick={this.eventItemSelected} />;
+                eventInfoComponent = <TableRowComponent info={eventInfo} id={i} style={inactiveString} onItemClick={this.eventItemSelected} />;
 
             }
 
@@ -148,13 +149,13 @@ class CalenderCompoennt extends Component {
 
         // month date data 
         for (i = 1; i <= this.daysInMonthAmount; i++) {
-            let yearCurrent = this.state.now.format("Y");
-            let monthCurrent = this.state.now.format("M");
-            let dateCurrent = this.state.now.format("D");
+            let yearCurrent = parseInt(this.state.now.format("Y"));
+            let monthCurrent = parseInt(this.state.now.format("M"));
+            let dateCurrent = parseInt(this.state.now.format("D"));
             let editedMonth = parseInt(this.state.month) + 1;
             console.log('month :' + monthCurrent + 'year :' + yearCurrent);
             console.log('mn :' + editedMonth);
-            if (dateCurrent == i && monthCurrent == editedMonth && yearCurrent == this.state.year) {
+            if (dateCurrent === i && monthCurrent === editedMonth && yearCurrent === this.state.year) {
                 // if (dateCurrent === i) {
                 daysInMonth.push(
                     <td className="current_date">

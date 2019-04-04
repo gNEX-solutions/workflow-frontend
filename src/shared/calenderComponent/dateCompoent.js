@@ -11,7 +11,7 @@ class DateComponent extends Component {
             icon = <FontAwesomeIcon icon={faCheckDouble} className="single_tick"></FontAwesomeIcon>
             // icon = <icon>{sigleCheckIcon}</icon>;
 
-        } else if (this.props.status == "single_check") {
+        } else if (this.props.status === "single_check") {
             icon = <FontAwesomeIcon icon={faCheck} className="single_tick"></FontAwesomeIcon>
         } else if (this.props.status === "warn") {
             icon = <FontAwesomeIcon icon={faExclamationTriangle} className="warning"></FontAwesomeIcon>
