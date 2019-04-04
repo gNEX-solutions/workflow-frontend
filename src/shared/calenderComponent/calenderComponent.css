@@ -20,21 +20,4 @@ table{
     /* padding-top: 5%; */
 }
 
-/******************** event info styling  ****************************/
 
-.inactive{
-    padding-left: 5px;
-    
-    /* background-color: aqua; */
-}
-.active{
-    padding-left: 5px;
-    background-color: aqua;
-}
-
-#eventInfo_date{
-    padding-left: 10%;
-}
-
-
-/*  */

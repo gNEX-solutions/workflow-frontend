@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './tableRow.css';
 class TableRowComponent extends Component {
     state = {}
 
