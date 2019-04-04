@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faCheckDouble, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faCheckDouble, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import './dateComponent.css';
 class DateComponent extends Component {
     state = {}
@@ -12,7 +12,7 @@ class DateComponent extends Component {
             // icon = <icon>{sigleCheckIcon}</icon>;
 
         } else if (this.props.status == "single_check") {
-            icon = <FontAwesomeIcon icon={faCheckCircle} className="single_tick"></FontAwesomeIcon>
+            icon = <FontAwesomeIcon icon={faCheck} className="single_tick"></FontAwesomeIcon>
         } else if (this.props.status === "warn") {
             icon = <FontAwesomeIcon icon={faExclamationTriangle} className="warning"></FontAwesomeIcon>
         } else {
