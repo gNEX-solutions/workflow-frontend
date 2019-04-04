@@ -2,9 +2,7 @@
 import { LOGIN, LOGIN_SUCCESS } from '../../modules/login/actions/types';
 
 const initialState = {
-  user: null,
-  token: null,
-  isAuthenticated: false,
+  events: null
   isLoading: false
 };
 

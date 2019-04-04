@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col } from "react-bootstrap";
-import HeaderComponent from "../../shared/header/headerComponent";
-import MainMenuCompoannent from "../../shared/mainMenu/mainMenu";
-import ApprovalSection from "../../shared/approval_section/approvalSectionComponent";
+import { Row, Col } from 'react-bootstrap';
+
+import ApprovalSection from '../../shared/approval_section/approvalSectionComponent';
 import EventDescription from '../../shared/eventDescription/eventDescription';
 import CalenderFooter from '../../shared/calenderFooter/calenderFooter';
 import './calender.css';
@@ -22,7 +21,7 @@ class CalenderSection extends Component {
     return (
       <React.Fragment>
         {/* <Row> */}
-        <HeaderComponent onProfClick={this.handleProfClick} />
+
         {/* <Overlay
             show={this.state.showUserProfile}
             placement="bottom-end"
@@ -52,9 +51,6 @@ class CalenderSection extends Component {
         {/* <Row className="cal_row" >
           <MainMenuCompoannent />
         </Row> */}
-        <Row className="cal_row" id="main_menu">
-          <MainMenuCompoannent />
-        </Row>
         <Row>
           <Col className="col-4" id="calender_section">
             {/* <ApprovalSection></ApprovalSection> */}
