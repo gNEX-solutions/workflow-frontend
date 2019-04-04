@@ -151,7 +151,11 @@ class CalenderCompoennt extends Component {
             let yearCurrent = this.state.now.format("Y");
             let monthCurrent = this.state.now.format("M");
             let dateCurrent = this.state.now.format("D");
-            if (dateCurrent == i) {
+            let editedMonth = parseInt(this.state.month) + 1;
+            console.log('month :' + monthCurrent + 'year :' + yearCurrent);
+            console.log('mn :' + editedMonth);
+            if (dateCurrent == i && monthCurrent == editedMonth && yearCurrent == this.state.year) {
+                // if (dateCurrent === i) {
                 daysInMonth.push(
                     <td className="current_date">
                         <DateCompoent date={i.toString()} status={this.statusArray[i]} />
