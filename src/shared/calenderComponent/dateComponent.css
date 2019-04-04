@@ -9,12 +9,12 @@
 }
 
 #dummy_para{
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .single_tick{
     color: green;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .background_icon{
@@ -27,5 +27,5 @@
 
 .warning{
     color: rgb(151, 151, 14);
-    font-size: 13px;
+    font-size: 15px;
 }

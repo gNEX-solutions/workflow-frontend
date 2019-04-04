@@ -7,17 +7,41 @@ import DropdownMenu from 'react-bootstrap/DropdownMenu';
 import { MenuItem } from '@material-ui/core';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import DateCompoent from './dateCompoent';
+import TableRowComponent from './tableRowComponent';
 class CalenderCompoennt extends Component {
     state = {
         now: moment(),
         year: 2019,
         month: 1,
-        displayMonth: 'February'
+        displayMonth: 'February',
+        activeEventNum: 0
     }
     // changing the first day of the week to monday
 
     statusArray = [
         '', '', '', 'warn', 'single_check', '', 'double_check', 'single_check', '', '', 'double_check', 'warn', '', '', 'warn', '', '', 'single_check'
+    ]
+    eventInfo = [
+        {
+            date: 2,
+            state: 'done',
+            name: 'dansala'
+        },
+        {
+            date: 12,
+            state: 'published',
+            name: 'going down'
+        },
+        {
+            date: 15,
+            state: 'confirmed',
+            name: 'csr project'
+        },
+        {
+            date: 20,
+            state: 'pending',
+            name: 'carwash'
+        },
     ]
 
     weekDayHeaders = moment.weekdaysShort().map((weekday) => {
@@ -32,6 +56,27 @@ class CalenderCompoennt extends Component {
         this.daysInMonthAmount = updatedMoment.daysInMonth();
         this.firstDay = updatedMoment.startOf('month').format('d');
         this.lastDay = updatedMoment.endOf('month').format('d')
+    }
+
+    getEventInfoComponents() {
+        var eventInfoComponents = [];
+        this.eventInfo.forEach((eventInfo, i) => {
+            var eventInfoComponent;
+            if (i === this.state.activeEventNum) {
+                eventInfoComponent = <TableRowComponent info={eventInfo} id={i} style='active' onItemClick={this.eventItemSelected} />;
+            }
+            else {
+                eventInfoComponent = <TableRowComponent info={eventInfo} id={i} style='inactive' onItemClick={this.eventItemSelected} />;
+
+            }
+
+            eventInfoComponents.push(eventInfoComponent);
+
+
+        }
+        );
+        return eventInfoComponents;
+
     }
 
 
@@ -50,6 +95,11 @@ class CalenderCompoennt extends Component {
         })
         return months;
     }
+
+
+
+
+    /////////////////  event action functions ////////////////////
     yearItemSelected = (year) => {
         this.setState({
             year: year.toString()
@@ -63,7 +113,13 @@ class CalenderCompoennt extends Component {
             displayMonth: moment(modifiedMonthIndex, 'MM').format('MMMM'),
             month: monthIndex
         });
-        // console.log(moment(modifiedMonthIndex, 'MM').format('MMMM'));
+    }
+
+    eventItemSelected = (id) => {
+        // console.log(id);
+        this.setState({
+            activeEventNum: id
+        });
     }
 
     render() {
@@ -136,7 +192,7 @@ class CalenderCompoennt extends Component {
             <React.Fragment>
                 <div>
                     <Row>
-                        <Col className="col-6">
+                        <Col className="col-6" id="dropdownYear">
                             <Dropdown>
                                 <Dropdown.Toggle variant='outline-info' >
                                     {this.state.year}
@@ -157,8 +213,9 @@ class CalenderCompoennt extends Component {
                             </Dropdown>
                         </Col>
                     </Row>
-                    <Row >
-                        <table className="table-condensed table-bordered table-striped">
+                    <Row id="calender_row">
+
+                        <table className="table-condensed table-bordered table-striped" id="cal_table">
                             <thead>
                                 <tr>
                                     {this.weekDayHeaders}
@@ -183,6 +240,13 @@ class CalenderCompoennt extends Component {
                                 <tr>
                                     {sixthWeek}
                                 </tr>
+                            </tbody>
+                        </table>
+                    </Row>
+                    <Row >
+                        <table class="table  ">
+                            <tbody>
+                                {this.getEventInfoComponents()}
                             </tbody>
                         </table>
                     </Row>
