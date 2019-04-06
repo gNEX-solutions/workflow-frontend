@@ -1,19 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
   root: {
-    width: "30%"
+    width: '30%'
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    flexBasis: "33.33%",
+    flexBasis: '33.33%',
     flexShrink: 0
   },
   secondaryHeading: {
@@ -22,15 +22,15 @@ const styles = theme => ({
   }
 });
 
-let TodayDay = "Today";
-let NextWeek = "Next Week";
-let YesterdayDay = "Yesterday";
-let lastweek = "Last Week";
+const TodayDay = 'Today';
+const NextWeek = 'Next Week';
+const YesterdayDay = 'Yesterday';
+const lastweek = 'Last Week';
 
-let TodayNotifications = 0;
-let NextWeekNotifications = 0;
-let YesterdayNotifications = 0;
-let LastweekNotifications = 0;
+const TodayNotifications = 0;
+const NextWeekNotifications = 0;
+const YesterdayNotifications = 0;
+const LastweekNotifications = 0;
 
 class NotificationPanelComponent extends React.Component {
   state = {
@@ -50,8 +50,8 @@ class NotificationPanelComponent extends React.Component {
       <React.Fragment>
         <div className={classes.root}>
           <ExpansionPanel
-            expanded={expanded === "panel1"}
-            onChange={this.handleChange("panel1")}
+            expanded={expanded === 'panel1'}
+            onChange={this.handleChange('panel1')}
           >
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
               <Typography className={classes.heading}>{TodayDay}</Typography>
@@ -64,8 +64,8 @@ class NotificationPanelComponent extends React.Component {
             </ExpansionPanelDetails>
           </ExpansionPanel>
           <ExpansionPanel
-            expanded={expanded === "panel2"}
-            onChange={this.handleChange("panel2")}
+            expanded={expanded === 'panel2'}
+            onChange={this.handleChange('panel2')}
           >
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
               <Typography className={classes.heading}>
@@ -80,8 +80,8 @@ class NotificationPanelComponent extends React.Component {
             </ExpansionPanelDetails>
           </ExpansionPanel>
           <ExpansionPanel
-            expanded={expanded === "panel3"}
-            onChange={this.handleChange("panel3")}
+            expanded={expanded === 'panel3'}
+            onChange={this.handleChange('panel3')}
           >
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
               <Typography className={classes.heading}>{NextWeek}</Typography>
@@ -94,8 +94,8 @@ class NotificationPanelComponent extends React.Component {
             </ExpansionPanelDetails>
           </ExpansionPanel>
           <ExpansionPanel
-            expanded={expanded === "panel4"}
-            onChange={this.handleChange("panel4")}
+            expanded={expanded === 'panel4'}
+            onChange={this.handleChange('panel4')}
           >
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
               <Typography className={classes.heading}>{lastweek}</Typography>
