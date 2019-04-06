@@ -1,105 +1,72 @@
 import React, { Component } from "react";
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import Avatar from '@material-ui/core/Avatar';
-import Badge from '@material-ui/core/Badge';
-import Grid from '@material-ui/core/Grid';
-import './headerComponent.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Navbar, Nav, Form, Badge, NavItem  } from 'react-bootstrap';
+import { faBell} from "@fortawesome/free-solid-svg-icons";
+import Avatar from 'react-avatar';
 
 
-let ufname = 'Akalanka';
+let ufname = 'Akalanka ';
 let ulname='Jayalth';
 let udesignation='President';
-let userimage="https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png";
-
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-AppBar :{
-   background: 'black',
-   position:'static',
-   color:"inherit",
-},
-Typography:{
-  color:'white',
-  fontWeight: 'bold', 
-  fontSize:'100%',
-},
-IconButton :{
-  color:'white',
-},
-Avatar :{
-  margin: 0, 
-  width: 40, 
-  height: 40,
-},
-UserDetails :{
-  marginTop:'2%',
-},
-Fname :{
-  color:'white' , 
-  fontWeight:'bold' ,
-  fontSize:"80%",
-},
-Lname:{
-  color:'grey' , 
-  fontWeight:'bold',
-  fontSize:"80%",
-},
-Designation :{
-  color:'white', 
-  fontStyle:'italic' , 
-  fontSize:"60%",
-}
-};
+let userimage="";
+let numberofNotifications=10;
 
 class HeaderComponent extends Component {
   state = {
-    numberofNotifications: 10
+  
   };
 
   render() {
     return (
       <React.Fragment>
-
+     
       <div className="heading">
-      <AppBar className="EventManagerHeader" style={styles.AppBar}>
-        <Toolbar>
-        <Grid container  justify="center" alignContent="flex-start">
-          <Typography variant="h6" style={styles.Typography}>
-            IMSSA Event Manager
-          </Typography>
-          </Grid>
-          <Grid container  justify="center" alignContent="flex-end" >
-          <IconButton  style={styles.IconButton}>
-            <Badge badgeContent={this.state.numberofNotifications} color="secondary">
-              <NotificationsIcon/>
-            </Badge>
-          </IconButton  >
-          <IconButton style={styles.IconButton}>
-          <Avatar alt="user_icon" src={userimage} style={styles.Avatar} />
-          </IconButton> 
-             <div className="UserDetails" style={styles.UserDetails}>
-              <span style={styles.Fname}>{ufname}</span>
-              <span style={styles.Lname}>{ulname}</span>
-              <h6 style={styles.Designation}>{udesignation}</h6>
+       
+       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Brand href="#home">IMSSA Events Manager</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+             <Navbar.Collapse id="responsive-navbar-nav">
+             <div className="col-sm-6"></div>
+             <div className="col-sm-6">
+            
+             
+        <Form inline  alignContent="flex-end" >
+            
+             <div classname="notification_icon">
+             <Nav.Link href="#notification">
+             <FontAwesomeIcon icon={faBell} style={{color:'white' ,fontSize:"130%"}} className="notfication_button"></FontAwesomeIcon>
+             <Badge variant="light" style={{backgroundColor:"red"}}>{numberofNotifications}</Badge>
+             <span className="sr-only">unread messages</span>
+             </Nav.Link>
              </div>
-             </Grid>
-        </Toolbar>
-      </AppBar>
-    </div>
-  
+            
+     
+             <div className="user_avatar">
+             <Nav.Link href="#user">
+             <Avatar className ="avatar" name={ufname} src={userimage} size="40" round={true} color="gray"/>
+             </Nav.Link>
+             </div>
+            
+        
+             <div className="user_details">
+             <span style={{color:'white',
+                            fontWeight:'bold',
+                              fontSize:'80%'}}>{ufname}</span>
+             <span style={{color:'grey' , 
+                             fontWeight:'bold',
+                               fontSize:"80%"}}>{ulname}</span>
+             <h6 style={{color:'white', 
+                          fontStyle:'italic' , 
+                            fontSize:"60%"}}>{udesignation}</h6>
+             </div>
+         
+          </Form>
+         </div>
+            
+         </Navbar.Collapse>
+        </Navbar>;
+       </div>
+ 
       </React.Fragment>
     );
   }
