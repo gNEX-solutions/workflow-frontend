@@ -7,9 +7,9 @@
 }
 
 #active {
-    background-color: white;
+    background-color: transparent;
     border: 5px;
-    border-color: black;
+    border-bottom: 10px red;
 
 }
 
@@ -26,7 +26,15 @@
     align-items: center;
 }
 
-.button {
+.menuOption {
     border: 0px;
-    background-color: white;
+    background-color: transparent;
+}
+
+.menuOuter {
+    border-bottom: 10px;
+    border-bottom-width: 10px;
+    /* background-color: red; */
+    margin-bottom: 200px;
+    border-bottom-color: yellow
 }

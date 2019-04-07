@@ -34,18 +34,24 @@ class ApprovalSectionComponent extends Component {
 
   renderAvetarComponentApprove = () => {
     const arr = [];
-    ApprovedArray.forEach((item, index) =>
-      arr.push(<AvatarComponent Name={item.name} Title={item.title} />)
-    );
+    ApprovedArray.forEach((item, index) => {
+      const key = index;
+      arr.push(
+        <AvatarComponent key={key} Name={item.name} Title={item.title} />
+      );
+    });
 
     return arr;
   };
 
   renderAvetarComponentPending = () => {
     const arr = [];
-    PendingArray.forEach((item, index) =>
-      arr.push(<AvatarComponent Name={item.name} Title={item.title} />)
-    );
+    PendingArray.forEach((item, index) => {
+      const key = index;
+      arr.push(
+        <AvatarComponent key={key} Name={item.name} Title={item.title} />
+      );
+    });
 
     return arr;
   };

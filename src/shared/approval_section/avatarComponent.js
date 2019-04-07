@@ -8,7 +8,7 @@ class AvatarComponent extends Component {
       <React.Fragment>
         <div className="Avatar">
           <img
-            src={require('../avatar.png')}
+            src={require('../../img/avatar.png')}
             className="AvatarImage"
             alt="logo"
           />

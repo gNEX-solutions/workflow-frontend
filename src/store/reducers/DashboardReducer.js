@@ -19,11 +19,11 @@ export default function(state = initialState, action) {
       };
     case GET_EVENT_SUCCESS:
       // eslint-disable-next-line no-case-declarations
-      // const { data } = action.payload;
+      const { data } = action.payload;
       return {
         ...state,
-        ...action.payload,
-        isLoading: false
+        isLoading: false,
+        events: data
       };
     default:
       return state;

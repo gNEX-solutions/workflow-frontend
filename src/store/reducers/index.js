@@ -15,5 +15,5 @@ export default combineReducers({
   // ...AllSharedReducers
   // You can override or add new reducers here
   auth: authReducer,
-  events: DashboardReducer
+  dashboard: DashboardReducer
 });
