@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Row, Col, Overlay, Popover } from "react-bootstrap";
-import HeaderComponent from "../../shared/header/headerComponent";
-import MainMenuCompoannent from "../../shared/mainMenu/mainMenu";
-import ApprovalSection from "../../shared/approval_section/approvalSectionComponent";
-import UserProfileSection from '../../shared/userProfileSection/userProfileSection';
-import NotificationPannel from '../../shared/header/NotificationPanel';
+import { Row, Col } from 'react-bootstrap';
+
+import ApprovalSection from '../../shared/approval_section/approvalSectionComponent';
 import EventDescription from '../../shared/eventDescription/eventDescription';
 import CalenderFooter from '../../shared/calenderFooter/calenderFooter';
+import CalenderComponent from '../../shared/calenderComponent/calenderComponent';
 import './calender.css';
 
 class CalenderSection extends Component {
@@ -23,9 +21,9 @@ class CalenderSection extends Component {
   render() {
     return (
       <React.Fragment>
-        <Row>
-          <HeaderComponent onProfClick={this.handleProfClick} />
-          <Overlay
+        {/* <Row> */}
+
+        {/* <Overlay
             show={this.state.showUserProfile}
             placement="bottom-end"
             target={this}
@@ -42,23 +40,20 @@ class CalenderSection extends Component {
             target={this}
             container={this}
             containerPadding={2}
-          >
-            <Popover id="popover-contained" title="Popover bottom">
+          > */}
+        {/* <Popover id="popover-contained" title="Popover bottom">
               <div>
                 <NotificationPannel />
               </div>
             </Popover>
-          </Overlay>
-        </Row>
+          </Overlay> */}
+        {/* </Row> */}
         {/* <Row className="cal_row" >
           <MainMenuCompoannent />
         </Row> */}
-        <Row className="cal_row" id="main_menu">
-          <MainMenuCompoannent />
-        </Row>
         <Row>
           <Col className="col-4" id="calender_section">
-            {/* <ApprovalSection></ApprovalSection> */}
+            <CalenderComponent />
           </Col>
           <Col className="col-8" id="event_info">
             <Row id="event_description_row">

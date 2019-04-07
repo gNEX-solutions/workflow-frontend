@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN, GET_USER, LOGIN_SUCCESS } from './types';
+import { LOGIN, GET_USER, LOGIN_SUCCESS } from '../types/AuthTypes';
 
 // export const POST_AUTHENTICATE_USER = 'POST_AUTHENTICATE_USER';
 // export const POST_AUTHENTICATE_USER_SUCCESS =

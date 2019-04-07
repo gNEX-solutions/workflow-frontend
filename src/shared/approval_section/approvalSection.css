@@ -1,15 +1,16 @@
-.ApprovalSection{
+.ApprovalSection {
     display: flex;
 }
 
-.container{
-    background-color: whitesmoke
+.container {
+    background-color: whitesmoke;
+
 }
 
-.Label{
+.Label {
     font-weight: bold;
 }
 
-img{
-   width: 50px; 
+img {
+    width: 50px;
 }

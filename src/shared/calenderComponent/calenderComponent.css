@@ -1,0 +1,23 @@
+table{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15%;
+}
+.current_date{
+    background-color: greenyellow;
+}
+#dropdownYear{
+    padding-left: 15%;
+}
+
+#calender_row{
+    margin-top: 0px;
+    padding-top: 1%;
+}
+#cal_table{
+    margin-top: 2%;
+    /* padding-top: 5%; */
+}
+
+

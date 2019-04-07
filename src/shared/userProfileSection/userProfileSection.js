@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 import "./userProfileSection.css";
 
 class UserProfileSection extends Component {

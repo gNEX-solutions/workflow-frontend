@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { LOGIN, GET_USER, LOGIN_SUCCESS } from './types';
+import {
+  GET_EVENT,
+  GET_EVENT_SUCCESS,
+  GET_EVENT_FAIL
+} from '../types/DashBoardTypes';
 
 // export const POST_AUTHENTICATE_USER = 'POST_AUTHENTICATE_USER';
 // export const POST_AUTHENTICATE_USER_SUCCESS =
@@ -67,24 +71,15 @@ import { LOGIN, GET_USER, LOGIN_SUCCESS } from './types';
 //   payload: { data }
 // });
 
-export const login = data => (dispatch, history) => {
+export const getEvent = data => (dispatch, history) => {
   axios
-    .post('/auth/signin', data)
+    .post('eventapi/events', data)
     .then(res =>
       dispatch({
-        type: LOGIN_SUCCESS,
+        type: GET_EVENT_SUCCESS,
         payload: res
       })
     )
-    .then(res => {
-      // save to local storage
-      const { token } = res.data;
-      // set token to ls
-      localStorage.setItem('token', token);
-      // set token to auth header
-      // setAuthToken(token);
-    })
-    .then(res => history.push('/'))
     .catch(err => {
       console.log(err);
     });
@@ -92,38 +87,7 @@ export const login = data => (dispatch, history) => {
 };
 
 //check token and load user
-export const loadUser = () => (dispatch, getState) => {
-  //user loading
-  dispatch({ type: LOGIN });
-
-  //get token from local storage
-  const token = getState().auth.token;
-  // const token =
-
-  //Headers
-  const config = {
-    headers: {
-      'Content-type': 'application/json'
-    }
-  };
-
-  // if token add to headers
-  if (token) {
-    config.headers['Authorization'] = 'Bearer ' + token;
-  }
-
-  axios
-    .get('/userapi/me', config)
-    .then(res =>
-      dispatch({
-        type: GET_USER,
-        payload: res.data
-      })
-    )
-    .catch(err => {
-      console.log(err);
-    });
-};
+export const loadUser = () => (dispatch, getState) => {};
 
 // export const login = data => dispatch => axios.post('/auth/signin', data);
 
