@@ -1,28 +1,28 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { Row, Col, Overlay, Popover } from "react-bootstrap";
 import HeaderComponent from "../../shared/header/headerComponent";
 import MainMenuCompoannent from "../../shared/mainMenu/mainMenu";
 import ApprovalSection from "../../shared/approval_section/approvalSectionComponent";
-import { Row, Col, Overlay, Popover } from "react-bootstrap";
-import UserProfileSection from "../../shared/userProfileSection/userProfileSection";
-import NotificationPannel from "../../shared/header/NotificationPanel";
-import EventDescription from "../../shared/eventDescription/eventDescription";
-import CalenderFooter from "../../shared/calenderFooter/calenderFooter";
-import "./calender.css";
+import UserProfileSection from '../../shared/userProfileSection/userProfileSection';
+import NotificationPannel from '../../shared/header/NotificationPanel';
+import EventDescription from '../../shared/eventDescription/eventDescription';
+import CalenderFooter from '../../shared/calenderFooter/calenderFooter';
+import './calender.css';
+
 class CalenderSection extends Component {
   state = {
     showUserProfile: false,
-    showNotificationPannel: false,
+    showNotificationPannel: false
   };
-  // added by dj: 20/03/2019 : handling the state of the user profile section 
+  // added by dj: 20/03/2019 : handling the state of the user profile section
   handleProfClick = () => {
     this.setState({
       showUserProfile: !this.state.showUserProfile
     });
-  }
+  };
   render() {
     return (
       <React.Fragment>
-
         <Row>
           <HeaderComponent onProfClick={this.handleProfClick} />
           <Overlay
@@ -33,7 +33,7 @@ class CalenderSection extends Component {
             containerPadding={20}
           >
             <Popover id="popover-contained" title="Popover bottom">
-              <UserProfileSection></UserProfileSection>
+              <UserProfileSection />
             </Popover>
           </Overlay>
           <Overlay
@@ -45,20 +45,16 @@ class CalenderSection extends Component {
           >
             <Popover id="popover-contained" title="Popover bottom">
               <div>
-                <NotificationPannel></NotificationPannel>
+                <NotificationPannel />
               </div>
-
             </Popover>
           </Overlay>
         </Row>
         {/* <Row className="cal_row" >
           <MainMenuCompoannent />
         </Row> */}
-        <Row className="cal_row" id="main_menu" >
-
+        <Row className="cal_row" id="main_menu">
           <MainMenuCompoannent />
-
-
         </Row>
         <Row>
           <Col className="col-4" id="calender_section">
@@ -66,24 +62,19 @@ class CalenderSection extends Component {
           </Col>
           <Col className="col-8" id="event_info">
             <Row id="event_description_row">
-              <EventDescription id="event_description"></EventDescription>
+              <EventDescription id="event_description" />
             </Row>
             <Row id="app_section_row">
-              <ApprovalSection id="app_section"></ApprovalSection>
+              <ApprovalSection id="app_section" />
             </Row>
             <Row>
-              <CalenderFooter id="cal_footer"></CalenderFooter>
+              <CalenderFooter id="cal_footer" />
             </Row>
-
           </Col>
         </Row>
         {/* <Row>
             <p> header 1</p>
           </Row> */}
-
-
-
-
       </React.Fragment>
     );
   }

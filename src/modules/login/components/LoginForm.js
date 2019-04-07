@@ -21,7 +21,7 @@ class LoginForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.context.router.history.push('/');
+      this.context.router.history.push('/calender');
     }
   }
 

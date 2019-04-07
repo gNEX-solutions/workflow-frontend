@@ -1,14 +1,14 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import Login from "../modules/login/pages/Login";
-import HomePage from "../modules/home/pages/HomePage";
-import HistorySection from "../modules/history/history";
-import EventExplorer from "../modules/eventExplorer/eventExplorer";
-import CalenderSection from "../modules/calender/calender";
-import UserProfileSection from "../shared/userProfileSection/userProfileSection";
-import ApprovalSection from "../shared/approval_section/approvalSectionComponent";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Login from '../modules/login/pages/Login';
+import HomePage from '../modules/home/pages/HomePage';
+import HistorySection from '../modules/history/history';
+import EventExplorer from '../modules/eventExplorer/eventExplorer';
+import CalenderSection from '../modules/calender/calender';
+import UserProfileSection from '../shared/userProfileSection/userProfileSection';
+import ApprovalSection from '../shared/approval_section/approvalSectionComponent';
 
-import RequireAuth from "./RequireAuth";
+import RequireAuth from './RequireAuth';
 
 const RootRouter = () => (
   <Switch>
@@ -18,12 +18,12 @@ const RootRouter = () => (
     {/* <PrivateRoute path="/" component={MainPage} /> */}
     <Route path="/login" component={Login} />
     {/* <Route path="/signup" component={Signup} /> */}
-    <Route path="/history" component={HistorySection} />
-    <Route path="/eventExp" component={EventExplorer} />
-    <Route path="/calender" component={CalenderSection} />
-    <Route path="/profile" component={UserProfileSection} />
-    <Route path="/calender" component={CalenderSection} />
-    <Route path="/approvalSection" component={ApprovalSection} />
+    <Route path="/history" component={RequireAuth(HistorySection)} />
+    <Route path="/eventExp" component={RequireAuth(EventExplorer)} />
+    <Route path="/calender" component={RequireAuth(CalenderSection)} />
+    <Route path="/profile" component={RequireAuth(UserProfileSection)} />
+    <Route path="/calender" component={RequireAuth(CalenderSection)} />
+    <Route path="/approvalSection" component={RequireAuth(ApprovalSection)} />
     <Route path="/not-found" render={() => <h1> Page Not Found </h1>} />
   </Switch>
 );
