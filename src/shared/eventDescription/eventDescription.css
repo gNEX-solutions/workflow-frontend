@@ -1,4 +1,99 @@
-#detailed_description{
-    padding-left: 10px;
-    padding-right: 60px;
+#detailed_description {
+  padding-left: 80px;
+  padding-right: 60px;
+  font-family: Poppins;
+}
+
+#header_row {
+  font-family: Poppins;
+  padding-left: 70px;
+  padding-bottom: 10px;
+  margin-left: -50px;
+}
+
+#basic_info_row {
+  white-space: nowrap;
+  font-family: Poppins;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+#basic_info_row strong {
+  font-family: Poppins;
+  font-style: Bold;
+  color: #1cb1ac;
+}
+
+#description {
+  font-family: Poppins;
+  font-style: Bold;
+  color: #1cb1ac;
+}
+
+#footer {
+  font-family: Poppins;
+}
+
+#description_row {
+  padding-left: 16px;
+  padding-right: 10px;
+  font-family: Poppins;
+}
+
+.col-3 {
+  white-space: nowrap;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 150px;
+  overflow: hidden;
+  text-overflow: clip;
+  color: #1cb1ac;
+}
+
+.col-2 {
+  white-space: nowrap;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 150px;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.col-1 {
+  white-space: nowrap;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 150px;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+#event_name {
+  font-size: 18pt;
+  padding-top: -10px;
+  padding-left: 20px;
+  margin-left: -10px;
+  position: relative;
+  top: 36px;
+}
+
+#date,
+#time,
+#venue {
+  padding-top: 40px;
+}
+
+#confirmpic {
+  position: relative;
+  bottom: -43px;
+  height: 18%;
+  width: 10%;
+}
+#icon_state {
+  padding-top: -20px;
+  padding-left: 10px;
+  position: relative;
+  top: -7px;
+  left: -46px;
+  margin-left: -10px;
 }

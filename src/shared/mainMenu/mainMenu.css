@@ -1,27 +1,34 @@
-#add_button{
-    display: flex;
-    width: 70%;
-    /* align-content: space-around; */
-    align-items: center;
-    /* background-color: rgb(24, 95, 10); */
+#add_button {
+  display: flex;
+  width: 80%;
+  /* align-content: space-around; */
+  align-items: center;
+  /* background-color: rgb(24, 95, 10); */
+  font-family: Poppins;
 }
 
-#active{
-    background-color : white;
-   border: 5px;
-   border-color: black;
-    
+#active {
+  background-color: white;
+  border: 5px;
+  border-color: black;
 }
 
-.menu_item{
-    font-size: 20px;
-    color: black;
+.menu_item {
+  font-size: 20px;
+  color: black;
 }
 
-#button_search{
-    margin: 10px;
+#button_search {
+  margin: 10px;
 }
 
-#search_group{
-    align-items: center;
+#search_group {
+  align-items: center;
+}
+span {
+  font-family: Poppins;
+}
+
+h3 {
+  font-family: Poppins;
 }
