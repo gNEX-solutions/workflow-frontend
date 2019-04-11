@@ -34,19 +34,19 @@ class NotificationBar extends React.Component {
         <Collapse isOpen={this.state.collapse}>
           <Card>
             <CardHeader>
-              {TodayDay} Notifications ({TodayNotification})
+              {TodayDay} Events ({TodayNotification})
             </CardHeader>
             <CardBody>Event</CardBody>
           </Card>
           <Card>
             <CardHeader>
-              {NextWeek} Notifications ({NextWeekNotification})
+              {NextWeek} Events ({NextWeekNotification})
             </CardHeader>
             <CardBody>Event</CardBody>
           </Card>
           <Card>
             <CardHeader>
-              {NextMonth} Notifications ({NextMonthNotification})
+              {NextMonth} Events ({NextMonthNotification})
             </CardHeader>
             <CardBody>Event</CardBody>
           </Card>
