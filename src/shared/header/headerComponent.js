@@ -1,119 +1,59 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
-const styles = theme => ({
-  root: {
-    width: "30%"
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: "33.33%",
-    flexShrink: 0
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary
-  }
-});
+import { Collapse, Button, CardBody, CardHeader, Card } from "reactstrap";
+import "bootstrap/dist/css/bootstrap.css";
 
 let TodayDay = "Today";
 let NextWeek = "Next Week";
-let YesterdayDay = "Yesterday";
-let lastweek = "Last Week";
+let NextMonth = "Next Month";
 
-let TodayNotifications = 0;
-let NextWeekNotifications = 0;
-let YesterdayNotifications = 0;
-let LastweekNotifications = 0;
+let TodayNotification = 0;
+let NextWeekNotification = 0;
+let NextMonthNotification = 0;
 
-class HeaderComponent extends React.Component {
-  state = {
-    expanded: null
-  };
+class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+    this.state = { collapse: false };
+  }
 
-  handleChange = panel => (event, expanded) => {
-    this.setState({
-      expanded: expanded ? panel : false
-    });
-  };
+  toggle() {
+    this.setState(state => ({ collapse: !state.collapse }));
+  }
 
   render() {
-    const { classes } = this.props;
-    const { expanded } = this.state;
     return (
-      <React.Fragment>
-        <div className={classes.root}>
-          <ExpansionPanel
-            expanded={expanded === "panel1"}
-            onChange={this.handleChange("panel1")}
-          >
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>{TodayDay}</Typography>
-              <Typography className={classes.secondaryHeading}>
-                you have {TodayNotifications} event(s).
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>Event</Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel
-            expanded={expanded === "panel2"}
-            onChange={this.handleChange("panel2")}
-          >
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>
-                {YesterdayDay}
-              </Typography>
-              <Typography className={classes.secondaryHeading}>
-                you had {YesterdayNotifications} event(s).
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>Event</Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel
-            expanded={expanded === "panel3"}
-            onChange={this.handleChange("panel3")}
-          >
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>{NextWeek}</Typography>
-              <Typography className={classes.secondaryHeading}>
-                you have {NextWeekNotifications} event(s).
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>Event</Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel
-            expanded={expanded === "panel4"}
-            onChange={this.handleChange("panel4")}
-          >
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>{lastweek}</Typography>
-              <Typography className={classes.secondaryHeading}>
-                you had {LastweekNotifications} event(s).
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>Event</Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-        </div>
-      </React.Fragment>
+      <div>
+        <Button
+          color="primary"
+          onClick={this.toggle}
+          style={{ marginBottom: "1rem" }}
+        >
+          Notifications
+        </Button>
+        <Collapse isOpen={this.state.collapse}>
+          <Card>
+            <CardHeader>
+              {TodayDay} Notifications ({TodayNotification})
+            </CardHeader>
+            <CardBody>Event</CardBody>
+          </Card>
+          <Card>
+            <CardHeader>
+              {NextWeek} Notifications ({NextWeekNotification})
+            </CardHeader>
+            <CardBody>Event</CardBody>
+          </Card>
+          <Card>
+            <CardHeader>
+              {NextMonth} Notifications ({NextMonthNotification})
+            </CardHeader>
+            <CardBody>Event</CardBody>
+          </Card>
+        </Collapse>
+      </div>
     );
   }
 }
 
-HeaderComponent.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-export default withStyles(styles)(HeaderComponent);
+export default Example;
