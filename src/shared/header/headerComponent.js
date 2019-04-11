@@ -10,7 +10,7 @@ let TodayNotification = 0;
 let NextWeekNotification = 0;
 let NextMonthNotification = 0;
 
-class Example extends React.Component {
+class NotificationBar extends React.Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -56,4 +56,4 @@ class Example extends React.Component {
   }
 }
 
-export default Example;
+export default NotificationBar;
