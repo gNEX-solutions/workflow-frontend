@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import TextFieldGroup from '../../../components/TextFieldGroup';
-import validateInput from './LoginValidation';
-import { login } from '../actions/Login';
-import { ButtonContainer } from './LoginForm.styles';
+import TextFieldGroup from '../../../../shared/TextFieldGroup/TextFieldGroup';
+import validateInput from '../LoginValidation';
+import { login } from '../../actions/Login';
+import './LoginForm.styles.css';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -13,9 +13,7 @@ class LoginForm extends Component {
     this.state = {
       username: '',
       password: '',
-      errors: {},
-      isLoading: false,
-      token: ''
+      errors: {}
     };
   }
 
@@ -62,8 +60,6 @@ class LoginForm extends Component {
 
     return (
       <div>
-        <h1> IMSSA </h1>
-        <h4> IMSSA Events Manager </h4>
         <form onSubmit={this.onSubmit}>
           {errors.form && (
             <div className="alert alert-danger"> {errors.form} </div>
@@ -75,6 +71,7 @@ class LoginForm extends Component {
             error={errors.username}
             onChange={this.onChange}
             placeholder="Email"
+            // type="email"
           />
           <TextFieldGroup
             field="password"
@@ -86,17 +83,29 @@ class LoginForm extends Component {
             placeholder="Password"
           />
           <div className="form-group">
-            <ButtonContainer
-              className="btn btn-primary btn-lg"
-              disabled={isLoading}
-            >
+            <button className="btn  btn-lg btn-login" disabled={isLoading}>
               Login
-            </ButtonContainer>
+            </button>
           </div>
         </form>
-        <h5>Forget Password</h5>
         <h5>
-          New...? <u>Sign up</u>
+          <button
+            className="btn-signUp"
+            href="#"
+            onClick={this.props.onForgetPasswordPress}
+          >
+            <u>Forget Password</u>
+          </button>
+        </h5>
+        <h5 className="signUpRow">
+          New member?
+          <button
+            className="btn-signUp"
+            href="#"
+            onClick={this.props.onSignUpPress}
+          >
+            <u>sign up</u>
+          </button>
         </h5>
       </div>
     );

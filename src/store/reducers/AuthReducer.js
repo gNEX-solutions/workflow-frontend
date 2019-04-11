@@ -1,8 +1,8 @@
 /* eslint-disable indent */
-import { LOGIN, LOGIN_SUCCESS } from '../../modules/login/actions/types';
+import { LOGIN, LOGIN_SUCCESS } from '../types/AuthTypes';
 
 const initialState = {
-  user: null,
+  user: {},
   token: null,
   isAuthenticated: false,
   isLoading: false

@@ -1,5 +1,19 @@
 import axios from 'axios';
-import { LOGIN, GET_USER, LOGIN_SUCCESS } from '../types/AuthTypes';
+import setAuthToken from '../../services/SetAuthToken';
+import { LOGIN, GET_USER, LOGIN_SUCCESS, GET_ERRORS } from '../types/AuthTypes';
+
+//register user
+export const registerUser = (userData, history) => dispatch => {
+  axios
+    .post('/newuser', userData)
+    .then(res => history.push('/login'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.responce.data
+      })
+    );
+};
 
 // export const POST_AUTHENTICATE_USER = 'POST_AUTHENTICATE_USER';
 // export const POST_AUTHENTICATE_USER_SUCCESS =
@@ -82,11 +96,14 @@ export const login = data => (dispatch, history) => {
       // set token to ls
       localStorage.setItem('token', token);
       // set token to auth header
-      // setAuthToken(token);
+      setAuthToken(token);
     })
     .then(res => history.push('/'))
     .catch(err => {
-      console.log(err);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.responce.data
+      });
     });
   // payload:
 };
