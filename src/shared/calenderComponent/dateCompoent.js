@@ -5,6 +5,7 @@ import { faCheck, faCheckDouble, faExclamationTriangle } from "@fortawesome/free
 import './dateComponent.css';
 class DateComponent extends Component {
     state = {}
+
     render() {
         var icon;
         if (this.props.status === "double_check") {

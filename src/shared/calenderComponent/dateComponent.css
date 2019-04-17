@@ -1,11 +1,12 @@
 #date{
-    font-size: 23px;
+    font-size: 1.25rem;
     font-weight: 700;
     text-align: center;
     align-self: center;
     /* padding-top: 15%; */
-    padding-left: 10%;
+    /* padding-left: 10%; */
     /* color: blue; */
+    padding-right: 1.5rem;
 }
 
 #dummy_para{

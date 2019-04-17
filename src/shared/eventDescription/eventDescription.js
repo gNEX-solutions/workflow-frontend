@@ -24,14 +24,14 @@ class EventDescription extends Component {
                     </Row>
                     <hr size="40"></hr>
                     <Row id="basic_info_row">
-                        <Col className="col-4">
+                        <Col className="col-md-4">
                             <p> <strong>organised by</strong> : Year 1 </p>
                         </Col>
-                        <Col className="col-4">
+                        <Col className="col-md-4">
                             <p> <strong>coordinators</strong>  : Dinith Jayabodhi </p>
                         </Col>
                         <p> <strong>participants</strong> : All years </p>
-                        <Col className="col-4"></Col>
+                        <Col className="col-md-4"></Col>
                     </Row>
 
                     <Row>

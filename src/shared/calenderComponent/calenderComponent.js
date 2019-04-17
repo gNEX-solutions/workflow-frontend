@@ -220,7 +220,7 @@ class CalenderCompoennt extends Component {
                     </Row>
                     <Row id="calender_row">
 
-                        <table className="table-condensed table-bordered table-striped" id="cal_table">
+                        <table className="table-condensed table-bordered table-striped table-responsive" id="cal_table">
                             <thead>
                                 <tr>
                                     {this.weekDayHeaders}
