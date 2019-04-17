@@ -1,36 +1,98 @@
 import React, { Component } from 'react';
 // import "bootstrap/dist/css/bootstrap.css";
-import { Col, Row, Button, Form, Card } from 'react-bootstrap';
+import { Col, Row, Button, Form } from 'react-bootstrap';
 import './newEvent.css';
 
 class addNewEvent extends Component {
     state = {
-        eventName: 'event one',
-        venue: 'Venue',
-        timeFrom: '08:00',
-        timeTo: '17:00',
-        date: '06/05/2016',
-        coordinators: 'IM/2016/001',
-        description: 'this will be the description',
-        participants: 'lectures ',
-        budget: '25000',
-        resources: 'im lab'
+        eventName: '',
+        venue: '',
+        timeFrom: null,
+        timeTo: null,
+        date: null,
+        coordinators: '',
+        description: '',
+        participants: '',
+        budget: '',
+        resources: ''
     }
-    title = 'ADD NEW EVENT';
 
+
+    createEventClicked = () => {
+        alert('create event clicked');
+        // console.log(this.ReactDOM.findDOMNode('date'));
+        return this.props.onCancel;
+    }
+
+    // capturing the value changes in the input field  : dj
+
+    onNameChange = (event) => {
+        this.setState({
+            eventName: event.target.value
+        })
+    }
+
+    onVenueChange = (event) => {
+        this.setState({
+            venue: event.target.value
+        })
+    }
+
+    onTimeFromChange = (event) => {
+        this.setState({
+            timeFrom: event.target.value
+        })
+    }
+
+    onTimeToChange = (event) => {
+        this.setState({
+            timeTo: event.target.value
+        })
+    }
+
+    onDateChange = (event) => {
+        this.setState({
+            date: event.target.value
+        })
+    }
+
+    onCoordinatorschange = (event) => {
+        this.setState({
+            coordinators: event.target.value
+        })
+    }
+
+    onDescrptionChange = (event) => {
+        this.setState({
+            description: event.target.value
+        })
+    }
+
+    onPartcipantsChange = (event) => {
+        this.setState({
+            participants: event.target.value
+        })
+    }
+
+    onBudgetChange = (event) => {
+        this.setState({
+            budget: event.target.value
+        })
+    }
+
+    onResourceChange = (event) => {
+        this.setState({
+            resources: event.target.value
+        })
+    }
+    // end of caturing the value changes in the input fields 
     render() {
         return (
             <div>
                 <div className="container-fluid">
                     <Row className="row">
 
-                        {/* commented unnessary code : dj */}
-                        {/* <Col className="col-sm-2 col-md-2">
-                            <h1>test 01</h1>
-                        </Col> */}
-
                         <Col className="col-sm-12 col-md-12">
-                            {/* <Card> */}
                             {/* moved the header to the model header : dj 
                                 <div className="card-header">
                                     <strong>{this.title}</strong>
@@ -41,106 +103,85 @@ class addNewEvent extends Component {
                                 <Row className="row">
                                     <Col className="col-sm-6 col-md-6">
                                         {/* Event name*/}
-                                        {/* <Row className="position-relative row form-group">
-                                            <Col className="col-md-3">
-                                                <label for="text-input" >Event Name</label>
-                                            </Col>
-                                            <Col className="col-12 col-md-9">
-                                                <input type="text" id="#" name="#" className="form-control" value={this.state.eventName} />
-                                            </Col>
-                                        </Row> */}
-                                        <Form.Group controlId="formBasicEmail">
+
+                                        <Form.Group controlId="formBasicEventName">
                                             <Form.Label>Event name</Form.Label>
-                                            <Form.Control type="text" value={this.state.eventName} />
+                                            <Form.Control type="text" onChange={this.onNameChange} />
                                         </Form.Group>
                                         {/* Venue*/}
-                                        <Row className="position-relative row form-group">
-                                            <Col className="col-md-3">
-                                                <label for="text-input" >Venue</label>
-                                            </Col>
-                                            <Col className="col-12 col-md-9">
-                                                <input type="text" id="#" name="#" value={this.state.venue} className="form-control" />
-                                            </Col>
-                                        </Row>
+
+                                        <Form.Group controlId="formBasicVenue">
+                                            <Form.Label>Venue</Form.Label>
+                                            <Form.Control type="text" onChange={this.onVenueChange} />
+                                        </Form.Group>
+
                                         {/* Time*/}
-                                        <Row className="position-relative row form-group">
-                                            <Col className="col-md-3">
-                                                <label for="text-input" >Time</label>
-                                            </Col>
-                                            <Col className="col-12 col-md-4">
 
-                                                <input type="time" id="#" name="#" value={this.state.timeFrom} className="form-control timepicker" />
+                                        <Form.Group controlId="formBasicTime">
+                                            <Form.Label>Time</Form.Label>
+                                            <Row>
+                                                <Col><Form.Control type="time" onChange={this.onTimeFromChange} /></Col>
+                                                <Col><Form.Control type="time" onChange={this.onTimeToChange} /></Col>
+                                            </Row>
 
-                                            </Col>
-                                            <Col className="col-12 col-md-4">
-                                                <input type="time" id="#" name="#" value={this.state.timeTo} className="form-control timepicker" />
-                                            </Col>
-                                        </Row>
+                                        </Form.Group>
+
                                         {/* Planned date*/}
-                                        <Row className="position-relative row form-group">
-                                            <Col className="col-md-3">
-                                                <label for="text-input" >Planned Date</label>
-                                            </Col>
-                                            <Col className="col-12 col-md-9">
-                                                <input id="#" name="#" value={this.state.date} type="date" className="form-control" />
-                                            </Col>
 
-                                        </Row>
+                                        <Form.Group controlId="formBasicDate">
+                                            <Form.Label>Planned Date</Form.Label>
+                                            <Form.Control type="date" ref='date' onChange={this.onDateChange} />
+                                        </Form.Group>
+
                                         {/* Coodinators*/}
-                                        <Row className="position-relative row form-group">
-                                            <Col className="col-md-3">
-                                                <label for="text-input" >Coordinators</label>
-                                            </Col>
-                                            <Col className="col-12 col-md-9">
-                                                <textarea type="text" id="#" name="#" value={this.state.coordinators} className="form-control" ></textarea>
-                                            </Col>
-                                        </Row>
+
+                                        <Form.Group controlId="formBasicCoordinators">
+                                            <Form.Label>Coordinators</Form.Label>
+                                            <Form.Control as="textarea" onChange={this.onCoordinatorschange} />
+
+                                        </Form.Group>
 
                                     </Col>
                                     <Col className="col-sm-6 col-md-6">
                                         {/* Description*/}
-                                        <Row className="position-relative row form-group">
-                                            <Col className="col-md-3">
-                                                <label for="text-input" >Description</label>
-                                            </Col>
-                                            <Col className="col-12 col-md-9">
-                                                <textarea type="text" value={this.state.description} id="#" name="#" className="form-control" ></textarea>
-                                            </Col>
-                                        </Row>
+
+                                        <Form.Group controlId="formBasicDescription">
+                                            <Form.Label>Description</Form.Label>
+                                            <Form.Control as="textarea" onChange={this.onDescrptionChange} />
+
+                                        </Form.Group>
+
+
                                         {/* Participants*/}
-                                        <Row className="position-relative row form-group">
-                                            <Col className="col-md-3">
-                                                <label for="text-input" >Participants</label>
-                                            </Col>
-                                            <Col className="col-12 col-md-9">
-                                                <input type="text" id="#" name="#" value={this.state.participants} className="form-control" />
-                                            </Col>
-                                        </Row>
+
+
+                                        <Form.Group controlId="formBasicParticipants">
+                                            <Form.Label>Participants</Form.Label>
+                                            <Form.Control type="text" onChange={this.onPartcipantsChange} />
+                                        </Form.Group>
+
                                         {/* Budget*/}
-                                        <Row className="position-relative row form-group">
-                                            <Col className="col-md-3">
-                                                <label for="text-input" >Budget</label>
-                                            </Col>
-                                            <Col className="col-12 col-md-9">
-                                                <input type="text" id="#" name="#" value={this.state.budget} className="form-control" />
-                                            </Col>
-                                        </Row>
+
+                                        <Form.Group controlId="formBasicBudget">
+                                            <Form.Label>Budget</Form.Label>
+                                            <Form.Control type="number" onChange={this.onBudgetChange} />
+                                        </Form.Group>
                                         {/* Resources Allocations*/}
-                                        <Row className="position-relative row form-group">
-                                            <Col className="col-md-3">
-                                                <label for="text-input" >Resources Allocations</label>
-                                            </Col>
-                                            <Col className="col-12 col-md-9">
-                                                <input type="text" id="#" name="#" value={this.state.resources} className="form-control" />
-                                            </Col>
-                                        </Row>
+
+                                        <Form.Group controlId="formBasicResources">
+                                            <Form.Label>Resources Allocations</Form.Label>
+                                            <Form.Control type="text" onChange={this.onResourceChange} />
+                                        </Form.Group>
 
 
                                     </Col>
                                 </Row>
+                                <Row>
+                                    <Button id="btnAdd_form" className="btn btn-success" onClick={this.createEventClicked}> Create Event </Button>
+                                    <Button id="btnCancel_form" className="btn-danger" onClick={this.props.onCancel}>Cancel</Button>
+                                </Row>
                             </Form>
 
-                            {/* end of card body */}
                             {/* </div> */}
 
                             {/* 
@@ -155,11 +196,6 @@ class addNewEvent extends Component {
                             {/* </Card> */}
                         </Col>
 
-                        {/* 
-                            commented unnessary code : dj 
-                        <Col className="col-sm-2 col-md-2">
-                            <h1>test 03</h1>
-                        </Col> */}
 
                     </Row>
 

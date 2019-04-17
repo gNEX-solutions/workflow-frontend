@@ -28,6 +28,10 @@
 
 
 /* the modal pop up stylings */
-#btnAdd{
-    /* margin-right: 1%; */
+#modal_title{
+    margin-left: 5%;
+    color: white;
+}
+#modal_header{
+    background-color: black;
 }

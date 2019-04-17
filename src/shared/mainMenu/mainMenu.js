@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Col, Button, Modal, Row } from "react-bootstrap";
+import { Col, Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 import AddNewEventComponent from '../addEventComponent/addNewEvent'
@@ -58,21 +58,15 @@ class MainMenuComponent extends Component {
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
-          <Modal.Header >
-            <Modal.Title id="contained-modal-title-vcenter">
+          <Modal.Header id="modal_header" >
+            <Modal.Title id="modal_title">
               {this.modalTitle}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <AddNewEventComponent />
+            <AddNewEventComponent onCancel={this.closeAddNewEvent} />
           </Modal.Body>
-          <Modal.Footer>
-            <Row>
-              <Button id="btnAdd" className="btnaddEvent btn btn-success btn-md">ADD </Button>
-              <Button id="btnCancel" className="btn-danger" onClick={this.closeAddNewEvent}>Cancel</Button>
-            </Row>
 
-          </Modal.Footer>
         </Modal>
 
         <Col className="col-1">
