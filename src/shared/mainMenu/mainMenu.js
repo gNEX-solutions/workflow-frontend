@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Col, Button } from "react-bootstrap";
+import { Col, Button, Modal, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
+import AddNewEventComponent from '../addEventComponent/addNewEvent'
 
 import './mainMenu.css';
 
@@ -10,8 +11,23 @@ class MainMenuComponent extends Component {
   state = {
     eventExpStatus: 'active',
     calenderStatus: '',
-    historyStatus: ''
+    historyStatus: '',
+    showAddNewEvent: false
   };
+  modalTitle = 'Add New Event';
+
+  addNewEventClicked = () => {
+    // alert('add new event');
+    this.setState({
+      showAddNewEvent: true
+    })
+  }
+
+  closeAddNewEvent = () => {
+    this.setState({
+      showAddNewEvent: false
+    })
+  }
 
   eventExpClicked() {
     // alert('event exp clicked');
@@ -36,13 +52,35 @@ class MainMenuComponent extends Component {
     return (
       <React.Fragment>
 
+        <Modal
+          show={this.state.showAddNewEvent}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header >
+            <Modal.Title id="contained-modal-title-vcenter">
+              {this.modalTitle}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <AddNewEventComponent />
+          </Modal.Body>
+          <Modal.Footer>
+            <Row>
+              <Button id="btnAdd" className="btnaddEvent btn btn-success btn-md">ADD </Button>
+              <Button id="btnCancel" className="btn-danger" onClick={this.closeAddNewEvent}>Cancel</Button>
+            </Row>
+
+          </Modal.Footer>
+        </Modal>
 
         <Col className="col-1">
 
         </Col>
 
         <Col className="col-2">
-          <Button variant="success" id="add_button" >
+          <Button variant="success" id="add_button" onClick={this.addNewEventClicked} >
 
             <FontAwesomeIcon icon={faPlusCircle} size="2x" />
 
