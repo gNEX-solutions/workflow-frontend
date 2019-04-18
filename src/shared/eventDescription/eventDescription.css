@@ -2,13 +2,14 @@
   padding-left: 80px;
   padding-right: 60px;
   font-family: Poppins;
+  font-size: 10pt;
 }
 
 #header_row {
   font-family: Poppins;
-  padding-left: 70px;
-  padding-bottom: 10px;
+  padding-left: 50px;
   margin-left: -50px;
+  padding-bottom: 10px;
 }
 
 #basic_info_row {
@@ -16,18 +17,21 @@
   font-family: Poppins;
   overflow: hidden;
   text-overflow: clip;
+  font-size: 10pt;
 }
 
 #basic_info_row strong {
   font-family: Poppins;
   font-style: Bold;
   color: #1cb1ac;
+  font-size: 10pt;
 }
 
 #description {
   font-family: Poppins;
   font-style: Bold;
   color: #1cb1ac;
+  font-size: 10pt;
 }
 
 #footer {
@@ -54,24 +58,30 @@
   white-space: nowrap;
   padding-left: 10px;
   padding-right: 10px;
-  width: 150px;
+  width: 200px;
   overflow: hidden;
   text-overflow: clip;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #b1b1b1;
 }
 
 .col-1 {
   white-space: nowrap;
   padding-left: 10px;
   padding-right: 10px;
-  width: 150px;
+  width: 200px;
   overflow: hidden;
   text-overflow: clip;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #b1b1b1;
 }
 
 #event_name {
   font-size: 18pt;
   padding-top: -10px;
-  padding-left: 20px;
+  padding-left: -20px;
   margin-left: -10px;
   position: relative;
   top: 36px;
@@ -96,4 +106,29 @@
   top: -7px;
   left: -46px;
   margin-left: -10px;
+}
+
+#header_container {
+}
+
+#Coordinator {
+  margin-left: -50px;
+  margin-right: 50px;
+}
+
+p {
+  font-size: 10pt;
+}
+
+#basic_info {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+
+hr {
+  border-top: 2px solid #b1b1b1;
 }
