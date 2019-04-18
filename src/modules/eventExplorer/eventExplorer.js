@@ -38,7 +38,7 @@ class EventExplorer extends Component {
       );
     });
     return totalEventComponets;
-  }
+  };
 
   render() {
     // this.getMonthEventComponet();
