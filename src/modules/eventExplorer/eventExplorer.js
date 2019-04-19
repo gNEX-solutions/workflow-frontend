@@ -20,10 +20,10 @@ class EventExplorer extends Component {
     const totalEventComponets = [];
     moment.months().map((mnth, mnthIndex) => {
       const monthEventComonents = [];
-      for (let year = 1; year <= 4; year++) {
+      for (let level = 1; level <= 4; level++) {
         monthEventComonents.push(
           <td>
-            <MonthEventComponent month={mnthIndex} year={year} />
+            <MonthEventComponent month={mnthIndex} level={level} />
           </td>
         );
       }
