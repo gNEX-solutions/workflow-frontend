@@ -29,7 +29,7 @@ class EventExplorer extends Component {
       }
       totalEventComponets.push(
         <tr>
-          {mnth}
+          <td className="monthLabel">{mnth}</td>
           {monthEventComonents[0]}
           {monthEventComonents[1]}
           {monthEventComonents[2]}
@@ -44,24 +44,32 @@ class EventExplorer extends Component {
     // this.getMonthEventComponet();
     return (
       <React.Fragment>
-        <Row>
+        <Row className="eventExp_row">
           <HeaderComopnet />
         </Row>
-        <Row>
+        <Row className="eventExp_row">
           <MainMenuCompoannent />
         </Row>
 
-        <Row>
+        <Row className="eventExp_row">
           <div className="table-responsive">
-            <Col className="col-md-10 col-sm-10">
+            <Col className="col-md-11 col-sm-11">
               <Table striped bordered responsive>
                 <thead>
                   <tr>
                     <th> &nbsp; &nbsp;</th>
-                    <th>1st Year</th>
-                    <th>2nd Year</th>
-                    <th>3rd Year</th>
-                    <th>4th Year</th>
+                    <th className="table_header">
+                      <p>1st Year</p>
+                    </th>
+                    <th className="table_header">
+                      <p>2nd Year</p>
+                    </th>
+                    <th className="table_header">
+                      <p>3rd Year</p>
+                    </th>
+                    <th className="table_header">
+                      <p>4th Year</p>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>{this.getMonthEventComponet()}</tbody>
