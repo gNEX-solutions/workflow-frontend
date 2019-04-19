@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Collapse, Button, CardBody, CardHeader, Card } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -21,8 +22,12 @@ class NotificationBar extends React.Component {
     this.setState(state => ({ collapse: !state.collapse }));
   }
 
+
+class HeaderComponent extends Component {
+  state = {};
   render() {
     return (
+
       <div>
         <Button
           color="primary"
@@ -52,8 +57,11 @@ class NotificationBar extends React.Component {
           </Card>
         </Collapse>
       </div>
+
     );
   }
 }
 
+
 export default NotificationBar;
+
