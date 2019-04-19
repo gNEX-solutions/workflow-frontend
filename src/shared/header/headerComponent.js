@@ -1,68 +1,92 @@
-import React, { Component } from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import Avatar from "@material-ui/core/Avatar";
-import Badge from "@material-ui/core/Badge";
-import Grid from "@material-ui/core/Grid";
-import "./headerComponent.css";
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Navbar, Nav, Form, Badge, NavItem } from 'react-bootstrap';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+import Avatar from 'react-avatar';
 
-import styles from "./Header.styles";
+import styles from './Header.styles';
 
-
-
-let ufname = "Akalanka";
-let ulname = "Jayalth";
-let udesignation = "President";
-let userimage =
-  "https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png";
+const ufname = 'Akalanka ';
+const ulname = 'Jayalth';
+const udesignation = 'President';
+const userimage = '';
+const numberofNotifications = 10;
 
 class HeaderComponent extends Component {
-  state = {
-    numberofNotifications: 10
-  };
+  state = {};
 
   render() {
     return (
       <React.Fragment>
         <div className="heading">
+          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar.Brand href="#home">IMSSA Events Manager</Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <div className="col-sm-6" />
+              <div className="col-sm-6">
+                <Form inline alignContent="flex-end">
+                  <div className="notification_icon">
+                    <Nav.Link href="#notification">
+                      <FontAwesomeIcon
+                        icon={faBell}
+                        style={{ color: 'white', fontSize: '130%' }}
+                        className="notfication_button"
+                      />
+                      <Badge variant="light" style={{ backgroundColor: 'red' }}>
+                        {numberofNotifications}
+                      </Badge>
+                      <span className="sr-only">unread messages</span>
+                    </Nav.Link>
+                  </div>
 
-          <AppBar className="EventManagerHeader" style={styles.AppBar}>
-            <Toolbar>
-              <Grid container justify="center" alignContent="flex-start">
-                <Typography variant="h6" style={styles.Typography}>
-                  IMSSA Event Manager
-                </Typography>
-              </Grid>
-              <Grid container justify="center" alignContent="flex-end">
-                <IconButton style={styles.IconButton} >
-                  <Badge
-                    badgeContent={this.state.numberofNotifications}
-                    color="secondary"
-                  >
-                    <NotificationsIcon />
-                  </Badge>
-                </IconButton>
-                <IconButton style={styles.IconButton} onClick={() => this.props.onProfClick()}> {/* dj:20/03/2019 : on click method  */}
-                  <Avatar
-                    alt="user_icon"
-                    src={userimage}
-                    style={styles.Avatar}
-                  />
+                  <div className="user_avatar">
+                    <Nav.Link href="#user">
+                      <Avatar
+                        className="avatar"
+                        name={ufname}
+                        src={userimage}
+                        size="40"
+                        round
+                        color="gray"
+                      />
+                    </Nav.Link>
+                  </div>
 
-                </IconButton>
-
-                <div className="UserDetails" style={styles.UserDetails} onClick={() => this.props.onProfClick()} > {/* dj:20/03/2019 : on click method  */}
-                  <span style={styles.Fname}>{ufname}</span>
-                  <span style={styles.Lname}>{ulname}</span>
-                  <h6 style={styles.Designation}>{udesignation}</h6>
-                </div>
-              </Grid>
-            </Toolbar>
-          </AppBar>
-
+                  <div className="user_details">
+                    <span
+                      style={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: '80%'
+                      }}
+                    >
+                      {ufname}
+                    </span>
+                    <span
+                      style={{
+                        color: 'grey',
+                        fontWeight: 'bold',
+                        fontSize: '80%'
+                      }}
+                    >
+                      {ulname}
+                    </span>
+                    <h6
+                      style={{
+                        color: 'white',
+                        fontStyle: 'italic',
+                        fontSize: '60%'
+                      }}
+                    >
+                      {udesignation}
+                    </h6>
+                  </div>
+                </Form>
+              </div>
+            </Navbar.Collapse>
+          </Navbar>
+          ;
         </div>
       </React.Fragment>
     );

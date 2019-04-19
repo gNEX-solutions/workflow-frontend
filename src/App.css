@@ -1,3 +1,18 @@
+:root {
+  --mainBlue: #2a2a72;
+  --lightBlue: #009ffd;
+  --mainWhite: #f3f3f3;
+  --mainDark: #232528;
+  --mainYellow: #ffa400;
+
+  --mainGreen: #1CB1AC;
+  --tickGreen: #06B468;
+  --exclamationYellow: #BCAA00;
+  --addNewEventGreen: 008E89;
+  --calendarBackgroundAsh: #F2F2F2;
+}
+
+
 .App {
   text-align: center;
 }
@@ -26,9 +41,8 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-
-

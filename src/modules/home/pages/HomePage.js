@@ -1,29 +1,220 @@
-import React, { Component } from "react";
-import HeaderComponent from "../../../shared/header/headerComponent";
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import CalenderSection from '../../calender/calender';
+import EventExplorer from '../../eventExplorer/eventExplorer';
+import History from '../../history/history';
+import HeaderComponent from '../../../shared/header/headerComponent';
+import MainMenuCompoannent from '../../../shared/mainMenu/mainMenu';
+import './HomePage.styles.css';
 
-class HomePage extends Component {
-  render() {
+import { getEvent } from '../../../store/actions/DashBoardActions';
+
+export const input = {
+  month: '05',
+  year: '2019'
+};
+
+export const events = [
+  {
+    eventId: 7,
+    eventName: 'Exposition2020',
+    eventDate: '2019-05-15 14:40:02',
+    eventStartTime: '08:00:00',
+    eventEndTime: '11:00:00',
+    eventStatus: 'OK',
+    eventLocation: 'DIM',
+    eventCoordinatorDetails: [
+      {
+        imNumber: 'IM/2019/043',
+        name: 'kasun',
+        coordinatorUId: 8
+      }
+    ],
+    eventParticipants: 'ALL',
+    eventBudget: '2000',
+    eventDescription: 'zero',
+    eventApprovedStatus: 'OK',
+    eventCreatedAt: '2019-04-02T10:31:10.000+0000',
+    eventUpdatedAt: '2019-04-02T10:31:10.000+0000'
+  },
+  {
+    eventId: 9,
+    eventName: 'Exposition2020',
+    eventDate: '2019-05-15 14:40:02',
+    eventStartTime: '08:00:00',
+    eventEndTime: '11:00:00',
+    eventStatus: 'OK',
+    eventLocation: 'DIM',
+    eventCoordinatorDetails: [
+      {
+        imNumber: 'IM/2019/043',
+        name: 'kasun',
+        coordinatorUId: 10
+      }
+    ],
+    eventParticipants: 'ALL',
+    eventBudget: '2000',
+    eventDescription: 'zero',
+    eventApprovedStatus: 'OK',
+    eventCreatedAt: '2019-04-02T10:31:14.000+0000',
+    eventUpdatedAt: '2019-04-02T10:31:14.000+0000'
+  },
+  {
+    eventId: 11,
+    eventName: 'Exposition2020',
+    eventDate: '2019-05-15 14:40:02',
+    eventStartTime: '08:00:00',
+    eventEndTime: '11:00:00',
+    eventStatus: 'OK',
+    eventLocation: 'DIM',
+    eventCoordinatorDetails: [
+      {
+        imNumber: 'IM/2019/043',
+        name: 'kasun',
+        coordinatorUId: 12
+      }
+    ],
+    eventParticipants: 'ALL',
+    eventBudget: '2000',
+    eventDescription: 'zero',
+    eventApprovedStatus: 'OK',
+    eventCreatedAt: '2019-04-02T10:31:17.000+0000',
+    eventUpdatedAt: '2019-04-02T10:31:17.000+0000'
+  },
+  {
+    eventId: 13,
+    eventName: 'Exposition2020',
+    eventDate: '2019-05-15 14:40:02',
+    eventStartTime: '08:00:00',
+    eventEndTime: '11:00:00',
+    eventStatus: 'OK',
+    eventLocation: 'DIM',
+    eventCoordinatorDetails: [
+      {
+        imNumber: 'IM/2019/043',
+        name: 'kasun',
+        coordinatorUId: 14
+      }
+    ],
+    eventParticipants: 'ALL',
+    eventBudget: '2000',
+    eventDescription: 'zero',
+    eventApprovedStatus: 'OK',
+    eventCreatedAt: '2019-04-02T10:31:20.000+0000',
+    eventUpdatedAt: '2019-04-02T10:31:20.000+0000'
+  },
+  {
+    eventId: 17,
+    eventName: 'Exposition2020',
+    eventDate: '2019-05-15 14:40:02',
+    eventStartTime: '08:00:00',
+    eventEndTime: '11:00:00',
+    eventStatus: 'OK',
+    eventLocation: 'DIM',
+    eventCoordinatorDetails: [
+      {
+        imNumber: 'IM/2019/043',
+        name: 'kasun',
+        coordinatorUId: 18
+      }
+    ],
+    eventParticipants: 'ALL',
+    eventBudget: '2000',
+    eventDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam risus neque, suscipit luctus eros eu, suscipit malesuada felis. Donec convallis aliquet urna, quis lacinia eros volutpat nec. Integer ',
+    eventApprovedStatus: 'OK',
+    eventCreatedAt: '2019-04-02T10:31:58.000+0000',
+    eventUpdatedAt: '2019-04-02T10:31:58.000+0000'
+  }
+];
+
+export const VIEW_TYPES = {
+  calendar: 1001,
+  explorer: 1002,
+  history: 1003
+};
+
+class HomePage extends React.Component {
+  static defaultProps;
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentViewType: VIEW_TYPES.calendar
+    };
+  }
+
+  componentDidMount() {
+    const { getEvent } = this.props;
+    getEvent(input);
+    console.log('test');
+  }
+
+  handleEventCalendarPress = () => {
+    this.setState({ currentViewType: VIEW_TYPES.calendar });
+  };
+
+  handleEventExplorerPress = () => {
+    this.setState({ currentViewType: VIEW_TYPES.explorer });
+  };
+
+  handleHistoryPress = () => {
+    this.setState({ currentViewType: VIEW_TYPES.history });
+  };
+
+  renderCalendarView = () => <CalenderSection events={events} />;
+
+  renderExplorerView = () => <EventExplorer events={events} />;
+
+  renderHistoryView = () => <History />;
+
+  renderContent = () => {
+    const viewMap = {
+      [VIEW_TYPES.calendar]: this.renderCalendarView,
+      [VIEW_TYPES.explorer]: this.renderExplorerView,
+      [VIEW_TYPES.history]: this.renderHistoryView
+    };
+    const view = viewMap[this.state.currentViewType]();
+
     return (
-      <React.Fragment>
-        <div className="content">
-          <div className="header">
-            <HeaderComponent />
+      <div className="bodyBackground">
+        <HeaderComponent onProfClick={this.handleProfClick} />
+        <div>
+          <div className="menuOuter">
+            <MainMenuCompoannent
+              onEventCalendarPress={this.handleEventCalendarPress}
+              onEventExplorerPress={this.handleEventExplorerPress}
+              onEventHistoryPress={this.handleHistoryPress}
+            />
+            <hr size="80" />
           </div>
-          <div className="menu-bar">
-            <h1>menu bar</h1>
-          </div>
-          <div className="body">
-            <div>
-              <h1>clander side</h1>
-            </div>
-            <div>
-              <h1>contentside</h1>
-            </div>
-          </div>
+          {view}
         </div>
-      </React.Fragment>
+      </div>
     );
+  };
+
+  render() {
+    const content = this.renderContent();
+
+    return content;
   }
 }
 
-export default HomePage;
+HomePage.propTypes = {
+  // events: PropTypes.object.isRequired
+};
+
+HomePage.defaultProps = {};
+
+const mapStateToProps = (state, ownProps) => ({
+  // TODO: Map additional props here
+  events: state.events
+});
+
+export default connect(
+  mapStateToProps,
+  { getEvent }
+)(HomePage);
