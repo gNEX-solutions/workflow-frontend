@@ -58,7 +58,7 @@ class MonthEventCompoent extends Component {
     getFilteredEventList() {
         const { month, level } = this.props;
         const filteredList = this.eventsArray.filter(({ eventDate, eventOrganizers } = {}) => {
-            return eventDate.getMonth() === month && level == eventOrganizers;
+            return eventDate.getMonth() === month && level.toString() === eventOrganizers;
         }).map(({ eventId, eventName } = {}) => {
             return (
                 <h3 key={eventId}>

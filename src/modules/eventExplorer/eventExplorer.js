@@ -18,7 +18,7 @@ class EventExplorer extends Component {
 
   getMonthEventComponet = () => {
     const totalEventComponets = [];
-    moment.months().map((mnth, mnthIndex) => {
+    moment.months().forEach((mnth, mnthIndex) => {
       const monthEventComonents = [];
       for (let level = 1; level <= 4; level++) {
         monthEventComonents.push(
