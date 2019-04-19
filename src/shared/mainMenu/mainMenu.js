@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 import AddNewEventComponent from '../addEventComponent/addNewEvent'
 
-import './mainMenu.css';
+import "./mainMenu.css";
 
 class MainMenuComponent extends Component {
   state = {
@@ -29,6 +29,18 @@ class MainMenuComponent extends Component {
     this.setState({
       showAddNewEvent: false
     })
+  eventExpClicked() {
+    // alert('event exp clicked');
+    console.log("event exp clicked ");
+  }
+
+  calenderCicked() {
+    console.log("calender clicked");
+    this.setState({
+      eventExpStatus: "",
+      calenderStatus: "active",
+      historyStatus: ""
+    });
   }
 
   eventExpClicked = () => {
@@ -97,42 +109,64 @@ class MainMenuComponent extends Component {
 
 
           </Button>
-        </Col >
+        </Col>
         <Col className="col-2" id="calender">
           <div className={this.state.calenderStatus}>
-            <Link to={"/calender"} onClick={this.calenderCicked} >
+            <Link to={"/calender"} onClick={this.calenderCicked}>
               <h3>
-                <span className="badge badge-light" id={this.state.calenderStatus}>Event Calender</span>
+                <span
+                  className="badge badge-light"
+                  id={this.state.calenderStatus}
+                >
+                  Event Calender
+                </span>
               </h3>
             </Link>
           </div>
-
         </Col>
         <Col className="col-2" id="explorer">
           <div id={this.state.eventExpStatus}>
             <Link to={"/eventExp"} onClick={this.eventExpClicked}>
               <h3>
-                <span className="badge badge-light" id={this.state.eventExpStatus}>Event Explorer</span>
+                <span
+                  className="badge badge-light"
+                  id={this.state.eventExpStatus}
+                >
+                  Event Explorer
+                </span>
               </h3>
             </Link>
-
           </div>
         </Col>
         <Col className="col-2" id="history">
           <div className={this.state.historyStatus}>
-            <Link to={"/history"} >
+            <Link to={"/history"}>
               <h3>
-                <span className="badge badge-light" id="active">History</span>
+                <span className="badge badge-light" id="active">
+                  History
+                </span>
               </h3>
             </Link>
           </div>
         </Col>
         <Col className="col-2" id="search_box">
           <div className="input-group mb-3" id="search_group">
-            <input type="text" className="form-control" placeholder="search events" aria-label="Recipient's username" aria-describedby="button-addon2" onKeyPress={this.searchButtonClicked} />
+            <input
+              type="text"
+              className="form-control"
+              placeholder="search events"
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+              onKeyPress={this.searchButtonClicked}
+            />
 
-            <div className="input-group-append" >
-              <button className="btn btn-outline-secondary" type="button" id="button-search" onClick={this.searchButtonClicked} >
+            <div className="input-group-append">
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                id="button-search"
+                onClick={this.searchButtonClicked}
+              >
                 <FontAwesomeIcon icon={faSearch} />
 
         <div className="row menuOuter">

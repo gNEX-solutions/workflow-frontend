@@ -64,3 +64,8 @@
 .header {
   padding-top: 100px;
 }
+
+#avatar {
+  position: relative;
+  top: -10px;
+}
