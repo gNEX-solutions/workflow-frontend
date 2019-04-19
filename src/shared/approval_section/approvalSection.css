@@ -1,16 +1,25 @@
 .ApprovalSection {
-    display: flex;
+  display: flex;
 }
 
 .container {
-    background-color: whitesmoke;
-
+  background-color: rgba(255, 255, 255, 0.7);
+  margin-right: 20px;
+  padding: 40px;
+  font-family: Poppins;
+  font-size: 10pt;
+  border-radius: 6px;
 }
 
 .Label {
-    font-weight: bold;
+  font-weight: bold;
+  color: #1cb1ac;
 }
 
 img {
-    width: 50px;
+  width: 50px;
 }
+
+/*#row {
+  background-color: rgba(rgb(240, 232, 232), green, blue, 0.1);
+}*/
