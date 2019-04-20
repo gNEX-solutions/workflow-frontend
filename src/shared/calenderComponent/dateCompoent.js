@@ -34,8 +34,8 @@ class DateComponent extends Component {
           </Col>
         </Row>
         <Row>
-          <Col className="col-3" />
-          <Col className="col-6">
+          {/* <Col className="col-3" /> */}
+          <Col className="col-12">
             <p id="date"> {this.props.date}</p>
           </Col>
         </Row>
