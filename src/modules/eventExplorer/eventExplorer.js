@@ -45,13 +45,6 @@ class EventExplorer extends Component {
     return (
       <React.Fragment>
         <Row className="eventExp_row">
-          <HeaderComopnet />
-        </Row>
-        <Row className="eventExp_row">
-          <MainMenuCompoannent />
-        </Row>
-
-        <Row className="eventExp_row">
           <div className="table-responsive">
             <Col className="col-md-11 col-sm-11">
               <Table striped bordered responsive>
