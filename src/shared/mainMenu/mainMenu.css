@@ -1,29 +1,29 @@
 #add_button {
-    display: flex;
-    width: 70%;
-    /* align-content: space-around; */
-    align-items: center;
-    /* background-color: rgb(24, 95, 10); */
+  display: flex;
+  width: 80%;
+  /* align-content: space-around; */
+  align-items: center;
+  /* background-color: rgb(24, 95, 10); */
+  font-family: Poppins;
 }
 
 #active {
-    background-color: transparent;
-    border: 5px;
-    border-bottom: 10px red;
-
+  background-color: white;
+  border: 5px;
+  border-color: black;
 }
 
 .menu_item {
-    font-size: 20px;
-    color: black;
+  font-size: 20px;
+  color: black;
 }
 
 #button_search {
-    margin: 10px;
+  margin: 10px;
 }
 
 #search_group {
-    align-items: center;
+  align-items: center;
 }
 
 
@@ -35,6 +35,7 @@
 }
 #modal_header{
     background-color: black;
+}
 
 .menuOption {
     border: 0px;
@@ -48,4 +49,10 @@
     margin-bottom: 200px;
     border-bottom-color: yellow
 
+span {
+  font-family: Poppins;
+}
+
+h3 {
+  font-family: Poppins;
 }

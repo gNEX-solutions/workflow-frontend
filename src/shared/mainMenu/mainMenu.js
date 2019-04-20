@@ -22,6 +22,20 @@ class MainMenuComponent extends Component {
     // alert('add new event');
     this.setState({
       showAddNewEvent: true
+    });
+  };
+
+  closeAddNewEvent = () => {
+    this.setState({
+      showAddNewEvent: false
+    });
+  };
+  modalTitle = 'Add New Event';
+
+  addNewEventClicked = () => {
+    // alert('add new event');
+    this.setState({
+      showAddNewEvent: true
     })
   }
 
@@ -29,6 +43,20 @@ class MainMenuComponent extends Component {
     this.setState({
       showAddNewEvent: false
     })
+  }
+
+  eventExpClicked() {
+    // alert('event exp clicked');
+    console.log('event exp clicked ');
+  }
+
+  calenderCicked() {
+    console.log('calender clicked');
+    this.setState({
+      eventExpStatus: '',
+      calenderStatus: 'active',
+      historyStatus: ''
+    });
   }
 
   eventExpClicked = () => {
@@ -134,14 +162,32 @@ class MainMenuComponent extends Component {
             <div className="input-group-append" >
               <button className="btn btn-outline-secondary" type="button" id="button-search" onClick={this.searchButtonClicked} >
                 <FontAwesomeIcon icon={faSearch} />
+              </button>
+            </div>
+          </div>
+        </Col>
 
         <div className="row menuOuter">
-          <Col className="col-1" />
-
-          <a href="" />
+          <Modal
+            show={this.state.showAddNewEvent}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header id="modal_header">
+              <Modal.Title id="modal_title">{this.modalTitle}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <AddNewEventComponent onCancel={this.closeAddNewEvent} />
+            </Modal.Body>
+          </Modal>
 
           <Col className="col-2">
-            <Button variant="success" id="add_button">
+            <Button
+              variant="success"
+              id="add_button"
+              onClick={this.addNewEventClicked}
+            >
               <FontAwesomeIcon icon={faPlusCircle} size="2x" />
               &nbsp; &nbsp; New Event
             </Button>
@@ -162,6 +208,7 @@ class MainMenuComponent extends Component {
               </button>
             </div>
           </Col>
+
           <Col className="col-2" id="explorer">
             <div id={eventExpStatus}>
               <button
@@ -177,6 +224,7 @@ class MainMenuComponent extends Component {
               </button>
             </div>
           </Col>
+
           <Col className="col-2" id="history">
             <div className={historyStatus}>
               <button
@@ -192,6 +240,7 @@ class MainMenuComponent extends Component {
               </button>
             </div>
           </Col>
+
           <Col className="col-2" id="search_box">
             <div className="input-group mb-3" id="search_group">
               <input
@@ -202,7 +251,6 @@ class MainMenuComponent extends Component {
                 aria-describedby="button-addon2"
                 onKeyPress={this.searchButtonClicked}
               />
-
               <div className="input-group-append">
                 <button
                   className="btn btn-outline-secondary"
