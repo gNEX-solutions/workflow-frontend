@@ -5,18 +5,32 @@
 
 .eventExp_row {
     /* margin-left: 1.5%; */
-    padding-left: 3%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+#main_table{
+    padding-top: 1%;
+    padding-left: 1%;
+    max-width: 90%;
+    /* align-self: ; */
+    margin-top: 1%;
+    margin-left: 1%;
 }
 
 
 #eventExp_table {
-    width: 100%;
+    width: 90%;
     background-color: aqua;
 }
 
-.table_header {
+#table_header {
     text-align: center;
-    font-weight: 700;
+    
+}
+
+#table_header_text{
+    font-weight: 600;
     font-size: 1.5rem;
 }
 

@@ -63,7 +63,7 @@ class MonthEventCompoent extends Component {
             return (
                 <h3 key={eventId}>
                     <Badge pill variant="info" onClick={this.onEventClicked}
-                        key={eventId} id={eventId} className="eventInto_badge">
+                        key={eventId} id={eventId} className="eventInfo_badge">
                         {eventName}
                     </Badge>
                 </h3>);
