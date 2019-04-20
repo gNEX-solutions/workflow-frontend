@@ -1,7 +1,8 @@
-import { LOGIN, LOGIN_SUCCESS } from '../../modules/login/actions/types';
+/* eslint-disable indent */
+import { LOGIN, LOGIN_SUCCESS } from '../types/AuthTypes';
 
 const initialState = {
-  user: null,
+  user: {},
   token: null,
   isAuthenticated: false,
   isLoading: false
@@ -9,21 +10,21 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-  case LOGIN:
-    return {
-      ...state,
-      isLoading: true
-    };
-  case LOGIN_SUCCESS:
-    const { data } = action.payload;
-    return {
-      ...state,
-      // ...action.payload,
-      isAuthenticated: true,
-      isLoading: false,
-      token: data.token
-    };
-  default:
-    return state;
+    case LOGIN:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case LOGIN_SUCCESS:
+      const { data } = action.payload;
+      return {
+        ...state,
+        // ...action.payload,
+        isAuthenticated: true,
+        isLoading: false,
+        token: data.token
+      };
+    default:
+      return state;
   }
 }

@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 export default function(ComposedComponent) {
   class Authenticate extends React.Component {
     componentWillMount() {
-      if (!this.props.isAuthenticated) {
+      if (this.props.isAuthenticated) {
         this.context.router.history.push('/login');
       }
     }
 
     componentWillUpdate(nextProps) {
-      if (!nextProps.isAuthenticated) {
+      if (nextProps.isAuthenticated) {
         this.context.router.history.push('/login');
       }
     }
