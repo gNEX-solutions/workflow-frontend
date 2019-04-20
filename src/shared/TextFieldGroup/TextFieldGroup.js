@@ -12,7 +12,7 @@ const TextFieldGroup = ({
   checkUserExists,
   placeholder
 }) => (
-  <div className={classnames('form-group', { 'has-error': error })}>
+  <div className="form-group">
     {/* <label className="control-label">{label}</label> */}
     <input
       onChange={onChange}
@@ -20,10 +20,12 @@ const TextFieldGroup = ({
       value={value}
       type={type}
       name={field}
-      className="form-control"
+      className={classnames('form-control form-control-lg ', {
+        'is-invalid': error
+      })}
       placeholder={placeholder}
     />
-    {error && <span className="help-block">{error}</span>}
+    {error && <span className="invalid-feedback">{error}</span>}
   </div>
 );
 
@@ -41,8 +43,8 @@ TextFieldGroup.propTypes = {
 TextFieldGroup.defaultProps = {
   type: 'text',
   placeholder: null,
-  checkUserExists: null
-  // error: null
+  checkUserExists: null,
+  error: null
 };
 
 export default TextFieldGroup;

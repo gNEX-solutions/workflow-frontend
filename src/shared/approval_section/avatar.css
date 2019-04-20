@@ -1,0 +1,23 @@
+.AvatarImage {
+  height: 50px;
+  width: 50px;
+}
+
+.AvatarTitle {
+  font-weight: bold;
+  margin-top: -10px;
+}
+
+.AvatarName{
+  text-align-last: auto;
+color: red;
+}
+
+.Avatar{
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: pre-line;
+  margin: 5px; 
+  width: 150px;
+}
