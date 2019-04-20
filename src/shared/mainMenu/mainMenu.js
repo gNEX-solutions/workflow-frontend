@@ -92,9 +92,7 @@ class MainMenuComponent extends Component {
     const { calenderStatus, eventExpStatus, historyStatus } = this.state;
     return (
       <React.Fragment>
-
-
-        <Modal
+        {/* <Modal
           show={this.state.showAddNewEvent}
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
@@ -155,7 +153,7 @@ class MainMenuComponent extends Component {
             </Link>
           </div>
         </Col>
-        <Col className="col-2" id="search_box">
+        <Col className="col-2" id="search_box"> 
           <div className="input-group mb-3" id="search_group">
             <input type="text" className="form-control" placeholder="search events" aria-label="Recipient's username" aria-describedby="button-addon2" onKeyPress={this.searchButtonClicked} />
 
@@ -165,7 +163,7 @@ class MainMenuComponent extends Component {
               </button>
             </div>
           </div>
-        </Col>
+        </Col>*/}
 
         <div className="row menuOuter">
           <Modal

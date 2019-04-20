@@ -43,11 +43,13 @@
 }
 
 .menuOuter {
+    padding-top: 0.5%;
     border-bottom: 10px;
     border-bottom-width: 10px;
     /* background-color: red; */
     margin-bottom: 200px;
     border-bottom-color: yellow
+}
 
 span {
   font-family: Poppins;
