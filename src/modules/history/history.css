@@ -1,0 +1,13 @@
+.historySection {
+    height: 100px;
+    padding-top: 20px;
+    /* background: red; */
+}
+
+.historyCalendar {
+    background: yellow;
+}
+
+.historyDetail {
+    background: green;
+}
