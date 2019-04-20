@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import "bootstrap/dist/css/bootstrap.css";
-import { Col, Row, Button, Form } from 'react-bootstrap';
+import { Col, Row, Button, Form, InputGroup, Alert } from 'react-bootstrap';
 import './newEvent.css';
 
 import { createEvent } from '../../store/actions/DashBoardActions';
+import * as moment from 'moment';
 
 class addNewEvent extends Component {
   state = {
+    validated: false,
+    showTimeAlert: false,
     eventName: '',
     venue: '',
     timeFrom: null,
     timeTo: null,
     date: null,
-    coordinators: '',
+    coordinatorName: '',
+    coordinatorImnum: '',
     description: '',
     participants: '',
     budget: '',
     resources: ''
   };
 
-  createEventClicked = () => {
+  createEventClicked = event => {
+    // console.log('running');
+    const timeFromMoment = moment(this.state.timeFrom, 'HH:mm');
+    const timeToMoment = moment(this.state.timeTo, 'HH:mm');
     const {
       eventName,
       venue,
@@ -55,11 +62,19 @@ class addNewEvent extends Component {
       eventUpdatedAt: '2019-02-15T09:10:02.000+0000'
     };
 
-    console.log(newEvent);
-    const { createEvent } = this.props;
-    createEvent(newEvent);
-
-    this.props.onCancel();
+    // console.log(timeFromMoment.isAfter(timeToMoment));
+    if (timeToMoment.isBefore(timeFromMoment)) {
+      this.setState({
+        showTimeAlert: true
+      });
+      event.preventDefault();
+      event.stopPropagation();
+      // alert('incorrect time');
+    } else {
+      const { createEvent } = this.props;
+      createEvent(newEvent);
+      this.props.onCancel();
+    }
   };
 
   // capturing the value changes in the input field  : dj
@@ -94,11 +109,19 @@ class addNewEvent extends Component {
     });
   };
 
-  onCoordinatorschange = event => {
+  onCoordinatorNamechange = event => {
     this.setState({
-      coordinators: event.target.value
+      coordinatorName: event.target.value
     });
   };
+
+  onCoordinatorImnumChange = event => {
+    this.setState({
+      coordinatorImnum: 'IM/' + event.target.value
+    });
+  };
+
+
 
   onDescrptionChange = event => {
     this.setState({
@@ -125,6 +148,7 @@ class addNewEvent extends Component {
   };
   // end of caturing the value changes in the input fields
   render() {
+    const { validated } = this.state;
     return (
       <div>
         <div className="container-fluid">
@@ -136,20 +160,32 @@ class addNewEvent extends Component {
                                 </div>   */}
 
               {/* <div className="card-body"> */}
-              <Form method="#">
+              <Form
+                method="#"
+                validated={validated}
+                onSubmit={event => this.createEventClicked(event)}
+              >
                 <Row className="row">
                   <Col className="col-sm-6 col-md-6">
                     {/* Event name*/}
 
                     <Form.Group controlId="formBasicEventName">
                       <Form.Label>Event name</Form.Label>
-                      <Form.Control type="text" onChange={this.onNameChange} />
+                      <Form.Control
+                        type="text"
+                        onChange={this.onNameChange}
+                        required
+                      />
                     </Form.Group>
                     {/* Venue*/}
 
                     <Form.Group controlId="formBasicVenue">
                       <Form.Label>Venue</Form.Label>
-                      <Form.Control type="text" onChange={this.onVenueChange} />
+                      <Form.Control
+                        type="text"
+                        onChange={this.onVenueChange}
+                        required
+                      />
                     </Form.Group>
 
                     {/* Time*/}
@@ -161,16 +197,22 @@ class addNewEvent extends Component {
                           <Form.Control
                             type="time"
                             onChange={this.onTimeFromChange}
+                            required
                           />
                         </Col>
                         <Col>
                           <Form.Control
                             type="time"
                             onChange={this.onTimeToChange}
+                            required
                           />
                         </Col>
                       </Row>
                     </Form.Group>
+                    <Alert variant="danger" show={this.state.showTimeAlert}>
+                      {' '}
+                      starting time should before ending time
+                    </Alert>
 
                     {/* Planned date*/}
 
@@ -180,6 +222,7 @@ class addNewEvent extends Component {
                         type="date"
                         ref="date"
                         onChange={this.onDateChange}
+                        required
                       />
                     </Form.Group>
 
@@ -187,10 +230,32 @@ class addNewEvent extends Component {
 
                     <Form.Group controlId="formBasicCoordinators">
                       <Form.Label>Coordinators</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        onChange={this.onCoordinatorschange}
-                      />
+                      <Row>
+                        <Col className="col-6">
+                          <Form.Control
+                            type="text"
+                            placeholder="name"
+                            onChange={this.onCoordinatorNamechange}
+                            required
+                          />
+                        </Col>
+                        <Col className="col-6">
+                          <InputGroup>
+                            <InputGroup.Prepend>
+                              <InputGroup.Text id="inputGroupPrepend">
+                                IM/
+                              </InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                              type="text"
+                              placeholder=" IM number"
+                              pattern="[0-9/]{5,8}"
+                              onChange={this.onCoordinatorImnumChange}
+                              required
+                            />
+                          </InputGroup>
+                        </Col>
+                      </Row>
                     </Form.Group>
                   </Col>
                   <Col className="col-sm-6 col-md-6">
@@ -211,6 +276,7 @@ class addNewEvent extends Component {
                       <Form.Control
                         type="text"
                         onChange={this.onPartcipantsChange}
+                        required
                       />
                     </Form.Group>
 
@@ -221,6 +287,7 @@ class addNewEvent extends Component {
                       <Form.Control
                         type="number"
                         onChange={this.onBudgetChange}
+                        required
                       />
                     </Form.Group>
                     {/* Resources Allocations*/}
@@ -230,6 +297,7 @@ class addNewEvent extends Component {
                       <Form.Control
                         type="text"
                         onChange={this.onResourceChange}
+                        required
                       />
                     </Form.Group>
                   </Col>
@@ -237,8 +305,9 @@ class addNewEvent extends Component {
                 <Row>
                   <Button
                     id="btnAdd_form"
+                    type="submit"
                     className="btn btn-success"
-                    onClick={this.createEventClicked}
+                  // onClick={this.createEventClicked}
                   >
                     {' '}
                     Create Event{' '}
