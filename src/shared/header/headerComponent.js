@@ -33,7 +33,7 @@ class HeaderComponent extends Component {
             <Navbar.Collapse id="responsive-navbar-nav">
               <div className="col-sm-6" />
               <div className="col-sm-6">
-                <Form inline alignContent="flex-end">
+                <Form inline>
                   <div className="notification_icon">
                     <Nav.Link href="#notification">
                       <FontAwesomeIcon
