@@ -2,12 +2,15 @@
 import {
   GET_EVENT,
   GET_EVENT_SUCCESS,
-  GET_EVENT_FAIL
+  GET_EVENT_FAIL,
+  CREATE_EVENT
 } from '../types/DashBoardTypes';
 
 const initialState = {
+  selectedEventId: null,
   events: null,
-  isLoading: false
+  isLoading: false,
+  responseMsg: null
 };
 
 export default function(state = initialState, action) {
@@ -19,11 +22,15 @@ export default function(state = initialState, action) {
       };
     case GET_EVENT_SUCCESS:
       // eslint-disable-next-line no-case-declarations
-      const { data } = action.payload;
       return {
         ...state,
         isLoading: false,
-        events: data
+        events: action.payload.data
+      };
+    case CREATE_EVENT:
+      return {
+        ...state,
+        responseMsg: action.payload.data
       };
     default:
       return state;

@@ -99,6 +99,7 @@
   height: 18%;
   width: 10%;
 }
+
 #icon_state {
   padding-top: -20px;
   padding-left: 10px;
@@ -108,8 +109,7 @@
   margin-left: -10px;
 }
 
-#header_container {
-}
+#header_container {}
 
 #Coordinator {
   margin-left: -50px;

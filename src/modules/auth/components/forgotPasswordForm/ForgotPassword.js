@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import TextFieldGroup from '../../../../shared/TextFieldGroup/TextFieldGroup';
 import validateInput from '../LoginValidation';
-import { login } from '../../actions/Login';
+import { login } from '../../../../store/actions/AuthActions';
 // import './ForgotPassword.styles.css';
 
 class ForgotPassword extends Component {

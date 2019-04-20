@@ -1,0 +1,25 @@
+{
+    [
+        {
+        eventId: "1",
+        eventName: "im dansela",
+        eventDate: "2018/09/05"
+        eventStartTime: "10:00",
+        eventEndTime: "15:00",
+        eventStatus: "approved",
+        eventLocation: "uok",
+        eventOrganizers: "1st years",
+        eventCoordinatorsDetails: [
+                {
+            imNumber: "im/2016/067",
+            name: "chathura ranawaka"
+                }
+            ],
+      eventParticipants: "all batches",
+      eventBudget: "25000",
+      eventDescription: "sample description",
+      eventApprovedStatus: "",
+      eventAttachedFiles: [], (have no idea how to get and show the attached files)
+        }
+    ],
+}

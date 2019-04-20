@@ -5,6 +5,7 @@ import ApprovalSection from '../../shared/approval_section/approvalSectionCompon
 import EventDescription from '../../shared/eventDescription/eventDescription';
 import CalenderFooter from '../../shared/calenderFooter/calenderFooter';
 import CalenderComponent from '../../shared/calenderComponent/calenderComponent';
+import EventComponent from './components/eventComponent/EventComponent';
 import './calender.css';
 
 export const events = [
@@ -122,17 +123,65 @@ export const events = [
 ];
 
 class CalenderSection extends Component {
-  state = {
-    showUserProfile: false,
-    showNotificationPannel: false
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showUserProfile: false,
+      showNotificationPannel: false,
+      selectedEventId: null
+    };
+  }
+
   // added by dj: 20/03/2019 : handling the state of the user profile section
   handleProfClick = () => {
     this.setState({
       showUserProfile: !this.state.showUserProfile
     });
   };
+
+  handleEventOnClick = id => {
+    this.setState({
+      selectedEventId: id
+    });
+  };
+
+  renderEvents = () => {
+    const arr = [];
+    events.map((event, index) => {
+      arr.push(
+        <EventComponent event={event} onEventClick={this.handleEventOnClick} />
+      );
+    });
+
+    return arr;
+  };
+
+  renderEventDiscription = () => {
+    const discription = events.map((event, index) => {
+      if (event.eventId === this.state.selectedEventId) {
+        return (
+          <React.Fragment>
+            <Row id="event_description_row">
+              <EventDescription id="event_description" event={event} />
+            </Row>
+            <Row id="app_section_row">
+              <ApprovalSection id="app_section" event={event} />
+            </Row>
+            <Row>
+              <CalenderFooter id="cal_footer" event={event} />
+            </Row>
+          </React.Fragment>
+        );
+      }
+    });
+    return discription;
+  };
+
   render() {
+    const monthlyEvents = this.state.selectedEventId
+      ? this.renderEventDiscription()
+      : this.renderEvents();
     return (
       <React.Fragment>
         {/* <Row> */}
@@ -170,15 +219,7 @@ class CalenderSection extends Component {
             <CalenderComponent />
           </Col>
           <Col className="col-8" id="event_info">
-            <Row id="event_description_row">
-              <EventDescription id="event_description" />
-            </Row>
-            <Row id="app_section_row">
-              <ApprovalSection id="app_section" />
-            </Row>
-            <Row>
-              <CalenderFooter id="cal_footer" />
-            </Row>
+            {monthlyEvents}
           </Col>
         </Row>
         {/* <Row>

@@ -1,4 +1,28 @@
-#main_menu{
+#main_menu {
     height: 100px;
     padding-top: 20px;
+}
+
+.eventExp_row {
+    /* margin-left: 1.5%; */
+    padding-left: 3%;
+}
+
+
+#eventExp_table {
+    width: 100%;
+    background-color: aqua;
+}
+
+.table_header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.monthLabel {
+    text-align: left;
+    padding-left: 10%;
+    font-size: 1.25rem;
+
 }
