@@ -6,6 +6,9 @@ import './history.css';
 
 class HistorySection extends Component {
   state = {};
+  const = {
+    oraganisingBatch: 1
+  }
   render() {
     return (
       <React.Fragment>

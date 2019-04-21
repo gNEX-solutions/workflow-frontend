@@ -16,8 +16,20 @@ class addNewEvent extends Component {
     timeFrom: null,
     timeTo: null,
     date: null,
-    coordinatorName: '',
-    coordinatorImnum: '',
+    // coordinatorName: '',
+    // coordinatorImnum: '',
+    validated: false,
+    coordinators: [
+      {
+        name: '',
+        imNumber: ''
+      },
+      {
+        name: '',
+        imNumber: ''
+      }
+    ],
+
     description: '',
     participants: '',
     budget: '',
@@ -109,19 +121,57 @@ class addNewEvent extends Component {
     });
   };
 
-  onCoordinatorNamechange = event => {
-    this.setState({
-      coordinatorName: event.target.value
-    });
+  onCoordinatorNamechange = (event, id) => {
+    // console.log(id);
+    if (id === 0) {
+      this.setState({
+        coordinators: [
+          {
+            name: event.target.value,
+            imNumber: this.state.coordinators[0].imNumber
+          },
+          this.state.coordinators[1]
+        ]
+      });
+    } else {
+      this.setState({
+        coordinators: [
+          this.state.coordinators[0],
+          {
+            name: event.target.value,
+            imNumber: this.state.coordinators[1].imNumber
+          }
+        ]
+      });
+    }
   };
 
-  onCoordinatorImnumChange = event => {
-    this.setState({
-      coordinatorImnum: 'IM/' + event.target.value
-    });
+  onCoordinatorImnumChange = (event, id) => {
+    if (id === 0) {
+      this.setState({
+        coordinators: [
+          {
+            name: this.state.coordinators[0].name,
+            imNumber: event.target.value
+          },
+          this.state.coordinators[1]
+        ]
+      });
+    } else {
+      this.setState({
+        coordinators: [
+          this.state.coordinators[0],
+          {
+            name: this.state.coordinators[0].name,
+            imNumber: event.target.value
+          }
+        ]
+      });
+    }
+    // this.setState({
+    //     coordinatorImnum: 'IM/' + event.target.value
+    //   });
   };
-
-
 
   onDescrptionChange = event => {
     this.setState({
@@ -226,16 +276,30 @@ class addNewEvent extends Component {
                       />
                     </Form.Group>
 
-                    {/* Coodinators*/}
+                    {/* Budget*/}
+
+                    <Form.Group controlId="formBasicBudget">
+                      <Form.Label>Budget</Form.Label>
+                      <Form.Control
+                        type="number"
+                        onChange={this.onBudgetChange}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col className="col-sm-6 col-md-6">
+                    {/* coordinators*/}
 
                     <Form.Group controlId="formBasicCoordinators">
                       <Form.Label>Coordinators</Form.Label>
-                      <Row>
+                      <Row className="coordinator_row">
                         <Col className="col-6">
                           <Form.Control
                             type="text"
                             placeholder="name"
-                            onChange={this.onCoordinatorNamechange}
+                            onChange={event =>
+                              this.onCoordinatorNamechange(event, 0)
+                            }
                             required
                           />
                         </Col>
@@ -250,17 +314,47 @@ class addNewEvent extends Component {
                               type="text"
                               placeholder=" IM number"
                               pattern="[0-9/]{5,8}"
-                              onChange={this.onCoordinatorImnumChange}
+                              onChange={event =>
+                                this.onCoordinatorImnumChange(event, 0)
+                              }
+                              required
+                            />
+                          </InputGroup>
+                        </Col>
+                      </Row>
+                      <Row className="coordinator_row">
+                        <Col className="col-6">
+                          <Form.Control
+                            type="text"
+                            placeholder="name"
+                            onChange={event =>
+                              this.onCoordinatorNamechange(event, 1)
+                            }
+                            required
+                          />
+                        </Col>
+                        <Col className="col-6">
+                          <InputGroup>
+                            <InputGroup.Prepend>
+                              <InputGroup.Text id="inputGroupPrepend">
+                                IM/
+                              </InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                              type="text"
+                              placeholder=" IM number"
+                              pattern="[0-9/]{5,8}"
+                              onChange={event =>
+                                this.onCoordinatorImnumChange(event, 1)
+                              }
                               required
                             />
                           </InputGroup>
                         </Col>
                       </Row>
                     </Form.Group>
-                  </Col>
-                  <Col className="col-sm-6 col-md-6">
-                    {/* Description*/}
 
+                    {/* Coodinators*/}
                     <Form.Group controlId="formBasicDescription">
                       <Form.Label>Description</Form.Label>
                       <Form.Control
@@ -280,16 +374,6 @@ class addNewEvent extends Component {
                       />
                     </Form.Group>
 
-                    {/* Budget*/}
-
-                    <Form.Group controlId="formBasicBudget">
-                      <Form.Label>Budget</Form.Label>
-                      <Form.Control
-                        type="number"
-                        onChange={this.onBudgetChange}
-                        required
-                      />
-                    </Form.Group>
                     {/* Resources Allocations*/}
 
                     <Form.Group controlId="formBasicResources">
