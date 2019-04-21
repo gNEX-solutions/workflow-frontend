@@ -17,7 +17,8 @@ export const VIEW_TYPES = {
 
 const RootRouter = () => (
   <Switch>
-    <Route exact path="/dashboard" component={RequireAuth(HomePage)} />
+    {/* <Route exact path="/dashboard" component={RequireAuth(HomePage)} /> */}
+    <Route exact path="/dashboard" component={HomePage} />
     {/* <Route exact path={RouteTypes.login} component={AuthLogin} /> */}
     {/* <Route path="/auth/callback" component={AuthCallback} /> */}
     {/* <PrivateRoute path="/" component={MainPage} /> */}
