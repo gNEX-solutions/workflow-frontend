@@ -35,7 +35,7 @@ class addNewEvent extends Component {
     budget: '',
     resources: ''
   };
-
+  // sample added by dj
   createEventClicked = event => {
     // console.log('running');
     const timeFromMoment = moment(this.state.timeFrom, 'HH:mm');
