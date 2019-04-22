@@ -1,0 +1,12 @@
+/* #editEvent:hover{
+    background-color: aqua;
+} */
+#modalDelete{
+    /* background-color: white; */
+}
+
+#modalDeleteBody{
+    background-color: white;
+    color:rgb(5, 5, 5);
+    align-items: flex-start;
+}

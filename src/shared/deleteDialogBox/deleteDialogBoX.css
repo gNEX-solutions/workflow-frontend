@@ -4,3 +4,9 @@
 .far fa-calendar-times {
   size: 100px;
 }
+#deleteDialogMainCard{
+    width: "100px";
+    /* background-color: aqua; */
+    /* margin: "auto"; */
+    /* marginTop: "0px"; */
+}

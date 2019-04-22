@@ -132,3 +132,11 @@ p {
 hr {
   border-top: 2px solid #b1b1b1;
 }
+
+/* action bar icon */
+#actionbarIcon{
+  font-size: 1.5rem;
+  font-weight: 900;
+  color:darkturquoise;
+  /* background-color: black; */
+}

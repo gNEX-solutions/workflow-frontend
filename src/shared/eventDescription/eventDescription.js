@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, OverlayTrigger, Popover } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import ActionBar from './actionBar';
 import './eventDescription.css';
 
 class EventDescription extends Component {
@@ -31,6 +34,21 @@ class EventDescription extends Component {
             </Col>
             <Col className="col-2">
               <p id="venue">{eventLocation}</p>
+            </Col>
+            <Col className="col-2">
+              <OverlayTrigger
+                trigger="click"
+                key={1}
+                placement="left"
+                overlay={
+                  <Popover id={`popover-positioned`}>
+                    <ActionBar publish={false} />
+                  </Popover>
+                }
+              >
+                <FontAwesomeIcon icon={faEllipsisH} id="actionbarIcon" />
+              </OverlayTrigger>
+
             </Col>
           </Row>
           <hr size="20" />
