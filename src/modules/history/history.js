@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import EventComponent from '../../shared/eventComponent/EventComponent';
-import { selectEvent } from '../../store/actions/DashBoardActions';
-import './history.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import EventComponent from "../../shared/eventComponent/EventComponent";
+import { selectEvent } from "../../store/actions/DashBoardActions";
+import "./history.css";
 
 class HistorySection extends Component {
   constructor(props) {
