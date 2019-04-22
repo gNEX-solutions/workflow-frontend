@@ -43,8 +43,8 @@ class HeaderComponent extends Component {
             <Navbar.Brand href="#home">IMSSA Events Manager</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <div className="col-sm-6" />
-              <div className="col-sm-6">
+              <div className="col-sm-10" />
+              <div className="col-sm-2">
                 <Form inline>
                   <div className="notification_icon">
                     {/* <Nav.Link href="#notification" /> */}
@@ -52,12 +52,9 @@ class HeaderComponent extends Component {
                       trigger="click"
                       key={1}
                       placement="bottom"
-                      overlay={
-                        
+                      overlay={                     
                         <Popover
                           id={`popover-positioned`}
-                          
-                        // title={`Popover ${placement}`}
                         >
                           <NotificationPannel />
                         </Popover>
