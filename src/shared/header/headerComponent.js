@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Navbar, Nav, Form, Badge, NavItem } from 'react-bootstrap';
+import {
+  Navbar,
+  Nav,
+  Form,
+  Badge,
+  NavItem,
+  OverlayTrigger,
+  Popover
+} from 'react-bootstrap';
 import {
   Toolbar,
   Typography,
@@ -10,6 +18,7 @@ import {
 } from 'reactstrap';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import Avatar from 'react-avatar';
+import NotificationPannel from './NotificationPanel';
 
 import styles from './Header.styles';
 
@@ -23,6 +32,9 @@ const userimage =
 class HeaderComponent extends Component {
   state = {};
 
+  toggleNotificationIcon = () => {
+    alert('not clicked');
+  };
   render() {
     return (
       <React.Fragment>
@@ -31,21 +43,36 @@ class HeaderComponent extends Component {
             <Navbar.Brand href="#home">IMSSA Events Manager</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <div className="col-sm-6" />
-              <div className="col-sm-6">
+              <div className="col-sm-10" />
+              <div className="col-sm-2">
                 <Form inline>
                   <div className="notification_icon">
-                    <Nav.Link href="#notification">
-                      <FontAwesomeIcon
-                        icon={faBell}
-                        style={{ color: 'white', fontSize: '130%' }}
-                        className="notfication_button"
-                      />
-                      <Badge variant="light" style={{ backgroundColor: 'red' }}>
-                        {numberofNotifications}
-                      </Badge>
-                      <span className="sr-only">unread messages</span>
-                    </Nav.Link>
+                    {/* <Nav.Link href="#notification" /> */}
+                    <OverlayTrigger
+                      trigger="click"
+                      key={1}
+                      placement="bottom"
+                      overlay={                     
+                        <Popover
+                          id={`popover-positioned`}
+                        >
+                          <NotificationPannel />
+                        </Popover>
+                      }
+                    >
+                      <div>
+                        <FontAwesomeIcon
+                          icon={faBell}
+                          style={{ color: 'white', fontSize: '130%' }}
+                          className="notfication_button"
+                          onclick={this.toggleNotificationIcon()}
+                        />
+                        <Badge variant="light" style={{ backgroundColor: 'red' }}>
+                          {numberofNotifications}
+                        </Badge>
+                        <span className="sr-only">unread messages</span>
+                      </div>
+                    </OverlayTrigger>
                   </div>
                   <div className="user_avatar">
                     <Nav.Link href="#user">
