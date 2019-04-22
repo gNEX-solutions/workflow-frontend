@@ -3,14 +3,18 @@ import {
   GET_EVENT,
   GET_EVENT_SUCCESS,
   GET_EVENT_FAIL,
-  CREATE_EVENT
+  CREATE_EVENT,
+  GET_EVENT_HISTORY,
+  CHANGE_EVENT_ID
 } from '../types/DashBoardTypes';
+import { events, past } from './mock';
 
 const initialState = {
   selectedEventId: null,
-  events: null,
+  events: events,
   isLoading: false,
-  responseMsg: null
+  responseMsg: null,
+  pastEvents: past
 };
 
 export default function(state = initialState, action) {
@@ -31,6 +35,16 @@ export default function(state = initialState, action) {
       return {
         ...state,
         responseMsg: action.payload.data
+      };
+    case GET_EVENT_HISTORY:
+      return {
+        ...state,
+        pastEvents: action.payload.data
+      };
+    case CHANGE_EVENT_ID:
+      return {
+        ...state,
+        selectedEventId: action.payload
       };
     default:
       return state;

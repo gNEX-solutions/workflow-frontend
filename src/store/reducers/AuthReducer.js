@@ -2,7 +2,14 @@
 import { LOGIN, LOGIN_SUCCESS } from '../types/AuthTypes';
 
 const initialState = {
-  user: {},
+  user: {
+    firstName: 'Akalanka',
+    lastName: 'Jayalth',
+    email: '',
+    designtion: 'President',
+    pictureUrl:
+      'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png'
+  },
   token: null,
   isAuthenticated: false,
   isLoading: false

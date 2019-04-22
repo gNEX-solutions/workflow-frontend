@@ -3,3 +3,5 @@ export const GET_EVENT_SUCCESS = 'GET_EVENT_SUCCESS';
 export const GET_EVENT_FAIL = 'GET_EVENT_FAIL';
 
 export const CREATE_EVENT = 'CREATE_EVENT';
+export const GET_EVENT_HISTORY = 'GET_EVENT_HISTORY';
+export const CHANGE_EVENT_ID = 'CHANGE_EVENT_ID';

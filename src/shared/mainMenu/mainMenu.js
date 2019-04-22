@@ -30,23 +30,12 @@ class MainMenuComponent extends Component {
     });
   };
 
-  eventExpClicked() {
-    // alert('event exp clicked');
-    console.log('event exp clicked ');
-  }
-
-  calenderCicked() {
-    console.log('calender clicked');
-    this.setState({
-      eventExpStatus: '',
-      calenderStatus: 'active',
-      historyStatus: ''
-    });
-  }
+  searchButtonClicked = () => {
+    // alert('search btn clicked');
+    console.log('search btn clicked');
+  };
 
   eventExpClicked = () => {
-    // alert('event exp clicked');
-    console.log('event exp clicked ');
     const { onEventExplorerPress } = this.props;
     onEventExplorerPress();
   };
@@ -54,24 +43,20 @@ class MainMenuComponent extends Component {
   calenderCicked = () => {
     const { onEventCalendarPress } = this.props;
     onEventCalendarPress();
-    console.log('calender clicked');
-    // this.setState({
-    //   eventExpStatus: '',
-    //   calenderStatus: 'active',
-    //   historyStatus: ''
-    // });
   };
 
   historyClicked = () => {
     const { onEventHistoryPress } = this.props;
     onEventHistoryPress();
-    console.log('History clicked');
   };
 
-  searchButtonClicked = () => {
-    // alert('search btn clicked');
-    console.log('search btn clicked');
-  };
+  calenderCicked() {
+    this.setState({
+      eventExpStatus: '',
+      calenderStatus: 'active',
+      historyStatus: ''
+    });
+  }
 
   render() {
     const { calenderStatus, eventExpStatus, historyStatus } = this.state;

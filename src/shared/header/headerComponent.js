@@ -11,14 +11,13 @@ import {
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import Avatar from 'react-avatar';
 
-import styles from './Header.styles';
+import './headerComponent.css';
 
-const ufname = 'Akalanka';
-const ulname = 'Jayalth';
-const udesignation = 'President';
+const ufname = '';
+const ulname = '';
+const udesignation = '';
 const numberofNotifications = 10;
-const userimage =
-  'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png';
+const userimage = '';
 
 class HeaderComponent extends Component {
   state = {};
@@ -27,13 +26,19 @@ class HeaderComponent extends Component {
     return (
       <React.Fragment>
         <div className="heading">
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar
+            className="navbar"
+            collapseOnSelect
+            expand="lg"
+            // bg="dark"
+            variant="dark"
+          >
             <Navbar.Brand href="#home">IMSSA Events Manager</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <div className="col-sm-6" />
-              <div className="col-sm-6">
-                <Form inline>
+              <div className="col-sm-6 " />
+              <div className="col-sm-6 right">
+                <Form inline className="col-sm-6 right">
                   <div className="notification_icon">
                     <Nav.Link href="#notification">
                       <FontAwesomeIcon

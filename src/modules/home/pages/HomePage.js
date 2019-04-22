@@ -35,7 +35,6 @@ class HomePage extends React.Component {
   componentDidMount() {
     const { getEvent } = this.props;
     getEvent(input);
-    console.log('test');
   }
 
   handleEventCalendarPress = () => {
@@ -54,7 +53,9 @@ class HomePage extends React.Component {
 
   renderExplorerView = () => <EventExplorer />;
 
-  renderHistoryView = () => <History />;
+  renderHistoryView = () => (
+    <History onEventCalendarPress={this.handleEventCalendarPress} />
+  );
 
   renderContent = () => {
     const viewMap = {

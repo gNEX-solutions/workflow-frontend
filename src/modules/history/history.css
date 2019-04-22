@@ -5,9 +5,10 @@
 }
 
 .historyCalendar {
-    background: yellow;
+    /* background: yellow; */
 }
 
 .historyDetail {
-    background: green;
+    /* background: green; */
+    border-left: 10px;
 }
