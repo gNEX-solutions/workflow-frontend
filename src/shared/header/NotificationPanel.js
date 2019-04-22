@@ -1,6 +1,13 @@
 import React from 'react';
-import { Collapse, Button, CardBody, CardHeader, Card } from 'reactstrap';
+import {
+  Collapse,
+  Button,
+  CardBody,
+  CardHeader,
+  Card
+} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import './notificatinPannel.css';
 
 const TodayDay = 'Today';
 const NextWeek = 'Next Week';
@@ -32,23 +39,30 @@ class NotificationPannel extends React.Component {
       //   >
       //     Notifications
       //   </Button>
-      <Collapse isOpen={this.state.collapse}>
+      <Collapse isOpen={this.state.collapse} id="collapse_main">
         <Card>
           <CardHeader>
             {TodayDay} Events ({TodayNotification})
-            </CardHeader>
+          </CardHeader>
           <CardBody>Event</CardBody>
         </Card>
+
         <Card>
           <CardHeader>
             {NextWeek} Events ({NextWeekNotification})
-            </CardHeader>
+          </CardHeader>
           <CardBody>Event</CardBody>
         </Card>
         <Card>
           <CardHeader>
             {NextMonth} Events ({NextMonthNotification})
-            </CardHeader>
+          </CardHeader>
+          <CardBody>Event</CardBody>
+        </Card>
+        <Card>
+          <CardHeader>
+            {NextMonth} Events ({NextMonthNotification})
+          </CardHeader>
           <CardBody>Event</CardBody>
         </Card>
       </Collapse>
