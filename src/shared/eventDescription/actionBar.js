@@ -3,15 +3,20 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
 import DeleteDialogBox from '../deleteDialogBox/deleteDialogBox';
+import EditEventPannel from '../editEventComponent/editEvent';
 import './actionBar.css';
 
 class ActionBar extends Component {
     state = {
-        showDeleteEvent: false
+        showDeleteEvent: false,
+        showEditEvent: false,
     };
 
     editEventClicked = () => {
-        alert('edit event');
+        // alert('edit event');
+        this.setState({
+            showEditEvent: true
+        });
     };
 
     deleteEventClicked = () => {
@@ -20,15 +25,21 @@ class ActionBar extends Component {
         })
     };
     closeModalDeleteClicked = () => {
-        // alert('close')
+        
         this.setState({
             showDeleteEvent: false
         })
     }
+    closeModalEditClicked = () => {
+        // alert('close')
+        this.setState({
+            showEditEvent: false
+        });
+    }
 
     render() {
         const { publish } = this.props;
-        const { showDeleteEvent } = this.state;
+        const { showDeleteEvent, showEditEvent } = this.state;
         return (
             <React.Fragment>
                 <ListGroup>
@@ -44,18 +55,31 @@ class ActionBar extends Component {
                 </ListGroup>
                 <Modal
                     show={showDeleteEvent}
-                    size="xs"
-                    // dialogClassName="modal-90w"
+                    size="md"
                     aria-labelledby="xample-custom-modal-styling-title"
-                    centered
-                    // backdrop={false}
                     id="modalDelete"
+                    centered
                 >
                     <Modal.Header id="modal_header">
                         <Modal.Title id="modal_title"> DELETE EVENT </Modal.Title>
                     </Modal.Header>
                     <Modal.Body id="modalDeleteBody" >
                         <DeleteDialogBox close={this.closeModalDeleteClicked} />
+
+                    </Modal.Body>
+                </Modal>
+                <Modal
+                    show={showEditEvent}
+                    size="lg"
+                    aria-labelledby="xample-custom-modal-styling-title"
+                    id="modalEdit"
+                    centered
+                >
+                    <Modal.Header id="modal_header">
+                        <Modal.Title id="modal_title"> EDIT EVENT </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body id="modalDeleteBody" >
+                        <EditEventPannel close={this.closeModalEditClicked} />
 
                     </Modal.Body>
                 </Modal>
