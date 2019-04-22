@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Navbar,
   Nav,
@@ -8,32 +8,33 @@ import {
   NavItem,
   OverlayTrigger,
   Popover
-} from "react-bootstrap";
+} from 'react-bootstrap';
 import {
   Toolbar,
   Typography,
   Grid,
   IconButton,
   NotificationsIcon
-} from "reactstrap";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
-import Avatar from "react-avatar";
-import NotificationPannel from "./NotificationPanel";
+} from 'reactstrap';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+import Avatar from 'react-avatar';
+import NotificationPannel from './NotificationPanel';
 
-import "./headerComponent.css";
+import './headerComponent.css';
 
-const ufname = "";
-const ulname = "";
-const udesignation = "";
+const ufname = '';
+const ulname = '';
+const udesignation = '';
 const numberofNotifications = 10;
-const userimage = "";
+const userimage = '';
 
 class HeaderComponent extends Component {
   state = {};
 
   toggleNotificationIcon = () => {
-    alert("not clicked");
+    // alert("not clicked");
   };
+
   render() {
     return (
       <React.Fragment>
@@ -58,7 +59,7 @@ class HeaderComponent extends Component {
                       key={1}
                       placement="bottom"
                       overlay={
-                        <Popover id={`popover-positioned`}>
+                        <Popover id="popover-positioned">
                           <NotificationPannel />
                         </Popover>
                       }
@@ -66,13 +67,13 @@ class HeaderComponent extends Component {
                       <div>
                         <FontAwesomeIcon
                           icon={faBell}
-                          style={{ color: "white", fontSize: "130%" }}
+                          style={{ color: 'white', fontSize: '130%' }}
                           className="notfication_button"
                           onclick={this.toggleNotificationIcon()}
                         />
                         <Badge
                           variant="light"
-                          style={{ backgroundColor: "red" }}
+                          style={{ backgroundColor: 'red' }}
                         >
                           {numberofNotifications}
                         </Badge>
@@ -95,27 +96,27 @@ class HeaderComponent extends Component {
                   <div className="user_details">
                     <span
                       style={{
-                        color: "white",
-                        fontWeight: "bold",
-                        fontSize: "80%"
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: '80%'
                       }}
                     >
                       {ufname}
                     </span>
                     <span
                       style={{
-                        color: "grey",
-                        fontWeight: "bold",
-                        fontSize: "80%"
+                        color: 'grey',
+                        fontWeight: 'bold',
+                        fontSize: '80%'
                       }}
                     >
                       {ulname}
                     </span>
                     <h6
                       style={{
-                        color: "white",
-                        fontStyle: "italic",
-                        fontSize: "60%"
+                        color: 'white',
+                        fontStyle: 'italic',
+                        fontSize: '60%'
                       }}
                     >
                       {udesignation}

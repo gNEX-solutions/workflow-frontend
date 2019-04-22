@@ -26,29 +26,34 @@
   align-items: center;
 }
 
+.btnAddNewEvent {
+  background-color: #1CB1AC;
+  border-radius: 0;
+}
 
 
 /* the modal pop up stylings */
-#modal_title{
-    margin-left: 5%;
-    color: white;
+#modal_title {
+  margin-left: 5%;
+  color: white;
 }
-#modal_header{
-    background-color: black;
+
+#modal_header {
+  background-color: black;
 }
 
 .menuOption {
-    border: 0px;
-    background-color: transparent;
+  border: 0px;
+  background-color: transparent;
 }
 
 .menuOuter {
-    padding-top: 0.5%;
-    border-bottom: 10px;
-    border-bottom-width: 10px;
-    /* background-color: red; */
-    margin-bottom: 200px;
-    border-bottom-color: yellow
+  padding-top: 0.5%;
+  border-bottom: 10px;
+  border-bottom-width: 10px;
+  /* background-color: red; */
+  margin-bottom: 200px;
+  border-bottom-color: yellow
 }
 
 span {
