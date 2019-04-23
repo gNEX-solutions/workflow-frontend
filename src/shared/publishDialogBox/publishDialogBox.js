@@ -7,14 +7,15 @@ import Col from 'react-bootstrap/Col';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faExclamationCircle,
+  faCheckDouble,
   faCalendarTimes
 } from '@fortawesome/free-solid-svg-icons';
-
-import './deleteDialogBoX.css';
 import moment from 'moment';
 import SampleData from '../../services/sampleDataSet';
-class DeleteDialogBox extends Component {
+
+import './publishDialogBoX.css';
+
+class PublishDialogBox extends Component {
   state = {
     eventName: 'CSR Project',
     eventDate: '26th January',
@@ -22,7 +23,7 @@ class DeleteDialogBox extends Component {
     eventVenue: 'Apeksha Hospital'
   };
   componentDidMount() {
-    const eventInfo = SampleData.filter((event) => event.eventId === 1);
+    const eventInfo = SampleData.filter(event => event.eventId === 1);
     const {
       eventName,
       eventDate,
@@ -39,28 +40,25 @@ class DeleteDialogBox extends Component {
       eventVenue: eventLocation
     });
   }
-  deleteEvent = () => {
-    alert('delete event');
+  publishEvent = () => {
+    alert('publish event');
     this.props.close();
   };
   render() {
     const { eventName, eventDate, eventTime, eventVenue } = this.state;
     return (
       <React.Fragment>
-        <Card className="text-center" id="deleteDialogMainCard">
+        <Card className="text-center" id="publishDialogMainCard">
           {/* <Card.Header style={{ backgroundColor: 'black', color: 'white' }}>
             DELETE EVENT
         </Card.Header> */}
           <Card.Body>
             <Card.Text>
               <Row className="topTextRow">
-                <FontAwesomeIcon
-                  icon={faExclamationCircle}
-                  className="warnIcon"
-                />
+                <FontAwesomeIcon icon={faCheckDouble} className="publishIcon" />
                 <span id="topText">
                   {' '}
-                  Are you sure you want to delete this event ?
+                  Are you sure you want to publish this event ?
                 </span>
               </Row>
               <Row id="eventInfoRow">
@@ -77,7 +75,7 @@ class DeleteDialogBox extends Component {
                     <h6>{eventDate}</h6>
                     <h6>
                       {eventTime}
-                      <span>&nbsp; onwards</span>
+                      <span> &nbsp; onwards </span>
 
                     </h6>
                     <h6>@{eventVenue}</h6>
@@ -86,12 +84,12 @@ class DeleteDialogBox extends Component {
               </Row>
               <Row id="buttonRow">
                 <Button
-                  onClick={this.deleteEvent}
-                  variant="danger"
-                  id="deleteBtn"
+                  onClick={this.publishEvent}
+                  variant="success"
+                  id="publishBtn"
                 // style={{ marginLeft: 5 }}
                 >
-                  delete
+                  Publish
                 </Button>
                 <Button variant="dark" onClick={this.props.close}>
                   {' '}
@@ -106,4 +104,4 @@ class DeleteDialogBox extends Component {
   }
 }
 
-export default DeleteDialogBox;
+export default PublishDialogBox;
