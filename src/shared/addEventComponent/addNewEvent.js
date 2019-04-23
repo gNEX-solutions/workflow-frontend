@@ -11,6 +11,7 @@ class addNewEvent extends Component {
   state = {
     validated: false,
     showTimeAlert: false,
+    showDateAlert: false,
     eventName: '',
     venue: '',
     timeFrom: null,
@@ -38,8 +39,8 @@ class addNewEvent extends Component {
   // sample added by dj
   createEventClicked = event => {
     // console.log('running');
-    const timeFromMoment = moment(this.state.timeFrom, 'HH:mm');
-    const timeToMoment = moment(this.state.timeTo, 'HH:mm');
+
+
     const {
       eventName,
       venue,
@@ -52,6 +53,9 @@ class addNewEvent extends Component {
       budget,
       resources
     } = this.state;
+    const timeFromMoment = moment(timeFrom, 'HH:mm');
+    const timeToMoment = moment(timeTo, 'HH:mm');
+    const dateMoment = moment(date, 'YYYY-MM-DD');
 
     const newEvent = {
       eventName: eventName,
@@ -82,7 +86,14 @@ class addNewEvent extends Component {
       event.preventDefault();
       event.stopPropagation();
       // alert('incorrect time');
-    } else {
+    } else if (dateMoment.isBefore(moment.now())) {
+      this.setState({
+        showDateAlert: true
+      });
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    else {
       const { createEvent } = this.props;
       createEvent(newEvent);
       this.props.onCancel();
@@ -275,6 +286,11 @@ class addNewEvent extends Component {
                         required
                       />
                     </Form.Group>
+                    <Alert variant="danger" show={this.state.showDateAlert}>
+                      {' '}
+                      planned date should be after today
+                    </Alert>
+
 
                     {/* Budget*/}
 
