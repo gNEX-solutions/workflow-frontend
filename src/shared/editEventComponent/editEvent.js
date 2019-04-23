@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { Col, Row, Button, Form, InputGroup, Alert } from 'react-bootstrap';
 import './editEvent.css';
 
-import { createEvent } from '../../store/actions/DashBoardActions';
 import * as moment from 'moment';
+import { createEvent } from '../../store/actions/DashBoardActions';
+// import sampleData from '../../services/sampleDataSet';
+import sampleDataSet from '../../services/sampleDataSet';
 
 class EditEvent extends Component {
   state = {
@@ -18,7 +20,7 @@ class EditEvent extends Component {
     date: '2019-04-29',
     // coordinatorName: '',
     // coordinatorImnum: '',
-    validated: false,
+    // validated: false,
     coordinators: [
       {
         name: 'dinith',
@@ -35,6 +37,44 @@ class EditEvent extends Component {
     budget: 30000,
     resources: 'huts , cricket equickments'
   };
+  // EventInfo = [];
+
+  componentDidMount() {
+    const EventInfo = sampleDataSet.filter(event => event.eventId === 1);
+    // console.log(EventInfo);
+    const {
+      eventName,
+      eventLocation,
+      eventStartTime,
+      eventEndTime,
+      eventDate,
+      eventCoordinatorDetails,
+      eventParticipants,
+      eventBudget,
+      eventDescription
+    } = EventInfo[0];
+
+    this.setState({
+      eventName: eventName,
+      venue: eventLocation,
+      timeFrom: eventStartTime.substring(0, 5),
+      timeTo: eventEndTime.substring(0, 5),
+      date: eventDate.substring(0, 10),
+      coordinators: [
+        {
+          name: eventCoordinatorDetails[0].name,
+          imNumber: eventCoordinatorDetails[0].imNumber
+        },
+        {
+          name: eventCoordinatorDetails[1].name,
+          imNumber: eventCoordinatorDetails[1].imNumber
+        }
+      ],
+      description: eventDescription,
+      participants: eventParticipants,
+      budget: eventBudget
+    });
+  }
 
   updateEventClicked = event => {
     // console.log('running');
@@ -55,26 +95,30 @@ class EditEvent extends Component {
 
     const newEvent = {
       eventName: eventName,
-      eventDate: '2019-05-15 14:40:02',
-      eventStartTime: '08:00:00',
-      eventEndTime: '11:00:00',
-      eventStatus: 'OK',
+      eventDate: date,
+      eventStartTime: timeFrom,
+      eventEndTime: timeTo,
+      // eventStatus: this.EventInfo[0].eventStatus,
       eventLocation: venue,
       eventCoordinatorDetails: [
         {
-          imNumber: 'IM/2019/043',
-          name: 'kasun'
+          imNumber: coordinators[0].imNumber,
+          name: coordinators[0].name
+        },
+        {
+          imNumber: coordinators[1].imNumber,
+          name: coordinators[1].name
         }
       ],
-      eventParticipants: 'ALL',
+      eventParticipants: participants,
       eventBudget: budget,
       eventDescription: description,
-      eventApprovedStatus: 'OK',
-      eventCreatedAt: '2019-02-15T09:10:02.000+0000',
-      eventUpdatedAt: '2019-02-15T09:10:02.000+0000'
+      // eventApprovedStatus: this.EventInfo[0].eventApprovedStatus,
+      // eventCreatedAt: this.EventInfo[0].eventCreatedAt,
+      // eventUpdatedAt: this.EventInfo[0].eventUpdatedAt
     };
 
-    // console.log(timeFromMoment.isAfter(timeToMoment));
+    console.log(newEvent);
     if (timeToMoment.isBefore(timeFromMoment)) {
       this.setState({
         showTimeAlert: true
@@ -211,6 +255,7 @@ class EditEvent extends Component {
       budget,
       resources
     } = this.state;
+    // console.log(sampleDataSet);
     return (
       <div>
         <div className="container-fluid">
