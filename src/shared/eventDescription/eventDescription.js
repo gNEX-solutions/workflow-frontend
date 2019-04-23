@@ -42,7 +42,7 @@ class EventDescription extends Component {
                 placement="left"
                 overlay={
                   <Popover id={`popover-positioned`}>
-                    <ActionBar publish={false} />
+                    <ActionBar publish={true} />
                   </Popover>
                 }
               >
