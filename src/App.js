@@ -14,6 +14,7 @@ export const history = createHistory();
 class App extends Component {
   state = {};
   render() {
+    // library.add(faIgloo)
     return (
       <Provider store={store}>
         <Router history={history}>

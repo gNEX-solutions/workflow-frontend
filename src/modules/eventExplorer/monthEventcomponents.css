@@ -1,5 +1,8 @@
-.eventInto_badge{
+.eventInfo_badge{
     width: 15rem;
     margin-left: 2rem;
     /* background-color: aqua; */
+}
+.eventInfo_badge:hover{
+    background-color: cornflowerblue;
 }

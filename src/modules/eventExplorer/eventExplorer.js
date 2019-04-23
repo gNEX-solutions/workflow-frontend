@@ -45,37 +45,30 @@ class EventExplorer extends Component {
     return (
       <React.Fragment>
         <Row className="eventExp_row">
-          <HeaderComopnet />
-        </Row>
-        <Row className="eventExp_row">
-          <MainMenuCompoannent />
-        </Row>
-
-        <Row className="eventExp_row">
-          <div className="table-responsive">
-            <Col className="col-md-11 col-sm-11">
-              <Table striped bordered responsive>
-                <thead>
-                  <tr>
-                    <th> &nbsp; &nbsp;</th>
-                    <th className="table_header">
-                      <p>1st Year</p>
-                    </th>
-                    <th className="table_header">
-                      <p>2nd Year</p>
-                    </th>
-                    <th className="table_header">
-                      <p>3rd Year</p>
-                    </th>
-                    <th className="table_header">
-                      <p>4th Year</p>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>{this.getMonthEventComponet()}</tbody>
-              </Table>
-            </Col>
-          </div>
+          {/* <div className="table-responsive"> */}
+          <Col className="col-md-12 col-sm-12">
+            <Table striped bordered responsive id="main_table">
+              <thead>
+                <tr>
+                  <th> &nbsp; &nbsp;</th>
+                  <th id="table_header">
+                    <p id="table_header_text"> 1st Year</p>
+                  </th>
+                  <th id="table_header">
+                    <p id="table_header_text">2nd Year</p>
+                  </th>
+                  <th id="table_header">
+                    <p id="table_header_text">3rd Year</p>
+                  </th>
+                  <th id="table_header">
+                    <p id="table_header_text">4th Year</p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>{this.getMonthEventComponet()}</tbody>
+            </Table>
+          </Col>
+          {/* </div> */}
         </Row>
       </React.Fragment>
     );
