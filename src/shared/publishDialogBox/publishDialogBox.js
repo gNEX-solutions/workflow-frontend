@@ -10,6 +10,8 @@ import {
   faCheckDouble,
   faCalendarTimes
 } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
+import SampleData from '../../services/sampleDataSet';
 
 import './publishDialogBoX.css';
 
@@ -20,12 +22,30 @@ class PublishDialogBox extends Component {
     eventTime: '9 am',
     eventVenue: 'Apeksha Hospital'
   };
-
+  componentDidMount() {
+    const eventInfo = SampleData.filter(event => event.eventId === 1);
+    const {
+      eventName,
+      eventDate,
+      eventStartTime,
+      eventLocation
+    } = eventInfo[0];
+    // console.log(eventDate.substring(0, 10));
+    const dateMoment = moment(eventDate.substring(0, 10), 'YYYY-MM-DD');
+    const timeMoment = moment(eventStartTime, 'HH:mm:ss');
+    this.setState({
+      eventName: eventName,
+      eventDate: dateMoment.format('Do MMMM'),
+      eventTime: timeMoment.format('HH:mm A'),
+      eventVenue: eventLocation
+    });
+  }
   publishEvent = () => {
     alert('publish event');
     this.props.close();
   };
   render() {
+    const { eventName, eventDate, eventTime, eventVenue } = this.state;
     return (
       <React.Fragment>
         <Card className="text-center" id="publishDialogMainCard">
@@ -35,10 +55,7 @@ class PublishDialogBox extends Component {
           <Card.Body>
             <Card.Text>
               <Row className="topTextRow">
-                <FontAwesomeIcon
-                  icon={faCheckDouble}
-                  className="publishIcon"
-                />
+                <FontAwesomeIcon icon={faCheckDouble} className="publishIcon" />
                 <span id="topText">
                   {' '}
                   Are you sure you want to publish this event ?
@@ -54,14 +71,14 @@ class PublishDialogBox extends Component {
                 </Col>
                 <Col md="auto">
                   <div>
-                    <h6>{this.state.eventName}</h6>
-                    <h6>{this.state.eventDate}</h6>
+                    <h6>{eventName}</h6>
+                    <h6>{eventDate}</h6>
                     <h6>
-                      {this.state.eventTime}
-                      <span> </span>
-                      onwards
+                      {eventTime}
+                      <span> &nbsp; onwards </span>
+
                     </h6>
-                    <h6>@{this.state.eventVenue}</h6>
+                    <h6>@{eventVenue}</h6>
                   </div>
                 </Col>
               </Row>

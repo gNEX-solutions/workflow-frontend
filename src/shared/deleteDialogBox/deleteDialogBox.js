@@ -12,7 +12,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import './deleteDialogBoX.css';
-
+import moment from 'moment';
+import SampleData from '../../services/sampleDataSet';
 class DeleteDialogBox extends Component {
   state = {
     eventName: 'CSR Project',
@@ -20,12 +21,30 @@ class DeleteDialogBox extends Component {
     eventTime: '9 am',
     eventVenue: 'Apeksha Hospital'
   };
-
+  componentDidMount() {
+    const eventInfo = SampleData.filter((event) => event.eventId === 1);
+    const {
+      eventName,
+      eventDate,
+      eventStartTime,
+      eventLocation
+    } = eventInfo[0];
+    // console.log(eventDate.substring(0, 10));
+    const dateMoment = moment(eventDate.substring(0, 10), 'YYYY-MM-DD');
+    const timeMoment = moment(eventStartTime, 'HH:mm:ss');
+    this.setState({
+      eventName: eventName,
+      eventDate: dateMoment.format('Do MMMM'),
+      eventTime: timeMoment.format('HH:mm A'),
+      eventVenue: eventLocation
+    });
+  }
   deleteEvent = () => {
     alert('delete event');
     this.props.close();
   };
   render() {
+    const { eventName, eventDate, eventTime, eventVenue } = this.state;
     return (
       <React.Fragment>
         <Card className="text-center" id="deleteDialogMainCard">
@@ -54,14 +73,14 @@ class DeleteDialogBox extends Component {
                 </Col>
                 <Col md="auto">
                   <div>
-                    <h6>{this.state.eventName}</h6>
-                    <h6>{this.state.eventDate}</h6>
+                    <h6>{eventName}</h6>
+                    <h6>{eventDate}</h6>
                     <h6>
-                      {this.state.eventTime}
-                      <span> </span>
-                      onwards
+                      {eventTime}
+                      <span>&nbsp; onwards</span>
+
                     </h6>
-                    <h6>@{this.state.eventVenue}</h6>
+                    <h6>@{eventVenue}</h6>
                   </div>
                 </Col>
               </Row>
