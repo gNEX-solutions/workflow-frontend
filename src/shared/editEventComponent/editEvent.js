@@ -13,6 +13,7 @@ class EditEvent extends Component {
   state = {
     validated: false,
     showTimeAlert: false,
+    showDateAlert: false,
     eventName: 'im cricket match',
     venue: 'saibe grounds',
     timeFrom: '10:45',
@@ -78,8 +79,7 @@ class EditEvent extends Component {
 
   updateEventClicked = event => {
     // console.log('running');
-    const timeFromMoment = moment(this.state.timeFrom, 'HH:mm');
-    const timeToMoment = moment(this.state.timeTo, 'HH:mm');
+
     const {
       eventName,
       venue,
@@ -92,6 +92,9 @@ class EditEvent extends Component {
       budget,
       resources
     } = this.state;
+    const timeFromMoment = moment(timeFrom, 'HH:mm');
+    const timeToMoment = moment(timeTo, 'HH:mm');
+    const dateMoment = moment(date, 'YYYY-MM-DD');
 
     const newEvent = {
       eventName: eventName,
@@ -126,7 +129,14 @@ class EditEvent extends Component {
       event.preventDefault();
       event.stopPropagation();
       // alert('incorrect time');
-    } else {
+    } else if (dateMoment.isBefore(moment.now())) {
+      this.setState({
+        showDateAlert: true
+      });
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    else {
       const { createEvent } = this.props;
       createEvent(newEvent);
       this.props.close();
@@ -337,6 +347,10 @@ class EditEvent extends Component {
                         value={date}
                       />
                     </Form.Group>
+                    <Alert variant="danger" show={this.state.showDateAlert}>
+                      {' '}
+                      planned date should be after today
+                    </Alert>
 
                     {/* Budget*/}
 
