@@ -2,44 +2,83 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import "bootstrap/dist/css/bootstrap.css";
 import { Col, Row, Button, Form, InputGroup, Alert } from 'react-bootstrap';
-import './newEvent.css';
+import './editEvent.css';
 
-import { createEvent } from '../../store/actions/DashBoardActions';
 import * as moment from 'moment';
+import { createEvent } from '../../store/actions/DashBoardActions';
+// import sampleData from '../../services/sampleDataSet';
+import sampleDataSet from '../../services/sampleDataSet';
 
-class addNewEvent extends Component {
+class EditEvent extends Component {
   state = {
     validated: false,
     showTimeAlert: false,
     showDateAlert: false,
-    eventName: '',
-    venue: '',
-    timeFrom: null,
-    timeTo: null,
-    date: null,
+    eventName: 'im cricket match',
+    venue: 'saibe grounds',
+    timeFrom: '10:45',
+    timeTo: '14:45',
+    date: '2019-04-29',
     // coordinatorName: '',
     // coordinatorImnum: '',
-    validated: false,
+    // validated: false,
     coordinators: [
       {
-        name: '',
-        imNumber: ''
+        name: 'dinith',
+        imNumber: 'IM/2014/034'
       },
       {
-        name: '',
-        imNumber: ''
+        name: 'charinda',
+        imNumber: 'IM/2014/035'
       }
     ],
 
-    description: '',
-    participants: '',
-    budget: '',
-    resources: ''
+    description: 'sample description',
+    participants: 'all 4 batches , acadamic staff',
+    budget: 30000,
+    resources: 'huts , cricket equickments'
   };
-  // sample added by dj
-  createEventClicked = event => {
-    // console.log('running');
+  // EventInfo = [];
 
+  componentDidMount() {
+    const EventInfo = sampleDataSet.filter(event => event.eventId === 1);
+    // console.log(EventInfo);
+    const {
+      eventName,
+      eventLocation,
+      eventStartTime,
+      eventEndTime,
+      eventDate,
+      eventCoordinatorDetails,
+      eventParticipants,
+      eventBudget,
+      eventDescription
+    } = EventInfo[0];
+
+    this.setState({
+      eventName: eventName,
+      venue: eventLocation,
+      timeFrom: eventStartTime.substring(0, 5),
+      timeTo: eventEndTime.substring(0, 5),
+      date: eventDate.substring(0, 10),
+      coordinators: [
+        {
+          name: eventCoordinatorDetails[0].name,
+          imNumber: eventCoordinatorDetails[0].imNumber
+        },
+        {
+          name: eventCoordinatorDetails[1].name,
+          imNumber: eventCoordinatorDetails[1].imNumber
+        }
+      ],
+      description: eventDescription,
+      participants: eventParticipants,
+      budget: eventBudget
+    });
+  }
+
+  updateEventClicked = event => {
+    // console.log('running');
 
     const {
       eventName,
@@ -59,26 +98,30 @@ class addNewEvent extends Component {
 
     const newEvent = {
       eventName: eventName,
-      eventDate: '2019-05-15 14:40:02',
-      eventStartTime: '08:00:00',
-      eventEndTime: '11:00:00',
-      eventStatus: 'OK',
+      eventDate: date,
+      eventStartTime: timeFrom,
+      eventEndTime: timeTo,
+      // eventStatus: this.EventInfo[0].eventStatus,
       eventLocation: venue,
       eventCoordinatorDetails: [
         {
-          imNumber: 'IM/2019/043',
-          name: 'kasun'
+          imNumber: coordinators[0].imNumber,
+          name: coordinators[0].name
+        },
+        {
+          imNumber: coordinators[1].imNumber,
+          name: coordinators[1].name
         }
       ],
-      eventParticipants: 'ALL',
+      eventParticipants: participants,
       eventBudget: budget,
       eventDescription: description,
-      eventApprovedStatus: 'OK',
-      eventCreatedAt: '2019-02-15T09:10:02.000+0000',
-      eventUpdatedAt: '2019-02-15T09:10:02.000+0000'
+      // eventApprovedStatus: this.EventInfo[0].eventApprovedStatus,
+      // eventCreatedAt: this.EventInfo[0].eventCreatedAt,
+      // eventUpdatedAt: this.EventInfo[0].eventUpdatedAt
     };
 
-    // console.log(timeFromMoment.isAfter(timeToMoment));
+    console.log(newEvent);
     if (timeToMoment.isBefore(timeFromMoment)) {
       this.setState({
         showTimeAlert: true
@@ -96,7 +139,7 @@ class addNewEvent extends Component {
     else {
       const { createEvent } = this.props;
       createEvent(newEvent);
-      this.props.onCancel();
+      this.props.close();
     }
   };
 
@@ -163,7 +206,7 @@ class addNewEvent extends Component {
         coordinators: [
           {
             name: this.state.coordinators[0].name,
-            imNumber: event.target.value
+            imNumber: 'IM/' + event.target.value
           },
           this.state.coordinators[1]
         ]
@@ -174,7 +217,7 @@ class addNewEvent extends Component {
           this.state.coordinators[0],
           {
             name: this.state.coordinators[0].name,
-            imNumber: event.target.value
+            imNumber: 'IM/' + event.target.value
           }
         ]
       });
@@ -210,6 +253,19 @@ class addNewEvent extends Component {
   // end of caturing the value changes in the input fields
   render() {
     const { validated } = this.state;
+    const {
+      eventName,
+      venue,
+      timeFrom,
+      timeTo,
+      date,
+      coordinators,
+      description,
+      participants,
+      budget,
+      resources
+    } = this.state;
+    // console.log(sampleDataSet);
     return (
       <div>
         <div className="container-fluid">
@@ -224,7 +280,7 @@ class addNewEvent extends Component {
               <Form
                 method="#"
                 validated={validated}
-                onSubmit={event => this.createEventClicked(event)}
+                onSubmit={event => this.updateEventClicked(event)}
               >
                 <Row className="row">
                   <Col className="col-sm-6 col-md-6">
@@ -236,6 +292,7 @@ class addNewEvent extends Component {
                         type="text"
                         onChange={this.onNameChange}
                         required
+                        value={eventName}
                       />
                     </Form.Group>
                     {/* Venue*/}
@@ -246,6 +303,7 @@ class addNewEvent extends Component {
                         type="text"
                         onChange={this.onVenueChange}
                         required
+                        value={venue}
                       />
                     </Form.Group>
 
@@ -259,6 +317,7 @@ class addNewEvent extends Component {
                             type="time"
                             onChange={this.onTimeFromChange}
                             required
+                            value={timeFrom}
                           />
                         </Col>
                         <Col>
@@ -266,6 +325,7 @@ class addNewEvent extends Component {
                             type="time"
                             onChange={this.onTimeToChange}
                             required
+                            value={timeTo}
                           />
                         </Col>
                       </Row>
@@ -284,13 +344,13 @@ class addNewEvent extends Component {
                         ref="date"
                         onChange={this.onDateChange}
                         required
+                        value={date}
                       />
                     </Form.Group>
                     <Alert variant="danger" show={this.state.showDateAlert}>
                       {' '}
                       planned date should be after today
                     </Alert>
-
 
                     {/* Budget*/}
 
@@ -300,6 +360,7 @@ class addNewEvent extends Component {
                         type="number"
                         onChange={this.onBudgetChange}
                         required
+                        value={budget}
                       />
                     </Form.Group>
                   </Col>
@@ -317,6 +378,7 @@ class addNewEvent extends Component {
                               this.onCoordinatorNamechange(event, 0)
                             }
                             required
+                            value={coordinators[0].name}
                           />
                         </Col>
                         <Col className="col-6">
@@ -334,6 +396,7 @@ class addNewEvent extends Component {
                                 this.onCoordinatorImnumChange(event, 0)
                               }
                               required
+                              value={coordinators[0].imNumber.substring(3)}
                             />
                           </InputGroup>
                         </Col>
@@ -347,6 +410,7 @@ class addNewEvent extends Component {
                               this.onCoordinatorNamechange(event, 1)
                             }
                             required
+                            value={coordinators[1].name}
                           />
                         </Col>
                         <Col className="col-6">
@@ -364,18 +428,20 @@ class addNewEvent extends Component {
                                 this.onCoordinatorImnumChange(event, 1)
                               }
                               required
+                              value={coordinators[1].imNumber.substring(3)}
                             />
                           </InputGroup>
                         </Col>
                       </Row>
                     </Form.Group>
 
-                    {/* Coodinators*/}
+                    {/* description*/}
                     <Form.Group controlId="formBasicDescription">
                       <Form.Label>Description</Form.Label>
                       <Form.Control
                         as="textarea"
                         onChange={this.onDescrptionChange}
+                        value={description}
                       />
                     </Form.Group>
 
@@ -387,6 +453,7 @@ class addNewEvent extends Component {
                         type="text"
                         onChange={this.onPartcipantsChange}
                         required
+                        value={participants}
                       />
                     </Form.Group>
 
@@ -398,24 +465,25 @@ class addNewEvent extends Component {
                         type="text"
                         onChange={this.onResourceChange}
                         required
+                        value={resources}
                       />
                     </Form.Group>
                   </Col>
                 </Row>
                 <Row>
                   <Button
-                    id="btnAdd_form"
+                    id="btnEdit_form"
                     type="submit"
                     className="btn btn-success"
-                  // onClick={this.createEventClicked}
+                    onClick={this.updateEventClicked}
                   >
                     {' '}
-                    Create Event{' '}
+                    EditEvent Event{' '}
                   </Button>
                   <Button
                     id="btnCancel_form"
                     className="btn-danger"
-                    onClick={this.props.onCancel}
+                    onClick={this.props.close}
                   >
                     Cancel
                   </Button>
@@ -432,4 +500,4 @@ class addNewEvent extends Component {
 export default connect(
   null,
   { createEvent }
-)(addNewEvent);
+)(EditEvent);
