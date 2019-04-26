@@ -8,6 +8,8 @@ import { Badge } from "react-bootstrap";
 import SampleDataExp from '../../services/sampleDataEventExp';
 import './monthEventcomponents.css';
 import moment from 'moment';
+import { selectEvent } from "../../store/actions/DashBoardActions";
+import { connect } from 'react-redux';
 
 
 
@@ -51,9 +53,11 @@ class MonthEventCompoent extends Component {
     // ]
 
 
-    onEventClicked(event) {
+    onEventClicked = (event) => {
         // alert('comp clicked');
         console.log(event.target.id);
+        this.props.selectEvent(parseInt(event.target.id));
+        this.props.onEventCalendarPress();
     }
 
     getFilteredEventList() {
@@ -77,13 +81,17 @@ class MonthEventCompoent extends Component {
 
 
     render() {
-        this.getFilteredEventList();
+        // this.getFilteredEventList();
         return (
             <React.Fragment>
                 {this.getFilteredEventList()}
             </React.Fragment>
         );
     }
-}
 
-export default MonthEventCompoent;
+}
+const mapStateToProps = state => ({
+
+});
+
+export default connect(mapStateToProps, { selectEvent })(MonthEventCompoent);

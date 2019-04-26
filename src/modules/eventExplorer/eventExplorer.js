@@ -23,7 +23,7 @@ class EventExplorer extends Component {
       for (let level = 1; level <= 4; level++) {
         monthEventComonents.push(
           <td>
-            <MonthEventComponent month={mnthIndex} level={level} />
+            <MonthEventComponent month={mnthIndex} level={level} onEventCalendarPress={this.props.onEventCalendarPress} />
           </td>
         );
       }
