@@ -7,17 +7,18 @@ import {
   GET_EVENT_HISTORY,
   CHANGE_EVENT_ID
 } from '../types/DashBoardTypes';
-import { events, past } from './mock';
+import { events, past, explorer } from './mock';
 
 const initialState = {
   selectedEventId: null,
   events: events,
   isLoading: false,
   responseMsg: null,
-  pastEvents: past
+  pastEvents: past,
+  expEvents: explorer
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case GET_EVENT:
       return {

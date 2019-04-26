@@ -61,8 +61,8 @@ class MonthEventCompoent extends Component {
     }
 
     getFilteredEventList() {
-        const { month, level } = this.props;
-        const filteredList = SampleDataExp.filter(({ eventDate, batch } = {}) => {
+        const { month, level, events } = this.props;
+        const filteredList = events.filter(({ eventDate, batch } = {}) => {
             const eventMoment = moment(eventDate, 'YYYY-MM-DD HH-mm-ss');
             return eventMoment.month() === month && batch === level.toString();
         }).map(({ eventId, eventName } = {}) => {
@@ -91,7 +91,7 @@ class MonthEventCompoent extends Component {
 
 }
 const mapStateToProps = state => ({
-
+    events: state.dashboard.expEvents
 });
 
 export default connect(mapStateToProps, { selectEvent })(MonthEventCompoent);
