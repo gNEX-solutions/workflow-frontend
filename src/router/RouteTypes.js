@@ -3,8 +3,6 @@ const RouteTypes = Object.freeze({
   outlet: 'outlets',
   users: 'users',
   usersTenantAdmins: 'users/tenant-admins',
-  usersAnconAdmins: 'users/ancon-admins',
-  usersPassportHolders: 'users/passport-users',
   licenses: 'licenses',
   login: '/login'
 });

@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
-import authReducer from './AuthReducer';
+import AuthReducer from './AuthReducer';
+import DashboardReducer from './DashboardReducer';
+import ErrorReducer from './ErrorReducer';
 // import LoginReducer, {
 //   INITIAL_STATE as InitialLoginState
 // } from '../../modules/login/reducers/Login';
@@ -13,5 +15,7 @@ export default combineReducers({
   // Spreading all shared reducers
   // ...AllSharedReducers
   // You can override or add new reducers here
-  auth: authReducer
+  errors: ErrorReducer,
+  auth: AuthReducer,
+  dashboard: DashboardReducer
 });

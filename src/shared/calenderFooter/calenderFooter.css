@@ -1,0 +1,10 @@
+#footer_main{
+    display: flex;
+    /* background-color: aqua; */
+    width: 100%;
+
+}
+
+#comments{
+    float: left;
+}
