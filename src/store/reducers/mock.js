@@ -2,16 +2,22 @@ export const events = [
   {
     eventId: 7,
     eventName: 'Exposition2020',
-    eventDate: '2019-05-07 14:40:02',
+    eventDate: '2019-11-07 14:40:02',
     eventStartTime: '08:00:00',
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '1',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
         name: 'kasun',
         coordinatorUId: 8
+      },
+      {
+        imNumber: 'IM/2019/044',
+        name: 'kasuni',
+        coordinatorUId: 9
       }
     ],
     eventParticipants: 'ALL',
@@ -29,6 +35,7 @@ export const events = [
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '2',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
@@ -51,6 +58,7 @@ export const events = [
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '3',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
@@ -73,6 +81,7 @@ export const events = [
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '4',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
@@ -95,6 +104,7 @@ export const events = [
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '4',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
@@ -121,6 +131,7 @@ export const past = [
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '1',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
@@ -143,6 +154,7 @@ export const past = [
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '2',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
