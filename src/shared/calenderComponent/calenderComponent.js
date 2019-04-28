@@ -10,9 +10,9 @@ import TableRowComponent from './tableRowComponent';
 class CalenderCompoennt extends Component {
   state = {
     now: moment(),
-    year: 2019,
-    month: 1,
-    displayMonth: 'February',
+    year: moment().year(),
+    month: moment().month(),
+    displayMonth: moment().format('MMMM'),
     activeEventNum: 0
   };
   // changing the first day of the week to monday
@@ -192,13 +192,13 @@ class CalenderCompoennt extends Component {
         // if (dateCurrent === i) {
         daysInMonth.push(
           <td className="current_date">
-            <DateCompoent date={i.toString()} status={this.statusArray[i]} />
+            <DateCompoent date={i.toString()} />
           </td>
         );
       } else {
         daysInMonth.push(
           <td>
-            <DateCompoent date={i.toString()} status={this.statusArray[i]} />
+            <DateCompoent date={i.toString()} />
           </td>
         );
       }
