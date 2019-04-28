@@ -49,8 +49,8 @@ class HeaderComponent extends Component {
             <Navbar.Brand href="#home">IMSSA Events Manager</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <div className="col-sm-7 " />
-              <div className="col-sm-5 right">
+              <div className="col-sm-6 " />
+              <div className="col-sm-6 right">
                 <Form inline className="col-sm-6 right">
                   <div className="notification_icon">
                     {/* <Nav.Link href="#notification" /> */}
