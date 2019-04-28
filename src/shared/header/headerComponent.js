@@ -22,9 +22,9 @@ import NotificationPannel from './NotificationPanel';
 
 import './headerComponent.css';
 
-const ufname = '';
-const ulname = '';
-const udesignation = '';
+const ufname = 'Akalanka';
+const ulname = 'Jayalath';
+const udesignation = 'president';
 const numberofNotifications = 10;
 const userimage = '';
 
@@ -49,8 +49,8 @@ class HeaderComponent extends Component {
             <Navbar.Brand href="#home">IMSSA Events Manager</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <div className="col-sm-10 " />
-              <div className="col-sm-2 right">
+              <div className="col-sm-7 " />
+              <div className="col-sm-5 right">
                 <Form inline className="col-sm-6 right">
                   <div className="notification_icon">
                     {/* <Nav.Link href="#notification" /> */}
@@ -94,31 +94,13 @@ class HeaderComponent extends Component {
                     </Nav.Link>
                   </div>
                   <div className="user_details">
-                    <span
-                      style={{
-                        color: 'white',
-                        fontWeight: 'bold',
-                        fontSize: '80%'
-                      }}
-                    >
+                    <span className="Fname" >
                       {ufname}
                     </span>
-                    <span
-                      style={{
-                        color: 'grey',
-                        fontWeight: 'bold',
-                        fontSize: '80%'
-                      }}
-                    >
+                    <span className="Lname" >
                       {ulname}
                     </span>
-                    <h6
-                      style={{
-                        color: 'white',
-                        fontStyle: 'italic',
-                        fontSize: '60%'
-                      }}
-                    >
+                    <h6 className="Designation" >
                       {udesignation}
                     </h6>
                   </div>
