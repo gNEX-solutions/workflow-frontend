@@ -19,7 +19,7 @@ class DateComponent extends Component {
     const { events, date } = this.props;
     return events.filter(event => {
       const dateMoment = new moment(event.eventDate).date();
-      return dateMoment === parseInt(date);
+      return dateMoment === date;
     });
   }
   eventSelected(id) {
@@ -28,9 +28,12 @@ class DateComponent extends Component {
   }
 
   render() {
+    const now = moment();
+    const { month, year, date, selectedEventId } = this.props;
     const eventInfo = this.getEventInfo()[0];
-    console.log(eventInfo);
+    console.log(now.month());
     let icon;
+    let style = '';
     if (eventInfo != undefined) {
       if (eventInfo.eventApprovedStatus === 'PUBLISHED') {
         icon = <FontAwesomeIcon icon={faCheckDouble} className="single_tick" />;
@@ -47,28 +50,45 @@ class DateComponent extends Component {
     } else {
       icon = <p id="dummy_para" />;
     }
+
+    if (now.year() == year && now.month() == month && now.date() == date) {
+      style = 'today';
+    }
+    if (eventInfo != undefined && selectedEventId === eventInfo.eventId) {
+      style = 'selected';
+    }
     return (
       <React.Fragment>
-        <Row onClick={() => this.eventSelected(eventInfo.eventId)}>
-          <Col className="col-6" />
-          <Col className="col-6">
-            {/* <FontAwesomeIcon icon={faCheckCircle} className="single_tick"></FontAwesomeIcon> */}
-            {icon}
-          </Col>
-        </Row>
-        <Row onClick={() => this.eventSelected(eventInfo.eventId)}>
-          {/* <Col className="col-3" /> */}
-          <Col className="col-12">
-            <p id="date"> {this.props.date}</p>
-          </Col>
-        </Row>
+        <td onClick={() => {
+          if (eventInfo != undefined) {
+            return this.eventSelected(eventInfo.eventId)
+          }
+        }}
+          className={style}
+        >
+          <Row >
+            <Col className="col-6" />
+            <Col className="col-6">
+              {/* <FontAwesomeIcon icon={faCheckCircle} className="single_tick"></FontAwesomeIcon> */}
+              {icon}
+            </Col>
+          </Row>
+          <Row  >
+            {/* <Col className="col-3" /> */}
+            <Col className="col-12">
+              <p id="date"> {date}</p>
+            </Col>
+          </Row>
+        </td>
       </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  events: state.dashboard.events
+  events: state.dashboard.events,
+  selectedEventId: state.dashboard.selectedEventId
+
 });
 
 export default connect(

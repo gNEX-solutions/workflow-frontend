@@ -4,10 +4,9 @@ import * as moment from 'moment';
 import './calenderComponent.css';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
 import { connect } from 'react-redux';
-import { selectEvent } from "../../store/actions/DashBoardActions";
+import { selectEvent } from '../../store/actions/DashBoardActions';
 import DateCompoent from './dateCompoent';
 import TableRowComponent from './tableRowComponent';
-
 
 class CalenderCompoennt extends Component {
   state = {
@@ -18,49 +17,6 @@ class CalenderCompoennt extends Component {
     activeEventNum: 0
   };
   // changing the first day of the week to monday
-
-  // statusArray = [
-  //   '',
-  //   '',
-  //   '',
-  //   'warn',
-  //   'single_check',
-  //   '',
-  //   'double_check',
-  //   'single_check',
-  //   '',
-  //   '',
-  //   'double_check',
-  //   'warn',
-  //   '',
-  //   '',
-  //   'warn',
-  //   '',
-  //   '',
-  //   'single_check'
-  // ];
-  eventInfo = [
-    {
-      date: 2,
-      state: 'done',
-      name: 'dansala'
-    },
-    {
-      date: 12,
-      state: 'published',
-      name: 'going down'
-    },
-    {
-      date: 15,
-      state: 'confirmed',
-      name: 'csr project'
-    },
-    {
-      date: 20,
-      state: 'pending',
-      name: 'carwash'
-    }
-  ];
 
   weekDayHeaders = moment.weekdaysShort().map(weekday => <th>{weekday}</th>);
   daysInMonthAmount;
@@ -79,34 +35,9 @@ class CalenderCompoennt extends Component {
 
   getEventInfoComponents() {
     const { events } = this.props;
-    const eventInfoComponents = [];
-    const activeString = 'active';
-    const inactiveString = 'inactive';
-    events.forEach((eventInfo, i) => {
-      let eventInfoComponent;
-      if (i === this.state.activeEventNum) {
-        eventInfoComponent = (
-          <TableRowComponent
-            info={eventInfo}
-            id={i}
-            style={activeString}
-            onItemClick={this.eventItemSelected}
-          />
-        );
-      } else {
-        eventInfoComponent = (
-          <TableRowComponent
-            info={eventInfo}
-            id={i}
-            style={inactiveString}
-            onItemClick={this.eventItemSelected}
-          />
-        );
-      }
-
-      eventInfoComponents.push(eventInfoComponent);
+    return events.map(eventInfo => {
+      return <TableRowComponent info={eventInfo} key={eventInfo.eventId} />;
     });
-    return eventInfoComponents;
   }
 
   // console.log()
@@ -148,20 +79,8 @@ class CalenderCompoennt extends Component {
     });
   };
 
-  eventItemSelected = id => {
-    // console.log(id);
-    this.setState({
-      activeEventNum: id
-    });
-  };
-
   render() {
     this.updateMoement();
-    // console.log(this.state.year);
-    // console.log(this.state.month);
-    // console.log(this.firstDay);
-    // console.log(this.lastDay);
-    // console.log(moment().get('years'));
     const daysInMonth = [];
     const blankDaysBefore = [];
     const blankDaysAfter = [];
@@ -181,30 +100,8 @@ class CalenderCompoennt extends Component {
 
     // month date data
     for (i = 1; i <= this.daysInMonthAmount; i++) {
-      const yearCurrent = parseInt(this.state.now.format('Y'));
-      const monthCurrent = parseInt(this.state.now.format('M'));
-      const dateCurrent = parseInt(this.state.now.format('D'));
-      const editedMonth = parseInt(this.state.month) + 1;
-      //   console.log('month :' + monthCurrent + 'year :' + yearCurrent);
-      //   console.log('mn :' + editedMonth);
-      if (
-        dateCurrent === i &&
-        monthCurrent === editedMonth &&
-        yearCurrent === this.state.year
-      ) {
-        // if (dateCurrent === i) {
-        daysInMonth.push(
-          <td className="current_date">
-            <DateCompoent date={i.toString()} />
-          </td>
-        );
-      } else {
-        daysInMonth.push(
-          <td>
-            <DateCompoent date={i.toString()} />
-          </td>
-        );
-      }
+      const { month, year } = this.state;
+      daysInMonth.push(<DateCompoent date={i} month={month} year={year} />);
     }
 
     // blanks after end of month
@@ -279,6 +176,10 @@ class CalenderCompoennt extends Component {
   }
 }
 const mapStateToProps = state => ({
-  events: state.dashboard.events
+  events: state.dashboard.events,
+  selectedEventId: state.dashboard.selectedEventId
 });
-export default connect(mapStateToProps, {})(CalenderCompoennt);
+export default connect(
+  mapStateToProps,
+  {}
+)(CalenderCompoennt);

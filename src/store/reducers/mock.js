@@ -90,7 +90,7 @@ export const events = [
   {
     eventId: 17,
     eventName: 'Exposition2020',
-    eventDate: '2019-05-21 14:40:02',
+    eventDate: '2019-05-28 14:40:02',
     eventStartTime: '08:00:00',
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
