@@ -3,9 +3,11 @@ import { Row, Col, Dropdown } from 'react-bootstrap';
 import * as moment from 'moment';
 import './calenderComponent.css';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
-
+import { connect } from 'react-redux';
+import { selectEvent } from "../../store/actions/DashBoardActions";
 import DateCompoent from './dateCompoent';
 import TableRowComponent from './tableRowComponent';
+
 
 class CalenderCompoennt extends Component {
   state = {
@@ -17,26 +19,26 @@ class CalenderCompoennt extends Component {
   };
   // changing the first day of the week to monday
 
-  statusArray = [
-    '',
-    '',
-    '',
-    'warn',
-    'single_check',
-    '',
-    'double_check',
-    'single_check',
-    '',
-    '',
-    'double_check',
-    'warn',
-    '',
-    '',
-    'warn',
-    '',
-    '',
-    'single_check'
-  ];
+  // statusArray = [
+  //   '',
+  //   '',
+  //   '',
+  //   'warn',
+  //   'single_check',
+  //   '',
+  //   'double_check',
+  //   'single_check',
+  //   '',
+  //   '',
+  //   'double_check',
+  //   'warn',
+  //   '',
+  //   '',
+  //   'warn',
+  //   '',
+  //   '',
+  //   'single_check'
+  // ];
   eventInfo = [
     {
       date: 2,
@@ -76,10 +78,11 @@ class CalenderCompoennt extends Component {
   }
 
   getEventInfoComponents() {
+    const { events } = this.props;
     const eventInfoComponents = [];
     const activeString = 'active';
     const inactiveString = 'inactive';
-    this.eventInfo.forEach((eventInfo, i) => {
+    events.forEach((eventInfo, i) => {
       let eventInfoComponent;
       if (i === this.state.activeEventNum) {
         eventInfoComponent = (
@@ -275,5 +278,7 @@ class CalenderCompoennt extends Component {
     );
   }
 }
-
-export default CalenderCompoennt;
+const mapStateToProps = state => ({
+  events: state.dashboard.events
+});
+export default connect(mapStateToProps, {})(CalenderCompoennt);
