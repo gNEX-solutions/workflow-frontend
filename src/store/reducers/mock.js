@@ -24,6 +24,23 @@ export const events = [
     eventBudget: '2000',
     eventDescription: 'zero',
     eventApprovedStatus: 'APPROVED',
+    eventApprovalInfo: [
+      {
+        name: 'Dr. Ruwan wickramarachchi',
+        title: 'HOD',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Dilani wickramarachchi',
+        title: 'Treasurer',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Akalanka Jayalath',
+        title: 'President',
+        status: 'A'
+      }
+    ],
     eventCreatedAt: '2019-04-02T10:31:10.000+0000',
     eventUpdatedAt: '2019-04-02T10:31:10.000+0000'
   },
@@ -47,6 +64,23 @@ export const events = [
     eventBudget: '4000',
     eventDescription: 'zero',
     eventApprovedStatus: 'PUBLISHED',
+    eventApprovalInfo: [
+      {
+        name: 'Dr. Ruwan wickramarachchi',
+        title: 'HOD',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Dilani wickramarachchi',
+        title: 'Treasurer',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Akalanka Jayalath',
+        title: 'President',
+        status: 'A'
+      }
+    ],
     eventCreatedAt: '2019-04-02T10:31:14.000+0000',
     eventUpdatedAt: '2019-04-02T10:31:14.000+0000'
   },
@@ -70,6 +104,23 @@ export const events = [
     eventBudget: '6000',
     eventDescription: 'zero',
     eventApprovedStatus: 'PENDING',
+    eventApprovalInfo: [
+      {
+        name: 'Dr. Ruwan wickramarachchi',
+        title: 'HOD',
+        status: 'NA'
+      },
+      {
+        name: 'Dr. Dilani wickramarachchi',
+        title: 'Treasurer',
+        status: 'NA'
+      },
+      {
+        name: 'Dr. Akalanka Jayalath',
+        title: 'President',
+        status: 'A'
+      }
+    ],
     eventCreatedAt: '2019-04-02T10:31:17.000+0000',
     eventUpdatedAt: '2019-04-02T10:31:17.000+0000'
   },
@@ -93,6 +144,23 @@ export const events = [
     eventBudget: '8000',
     eventDescription: 'zero',
     eventApprovedStatus: 'APPROVED',
+    eventApprovalInfo: [
+      {
+        name: 'Dr. Ruwan wickramarachchi',
+        title: 'HOD',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Dilani wickramarachchi',
+        title: 'Treasurer',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Akalanka Jayalath',
+        title: 'President',
+        status: 'A'
+      }
+    ],
     eventCreatedAt: '2019-04-02T10:31:20.000+0000',
     eventUpdatedAt: '2019-04-02T10:31:20.000+0000'
   },
@@ -116,7 +184,24 @@ export const events = [
     eventBudget: '10000',
     eventDescription:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam risus neque, suscipit luctus eros eu, suscipit malesuada felis. Donec convallis aliquet urna, quis lacinia eros volutpat nec. Integer ',
-    eventApprovedStatus: 'PUBLISHED',
+    eventApprovedStatus: 'PENDING',
+    eventApprovalInfo: [
+      {
+        name: 'Dr. Ruwan wickramarachchi',
+        title: 'HOD',
+        status: 'NA'
+      },
+      {
+        name: 'Dr. Dilani wickramarachchi',
+        title: 'Treasurer',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Akalanka Jayalath',
+        title: 'President',
+        status: 'A'
+      }
+    ],
     eventCreatedAt: '2019-04-02T10:31:58.000+0000',
     eventUpdatedAt: '2019-04-02T10:31:58.000+0000'
   }

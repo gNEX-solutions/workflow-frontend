@@ -3,57 +3,82 @@ import AvatarComponent from './avatarComponent';
 import 'bootstrap/dist/css/bootstrap.css';
 import './approvalSection.css';
 
-const ApprovedArray = [
-  {
-    name: 'Dr. Ruwan Wickramarachchi',
-    title: 'HOD'
-  },
-  {
-    name: 'Dr. Ruwan Wickramarachchi',
-    title: 'HOD'
-  },
-  {
-    name: 'Dr. Ruwan Wickramarachchi',
-    title: 'HOD'
-  }
-];
+// commented by dinith : getting the data from the mock.js standered template
+// const ApprovedArray = [
+//   {
+//     name: 'Dr. Ruwan Wickramarachchi',
+//     title: 'HOD'
+//   },
+//   {
+//     name: 'Dr. Ruwan Wickramarachchi',
+//     title: 'HOD'
+//   },
+//   {
+//     name: 'Dr. Ruwan Wickramarachchi',
+//     title: 'HOD'
+//   }
+// ];
 
-const PendingArray = [
-  {
-    name: 'Dr. Dilani Wickramarachchi',
-    title: 'Treasure'
-  },
-  {
-    name: 'Dr. Dilani Wickramarachchi',
-    title: 'Treasure'
-  }
-];
+// const PendingArray = [
+//   {
+//     name: 'Dr. Dilani Wickramarachchi',
+//     title: 'Treasure'
+//   },
+//   {
+//     name: 'Dr. Dilani Wickramarachchi',
+//     title: 'Treasure'
+//   }
+// ];
 
 class ApprovalSectionComponent extends Component {
   state = {};
 
   renderAvetarComponentApprove = () => {
-    const arr = [];
-    ApprovedArray.forEach((item, index) => {
-      const key = index;
-      arr.push(
-        <AvatarComponent key={key} Name={item.name} Title={item.title} />
-      );
-    });
+    // change the logic to fetch data from the props : dinith 
 
-    return arr;
+    const { eventApprovalInfo } = this.props.event;
+    // const arr = [];
+    // ApprovedArray.forEach((item, index) => {
+    //   const key = index;
+    //   arr.push(
+    //     <AvatarComponent key={key} Name={item.name} Title={item.title} />
+    //   );
+    // });
+
+    return eventApprovalInfo
+      .filter(info => {
+        return info.status === 'A';
+      })
+      .map((info, index) => {
+        return (
+          <AvatarComponent key={index} Name={info.name} Title={info.title} />
+        );
+      });
+
+    // end of modification 
   };
 
   renderAvetarComponentPending = () => {
-    const arr = [];
-    PendingArray.forEach((item, index) => {
-      const key = index;
-      arr.push(
-        <AvatarComponent key={key} Name={item.name} Title={item.title} />
-      );
-    });
+    // change the logic to fetch data from the props : dinith 
+    // const arr = [];
+    // PendingArray.forEach((item, index) => {
+    //   const key = index;
+    //   arr.push(
+    //     <AvatarComponent key={key} Name={item.name} Title={item.title} />
+    //   );
+    // });
+    const { eventApprovalInfo } = this.props.event;
 
-    return arr;
+
+    return eventApprovalInfo
+      .filter(info => {
+        return info.status === 'NA';
+      })
+      .map((info, index) => {
+        return (
+          <AvatarComponent key={index} Name={info.name} Title={info.title} />
+        );
+      });
   };
 
   render() {
