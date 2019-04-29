@@ -19,14 +19,16 @@ import {
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import Avatar from 'react-avatar';
 import NotificationPannel from './NotificationPanel';
+import UserProfileSection from '../userProfileSection/userProfileSection';
 
 import './headerComponent.css';
+import userImg from '../../img/akalanka.JPG';
 
 const ufname = 'Akalanka';
 const ulname = 'Jayalath';
 const udesignation = 'president';
 const numberofNotifications = 10;
-const userimage = '';
+const userimage = userImg;
 
 class HeaderComponent extends Component {
   state = {};
@@ -93,17 +95,22 @@ class HeaderComponent extends Component {
                       />
                     </Nav.Link>
                   </div>
-                  <div className="user_details">
-                    <span className="Fname" >
-                      {ufname}
-                    </span>
-                    <span className="Lname" >
-                      {ulname}
-                    </span>
-                    <h6 className="Designation" >
-                      {udesignation}
-                    </h6>
-                  </div>
+                  <OverlayTrigger
+                    trigger="click"
+                    key={1}
+                    placement="bottom"
+                    overlay={
+                      <Popover id="popover_userProfile">
+                        <UserProfileSection />
+                      </Popover>
+                    }
+                  >
+                    <div className="user_details">
+                      <span className="Fname">{ufname}</span>
+                      <span className="Lname">{ulname}</span>
+                      <h6 className="Designation">{udesignation}</h6>
+                    </div>
+                  </OverlayTrigger>
                 </Form>
               </div>
             </Navbar.Collapse>

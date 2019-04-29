@@ -82,3 +82,9 @@
   position: relative;
   top: -10px;
 }
+
+#popover_userProfile{
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+  max-height: 12rem;
+}

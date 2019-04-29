@@ -23,9 +23,9 @@ class UserProfileSection extends Component {
     // added by dj : 20/02/2018 : return routing to login 
     const { redirect } = this.state;
     if (redirect) {
-      return <Redirect to='/' />;
+      return <Redirect to='/login' />;
     }
-    // end of section : dj 
+    // end of section : dj  
     else {
       return (
         // Profile Section
