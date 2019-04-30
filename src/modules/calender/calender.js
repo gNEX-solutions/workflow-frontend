@@ -23,38 +23,10 @@ class CalenderSection extends Component {
 
         {/* <Row> */}
         <HeaderComponent onProfClick={this.handleProfClick} />
-        {/* <Overlay
-            show={this.state.showUserProfile}
-            placement="bottom-end"
-            target={this}
-            container={this}
-            containerPadding={20}
-          >
-            <Popover id="popover-contained" title="Popover bottom">
-              <UserProfileSection></UserProfileSection>
-            </Popover>
-          </Overlay>
-          <Overlay
-            show={this.state.showNotificationPannel}
-            placement="bottom-end"
-            target={this}
-            container={this}
-            containerPadding={2}
-          > */}
-        {/* <Popover id="popover-contained" title="Popover bottom">
-              <div>
-                <NotificationPannel></NotificationPannel>
-              </div>
-
-            </Popover>
-          </Overlay> */}
-        {/* </Row> */}
-        {/* <Row className="cal_row" >
-          <MainMenuCompoannent />
-        </Row> */}
+        
         <Row className="cal_row" id="main_menu" >
 
-          <MainMenuCompoannent />
+        <MainMenuCompoannent />
 
 
         </Row>

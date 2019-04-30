@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
-
 import './mainMenu.css';
+import SearchFieldComponent from "../search_field/searchfieldComponent";
+import events from './serachEventService.js'
 
 class MainMenuComponent extends Component {
   state = {
@@ -81,18 +82,11 @@ class MainMenuComponent extends Component {
             </Link>
           </div>
         </Col>
-        <Col className="col-2" id="search_box">
-          <div className="input-group mb-3" id="search_group">
-            <input type="text" className="form-control" placeholder="search events" aria-label="Recipient's username" aria-describedby="button-addon2" onKeyPress={this.searchButtonClicked} />
-
-            <div className="input-group-append" >
-              <button className="btn btn-outline-secondary" type="button" id="button-search" onClick={this.searchButtonClicked} >
-                <FontAwesomeIcon icon={faSearch} />
-              </button>
-            </div>
+        <div>
+          <div className="searchFieldComponent">
+            <SearchFieldComponent items={events}/>
           </div>
-
-        </Col>
+        </div>
 
 
 
