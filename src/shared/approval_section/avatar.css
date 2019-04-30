@@ -6,11 +6,12 @@
 .AvatarTitle {
   font-weight: bold;
   margin-top: -10px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .AvatarName{
   text-align-last: auto;
-color: red;
+color: rgb(8, 8, 8);
 }
 
 .Avatar{

@@ -10,18 +10,18 @@ class CalenderFooter extends Component {
     return (
       <React.Fragment>
         <Row id="footer_main">
-          <Col className="col-11" id="documents">
-            <Row>
+          <Col className="col-10" id="documents">
+            {/* <Row>
               <p>
                 {' '}
                 <strong> attached files </strong>
-              </p>
+              </p> 
             </Row>
             <Row>
               <a href="https://drive.google.com/open?id=0ByhoEhcLlZ7FZ2EyNW9oT0pIWHc">
                 <p> proposal </p>
               </a>
-            </Row>
+            </Row> */}
           </Col>
           <Col className="col-1" id="comments">
             <FontAwesomeIcon icon={faComment} size="2x" />

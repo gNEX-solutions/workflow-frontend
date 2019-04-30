@@ -4,7 +4,7 @@ img {
 }
 
 #name {
-  font-size: 9pt;
+  font-size: 1rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -13,18 +13,22 @@ img {
 
 #designation {
   font-style: italic;
-  font-size: 7pt;
+  font-size: 0.75rem;
 }
 
 .btn-sm {
   line-height: 1;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
 }
 
 .btn {
   border: 0px;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0rem;
 }
 
 div #main {
-  max-width: 220px;
+  max-width: 15rem;
+  max-height: 10rem;
+  margin-bottom: 0.5rem;
 }

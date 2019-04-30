@@ -19,14 +19,16 @@ import {
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import Avatar from 'react-avatar';
 import NotificationPannel from './NotificationPanel';
+import UserProfileSection from '../userProfileSection/userProfileSection';
 
 import './headerComponent.css';
+import userImg from '../../img/akalanka.JPG';
 
-const ufname = '';
-const ulname = '';
-const udesignation = '';
+const ufname = 'Akalanka';
+const ulname = 'Jayalath';
+const udesignation = 'president';
 const numberofNotifications = 10;
-const userimage = '';
+const userimage = userImg;
 
 class HeaderComponent extends Component {
   state = {};
@@ -49,8 +51,8 @@ class HeaderComponent extends Component {
             <Navbar.Brand href="#home">IMSSA Events Manager</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <div className="col-sm-10 " />
-              <div className="col-sm-2 right">
+              <div className="col-sm-6 " />
+              <div className="col-sm-6 right">
                 <Form inline className="col-sm-6 right">
                   <div className="notification_icon">
                     {/* <Nav.Link href="#notification" /> */}
@@ -93,35 +95,22 @@ class HeaderComponent extends Component {
                       />
                     </Nav.Link>
                   </div>
-                  <div className="user_details">
-                    <span
-                      style={{
-                        color: 'white',
-                        fontWeight: 'bold',
-                        fontSize: '80%'
-                      }}
-                    >
-                      {ufname}
-                    </span>
-                    <span
-                      style={{
-                        color: 'grey',
-                        fontWeight: 'bold',
-                        fontSize: '80%'
-                      }}
-                    >
-                      {ulname}
-                    </span>
-                    <h6
-                      style={{
-                        color: 'white',
-                        fontStyle: 'italic',
-                        fontSize: '60%'
-                      }}
-                    >
-                      {udesignation}
-                    </h6>
-                  </div>
+                  <OverlayTrigger
+                    trigger="click"
+                    key={1}
+                    placement="bottom"
+                    overlay={
+                      <Popover id="popover_userProfile">
+                        <UserProfileSection />
+                      </Popover>
+                    }
+                  >
+                    <div className="user_details">
+                      <span className="Fname">{ufname}</span>
+                      <span className="Lname">{ulname}</span>
+                      <h6 className="Designation">{udesignation}</h6>
+                    </div>
+                  </OverlayTrigger>
                 </Form>
               </div>
             </Navbar.Collapse>

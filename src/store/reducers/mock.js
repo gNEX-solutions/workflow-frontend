@@ -2,33 +2,57 @@ export const events = [
   {
     eventId: 7,
     eventName: 'Exposition2020',
-    eventDate: '2019-05-15 14:40:02',
+    eventDate: '2019-11-07 14:40:02',
     eventStartTime: '08:00:00',
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '1',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
         name: 'kasun',
         coordinatorUId: 8
+      },
+      {
+        imNumber: 'IM/2019/044',
+        name: 'kasuni',
+        coordinatorUId: 9
       }
     ],
     eventParticipants: 'ALL',
     eventBudget: '2000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'OK',
+    eventApprovedStatus: 'APPROVED',
+    eventApprovalInfo: [
+      {
+        name: 'Dr. Ruwan wickramarachchi',
+        title: 'HOD',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Dilani wickramarachchi',
+        title: 'Treasurer',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Akalanka Jayalath',
+        title: 'President',
+        status: 'A'
+      }
+    ],
     eventCreatedAt: '2019-04-02T10:31:10.000+0000',
     eventUpdatedAt: '2019-04-02T10:31:10.000+0000'
   },
   {
     eventId: 9,
     eventName: 'Exposition2020',
-    eventDate: '2019-05-15 14:40:02',
+    eventDate: '2019-05-09 14:40:02',
     eventStartTime: '08:00:00',
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '2',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
@@ -37,20 +61,38 @@ export const events = [
       }
     ],
     eventParticipants: 'ALL',
-    eventBudget: '2000',
+    eventBudget: '4000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'OK',
+    eventApprovedStatus: 'PUBLISHED',
+    eventApprovalInfo: [
+      {
+        name: 'Dr. Ruwan wickramarachchi',
+        title: 'HOD',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Dilani wickramarachchi',
+        title: 'Treasurer',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Akalanka Jayalath',
+        title: 'President',
+        status: 'A'
+      }
+    ],
     eventCreatedAt: '2019-04-02T10:31:14.000+0000',
     eventUpdatedAt: '2019-04-02T10:31:14.000+0000'
   },
   {
     eventId: 11,
     eventName: 'Exposition2020',
-    eventDate: '2019-05-15 14:40:02',
+    eventDate: '2019-05-11 14:40:02',
     eventStartTime: '08:00:00',
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '3',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
@@ -59,9 +101,26 @@ export const events = [
       }
     ],
     eventParticipants: 'ALL',
-    eventBudget: '2000',
+    eventBudget: '6000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'OK',
+    eventApprovedStatus: 'PENDING',
+    eventApprovalInfo: [
+      {
+        name: 'Dr. Ruwan wickramarachchi',
+        title: 'HOD',
+        status: 'NA'
+      },
+      {
+        name: 'Dr. Dilani wickramarachchi',
+        title: 'Treasurer',
+        status: 'NA'
+      },
+      {
+        name: 'Dr. Akalanka Jayalath',
+        title: 'President',
+        status: 'A'
+      }
+    ],
     eventCreatedAt: '2019-04-02T10:31:17.000+0000',
     eventUpdatedAt: '2019-04-02T10:31:17.000+0000'
   },
@@ -73,6 +132,7 @@ export const events = [
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '4',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
@@ -81,20 +141,38 @@ export const events = [
       }
     ],
     eventParticipants: 'ALL',
-    eventBudget: '2000',
+    eventBudget: '8000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'OK',
+    eventApprovedStatus: 'APPROVED',
+    eventApprovalInfo: [
+      {
+        name: 'Dr. Ruwan wickramarachchi',
+        title: 'HOD',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Dilani wickramarachchi',
+        title: 'Treasurer',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Akalanka Jayalath',
+        title: 'President',
+        status: 'A'
+      }
+    ],
     eventCreatedAt: '2019-04-02T10:31:20.000+0000',
     eventUpdatedAt: '2019-04-02T10:31:20.000+0000'
   },
   {
     eventId: 17,
     eventName: 'Exposition2020',
-    eventDate: '2019-05-15 14:40:02',
+    eventDate: '2019-05-28 14:40:02',
     eventStartTime: '08:00:00',
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '4',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
@@ -103,10 +181,27 @@ export const events = [
       }
     ],
     eventParticipants: 'ALL',
-    eventBudget: '2000',
+    eventBudget: '10000',
     eventDescription:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam risus neque, suscipit luctus eros eu, suscipit malesuada felis. Donec convallis aliquet urna, quis lacinia eros volutpat nec. Integer ',
-    eventApprovedStatus: 'OK',
+    eventApprovedStatus: 'PENDING',
+    eventApprovalInfo: [
+      {
+        name: 'Dr. Ruwan wickramarachchi',
+        title: 'HOD',
+        status: 'NA'
+      },
+      {
+        name: 'Dr. Dilani wickramarachchi',
+        title: 'Treasurer',
+        status: 'A'
+      },
+      {
+        name: 'Dr. Akalanka Jayalath',
+        title: 'President',
+        status: 'A'
+      }
+    ],
     eventCreatedAt: '2019-04-02T10:31:58.000+0000',
     eventUpdatedAt: '2019-04-02T10:31:58.000+0000'
   }
@@ -121,6 +216,7 @@ export const past = [
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '1',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
@@ -143,6 +239,7 @@ export const past = [
     eventEndTime: '11:00:00',
     eventStatus: 'OK',
     eventLocation: 'DIM',
+    batch: '2',
     eventCoordinatorDetails: [
       {
         imNumber: 'IM/2019/043',
