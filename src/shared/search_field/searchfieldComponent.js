@@ -35,12 +35,13 @@ class SearchFieldComponent extends React.Component {
   };
 
   suggestionSelected(event) {
-    const { selectEvent, setSerchOverlay } = this.props;
+    const { selectEvent, setSerchOverlay, onEventCalendarPress } = this.props;
     this.setState(() => ({
       text: ''
     }));
     setSerchOverlay(false);
     selectEvent(event.eventId);
+    onEventCalendarPress();
   }
 
   renderSuggesions() {

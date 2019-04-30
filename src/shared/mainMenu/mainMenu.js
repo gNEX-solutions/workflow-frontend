@@ -160,7 +160,7 @@ class MainMenuComponent extends Component {
           <div>
             {/* dumindu's code pasted  */}
             <div className="searchFieldComponent">
-              <SearchFieldComponent />
+              <SearchFieldComponent onEventCalendarPress={this.props.onEventCalendarPress} />
             </div>
           </div>
           <div className="input-group-append">
