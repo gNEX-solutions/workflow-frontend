@@ -21,3 +21,6 @@
 .searchbarlist:hover {
     background-color: whitesmoke;
 }
+.resultItem :hover{
+    background-color: aqua;
+}

@@ -155,7 +155,7 @@ class MainMenuComponent extends Component {
           <div>
             {/* dumindu's code pasted  */}
             <div className="searchFieldComponent">
-              <SearchFieldComponent items={events} />
+              <SearchFieldComponent />
             </div>
           </div>
 

@@ -1,5 +1,7 @@
-export default`
+export default `
 Wesak
+event01
+event02
 Dansal
 AGM
 Spandana
