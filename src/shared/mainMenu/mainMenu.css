@@ -62,4 +62,10 @@ span {
 
 h3 {
   font-family: Poppins;
+#search_group{
+    align-items: center;
+}
+
+.searchFieldComponent{
+    margin: 5px auto 0 auto;
 }
