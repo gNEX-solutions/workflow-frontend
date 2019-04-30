@@ -6,7 +6,8 @@ import {
   CREATE_EVENT,
   GET_EVENT_HISTORY,
   CHANGE_EVENT_ID,
-  UPDATE_SEARCH_SUGGESTIONS
+  UPDATE_SEARCH_SUGGESTIONS,
+  SEARCH_OVERLAY
 } from '../types/DashBoardTypes';
 import { events, past } from './mock';
 
@@ -16,7 +17,8 @@ const initialState = {
   searchSuggestions: null,
   isLoading: false,
   responseMsg: null,
-  pastEvents: past
+  pastEvents: past,
+  searchOverlay: false
 };
 
 export default function (state = initialState, action) {
@@ -52,7 +54,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         searchSuggestions: action.payload
-      }
+      };
+    case SEARCH_OVERLAY:
+      return {
+        ...state,
+        searchOverlay: action.payload
+      };
+
     default:
       return state;
   }

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Button, Modal } from 'react-bootstrap';
-
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import AddNewEventComponent from '../addEventComponent/addNewEvent';
-
+import { setSerchOverlay } from '../../store/actions/DashBoardActions';
 import './mainMenu.css';
+
 import SearchFieldComponent from "../search_field/searchfieldComponent";
 import events from './serachEventService.js'
 
@@ -47,10 +48,14 @@ class MainMenuComponent extends Component {
     });
   };
 
-  // searchButtonClicked = () => {
-  //   // alert('search btn clicked');
-  //   console.log('search btn clicked');
-  // };
+
+
+  searchButtonClicked = () => {
+    const { setSerchOverlay, onSearchPress } = this.props;
+    setSerchOverlay(false);
+    onSearchPress();
+    console.log('search btn clicked');
+  };
 
   eventExpClicked = () => {
     const { onEventExplorerPress } = this.props;
@@ -163,7 +168,7 @@ class MainMenuComponent extends Component {
               className="btn btn-outline-secondary"
               type="button"
               id="button-search"
-              onClick={this.props.onSearchPress}
+              onClick={this.searchButtonClicked}
             >
               <FontAwesomeIcon icon={faSearch} />
             </button>
@@ -252,5 +257,7 @@ class MainMenuComponent extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
 
-export default MainMenuComponent;
+});
+export default connect(mapStateToProps, { setSerchOverlay })(MainMenuComponent);
