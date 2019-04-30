@@ -23,9 +23,9 @@ class SearchResults extends Component {
   renderEvents = () => {
     const arr = [];
 
-    const { pastEvents } = this.props;
+    const { searchSuggestions } = this.props;
 
-    pastEvents.map((event, index) => {
+    searchSuggestions.map((event, index) => {
       arr.push(
         <EventComponent event={event} onEventClick={this.handleEventOnClick} />
       );
@@ -35,7 +35,7 @@ class SearchResults extends Component {
   };
 
   render() {
-    const allPastEvents = this.renderEvents();
+    const allSuggestions = this.renderEvents();
 
     return (
       <React.Fragment>
@@ -43,7 +43,7 @@ class SearchResults extends Component {
           <div className="historyCalendar col-md-4 ">
             <p>search results</p>
           </div>
-          <div className="historyDetail col-md-8 ">{allPastEvents}</div>
+          <div className="historyDetail col-md-8 ">{allSuggestions}</div>
         </div>
       </React.Fragment>
     );
@@ -51,7 +51,7 @@ class SearchResults extends Component {
 }
 
 const mapStateToProps = state => ({
-  pastEvents: state.dashboard.pastEvents
+  searchSuggestions: state.dashboard.searchSuggestions
 });
 
 export default connect(

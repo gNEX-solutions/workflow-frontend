@@ -5,19 +5,21 @@ import {
   GET_EVENT_FAIL,
   CREATE_EVENT,
   GET_EVENT_HISTORY,
-  CHANGE_EVENT_ID
+  CHANGE_EVENT_ID,
+  UPDATE_SEARCH_SUGGESTIONS
 } from '../types/DashBoardTypes';
 import { events, past } from './mock';
 
 const initialState = {
   selectedEventId: null,
   events: events,
+  searchSuggestions: null,
   isLoading: false,
   responseMsg: null,
   pastEvents: past
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case GET_EVENT:
       return {
@@ -46,6 +48,11 @@ export default function(state = initialState, action) {
         ...state,
         selectedEventId: action.payload
       };
+    case UPDATE_SEARCH_SUGGESTIONS:
+      return {
+        ...state,
+        searchSuggestions: action.payload
+      }
     default:
       return state;
   }

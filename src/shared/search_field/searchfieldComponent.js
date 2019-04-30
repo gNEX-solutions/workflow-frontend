@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectEvent } from '../../store/actions/DashBoardActions';
+import { selectEvent, setSearchSuggestions } from '../../store/actions/DashBoardActions';
 import './searchfield.css';
 import { ListGroup } from 'react-bootstrap';
 // import 'bootstrap/dist/css/bootstrap.css';
@@ -23,20 +23,20 @@ class SearchFieldComponent extends React.Component {
       const regex = new RegExp(`^${value}`, 'i');
       suggestions = items.filter(v => regex.test(v.eventName));
     }
-    this.setState(() => ({ suggestions, text: value }));
+    this.setState({ text: value });
+    this.props.setSearchSuggestions(suggestions);
   };
 
   suggestionSelected(event) {
     this.setState(() => ({
-      text: '',
-      suggestions: []
+      text: ''
     }));
     this.props.selectEvent(event.eventId);
   }
 
   renderSuggesions() {
-    const { suggestions } = this.state;
-    if (suggestions.length === 0) {
+    const { suggestions } = this.props;
+    if (suggestions === null) {
       return null;
     }
     return suggestions.map(item => (
@@ -63,9 +63,10 @@ class SearchFieldComponent extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  items: state.dashboard.events
+  items: state.dashboard.events,
+  suggestions: state.dashboard.searchSuggestions
 });
 export default connect(
   mapStateToProps,
-  { selectEvent }
+  { selectEvent, setSearchSuggestions }
 )(SearchFieldComponent);

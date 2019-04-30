@@ -62,7 +62,7 @@ class HomePage extends React.Component {
   renderHistoryView = () => (
     <History onEventCalendarPress={this.handleEventCalendarPress} />
   );
-  renderSearchResultsView = () => <SearchResults />;
+  renderSearchResultsView = () => <SearchResults onEventCalendarPress={this.handleEventCalendarPress} />;
 
   renderContent = () => {
     const viewMap = {

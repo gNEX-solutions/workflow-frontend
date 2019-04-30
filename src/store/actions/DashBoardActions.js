@@ -5,7 +5,8 @@ import {
   GET_EVENT_FAIL,
   CREATE_EVENT,
   GET_EVENT_HISTORY,
-  CHANGE_EVENT_ID
+  CHANGE_EVENT_ID,
+  UPDATE_SEARCH_SUGGESTIONS
 } from '../types/DashBoardTypes';
 
 export const getEvent = data => (dispatch, history) => {
@@ -59,5 +60,9 @@ export const selectEvent = data => (dispatch, history) => {
   // ({ type: CHANGE_EVENT_ID, payload: { data } });
 };
 
+export const setSearchSuggestions = data => (dispatch, history) => {
+  dispatch({ type: UPDATE_SEARCH_SUGGESTIONS, payload: data });
+}
+
 //check token and load user
-export const loadUser = () => (dispatch, getState) => {};
+export const loadUser = () => (dispatch, getState) => { };
