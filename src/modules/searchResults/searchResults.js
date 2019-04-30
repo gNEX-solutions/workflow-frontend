@@ -1,0 +1,60 @@
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import EventComponent from "../../shared/eventComponent/EventComponent";
+import { selectEvent } from "../../store/actions/DashBoardActions";
+import "./searchResults.css";
+
+class SearchResults extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
+  handleEventOnClick = id => {
+    // this.setState({
+    //   selectedEventId: id
+    // });
+
+    this.props.selectEvent(id);
+    this.props.onEventCalendarPress();
+  };
+
+  renderEvents = () => {
+    const arr = [];
+
+    const { pastEvents } = this.props;
+
+    pastEvents.map((event, index) => {
+      arr.push(
+        <EventComponent event={event} onEventClick={this.handleEventOnClick} />
+      );
+    });
+
+    return arr;
+  };
+
+  render() {
+    const allPastEvents = this.renderEvents();
+
+    return (
+      <React.Fragment>
+        <div className="historySection row">
+          <div className="historyCalendar col-md-4 ">
+            <p>search results</p>
+          </div>
+          <div className="historyDetail col-md-8 ">{allPastEvents}</div>
+        </div>
+      </React.Fragment>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  pastEvents: state.dashboard.pastEvents
+});
+
+export default connect(
+  mapStateToProps,
+  { selectEvent }
+)(SearchResults);

@@ -47,10 +47,10 @@ class MainMenuComponent extends Component {
     });
   };
 
-  searchButtonClicked = () => {
-    // alert('search btn clicked');
-    console.log('search btn clicked');
-  };
+  // searchButtonClicked = () => {
+  //   // alert('search btn clicked');
+  //   console.log('search btn clicked');
+  // };
 
   eventExpClicked = () => {
     const { onEventExplorerPress } = this.props;
@@ -157,6 +157,16 @@ class MainMenuComponent extends Component {
             <div className="searchFieldComponent">
               <SearchFieldComponent />
             </div>
+          </div>
+          <div className="input-group-append">
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              id="button-search"
+              onClick={this.props.onSearchPress}
+            >
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
           </div>
 
           {/* <Col className="col-2" id="search_box">
