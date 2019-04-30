@@ -1,12 +1,13 @@
 import React from "react";
 import './searchfield.css'
 import 'bootstrap/dist/css/bootstrap.css';
-
+import Overlay from 'react-bootstrap/Overlay';
 
 class SearchFieldComponent extends React.Component {
   constructor (props) {
     super(props);
     
+    this.attachRef = target => this.setState({ target });
     this.state = {
       suggestions: [],
       text: ''
@@ -32,14 +33,16 @@ class SearchFieldComponent extends React.Component {
   }
 
   renderSuggesions () {
-    const {suggestions} = this.state;
+    const {suggestions, target} = this.state;
     if (suggestions.length === 0){
       return null;
     }
     return (
-      <ul className="searchbarlist">
-          {suggestions.map((item) => <li onClick={(() => this.suggestionSelected(item))}>{item}</li>)}
-        </ul>
+      <Overlay target={target} placement="bottom" show={true}>
+          <ul className="searchbarlist">
+            {suggestions.map((item) => <li onClick={(() => this.suggestionSelected(item))}>{item}</li>)}
+          </ul>
+     </Overlay>
     )
   }
 
@@ -47,7 +50,7 @@ class SearchFieldComponent extends React.Component {
     const {text} =this.state;
     return (
       <div className="searchbar">
-        <input className="form-control" value={text} onChange = {this.onTextChanged} type="text"></input>
+        <input className="form-control" value={text} onChange = {this.onTextChanged} type="text" ref={this.attachRef}></input>
         {this.renderSuggesions()}
       </div>
     )

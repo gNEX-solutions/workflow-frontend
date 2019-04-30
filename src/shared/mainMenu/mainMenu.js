@@ -36,20 +36,13 @@ class MainMenuComponent extends Component {
   render() {
     return (
       <React.Fragment>
-
-
         <Col className="col-1">
-
         </Col>
-
         <Col className="col-2">
           <Button variant="success" id="add_button" >
-
             <FontAwesomeIcon icon={faPlusCircle} size="2x" />
 
             &nbsp; &nbsp;  New Event
-
-
 
           </Button>
         </Col >
@@ -87,10 +80,6 @@ class MainMenuComponent extends Component {
             <SearchFieldComponent items={events}/>
           </div>
         </div>
-
-
-
-
       </React.Fragment >
     );
   }
