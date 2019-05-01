@@ -1,0 +1,31 @@
+.commentSection{
+    background-color: rgb(0, 0, 0);
+    padding: 5px 0;
+}
+
+.heading-block{
+    max-width: 1140px;
+    margin: auto;
+    color: white;
+}
+
+.comments-display{
+    background-color: #cacaca;
+    padding: 40px;
+    margin: auto;
+    font-size: 10pt;
+    border-radius: 6px;
+    height:300px;
+    overflow: auto;
+}
+
+.comment-area-block{
+    width: 85%;
+    max-width: 1140px;
+    margin: 10px auto;
+}
+
+.comment-text-block{
+    margin: 0;
+    padding: 0 10px 0 0;
+}
