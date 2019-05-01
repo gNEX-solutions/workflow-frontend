@@ -65,6 +65,7 @@ class SearchFieldComponent extends React.Component {
       return null;
     }
   }
+  // extracted the overlay comeponent & commented :  dj 
   // renderSuggesions () {
   //   const {suggestions, target} = this.state;
   //   if (suggestions.length === 0){
@@ -92,8 +93,8 @@ class SearchFieldComponent extends React.Component {
           type="text"
           ref={this.attachRef}
         />
-        <Overlay target={target} placement="bottom-end" show={searchOverlay}>
-          <ListGroup variant="flush">{this.renderSuggesions()}</ListGroup>
+        <Overlay target={target} placement="bottom-start" show={searchOverlay}>
+          <ListGroup variant="flush" id="searchList">{this.renderSuggesions()}</ListGroup>
         </Overlay>
 
         {/* <input className="form-control" value={text} onChange = {this.onTextChanged} type="text" ref={this.attachRef}></input>

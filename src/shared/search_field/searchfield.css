@@ -26,9 +26,16 @@
 .searchbarlist:hover {
     background-color: whitesmoke;
 }
-.resultItem :hover{
-    background-color: aqua;
+.resultItem:hover{
+    /* background-color: aqua; */
+    background-color: whitesmoke;
+    cursor: pointer;
+    /* padding: 10px 5px; */
 }
 .searchbarlist li:hover{
     background-color: rgb(223, 223, 223);
+}
+
+#searchList{
+    max-width: 16rem;
 }

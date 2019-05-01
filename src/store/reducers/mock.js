@@ -46,7 +46,7 @@ export const events = [
   },
   {
     eventId: 9,
-    eventName: 'Exposition2020',
+    eventName: 'Exposition2020 laaaatestt',
     eventDate: '2019-05-09 14:40:02',
     eventStartTime: '08:00:00',
     eventEndTime: '11:00:00',
