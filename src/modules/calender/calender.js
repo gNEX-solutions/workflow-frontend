@@ -5,6 +5,7 @@ import ApprovalSection from '../../shared/approval_section/approvalSectionCompon
 import EventDescription from '../../shared/eventDescription/eventDescription';
 import CalenderFooter from '../../shared/calenderFooter/calenderFooter';
 import CalenderComponent from '../../shared/calenderComponent/calenderComponent';
+import CommentSection from '../../shared/commentSection/Comments';
 import './calender.css';
 
 export const events = [
@@ -124,7 +125,8 @@ export const events = [
 class CalenderSection extends Component {
   state = {
     showUserProfile: false,
-    showNotificationPannel: false
+    showNotificationPannel: false,
+    showCommentsSection: false
   };
   // added by dj: 20/03/2019 : handling the state of the user profile section
   handleProfClick = () => {
@@ -132,7 +134,14 @@ class CalenderSection extends Component {
       showUserProfile: !this.state.showUserProfile
     });
   };
+
+  onCommentsClicked = () => {
+    this.setState({
+      showCommentsSection: true
+    });
+  };
   render() {
+    const { showCommentsSection } = this.state;
     return (
       <React.Fragment>
         {/* <Row> */}
@@ -167,7 +176,7 @@ class CalenderSection extends Component {
         </Row> */}
         <Row>
           <Col className="col-4" id="calender_section">
-            <CalenderComponent />
+            {showCommentsSection ? <CommentSection /> : <CalenderComponent />}
           </Col>
           <Col className="col-8" id="event_info">
             <Row id="event_description_row">
@@ -177,7 +186,10 @@ class CalenderSection extends Component {
               <ApprovalSection id="app_section" />
             </Row>
             <Row>
-              <CalenderFooter id="cal_footer" />
+              <CalenderFooter
+                id="cal_footer"
+                onCommentIconClicked={this.onCommentsClicked}
+              />
             </Row>
           </Col>
         </Row>

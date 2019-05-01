@@ -20,9 +20,10 @@
 .comment-text{
     background: #bbbbbb;
     border-radius: 10px;
-    width: 800px;
+    max-width: 80%;
     padding-top: 12px;
     padding-left: 10px;
+    padding-right: 2rem;
     float: left;
     margin-bottom: 10px;
     position: relative;
@@ -45,7 +46,7 @@
 }
 
 .createdBy-profile-name{
-    font-weight: bold;
+    /* font-weight: bold; */
     display: inline-block;
     margin-right: 10px;
 }
