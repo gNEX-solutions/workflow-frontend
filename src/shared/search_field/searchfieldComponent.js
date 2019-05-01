@@ -6,13 +6,15 @@ import {
   setSerchOverlay
 } from '../../store/actions/DashBoardActions';
 import './searchfield.css';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Overlay } from 'react-bootstrap';
 // import 'bootstrap/dist/css/bootstrap.css';
+
 
 class SearchFieldComponent extends React.Component {
   constructor(props) {
     super(props);
 
+    this.attachRef = target => this.setState({ target });
     this.state = {
       text: ''
     };
@@ -63,9 +65,24 @@ class SearchFieldComponent extends React.Component {
       return null;
     }
   }
+  // renderSuggesions () {
+  //   const {suggestions, target} = this.state;
+  //   if (suggestions.length === 0){
+  //     return null;
+  //   }
+  //   return (
+  //     <Overlay target={target} placement="bottom" show={true}>
+  //         <ul className="searchbarlist">
+  //           {suggestions.map((item) => <li onClick={(() => this.suggestionSelected(item))}>{item}</li>)}
+  //         </ul>
+  //    </Overlay>
+  //   )
+  // }
+
 
   render() {
-    const { text } = this.state;
+    const { text, target } = this.state;
+    const { searchOverlay } = this.props;
     return (
       <div className="searchbar">
         <input
@@ -73,8 +90,14 @@ class SearchFieldComponent extends React.Component {
           value={text}
           onChange={this.onTextChanged}
           type="text"
+          ref={this.attachRef}
         />
-        <ListGroup variant="flush">{this.renderSuggesions()}</ListGroup>
+        <Overlay target={target} placement="bottom-end" show={searchOverlay}>
+          <ListGroup variant="flush">{this.renderSuggesions()}</ListGroup>
+        </Overlay>
+
+        {/* <input className="form-control" value={text} onChange = {this.onTextChanged} type="text" ref={this.attachRef}></input>
+        {this.renderSuggesions()} */}
       </div>
     );
   }
