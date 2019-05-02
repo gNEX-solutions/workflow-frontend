@@ -18,7 +18,8 @@ class Comments extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: []
+      comments: [],
+      inputText: ''
     };
     this.getAllComments = this.getAllComments.bind(this);
   }
@@ -31,10 +32,38 @@ class Comments extends Component {
     const { event } = this.props;
     const comments = this.getAllComments(event.id);
     if (comments) {
-      this.setState({ comments });
+      this.setState({
+        comments
+      });
     } else {
       console.log('Something went wrong while retrieving the comments');
     }
+  }
+  /**
+  * set the entered value in tet area to the inputText in state
+  * @memberof Comments
+  * @param onChange event
+  */
+  onMessageTyped = (event) => {
+    this.setState({
+      inputText: event.target.value
+    })
+  }
+
+
+  onSendMessageClicked = () => {
+    const { comments, inputText } = this.state;
+    const newComment = {
+
+      commentId: 'c005',
+      commentText: inputText,
+      createdBy: 'Akalanka Jayalath',
+      date: Date.now()
+
+    };
+    this.setState({
+      comments: [...comments, newComment]
+    });
   }
 
   /**
@@ -90,9 +119,10 @@ class Comments extends Component {
                 id="comment-text-area"
                 rows="1"
                 placeholder="Write your comment..."
+                onChange={this.onMessageTyped}
               />
             </div>
-            <button type="button" className="col-sm-2 btn btn-light sendbtn">
+            <button type="button" className="col-sm-2 btn btn-light sendbtn" onClick={this.onSendMessageClicked}>
               Send
             </button>
           </div>

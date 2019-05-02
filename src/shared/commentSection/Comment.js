@@ -37,7 +37,7 @@ class Comment extends React.Component {
     const { comments } = this.props;
     return comments
       .slice(0)
-      .reverse()
+      // .reverse()  dinith : latest comments comes first fix 
       .map(comment => (
         <Row>
           <div key={this.getKey()} className="contentWrapper">
