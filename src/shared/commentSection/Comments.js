@@ -40,31 +40,32 @@ class Comments extends Component {
     }
   }
   /**
-  * set the entered value in tet area to the inputText in state
-  * @memberof Comments
-  * @param onChange event
-  */
-  onMessageTyped = (event) => {
+   * set the entered value in tet area to the inputText in state
+   * @memberof Comments
+   * @param onChange text change event
+   */
+  onMessageTyped = event => {
     this.setState({
       inputText: event.target.value
-    })
-  }
-
+    });
+  };
+  /**
+   * add the entered comment to the comment list 
+   * @memberof Comments
+   */
 
   onSendMessageClicked = () => {
     const { comments, inputText } = this.state;
     const newComment = {
-
       commentId: 'c005',
       commentText: inputText,
       createdBy: 'Akalanka Jayalath',
       date: Date.now()
-
     };
     this.setState({
       comments: [...comments, newComment]
     });
-  }
+  };
 
   /**
    * Receive all the comments for the active event
@@ -94,6 +95,19 @@ class Comments extends Component {
     ];
     return comments;
   }
+  /**
+   * delete the seleted comment from the comment list
+   * @memberof Comments
+   * @param id id of the comment to be deleted
+   */
+  deleteComment = id => {
+    const modifiedComments = this.state.comments.filter(
+      comment => id !== comment.commentId
+    );
+    this.setState({
+      comments: modifiedComments
+    });
+  };
 
   /**
    * Render method of the component
@@ -110,7 +124,7 @@ class Comments extends Component {
             <h4>Conversation</h4>
           </div>
           <div className="container comments-display">
-            <Comment comments={comments} event={event} />
+            <Comment comments={comments} event={event} onDelete={this.deleteComment} />
           </div>
           <div className="row comment-area-block">
             <div className="col-sm-10 form-group basic-textarea rounded-corners comment-text-block">
@@ -122,7 +136,11 @@ class Comments extends Component {
                 onChange={this.onMessageTyped}
               />
             </div>
-            <button type="button" className="col-sm-2 btn btn-light sendbtn" onClick={this.onSendMessageClicked}>
+            <button
+              type="button"
+              className="col-sm-2 btn btn-light sendbtn"
+              onClick={this.onSendMessageClicked}
+            >
               Send
             </button>
           </div>

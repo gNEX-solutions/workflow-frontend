@@ -1,6 +1,10 @@
+/* eslint-disable react/jsx-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Row } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+
 import './Comment.css';
 
 /**
@@ -34,29 +38,34 @@ class Comment extends React.Component {
    * @memberof Comment
    */
   render() {
-    const { comments } = this.props;
-    return comments
-      .slice(0)
-      // .reverse()  dinith : latest comments comes first fix 
-      .map(comment => (
-        <Row>
-          <div key={this.getKey()} className="contentWrapper">
-            <div className="createdBy-profile-circle">
-              {comment.createdBy.split(' ')[0].charAt(0) +
-                comment.createdBy.split(' ')[1].charAt(0)}
-            </div>
-            <div className="comment-text">
-              <div className="delete">
-                <a href="https://www.google.com" className="deleteText">
-                  X
-                </a>
+    const { comments, onDelete } = this.props;
+    return (
+      comments
+        .slice(0)
+        // .reverse()  dinith : latest comments comes first fix
+        .map(comment => (
+          <Row>
+            <div key={this.getKey()} className="contentWrapper">
+              <div className="createdBy-profile-circle">
+                {comment.createdBy.split(' ')[0].charAt(0) +
+                  comment.createdBy.split(' ')[1].charAt(0)}
               </div>
-              <p className="createdBy-profile-name"> <strong>{comment.createdBy}</strong> &nbsp; &nbsp;
-                {comment.commentText} </p>
+              <div className="comment-text">
+                <div className="delete" onClick={() => onDelete(comment.commentId)}>
+                  <FontAwesomeIcon icon={faTrashAlt} className="delete_icon" />
+                  {/* <a className="deleteText">X</a> */}
+
+                </div>
+                <p className="createdBy-profile-name">
+                  {' '}
+                  <strong>{comment.createdBy}</strong> &nbsp; &nbsp;
+                  {comment.commentText}{' '}
+                </p>
+              </div>
             </div>
-          </div>
-        </Row>
-      ));
+          </Row>
+        ))
+    );
   }
 }
 

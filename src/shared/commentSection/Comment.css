@@ -37,7 +37,15 @@
     position: absolute;
     right: 10px;
     top: 12px;
-    display: none;
+    /* display: none; */
+}
+
+.delete_icon{
+    color: grey;
+    font-size: 1.25rem;
+}
+.delete_icon:hover{
+    color: red;
 }
 
 .deleteText{
