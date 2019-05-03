@@ -7,10 +7,15 @@ import {
   faCheckDouble,
   faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons';
+import Avatar from 'react-avatar';
 import { connect } from 'react-redux';
 import * as moment from 'moment';
 import { selectEvent } from '../../store/actions/DashBoardActions';
 import './dateComponent.css';
+import imgPending from '../../img/pending.svg';
+import imgDeny from '../../img/deny.svg';
+import imgConfirmed from '../../img/confirmed.svg';
+
 
 class DateComponent extends Component {
   state = {};
@@ -37,12 +42,13 @@ class DateComponent extends Component {
     if (eventInfo != undefined) {
       if (eventInfo.eventApprovedStatus === 'PUBLISHED') {
         icon = <FontAwesomeIcon icon={faCheckDouble} className="single_tick" />;
-        // icon = <icon>{sigleCheckIcon}</icon>;
-      } else if (eventInfo.eventApprovedStatus === 'APPROVED') {
-        icon = <FontAwesomeIcon icon={faCheck} className="single_tick" />;
-      } else if (eventInfo.eventApprovedStatus === 'PENDING') {
+      } else if (eventInfo.eventApprovedStatus === 'confirmed') {
+        // icon = <FontAwesomeIcon icon={faCheck} className="single_tick" />;
+        icon = <Avatar src={imgConfirmed} size="20" className="single_tick" />
+      } else if (eventInfo.eventApprovedStatus === 'pending') {
         icon = (
-          <FontAwesomeIcon icon={faExclamationTriangle} className="warning" />
+          // <FontAwesomeIcon icon={faExclamationTriangle} className="warning" />
+          <Avatar src={imgPending} size="20" className="warning" />
         );
       } else {
         icon = <p id="dummy_para" />;
@@ -59,28 +65,30 @@ class DateComponent extends Component {
     }
     return (
       <React.Fragment>
-        <td onClick={() => {
-          if (eventInfo != undefined) {
-            return this.eventSelected(eventInfo.eventId)
-          }
-        }}
+        <td
+          onClick={() => {
+            if (eventInfo != undefined) {
+              return this.eventSelected(eventInfo.eventId);
+            }
+          }}
           className={style}
         >
-          <Row >
-            <Col className="col-6" />
-            <Col className="col-6">
-              {/* <FontAwesomeIcon icon={faCheckCircle} className="single_tick"></FontAwesomeIcon> */}
-              {icon}
-            </Col>
-          </Row>
-          <Row  >
+
+          <Row>
             {/* <Col className="col-3" /> */}
             <Col className="col-12">
               <p id="date"> {date}</p>
             </Col>
           </Row>
+          <Row >
+            <Col className="col-6" id="notIcon">
+
+              {icon}
+            </Col>
+          </Row>
+
         </td>
-      </React.Fragment>
+      </React.Fragment >
     );
   }
 }
@@ -88,7 +96,6 @@ class DateComponent extends Component {
 const mapStateToProps = state => ({
   events: state.dashboard.events,
   selectedEventId: state.dashboard.selectedEventId
-
 });
 
 export default connect(

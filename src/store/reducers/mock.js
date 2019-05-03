@@ -23,7 +23,7 @@ export const events = [
     eventParticipants: 'ALL',
     eventBudget: '2000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'APPROVED',
+    eventApprovedStatus: 'confirmed',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',
@@ -103,7 +103,7 @@ export const events = [
     eventParticipants: 'ALL',
     eventBudget: '6000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'PENDING',
+    eventApprovedStatus: 'pending',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',
@@ -143,7 +143,7 @@ export const events = [
     eventParticipants: 'ALL',
     eventBudget: '8000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'APPROVED',
+    eventApprovedStatus: 'confirmed',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',
@@ -184,7 +184,7 @@ export const events = [
     eventBudget: '10000',
     eventDescription:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam risus neque, suscipit luctus eros eu, suscipit malesuada felis. Donec convallis aliquet urna, quis lacinia eros volutpat nec. Integer ',
-    eventApprovedStatus: 'PENDING',
+    eventApprovedStatus: 'pending',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',
