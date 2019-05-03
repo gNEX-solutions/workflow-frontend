@@ -1,0 +1,60 @@
+.contentWrapper{
+    width: 850px;
+}
+
+.createdBy-profile-circle{
+    display: table-cell;
+    width: 35px;
+    height: 35px;
+    background: #bbbbbb;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+    padding-top: 7px;
+    font-weight: bold;
+}
+
+.comment-text{
+    background: #bbbbbb;
+    border-radius: 10px;
+    max-width: 80%;
+    padding-top: 12px;
+    padding-left: 10px;
+    padding-right: 2rem;
+    float: left;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.comment-text:hover .delete{
+    display: block;
+}
+
+.delete{
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    /* display: none; */
+}
+
+.delete_icon{
+    color: grey;
+    font-size: 1.25rem;
+}
+.delete_icon:hover{
+    color: red;
+}
+
+.deleteText{
+    color: #dedede;
+    font-weight: bold;
+}
+
+.createdBy-profile-name{
+    /* font-weight: bold; */
+    display: inline-block;
+    margin-right: 10px;
+}

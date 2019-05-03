@@ -6,6 +6,7 @@ import HomePage from '../modules/home/pages/HomePage';
 import UserProfileSection from '../shared/userProfileSection/userProfileSection';
 import ApprovalSection from '../shared/approval_section/approvalSectionComponent';
 import DeleteDialogBox from '../shared/deleteDialogBox/deleteDialogBox';
+import Comments from '../shared/commentSection/Comments';
 
 import RequireAuth from './RequireAuth';
 
@@ -33,6 +34,7 @@ const RootRouter = () => (
 
     <Route path="/profile" component={UserProfileSection} />
     <Route path="/approvalSection" component={ApprovalSection} />
+    <Route path="/comments" component={Comments} />
     <Route path="/not-found" render={() => <h1> Page Not Found </h1>} />
     <Route path="/delete" component={DeleteDialogBox} />
   </Switch>

@@ -24,7 +24,7 @@ class CalenderFooter extends Component {
             </Row>
           </Col>
           <Col className="col-1" id="comments">
-            <FontAwesomeIcon icon={faComment} size="2x" />
+            <FontAwesomeIcon icon={faComment} size="2x" onClick={this.props.onCommentIconClicked} />
             {/* <p>dinth</p> */}
           </Col>
         </Row>

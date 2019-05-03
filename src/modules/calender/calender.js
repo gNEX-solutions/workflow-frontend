@@ -6,6 +6,7 @@ import EventDescription from '../../shared/eventDescription/eventDescription';
 import CalenderFooter from '../../shared/calenderFooter/calenderFooter';
 import CalenderComponent from '../../shared/calenderComponent/calenderComponent';
 import EventComponent from './components/eventComponent/EventComponent';
+import CommentSection from '../../shared/commentSection/Comments';
 import './calender.css';
 
 export const events = [
@@ -123,16 +124,11 @@ export const events = [
 ];
 
 class CalenderSection extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showUserProfile: false,
-      showNotificationPannel: false,
-      selectedEventId: null
-    };
-  }
-
+  state = {
+    showUserProfile: false,
+    showNotificationPannel: false,
+    showCommentsSection: false
+  };
   // added by dj: 20/03/2019 : handling the state of the user profile section
   handleProfClick = () => {
     this.setState({
@@ -157,6 +153,12 @@ class CalenderSection extends Component {
     return arr;
   };
 
+  onCommentsClicked = () => {
+    this.setState({
+      showCommentsSection: true
+    });
+  };
+
   renderEventDiscription = () => {
     const discription = events.map((event, index) => {
       if (event.eventId === this.state.selectedEventId) {
@@ -179,9 +181,8 @@ class CalenderSection extends Component {
   };
 
   render() {
-    const monthlyEvents = this.state.selectedEventId
-      ? this.renderEventDiscription()
-      : this.renderEvents();
+    const monthlyEvents = this.state.selectedEventId ? this.renderEventDiscription() : this.renderEvents();
+    const { showCommentsSection } = this.state;
     return (
       <React.Fragment>
         {/* <Row> */}
@@ -216,10 +217,22 @@ class CalenderSection extends Component {
         </Row> */}
         <Row>
           <Col className="col-4" id="calender_section">
-            <CalenderComponent />
+            {showCommentsSection ? <CommentSection /> : <CalenderComponent />}
           </Col>
           <Col className="col-8" id="event_info">
             {monthlyEvents}
+            <Row id="event_description_row">
+              <EventDescription id="event_description" />
+            </Row>
+            <Row id="app_section_row">
+              <ApprovalSection id="app_section" />
+            </Row>
+            <Row>
+              <CalenderFooter
+                id="cal_footer"
+                onCommentIconClicked={this.onCommentsClicked}
+              />
+            </Row>
           </Col>
         </Row>
         {/* <Row>
