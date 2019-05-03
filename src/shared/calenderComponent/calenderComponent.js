@@ -18,7 +18,7 @@ class CalenderCompoennt extends Component {
   };
   // changing the first day of the week to monday
 
-  weekDayHeaders = moment.weekdaysShort().map(weekday => <th>{weekday}</th>);
+  weekDayHeaders = moment.weekdaysMin().map(weekday => <th className="table_header">{weekday}</th>);
   daysInMonthAmount;
   firstDay; // return the first day of the month
   lastDay; // last day of the month
@@ -95,7 +95,7 @@ class CalenderCompoennt extends Component {
 
     //  blanks of the beg of the month
     for (var i = 0; i < this.firstDay; i++) {
-      blankDaysBefore.push(<td />);
+      blankDaysBefore.push(<td className="blank_date" />);
     }
 
     // month date data
@@ -106,7 +106,7 @@ class CalenderCompoennt extends Component {
 
     // blanks after end of month
     for (i = 6; i > this.lastDay; i--) {
-      blankDaysAfter.push(<td />);
+      blankDaysAfter.push(<td className="blank_date" />);
     }
     // console.log(this.lastDay);
     totalDays = [...blankDaysBefore, ...daysInMonth, ...blankDaysAfter];
@@ -149,7 +149,7 @@ class CalenderCompoennt extends Component {
           </Row>
           <Row id="calender_row">
             <table
-              className="table-condensed table-bordered table-striped table-responsive"
+              className="table-condensed   table-responsive"
               id="cal_table"
             >
               <thead>

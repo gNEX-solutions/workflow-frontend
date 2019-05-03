@@ -33,7 +33,7 @@ class DateComponent extends Component {
     const eventInfo = this.getEventInfo()[0];
     console.log(now.month());
     let icon;
-    let style = '';
+    let style = 'default';
     if (eventInfo != undefined) {
       if (eventInfo.eventApprovedStatus === 'PUBLISHED') {
         icon = <FontAwesomeIcon icon={faCheckDouble} className="single_tick" />;
