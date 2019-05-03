@@ -127,7 +127,8 @@ class CalenderSection extends Component {
   state = {
     showUserProfile: false,
     showNotificationPannel: false,
-    showCommentsSection: false
+    showCommentsSection: false,
+    selectedEventId: null
   };
   // added by dj: 20/03/2019 : handling the state of the user profile section
   handleProfClick = () => {
@@ -160,6 +161,7 @@ class CalenderSection extends Component {
   };
 
   renderEventDiscription = () => {
+    // console.log(events);
     const discription = events.map((event, index) => {
       if (event.eventId === this.state.selectedEventId) {
         return (
@@ -171,7 +173,11 @@ class CalenderSection extends Component {
               <ApprovalSection id="app_section" event={event} />
             </Row>
             <Row>
-              <CalenderFooter id="cal_footer" event={event} />
+              <CalenderFooter
+                id="cal_footer"
+                event={event}
+                onCommentIconClicked={this.onCommentsClicked}
+              />
             </Row>
           </React.Fragment>
         );
@@ -181,7 +187,9 @@ class CalenderSection extends Component {
   };
 
   render() {
-    const monthlyEvents = this.state.selectedEventId ? this.renderEventDiscription() : this.renderEvents();
+    const monthlyEvents = this.state.selectedEventId
+      ? this.renderEventDiscription()
+      : this.renderEvents();
     const { showCommentsSection } = this.state;
     return (
       <React.Fragment>
@@ -221,18 +229,6 @@ class CalenderSection extends Component {
           </Col>
           <Col className="col-8" id="event_info">
             {monthlyEvents}
-            <Row id="event_description_row">
-              <EventDescription id="event_description" />
-            </Row>
-            <Row id="app_section_row">
-              <ApprovalSection id="app_section" />
-            </Row>
-            <Row>
-              <CalenderFooter
-                id="cal_footer"
-                onCommentIconClicked={this.onCommentsClicked}
-              />
-            </Row>
           </Col>
         </Row>
         {/* <Row>
