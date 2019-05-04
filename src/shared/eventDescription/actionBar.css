@@ -10,3 +10,12 @@
     color:rgb(5, 5, 5);
     align-items: flex-start;
 }
+
+.actionItem{
+    background-color: whitesmoke;
+}
+
+.actionItem:hover{
+    background-color: aqua;
+    cursor: pointer;
+}

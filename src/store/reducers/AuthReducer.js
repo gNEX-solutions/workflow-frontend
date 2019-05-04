@@ -6,7 +6,7 @@ const initialState = {
     firstName: 'Akalanka',
     lastName: 'Jayalth',
     email: '',
-    designtion: 'President',
+    designtion: 'president',
     pictureUrl:
       'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png'
   },
@@ -15,7 +15,7 @@ const initialState = {
   isLoading: false
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case LOGIN:
       return {

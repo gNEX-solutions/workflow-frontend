@@ -23,7 +23,7 @@ export const events = [
     eventParticipants: 'ALL',
     eventBudget: '2000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'confirmed',
+    eventApprovedStatus: 'approved',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',
@@ -63,7 +63,7 @@ export const events = [
     eventParticipants: 'ALL',
     eventBudget: '4000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'PUBLISHED',
+    eventApprovedStatus: 'published',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',
@@ -143,7 +143,7 @@ export const events = [
     eventParticipants: 'ALL',
     eventBudget: '8000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'confirmed',
+    eventApprovedStatus: 'approved',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',

@@ -4,9 +4,42 @@ import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
 import DeleteDialogBox from '../deleteDialogBox/deleteDialogBox';
 import EditEventPannel from '../editEventComponent/editEvent';
+import { connect } from 'react-redux';
 import publishDialogBox from '../publishDialogBox/publishDialogBox';
 import './actionBar.css';
 import PublishDialogBox from '../publishDialogBox/publishDialogBox';
+
+
+const userTypes = [
+    {
+        type: 'president',
+        actions: ['publish', 'edit', 'rollback', 'delete']
+    },
+    {
+        type: 'co-ordinator',
+        actions: ['edit']
+    },
+    {
+        type: 'hod',
+        actions: ['approve', 'reject']
+    }
+]
+
+const eventStatuses = [
+    {
+        type: 'pending',
+        actions: ['edit', 'approve', 'reject', 'delete']
+    },
+    {
+        type: 'approved',
+        actions: ['rollback', 'delete', 'publish']
+    },
+    {
+        type: 'published',
+        actions: ['delete']
+    }
+
+]
 
 class ActionBar extends Component {
     state = {
@@ -15,7 +48,19 @@ class ActionBar extends Component {
         showPublishEvent: false
     };
 
+    actionButtonClicked = (actionType) => {
+        // console.log(clickEvent);
+        switch (actionType) {
+            case 'edit':
+                this.editEventClicked()
+                break;
 
+            case 'delete':
+                this.deleteEventClicked()
+            default:
+                break;
+        }
+    }
 
     closeModalDeleteClicked = () => {
 
@@ -53,21 +98,29 @@ class ActionBar extends Component {
         })
     }
 
+
+    getEventListItems() {
+        const { status, userType } = this.props;
+        const userActions = userTypes.filter((userType) => (userType.type === 'president'))[0].actions;
+        const eventStatusActions = eventStatuses.filter((eventStatus) => (eventStatus.type === status))[0].actions;
+        return userActions
+            .filter(userAction => (eventStatusActions.includes(userAction)))
+            .map(resultAction => (
+                <ListGroupItem key={resultAction} className="actionItem"
+                    onClick={() => this.actionButtonClicked(resultAction)}>
+                    {resultAction}
+                </ListGroupItem>
+            ));
+
+    }
+
     render() {
-        const { publish } = this.props;
+        // const { publish } = this.props;
         const { showDeleteEvent, showEditEvent, showPublishEvent } = this.state;
         return (
             <React.Fragment>
                 <ListGroup>
-                    <ListGroupItem disabled={!publish} onClick={this.publishEventclicked}> publish </ListGroupItem>
-                    <ListGroupItem onClick={this.editEventClicked} id="editEvent">
-                        {' '}
-                        Edit Event{' '}
-                    </ListGroupItem>
-                    <ListGroupItem variant="danger" onClick={this.deleteEventClicked}>
-                        {' '}
-                        Delete Event{' '}
-                    </ListGroupItem>
+                    {this.getEventListItems()}
                 </ListGroup>
                 <Modal
                     show={showPublishEvent}
@@ -119,4 +172,10 @@ class ActionBar extends Component {
     }
 }
 
-export default ActionBar;
+
+
+const mapStateToProps = (state) => ({
+    userType: state.auth.user.designtion
+});
+
+export default connect(mapStateToProps, {})(ActionBar);
