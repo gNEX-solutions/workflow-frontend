@@ -3,13 +3,11 @@
 /* eslint-disable indent */
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
-import DeleteDialogBox from '../deleteDialogBox/deleteDialogBox';
 import EditEventPannel from '../editEventComponent/editEvent';
 import { connect } from 'react-redux';
-// import publishDialogBox from '../publishDialogBox/publishDialogBox';
-import './actionBar.css';
-// import PublishDialogBox from '../publishDialogBox/publishDialogBox';
 import DefaultDialogBox from '../defaultDialogBox/defaultDialogBox';
+import './actionBar.css';
+
 
 const userTypes = [
     {
