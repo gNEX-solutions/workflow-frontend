@@ -1,3 +1,4 @@
+/* eslint-disable react/sort-comp */
 /* eslint-disable prettier/prettier */
 /* eslint-disable indent */
 import React, { Component } from 'react';
@@ -5,10 +6,10 @@ import { ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
 import DeleteDialogBox from '../deleteDialogBox/deleteDialogBox';
 import EditEventPannel from '../editEventComponent/editEvent';
 import { connect } from 'react-redux';
-import publishDialogBox from '../publishDialogBox/publishDialogBox';
+// import publishDialogBox from '../publishDialogBox/publishDialogBox';
 import './actionBar.css';
-import PublishDialogBox from '../publishDialogBox/publishDialogBox';
-
+// import PublishDialogBox from '../publishDialogBox/publishDialogBox';
+import DefaultDialogBox from '../defaultDialogBox/defaultDialogBox';
 
 const userTypes = [
     {
@@ -45,7 +46,8 @@ class ActionBar extends Component {
     state = {
         showDeleteEvent: false,
         showEditEvent: false,
-        showPublishEvent: false
+        showDefaultEvent: false,
+        actionType: ''
     };
 
     actionButtonClicked = (actionType) => {
@@ -54,12 +56,24 @@ class ActionBar extends Component {
             case 'edit':
                 this.editEventClicked()
                 break;
-
-            case 'delete':
-                this.deleteEventClicked()
             default:
+                this.openDefaultDialogBox(actionType)
                 break;
         }
+    }
+
+    openDefaultDialogBox = (actionType) => {
+        this.setState({
+            showDefaultEvent: true,
+            actionType: actionType
+        })
+    }
+
+    closeDefaultDialogbox = () => {
+        this.setState({
+            showDefaultEvent: false,
+            actionType: ''
+        })
     }
 
     closeModalDeleteClicked = () => {
@@ -86,17 +100,17 @@ class ActionBar extends Component {
         });
     };
 
-    closeModalPublishClicked = () => {
-        this.setState({
-            showPublishEvent: false
-        })
-    }
+    // closeModalPublishClicked = () => {
+    //     this.setState({
+    //         showPublishEvent: false
+    //     })
+    // }
 
-    publishEventclicked = () => {
-        this.setState({
-            showPublishEvent: true
-        })
-    }
+    // publishEventclicked = () => {
+    //     this.setState({
+    //         showPublishEvent: true
+    //     })
+    // }
 
 
     getEventListItems() {
@@ -114,30 +128,31 @@ class ActionBar extends Component {
 
     }
 
+
     render() {
         // const { publish } = this.props;
-        const { showDeleteEvent, showEditEvent, showPublishEvent } = this.state;
+        const { actionType, showEditEvent, showDefaultEvent } = this.state;
         return (
             <React.Fragment>
                 <ListGroup>
                     {this.getEventListItems()}
                 </ListGroup>
                 <Modal
-                    show={showPublishEvent}
+                    show={showDefaultEvent}
                     size="md"
                     aria-labelledby="xample-custom-modal-styling-title"
                     id="modalPublish"
                     centered
                 >
                     <Modal.Header id="modal_header">
-                        <Modal.Title id="modal_title"> PUBLISH EVENT </Modal.Title>
+                        <Modal.Title id="modal_title"> {actionType} EVENT </Modal.Title>
                     </Modal.Header>
                     <Modal.Body id="modalDeleteBody" >
-                        <PublishDialogBox close={this.closeModalPublishClicked} />
+                        <DefaultDialogBox close={this.closeDefaultDialogbox} actionType={actionType} />
 
                     </Modal.Body>
                 </Modal>
-                <Modal
+                {/* <Modal
                     show={showDeleteEvent}
                     size="md"
                     aria-labelledby="xample-custom-modal-styling-title"
@@ -151,7 +166,7 @@ class ActionBar extends Component {
                         <DeleteDialogBox close={this.closeModalDeleteClicked} />
 
                     </Modal.Body>
-                </Modal>
+                </Modal> */}
                 <Modal
                     show={showEditEvent}
                     size="lg"
