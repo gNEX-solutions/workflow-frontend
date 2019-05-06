@@ -35,7 +35,7 @@ class EventDescription extends Component {
       eventBudget,
       batch,
       eventCoordinatorDetails,
-      eventApprovedStatus
+      eventStatus
     } = this.props.event;
     const editedDate = moment(eventDate).format('Do MMMM');
     const editedTime = moment(eventStartTime, 'hh mm ss').format('hh mm A');
@@ -63,7 +63,7 @@ class EventDescription extends Component {
                 placement="left"
                 overlay={
                   <Popover id={`popover-positioned`}>
-                    <ActionBar status={eventApprovedStatus} />
+                    <ActionBar status={eventStatus} />
                   </Popover>
                 }
               >

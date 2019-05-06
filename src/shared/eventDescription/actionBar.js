@@ -6,35 +6,37 @@ import { ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
 import EditEventPannel from '../editEventComponent/editEvent';
 import { connect } from 'react-redux';
 import DefaultDialogBox from '../defaultDialogBox/defaultDialogBox';
+import { eventStatusEnums } from '../../enums/eventStatus';
+import { userDesignationEnum } from '../../enums/userDesignationsEnum';
 import './actionBar.css';
 
 
 const userTypes = [
     {
-        type: 'president',
+        type: userDesignationEnum.PRESIDENT,
         actions: ['publish', 'edit', 'rollback', 'delete']
     },
     {
-        type: 'co-ordinator',
+        type: userDesignationEnum.COORDINATOR,
         actions: ['edit']
     },
     {
-        type: 'hod',
+        type: userDesignationEnum.HOD,
         actions: ['approve', 'reject']
     }
 ]
 
 const eventStatuses = [
     {
-        type: 'pending',
+        type: eventStatusEnums.PENDING,
         actions: ['edit', 'approve', 'reject', 'delete']
     },
     {
-        type: 'approved',
+        type: eventStatusEnums.CONFIRMED,
         actions: ['rollback', 'delete', 'publish']
     },
     {
-        type: 'published',
+        type: eventStatusEnums.PUBLISHED,
         actions: ['delete']
     }
 
@@ -112,8 +114,8 @@ class ActionBar extends Component {
 
 
     getEventListItems() {
-        const { status, userType } = this.props;
-        const userActions = userTypes.filter((userType) => (userType.type === 'president'))[0].actions;
+        const { status, designtion } = this.props;
+        const userActions = userTypes.filter((userType) => (userType.type === designtion))[0].actions;
         const eventStatusActions = eventStatuses.filter((eventStatus) => (eventStatus.type === status))[0].actions;
         return userActions
             .filter(userAction => (eventStatusActions.includes(userAction)))
@@ -188,7 +190,7 @@ class ActionBar extends Component {
 
 
 const mapStateToProps = (state) => ({
-    userType: state.auth.user.designtion
+    designtion: state.auth.user.designtion
 });
 
 export default connect(mapStateToProps, {})(ActionBar);
