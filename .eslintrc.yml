@@ -1,0 +1,54 @@
+env:
+  browser: true
+  jest: true
+extends:
+  - react-app
+  - airbnb
+  - plugin:prettier/recommended
+  - prettier/react
+  - plugin:react/recommended
+  - eslint:recommended
+parser: babel-eslint
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+plugins:
+  - prettier
+  - react
+  - import
+  - eslint-plugin-prettier
+rules:
+  prettier/prettier:
+    - error
+    - singleQuote: true
+  react/jsx-filename-extension:
+    - error
+    - extensions:
+        - ".js"
+  linebreak-style: off
+  jsx-a11y/label-has-for: off
+  react/forbid-prop-types: warn
+  import/no-mutable-exports: off
+  react/jsx-pascal-case: error
+  react/prefer-stateless-function:
+    - error
+    - ignorePureComponents: true
+  arrow-body-style:
+    - warn
+    - as-needed
+  no-negated-condition: warn
+  no-var: error
+  prefer-const: error
+  jsx-a11y/label-has-associated-control: off
+  react/button-has-type: off
+  react/no-access-state-in-setstate: warn
+  react/sort-comp: warn
+  no-console: 1
+  indent: [error, 2]
+  max-len: [2, { code: 120, ignoreTrailingComments: true }]
+settings:
+  propWrapperFunctions:
+    - forbidExtraProps
+  # import/resolver:
+  #   webpack:
+  #     config: webpack.config.eslint.js

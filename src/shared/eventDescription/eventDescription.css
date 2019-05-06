@@ -1,0 +1,199 @@
+
+#header_container {
+  /* padding-top: 0rem;
+  margin-top: 0rem; */
+  max-width: 89%;
+}
+
+
+
+
+.col-3 {
+  white-space: nowrap;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 150px;
+  overflow: hidden;
+  text-overflow: clip;
+  color: #1cb1ac;
+}
+  
+.col-2 {
+  white-space: nowrap;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: clip;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #b1b1b1;
+}
+
+.col-1 {
+  white-space: nowrap;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: clip;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #b1b1b1;
+}
+/*****************  event header styling ***********/
+#event_name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  
+  padding-top: 1rem;
+  padding-left: -20px;
+  margin-left: -10px;
+  position: relative;
+  
+}
+
+#date12 {
+  font-size: 1.5rem;
+  /* size: 5rem; */
+  color: rgb(8, 102, 94);
+  font-weight: 500;
+  padding-top: 2.5rem;
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+
+}
+#time{
+  font-size: 1.5rem;
+  color: rgb(8, 102, 94);
+  font-weight: 500;
+  padding-top: 2.5rem;
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+}
+#venue {
+  font-size: 1.5rem;
+  color: rgb(8, 102, 94);
+  font-weight: 500;
+  padding-top: 2.5rem;
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+}
+#actionbarIcon{
+  font-size: 1.5rem;
+  font-weight: 900;
+  color:rgb(8, 102, 94);
+  
+}
+#actionbarContainer{
+  padding-top: 3rem;
+  padding-left: 4rem;
+  align-content: flex-end;
+}
+#header_row {
+  font-family: Poppins;
+  padding-left: 50px;
+  margin-left: -50px;
+  padding-bottom: 10px;
+  /* padding-top: 0rem;
+  margin-top: 0rem; */
+}
+
+
+/********************* end of event header styling  */
+
+
+/***************** event body  styling ***********/
+.eventInfo_text {
+  font-size: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  /* color: brown; */
+}
+
+
+.evenInfo_title {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #0b837f;
+}
+
+
+#description_row {
+  padding-left: 16px;
+  padding-right: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  /* color: bisque */
+}
+#detailed_description {
+  padding-left: 80px;
+  padding-right: 60px;
+  font-family: 'Courier New', Courier, monospace;
+   
+}
+
+#budget {
+  font-family: Poppins;
+  font-style: Bold;
+  color: #1cb1ac;
+  /* font-size: 10pt; */
+}
+#Coordinator {
+  margin-left: -50px;
+  margin-right: 50px;
+  /* color: #830b79; */
+}
+
+#footer {
+  font-family: Poppins;
+}
+
+/****************** end of event description body styling **********/
+
+
+
+
+
+#confirmpic {
+  position: relative;
+  bottom: -43px;
+  height: 18%;
+  width: 10%;
+}
+
+#icon_state {
+  padding-top: -20px;
+  padding-left: 10px;
+  position: relative;
+  top: -7px;
+  left: -46px;
+  margin-left: -10px;
+}
+
+
+
+
+
+/* p {
+  font-size: 10pt;
+} */
+
+#basic_info {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+
+hr {
+  border-top: 2px solid #b1b1b1;
+}
+
+/* action bar icon */
+#actionbarIcon{
+  font-size: 1.5rem;
+  font-weight: 900;
+  color:darkturquoise;
+  /* background-color: black; */
+}

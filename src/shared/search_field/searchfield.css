@@ -1,0 +1,26 @@
+.searchbar{
+    width: 100%;
+    border:1px solid gray;
+}
+
+.searchbarText input{
+    width: 100%;
+    padding: 10px 5px;
+    box-sizing: border-box;
+}
+
+.searchbarlist{
+    list-style: none;
+    text-align: left;
+    margin: 0;
+    padding: 10px 5px;
+    border-top: 1px solid gray;
+    cursor: pointer;
+}
+
+.searchbarlist:hover {
+    background-color: whitesmoke;
+}
+.resultItem :hover{
+    background-color: aqua;
+}

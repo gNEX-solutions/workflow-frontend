@@ -1,0 +1,13 @@
+#footer_main{
+    display: flex;
+    /* background-color: aqua; */
+    width: 100%;
+
+}
+
+#comments{
+    float: left;
+    padding-left: 0.5rem;
+    font-size: 1.25rem;
+    color: rgb(8, 102, 94);
+}
