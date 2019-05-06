@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AvatarComponent from './avatarComponent';
 import 'bootstrap/dist/css/bootstrap.css';
 import './approvalSection.css';
+import { eventInspectorEnums } from '../../enums/eventInspectorEnums';
 
 // commented by dinith : getting the data from the mock.js standered template
 // const ApprovedArray = [
@@ -36,7 +37,7 @@ class ApprovalSectionComponent extends Component {
   renderAvetarComponentApprove = () => {
     // change the logic to fetch data from the props : dinith 
 
-    const { eventApprovalInfo } = this.props.event;
+    const { eventInspectorDetails } = this.props.event;
     // const arr = [];
     // ApprovedArray.forEach((item, index) => {
     //   const key = index;
@@ -45,9 +46,9 @@ class ApprovalSectionComponent extends Component {
     //   );
     // });
 
-    return eventApprovalInfo
+    return eventInspectorDetails
       .filter(info => {
-        return info.status === 'A';
+        return info.status === eventInspectorEnums.APPROVED;
       })
       .map((info, index) => {
         return (
@@ -67,16 +68,16 @@ class ApprovalSectionComponent extends Component {
     //     <AvatarComponent key={key} Name={item.name} Title={item.title} />
     //   );
     // });
-    const { eventApprovalInfo } = this.props.event;
+    const { eventInspectorDetails } = this.props.event;
 
 
-    return eventApprovalInfo
+    return eventInspectorDetails
       .filter(info => {
-        return info.status === 'NA';
+        return info.status === eventInspectorEnums.PENDING;
       })
       .map((info, index) => {
         return (
-          <AvatarComponent key={index} Name={info.name} Title={info.title} />
+          <AvatarComponent key={index} Name={info.name} Title={info.designation} />
         );
       });
   };

@@ -4,7 +4,10 @@ import * as moment from 'moment';
 import './calenderComponent.css';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
 import { connect } from 'react-redux';
-import { selectEvent } from '../../store/actions/DashBoardActions';
+import {
+  selectEvent,
+  getMonthlyEvents
+} from '../../store/actions/DashBoardActions';
 import DateCompoent from './dateCompoent';
 import TableRowComponent from './tableRowComponent';
 
@@ -18,7 +21,9 @@ class CalenderCompoennt extends Component {
   };
   // changing the first day of the week to monday
 
-  weekDayHeaders = moment.weekdaysMin().map(weekday => <th className="table_header">{weekday}</th>);
+  weekDayHeaders = moment
+    .weekdaysMin()
+    .map(weekday => <th className="table_header">{weekday}</th>);
   daysInMonthAmount;
   firstDay; // return the first day of the month
   lastDay; // last day of the month
@@ -66,17 +71,32 @@ class CalenderCompoennt extends Component {
 
   /////////////////  event action functions ////////////////////
   yearItemSelected = year => {
+    const { getMonthlyEvents } = this.props;
+    const { month } = this.state;
+    const editedMonth = moment(month + 1, 'MM').format('MM');
+    getMonthlyEvents({
+      month: editedMonth,
+      year: year
+    });
     this.setState({
       year: year.toString()
     });
+    
     // console.log(this.state.year);
   };
   monthItemSelected = monthIndex => {
     const modifiedMonthIndex = parseInt(monthIndex) + 1;
+    const { year } = this.state;
+    const { getMonthlyEvents } = this.props;
+    getMonthlyEvents({
+      month: moment(modifiedMonthIndex, 'MM').format('MM'),
+      year: year
+    });
     this.setState({
       displayMonth: moment(modifiedMonthIndex, 'MM').format('MMMM'),
       month: monthIndex
     });
+    
   };
 
   render() {
@@ -181,5 +201,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  {}
+  { getMonthlyEvents }
 )(CalenderCompoennt);

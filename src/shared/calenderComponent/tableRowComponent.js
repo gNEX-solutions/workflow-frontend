@@ -15,7 +15,7 @@ class TableRowComponent extends Component {
   render() {
     const {
       eventDate,
-      eventApprovedStatus,
+      eventStatus,
       eventName,
       eventId
     } = this.props.info;
@@ -30,7 +30,7 @@ class TableRowComponent extends Component {
     return (
       <tr className={style} onClick={() => this.onEventClicked(eventId)}>
         <td id="eventInfo_date">{dateMoment.date()}</td>
-        <td>{eventApprovedStatus}</td>
+        <td>{eventStatus}</td>
         <td>{eventName}</td>
       </tr>
       // <p>dinith</p>

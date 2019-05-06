@@ -1,7 +1,7 @@
 export const eventStatusEnums = {
-    DONE: 'Done',
-    PUBLISHED: 'Published',
-    PENDING: 'Pending',
-    CONFIRMED: 'Approved',
-    REJECTED: 'Rejected'
+    DONE: 'DONE',
+    PUBLISHED: 'PUBLISHED',
+    PENDING: 'PENDING',
+    CONFIRMED: 'CONFIRMED',
+    REJECTED: 'REJECTED'
 }

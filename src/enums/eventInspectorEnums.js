@@ -1,5 +1,5 @@
 export const eventInspectorEnums = {
-    APPROVED: 'Approved',
-    REJECTED: 'Rejected',
-    PENDING: 'Pending'
+    APPROVED: 'APPROVED',
+    REJECTED: 'REJECTED',
+    PENDING: 'PENDING'
 }

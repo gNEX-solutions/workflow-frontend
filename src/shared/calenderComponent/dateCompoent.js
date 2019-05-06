@@ -10,12 +10,12 @@ import {
 import Avatar from 'react-avatar';
 import { connect } from 'react-redux';
 import * as moment from 'moment';
+import { eventStatusEnums } from '../../enums/eventStatus';
 import { selectEvent } from '../../store/actions/DashBoardActions';
 import './dateComponent.css';
 import imgPending from '../../img/pending.svg';
-import imgDeny from '../../img/deny.svg';
+import imgRejected from '../../img/deny.svg';
 import imgConfirmed from '../../img/confirmed.svg';
-
 
 class DateComponent extends Component {
   state = {};
@@ -40,16 +40,15 @@ class DateComponent extends Component {
     let icon;
     let style = 'default';
     if (eventInfo != undefined) {
-      if (eventInfo.eventApprovedStatus === 'PUBLISHED') {
+      if (eventInfo.eventStatus === eventStatusEnums.PUBLISHED) {
         icon = <FontAwesomeIcon icon={faCheckDouble} className="single_tick" />;
-      } else if (eventInfo.eventApprovedStatus === 'confirmed') {
+      } else if (eventInfo.eventStatus === eventStatusEnums.CONFIRMED) {
         // icon = <FontAwesomeIcon icon={faCheck} className="single_tick" />;
-        icon = <Avatar src={imgConfirmed} size="20" className="single_tick" />
-      } else if (eventInfo.eventApprovedStatus === 'pending') {
-        icon = (
-          // <FontAwesomeIcon icon={faExclamationTriangle} className="warning" />
-          <Avatar src={imgPending} size="20" className="warning" />
-        );
+        icon = <Avatar src={imgConfirmed} size="20" className="single_tick" />;
+      } else if (eventInfo.eventStatus === eventStatusEnums.PENDING) {
+        icon = <Avatar src={imgPending} size="20" className="warning" />;
+      } else if (eventInfo.eventStatus === eventStatusEnums.REJECTED) {
+        icon = <Avatar src={imgRejected} size="20" className="warning" />;
       } else {
         icon = <p id="dummy_para" />;
       }
@@ -73,22 +72,19 @@ class DateComponent extends Component {
           }}
           className={style}
         >
-
           <Row>
             {/* <Col className="col-3" /> */}
             <Col className="col-12">
               <p id="date"> {date}</p>
             </Col>
           </Row>
-          <Row >
+          <Row>
             <Col className="col-6" id="notIcon">
-
               {icon}
             </Col>
           </Row>
-
         </td>
-      </React.Fragment >
+      </React.Fragment>
     );
   }
 }
