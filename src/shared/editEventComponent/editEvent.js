@@ -5,19 +5,21 @@ import { Col, Row, Button, Form, InputGroup, Alert } from 'react-bootstrap';
 import './editEvent.css';
 
 import * as moment from 'moment';
-import { createEvent } from '../../store/actions/DashBoardActions';
+import { updateEvent } from '../../store/actions/DashBoardActions';
 // import sampleData from '../../services/sampleDataSet';
-import sampleDataSet from '../../services/sampleDataSet';
+// import sampleDataSet from '../../services/sampleDataSet';
 
 class EditEvent extends Component {
   state = {
     validated: false,
     showTimeAlert: false,
     showDateAlert: false,
+    eventId: '',
     eventName: 'im cricket match',
     venue: 'saibe grounds',
     timeFrom: '10:45',
     timeTo: '14:45',
+    eventStatus: '',
     date: '2019-04-29',
     // coordinatorName: '',
     // coordinatorImnum: '',
@@ -41,36 +43,44 @@ class EditEvent extends Component {
   // EventInfo = [];
 
   componentDidMount() {
-    const EventInfo = sampleDataSet.filter(event => event.eventId === 1);
+    const { selectedEventId, events } = this.props;
+    const EventInfo = events.filter(event => event.eventId === selectedEventId);
+    let coordinatorInfo = [];
     // console.log(EventInfo);
     const {
+      eventId,
       eventName,
       eventLocation,
       eventStartTime,
       eventEndTime,
       eventDate,
+      eventStatus,
       eventCoordinatorDetails,
       eventParticipants,
       eventBudget,
       eventDescription
     } = EventInfo[0];
+    coordinatorInfo = eventCoordinatorDetails.map(coordinator => ({
+      name: coordinator.name,
+      imNumber: coordinator.imNumber
+    }));
+    if (!coordinatorInfo[1]) {
+      coordinatorInfo.push({
+        name: '',
+        imNumber: ''
+      });
+    }
 
     this.setState({
+      eventId: eventId,
       eventName: eventName,
       venue: eventLocation,
       timeFrom: eventStartTime.substring(0, 5),
       timeTo: eventEndTime.substring(0, 5),
       date: eventDate.substring(0, 10),
-      coordinators: [
-        {
-          name: eventCoordinatorDetails[0].name,
-          imNumber: eventCoordinatorDetails[0].imNumber
-        },
-        {
-          name: eventCoordinatorDetails[1].name,
-          imNumber: eventCoordinatorDetails[1].imNumber
-        }
-      ],
+      eventStatus: eventStatus,
+      coordinators: coordinatorInfo,
+
       description: eventDescription,
       participants: eventParticipants,
       budget: eventBudget
@@ -78,13 +88,15 @@ class EditEvent extends Component {
   }
 
   updateEventClicked = event => {
-    // console.log('running');
+    console.log('running');
 
     const {
+      eventId,
       eventName,
       venue,
       timeFrom,
       timeTo,
+      eventStatus,
       date,
       coordinators,
       description,
@@ -97,11 +109,12 @@ class EditEvent extends Component {
     const dateMoment = moment(date, 'YYYY-MM-DD');
 
     const newEvent = {
+      eventId: eventId,
       eventName: eventName,
       eventDate: date,
       eventStartTime: timeFrom,
       eventEndTime: timeTo,
-      // eventStatus: this.EventInfo[0].eventStatus,
+      eventStatus: eventStatus,
       eventLocation: venue,
       eventCoordinatorDetails: [
         {
@@ -115,7 +128,7 @@ class EditEvent extends Component {
       ],
       eventParticipants: participants,
       eventBudget: budget,
-      eventDescription: description,
+      eventDescription: description
       // eventApprovedStatus: this.EventInfo[0].eventApprovedStatus,
       // eventCreatedAt: this.EventInfo[0].eventCreatedAt,
       // eventUpdatedAt: this.EventInfo[0].eventUpdatedAt
@@ -135,11 +148,13 @@ class EditEvent extends Component {
       });
       event.preventDefault();
       event.stopPropagation();
-    }
-    else {
-      const { createEvent } = this.props;
-      createEvent(newEvent);
-      this.props.close();
+    } else {
+      const { updateEvent } = this.props;
+
+      updateEvent(JSON.stringify(newEvent));
+      event.preventDefault();
+      event.stopPropagation();
+      // this.props.close();
     }
   };
 
@@ -216,7 +231,7 @@ class EditEvent extends Component {
         coordinators: [
           this.state.coordinators[0],
           {
-            name: this.state.coordinators[0].name,
+            name: this.state.coordinators[1].name,
             imNumber: 'IM/' + event.target.value
           }
         ]
@@ -250,6 +265,9 @@ class EditEvent extends Component {
       resources: event.target.value
     });
   };
+
+
+
   // end of caturing the value changes in the input fields
   render() {
     const { validated } = this.state;
@@ -369,6 +387,7 @@ class EditEvent extends Component {
 
                     <Form.Group controlId="formBasicCoordinators">
                       <Form.Label>Coordinators</Form.Label>
+                      {/* {this.getCoordinators()} */}
                       <Row className="coordinator_row">
                         <Col className="col-6">
                           <Form.Control
@@ -410,7 +429,7 @@ class EditEvent extends Component {
                               this.onCoordinatorNamechange(event, 1)
                             }
                             required
-                            value={coordinators[1].name}
+                            value={coordinators[1].name ? coordinators[1].name : ''}
                           />
                         </Col>
                         <Col className="col-6">
@@ -428,7 +447,7 @@ class EditEvent extends Component {
                                 this.onCoordinatorImnumChange(event, 1)
                               }
                               required
-                              value={coordinators[1].imNumber.substring(3)}
+                              value={coordinators[1].imNumber ? coordinators[1].imNumber.substring(3) : ''}
                             />
                           </InputGroup>
                         </Col>
@@ -478,7 +497,7 @@ class EditEvent extends Component {
                     onClick={this.updateEventClicked}
                   >
                     {' '}
-                    EditEvent Event{' '}
+                    Edit Event{' '}
                   </Button>
                   <Button
                     id="btnCancel_form"
@@ -496,8 +515,12 @@ class EditEvent extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  events: state.dashboard.events,
+  selectedEventId: state.dashboard.selectedEventId
+});
 
 export default connect(
-  null,
-  { createEvent }
+  mapStateToProps,
+  { updateEvent }
 )(EditEvent);

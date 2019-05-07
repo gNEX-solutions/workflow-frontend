@@ -44,6 +44,7 @@ export const getMonthlyEvents = data => (dispatch, history) => {
 };
 
 export const createEvent = data => (dispatch, history) => {
+  console.log(data);
   axios
     .post('eventapi/eventcreate', data)
     .then(res =>
@@ -57,6 +58,23 @@ export const createEvent = data => (dispatch, history) => {
     });
   // payload:
 };
+
+export const updateEvent = data => (dispatch, history) => {
+  console.log(data);
+  axios
+    .put('event/', data)
+    .then(res =>
+      dispatch({
+        type: CREATE_EVENT,
+        payload: res
+      })
+      // console.log(res)
+    )
+    .catch(err => {
+      console.log(err);
+    });
+  // payload:
+}
 
 export const getPastEvents = data => (dispatch, history) => {
   axios
