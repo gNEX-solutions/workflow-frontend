@@ -15,33 +15,30 @@ import {
 import moment from 'moment';
 // import SampleData from '../../services/sampleDataSet';
 import { connect } from 'react-redux';
+import { deleteEvent, updateEvent } from '../../store/actions/DashBoardActions';
+import { eventStatusEnums } from '../../enums/eventStatus';
+import { eventInspectorEnums } from "../../enums/eventInspectorEnums";
 
 import './defaultDialogBox.css';
 
 class DefaultDialogBox extends Component {
   state = {
-    eventName: '',
-    eventDate: '',
-    eventTime: '',
-    eventVenue: ''
+    eventInfo: {},
   };
   componentDidMount() {
     const { events, activeEventId } = this.props;
     const eventInfo = events.filter(event => event.eventId === activeEventId);
-    const {
-      eventName,
-      eventDate,
-      eventStartTime,
-      eventLocation
-    } = eventInfo[0];
+    // const {
+    //   eventName,
+    //   eventDate,
+    //   eventStartTime,
+    //   eventLocation
+    // } = eventInfo[0];
     // console.log(eventDate.substring(0, 10));
-    const dateMoment = moment(eventDate.substring(0, 10), 'YYYY-MM-DD');
-    const timeMoment = moment(eventStartTime, 'HH:mm:ss');
+    // const dateMoment = moment(eventDate.substring(0, 10), 'YYYY-MM-DD');
+    // const timeMoment = moment(eventStartTime, 'HH:mm:ss');
     this.setState({
-      eventName: eventName,
-      eventDate: dateMoment.format('Do MMMM'),
-      eventTime: timeMoment.format('HH:mm A'),
-      eventVenue: eventLocation
+      eventInfo: eventInfo[0]
     });
   }
   performAction = () => {
@@ -72,28 +69,99 @@ class DefaultDialogBox extends Component {
   };
 
   performDelete = () => {
-    alert('delete');
+    const { deleteEvent, activeEventId } = this.props;
+    deleteEvent(activeEventId);
+    // alert('delete');
   };
 
   performPublish = () => {
-    alert('piblish');
+    const { eventInfo } = this.state;
+    const { updateEvent } = this.props;
+    const modifiedEvent = {
+      ...eventInfo,
+      eventStatus: eventStatusEnums.PUBLISHED
+    };
+    // console.log(JSON.stringify(modifiedEvent));
+    updateEvent(JSON.stringify(modifiedEvent));
+    // alert('piblish');
   }
 
   performApprove = () => {
-    alert('approve');
+    // alert('approve');
+    const { eventInfo } = this.state;
+    const { updateEvent, user } = this.props;
+    let approvedCounter = 0;
+    let modifiedEvent = {};
+    const inspectorDetails = eventInfo.eventInspectorDetails.map((info) => {
+      if (info.status === eventInspectorEnums.APPROVED) {
+        approvedCounter++;
+      }
+      console.log(info.designation);
+      console.log(user);
+      if (info.designation === user) {
+        return {
+          name: info.name,
+          designation: info.designation,
+          status: eventInspectorEnums.APPROVED
+        };
+      }
+      else {
+        return info;
+      }
+    });
+    if (approvedCounter < 2) {
+      modifiedEvent = {
+        ...eventInfo,
+        eventInspectorDetails: inspectorDetails
+      }
+    }
+    else {
+      modifiedEvent = {
+        ...eventInfo,
+        eventStatus: eventStatusEnums.APPROVED,
+        eventInspectorDetails: inspectorDetails
+      }
+    }
+    updateEvent(JSON.stringify(modifiedEvent));
+
   }
 
   performReject = () => {
-    alert('reject');
+    const { eventInfo } = this.state;
+    const { updateEvent } = this.props;
+    const modifiedEvent = {
+      ...eventInfo,
+      eventStatus: eventStatusEnums.REJECTED
+    }
+    console.log(modifiedEvent);
+    updateEvent(JSON.stringify(modifiedEvent));
+    // alert('reject');
   }
 
   performRollback = () => {
-    alert('rollback');
+    const { eventInfo } = this.state;
+    const { updateEvent } = this.props;
+    // const inspectorDetails = updateEvent.eventInspectorDetails((info) => ({
+    //   name: info.name,
+    //   designation: info.designation,
+    //   status: eventInspectorEnums.PENDING
+    // }))
+    const modifiedEvent = {
+      ...eventInfo,
+      eventStatus: eventStatusEnums.PENDING,
+      eventInspectorDetails: []
+
+    }
+    // console.log(JSON.stringify(modifiedEvent));
+    updateEvent(JSON.stringify(modifiedEvent));
+    // alert('rollback');
   }
 
   render() {
-    const { eventName, eventDate, eventTime, eventVenue } = this.state;
+    const { eventName, eventDate, eventStartTime, eventLocation } = this.state.eventInfo;
     const { actionType } = this.props;
+    const dateMoment = moment(eventDate, 'YYYY-MM-DD');
+    const timeMoment = moment(eventStartTime, 'kk:mm')
     let actionButtonVariant = '';
     if (actionType === 'reject' || actionType === 'delete') {
       actionButtonVariant = 'danger';
@@ -130,12 +198,12 @@ class DefaultDialogBox extends Component {
                 <Col md="auto">
                   <div>
                     <h6>{eventName}</h6>
-                    <h6>{eventDate}</h6>
+                    <h6>{dateMoment.format('Do MMMM')}</h6>
                     <h6>
-                      {eventTime}
+                      {timeMoment.format('h:mm A')}
                       <span> &nbsp; onwards </span>
                     </h6>
-                    <h6>@{eventVenue}</h6>
+                    <h6>@ &nbsp; {eventLocation}</h6>
                   </div>
                 </Col>
               </Row>
@@ -162,10 +230,11 @@ class DefaultDialogBox extends Component {
 }
 const mapStateToProps = state => ({
   events: state.dashboard.events,
-  activeEventId: state.dashboard.selectedEventId
+  activeEventId: state.dashboard.selectedEventId,
+  user: state.auth.user.designtion
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  { deleteEvent, updateEvent }
 )(DefaultDialogBox);

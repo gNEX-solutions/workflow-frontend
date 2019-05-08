@@ -23,7 +23,7 @@ export const getEvent = data => (dispatch, history) => {
   // payload:
 };
 export const getMonthlyEvents = data => (dispatch, history) => {
-  console.log(data)
+  console.log(data);
   axios
     .get('event/filter?', {
       params: {
@@ -63,18 +63,36 @@ export const updateEvent = data => (dispatch, history) => {
   console.log(data);
   axios
     .put('event/', data)
-    .then(res =>
-      dispatch({
-        type: CREATE_EVENT,
-        payload: res
-      })
-      // console.log(res)
+    .then(
+      res =>
+        // dispatch({
+        //   type: CREATE_EVENT,
+        //   payload: res
+        // })
+      console.log(res)
     )
     .catch(err => {
       console.log(err);
     });
   // payload:
-}
+};
+
+export const deleteEvent = data => (dispatch, history) => {
+  console.log(data);
+  axios
+    .delete('event/' + data)
+    .then(res =>
+      //   dispatch({
+      //     type: CREATE_EVENT,
+      //     payload: res
+      //   })
+      console.log(res)
+    )
+    .catch(err => {
+      console.log(err);
+    });
+  // payload:
+};
 
 export const getPastEvents = data => (dispatch, history) => {
   axios

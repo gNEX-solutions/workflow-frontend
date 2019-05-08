@@ -14,7 +14,7 @@ import './actionBar.css';
 const userTypes = [
     {
         type: userDesignationEnum.PRESIDENT,
-        actions: ['publish', 'edit', 'rollback', 'delete']
+        actions: ['publish', 'edit', 'rollback', 'delete', 'reject' , 'approve']
     },
     {
         type: userDesignationEnum.COORDINATOR,
@@ -37,6 +37,10 @@ const eventStatuses = [
     },
     {
         type: eventStatusEnums.PUBLISHED,
+        actions: ['delete']
+    },
+    {
+        type: eventStatusEnums.REJECTED,
         actions: ['delete']
     }
 
