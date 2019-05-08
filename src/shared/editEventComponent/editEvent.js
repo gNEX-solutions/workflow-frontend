@@ -20,6 +20,7 @@ class EditEvent extends Component {
     timeFrom: '10:45',
     timeTo: '14:45',
     eventStatus: '',
+    batch: '1',
     date: '2019-04-29',
     // coordinatorName: '',
     // coordinatorImnum: '',
@@ -102,6 +103,7 @@ class EditEvent extends Component {
       description,
       participants,
       budget,
+      batch,
       resources
     } = this.state;
     const timeFromMoment = moment(timeFrom, 'HH:mm');
@@ -116,6 +118,7 @@ class EditEvent extends Component {
       eventEndTime: timeTo,
       eventStatus: eventStatus,
       eventLocation: venue,
+      eventBatch: batch,
       eventCoordinatorDetails: [
         {
           imNumber: coordinators[0].imNumber,
@@ -152,9 +155,9 @@ class EditEvent extends Component {
       const { updateEvent } = this.props;
 
       updateEvent(JSON.stringify(newEvent));
-      event.preventDefault();
-      event.stopPropagation();
-      // this.props.close();
+      // event.preventDefault();
+      // event.stopPropagation();
+      this.props.close();
     }
   };
 
@@ -242,6 +245,13 @@ class EditEvent extends Component {
     //   });
   };
 
+  onBatchchange = event => {
+    // alert(event.target.value);
+    this.setState({
+      batch: event.target.value
+    });
+  };
+
   onDescrptionChange = event => {
     this.setState({
       description: event.target.value
@@ -266,8 +276,6 @@ class EditEvent extends Component {
     });
   };
 
-
-
   // end of caturing the value changes in the input fields
   render() {
     const { validated } = this.state;
@@ -281,6 +289,7 @@ class EditEvent extends Component {
       description,
       participants,
       budget,
+      batch,
       resources
     } = this.state;
     // console.log(sampleDataSet);
@@ -429,7 +438,9 @@ class EditEvent extends Component {
                               this.onCoordinatorNamechange(event, 1)
                             }
                             required
-                            value={coordinators[1].name ? coordinators[1].name : ''}
+                            value={
+                              coordinators[1].name ? coordinators[1].name : ''
+                            }
                           />
                         </Col>
                         <Col className="col-6">
@@ -447,11 +458,31 @@ class EditEvent extends Component {
                                 this.onCoordinatorImnumChange(event, 1)
                               }
                               required
-                              value={coordinators[1].imNumber ? coordinators[1].imNumber.substring(3) : ''}
+                              value={
+                                coordinators[1].imNumber
+                                  ? coordinators[1].imNumber.substring(3)
+                                  : ''
+                              }
                             />
                           </InputGroup>
                         </Col>
                       </Row>
+                    </Form.Group>
+
+                    {/* batch  */}
+
+                    <Form.Group controlId="formBasicBatch">
+                      <Form.Label>Batch</Form.Label>
+                      <Form.Control
+                        as="select"
+                        onChange={this.onBatchchange}
+                        value={batch}
+                      >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </Form.Control>
                     </Form.Group>
 
                     {/* description*/}

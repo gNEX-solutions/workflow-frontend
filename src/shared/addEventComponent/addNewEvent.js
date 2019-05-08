@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import "bootstrap/dist/css/bootstrap.css";
-import { Col, Row, Button, Form, InputGroup, Alert } from 'react-bootstrap';
+import { Col, Row, Button, Form, InputGroup, Alert, FormGroup, FormLabel } from 'react-bootstrap';
 import './newEvent.css';
 
 import { createEvent } from '../../store/actions/DashBoardActions';
@@ -17,6 +17,7 @@ class addNewEvent extends Component {
     timeFrom: null,
     timeTo: null,
     date: null,
+    batch: null,
     // coordinatorName: '',
     // coordinatorImnum: '',
     validated: false,
@@ -51,6 +52,7 @@ class addNewEvent extends Component {
       description,
       participants,
       budget,
+      batch,
       resources
     } = this.state;
     const timeFromMoment = moment(timeFrom, 'HH:mm');
@@ -59,23 +61,15 @@ class addNewEvent extends Component {
 
     const newEvent = {
       eventName: eventName,
-      eventDate: '2019-05-15 14:40:02',
-      eventStartTime: '08:00:00',
-      eventEndTime: '11:00:00',
-      eventStatus: 'OK',
+      eventDate: date,
+      eventStartTime: timeFrom,
+      eventEndTime: timeTo,
       eventLocation: venue,
-      eventCoordinatorDetails: [
-        {
-          imNumber: 'IM/2019/043',
-          name: 'kasun'
-        }
-      ],
-      eventParticipants: 'ALL',
+      eventCoordinatorDetails: coordinators,
+      eventBatch: batch,
+      eventParticipants: participants,
       eventBudget: budget,
-      eventDescription: description,
-      eventApprovedStatus: 'OK',
-      eventCreatedAt: '2019-02-15T09:10:02.000+0000',
-      eventUpdatedAt: '2019-02-15T09:10:02.000+0000'
+      eventDescription: description
     };
 
     // console.log(timeFromMoment.isAfter(timeToMoment));
@@ -96,6 +90,8 @@ class addNewEvent extends Component {
     else {
       const { createEvent } = this.props;
       createEvent(newEvent);
+      event.preventDefault();
+      event.stopPropagation();
       this.props.onCancel();
     }
   };
@@ -163,7 +159,7 @@ class addNewEvent extends Component {
         coordinators: [
           {
             name: this.state.coordinators[0].name,
-            imNumber: event.target.value
+            imNumber: 'IM/' + event.target.value
           },
           this.state.coordinators[1]
         ]
@@ -174,7 +170,7 @@ class addNewEvent extends Component {
           this.state.coordinators[0],
           {
             name: this.state.coordinators[0].name,
-            imNumber: event.target.value
+            imNumber: 'IM/' + event.target.value
           }
         ]
       });
@@ -183,6 +179,13 @@ class addNewEvent extends Component {
     //     coordinatorImnum: 'IM/' + event.target.value
     //   });
   };
+
+  onBatchchange = event => {
+    // alert(event.target.value);
+    this.setState({
+      batch: event.target.value
+    });
+  }
 
   onDescrptionChange = event => {
     this.setState({
@@ -370,7 +373,20 @@ class addNewEvent extends Component {
                       </Row>
                     </Form.Group>
 
-                    {/* Coodinators*/}
+                    {/* batch  */}
+
+                    <Form.Group controlId="formBasicBatch">
+                      <Form.Label>Batch</Form.Label>
+                      <Form.Control as="select" onChange={this.onBatchchange}>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </Form.Control>
+                    </Form.Group>
+
+
+                    {/* Description*/}
                     <Form.Group controlId="formBasicDescription">
                       <Form.Label>Description</Form.Label>
                       <Form.Control
