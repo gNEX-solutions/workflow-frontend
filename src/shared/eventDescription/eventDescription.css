@@ -88,7 +88,10 @@
 }
 #actionbarContainer{
   padding-top: 3rem;
-  padding-left: 4rem;
+  padding-right: -2rem;
+  padding-left: 5%;
+  /* margin-right: 0rem; */
+  /* margin-left: 2.8rem; */
   align-content: flex-end;
 }
 #header_row {

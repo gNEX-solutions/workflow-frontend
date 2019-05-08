@@ -3,6 +3,8 @@ import { Row, Col, OverlayTrigger, Popover } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import ActionBar from './actionBar';
+import Avatar from 'react-avatar';
+import imgActionBar from '../../img/imgActionBar.svg';
 import './eventDescription.css';
 import * as moment from 'moment';
 
@@ -14,11 +16,11 @@ class EventDescription extends Component {
     // eslint-disable-next-line no-negated-condition
     if (eventCoordinatorDetails[1] != undefined) {
       return (
-        <p className="eventInfo_text" >
+        <p className="eventInfo_text">
           &nbsp; &nbsp; {eventCoordinatorDetails[1].name} &nbsp; &nbsp;
           {eventCoordinatorDetails[1].imNumber}
-        </p>);
-
+        </p>
+      );
     } else {
       return '';
     }
@@ -67,7 +69,8 @@ class EventDescription extends Component {
                   </Popover>
                 }
               >
-                <FontAwesomeIcon icon={faEllipsisH} id="actionbarIcon" />
+                {/* <FontAwesomeIcon icon={faEllipsisH} id="actionbarIcon" /> */}
+                <Avatar src={imgActionBar} size="30" />
               </OverlayTrigger>
             </Col>
           </Row>
@@ -92,7 +95,7 @@ class EventDescription extends Component {
                 {this.getSecondcoordinatorDetials()}
               </Col>
               <p className="eventInfo_text">
-                <strong className="evenInfo_title">Participants -</strong> {' '}
+                <strong className="evenInfo_title">Participants -</strong>{' '}
                 {eventParticipants}
               </p>
               <Col className="col-4" />

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment } from '@fortawesome/free-solid-svg-icons';
+// import { faComment } from '@fortawesome/free-solid-svg-icons';
+import Avatar from 'react-avatar';
+import imgComments from "../../img/imgComments.svg";
 import './calenderFooter.css';
 
 class CalenderFooter extends Component {
@@ -24,7 +26,8 @@ class CalenderFooter extends Component {
             </Row> */}
           </Col>
           <Col className="col-1" id="comments">
-            <FontAwesomeIcon icon={faComment} size="2x" />
+            {/* <FontAwesomeIcon icon={faComment} size="2x" /> */}
+            <Avatar src={imgComments} size='50' />
             {/* <p>dinth</p> */}
           </Col>
         </Row>
