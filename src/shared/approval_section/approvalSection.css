@@ -1,5 +1,6 @@
 .ApprovalSection {
   display: flex;
+  font-family: 'Poppins';
   
 }
 
@@ -12,7 +13,7 @@
   padding-bottom: 2rem;
   padding-top: 1rem;
   /* padding: 40px; */
-  font-family: Poppins;
+  font-family: 'Poppins';
   font-size: 10pt;
   border-radius: 6px;
   max-width: 87.5%;
@@ -22,7 +23,7 @@
   font-weight: 900;
   color:  #0b837f;
   font-size: 1rem;
-  font-family: 'Courier New', Courier, monospace;
+  /* font-family: 'Courier New', Courier, monospace; */
 }
 
 img {

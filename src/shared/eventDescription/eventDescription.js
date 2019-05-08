@@ -76,13 +76,13 @@ class EventDescription extends Component {
             <Row id="basic_info_row">
               <Col className="col-4">
                 <p className="eventInfo_text">
-                  <strong className="evenInfo_title">Organised by :</strong>{' '}
+                  <strong className="evenInfo_title">Organised by -</strong>{' '}
                   Year {batch}
                 </p>
               </Col>
               <Col className="col-4">
                 <p className="eventInfo_text">
-                  <strong className="evenInfo_title">Coordinators :</strong>
+                  <strong className="evenInfo_title">Coordinators -</strong>
                 </p>
                 <p className="eventInfo_text">
                   &nbsp; &nbsp; {eventCoordinatorDetails[0].name} &nbsp; &nbsp;{' '}
@@ -92,7 +92,7 @@ class EventDescription extends Component {
                 {this.getSecondcoordinatorDetials()}
               </Col>
               <p className="eventInfo_text">
-                <strong className="evenInfo_title">Participants</strong> :{' '}
+                <strong className="evenInfo_title">Participants -</strong> {' '}
                 {eventParticipants}
               </p>
               <Col className="col-4" />
@@ -100,7 +100,7 @@ class EventDescription extends Component {
 
             <Row id="description_row">
               <p id="description" className="eventInfo_text">
-                <strong className="evenInfo_title">Description : </strong>
+                <strong className="evenInfo_title">Description - </strong>
               </p>
               <p id="detailed_description" className="eventInfo_text">
                 {eventDescription}
@@ -111,7 +111,7 @@ class EventDescription extends Component {
               <Col className="col-8" />
               <Col className="col-4">
                 <p className="eventInfo_text">
-                  <strong className="evenInfo_title"> Budget </strong> : Rs{' '}
+                  <strong className="evenInfo_title"> Budget </strong> - Rs{' '}
                   {eventBudget}
                 </p>
               </Col>

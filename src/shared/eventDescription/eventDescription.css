@@ -3,6 +3,7 @@
   /* padding-top: 0rem;
   margin-top: 0rem; */
   max-width: 89%;
+  font-family: 'Poppins';
 }
 
 
@@ -43,10 +44,10 @@
 }
 /*****************  event header styling ***********/
 #event_name {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 800;
-  
-  padding-top: 1rem;
+  font-family: 'Poppins';
+  padding-top: 2.5rem;
   padding-left: -20px;
   margin-left: -10px;
   position: relative;
@@ -54,28 +55,28 @@
 }
 
 #date12 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   /* size: 5rem; */
   color: rgb(8, 102, 94);
   font-weight: 500;
-  padding-top: 2.5rem;
+  padding-top: 3.25rem;
   padding-bottom: 0rem;
   margin-bottom: 0rem;
 
 }
 #time{
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: rgb(8, 102, 94);
   font-weight: 500;
-  padding-top: 2.5rem;
+  padding-top: 3.25rem;
   padding-bottom: 0rem;
   margin-bottom: 0rem;
 }
 #venue {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: rgb(8, 102, 94);
   font-weight: 500;
-  padding-top: 2.5rem;
+  padding-top: 3.25rem;
   padding-bottom: 0rem;
   margin-bottom: 0rem;
 }
@@ -106,7 +107,7 @@
 /***************** event body  styling ***********/
 .eventInfo_text {
   font-size: 1rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Poppins';
   /* color: brown; */
 }
 
@@ -121,13 +122,13 @@
 #description_row {
   padding-left: 16px;
   padding-right: 10px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Poppins';
   /* color: bisque */
 }
 #detailed_description {
   padding-left: 80px;
   padding-right: 60px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Poppins';
    
 }
 
