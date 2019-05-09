@@ -1,21 +1,78 @@
+/* eslint-disable react/sort-comp */
 /* eslint-disable prettier/prettier */
 /* eslint-disable indent */
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
-import DeleteDialogBox from '../deleteDialogBox/deleteDialogBox';
 import EditEventPannel from '../editEventComponent/editEvent';
-import publishDialogBox from '../publishDialogBox/publishDialogBox';
+import { connect } from 'react-redux';
+import DefaultDialogBox from '../defaultDialogBox/defaultDialogBox';
 import './actionBar.css';
-import PublishDialogBox from '../publishDialogBox/publishDialogBox';
+
+
+const userTypes = [
+    {
+        type: 'president',
+        actions: ['publish', 'edit', 'rollback', 'delete']
+    },
+    {
+        type: 'co-ordinator',
+        actions: ['edit']
+    },
+    {
+        type: 'hod',
+        actions: ['approve', 'reject']
+    }
+]
+
+const eventStatuses = [
+    {
+        type: 'pending',
+        actions: ['edit', 'approve', 'reject', 'delete']
+    },
+    {
+        type: 'approved',
+        actions: ['rollback', 'delete', 'publish']
+    },
+    {
+        type: 'published',
+        actions: ['delete']
+    }
+
+]
 
 class ActionBar extends Component {
     state = {
         showDeleteEvent: false,
         showEditEvent: false,
-        showPublishEvent: false
+        showDefaultEvent: false,
+        actionType: ''
     };
 
+    actionButtonClicked = (actionType) => {
+        // console.log(clickEvent);
+        switch (actionType) {
+            case 'edit':
+                this.editEventClicked()
+                break;
+            default:
+                this.openDefaultDialogBox(actionType)
+                break;
+        }
+    }
 
+    openDefaultDialogBox = (actionType) => {
+        this.setState({
+            showDefaultEvent: true,
+            actionType: actionType
+        })
+    }
+
+    closeDefaultDialogbox = () => {
+        this.setState({
+            showDefaultEvent: false,
+            actionType: ''
+        })
+    }
 
     closeModalDeleteClicked = () => {
 
@@ -41,50 +98,59 @@ class ActionBar extends Component {
         });
     };
 
-    closeModalPublishClicked = () => {
-        this.setState({
-            showPublishEvent: false
-        })
+    // closeModalPublishClicked = () => {
+    //     this.setState({
+    //         showPublishEvent: false
+    //     })
+    // }
+
+    // publishEventclicked = () => {
+    //     this.setState({
+    //         showPublishEvent: true
+    //     })
+    // }
+
+
+    getEventListItems() {
+        const { status, userType } = this.props;
+        const userActions = userTypes.filter((userType) => (userType.type === 'president'))[0].actions;
+        const eventStatusActions = eventStatuses.filter((eventStatus) => (eventStatus.type === status))[0].actions;
+        return userActions
+            .filter(userAction => (eventStatusActions.includes(userAction)))
+            .map(resultAction => (
+                <ListGroupItem key={resultAction} className="actionItem"
+                    onClick={() => this.actionButtonClicked(resultAction)}>
+                    {resultAction}
+                </ListGroupItem>
+            ));
+
     }
 
-    publishEventclicked = () => {
-        this.setState({
-            showPublishEvent: true
-        })
-    }
 
     render() {
-        const { publish } = this.props;
-        const { showDeleteEvent, showEditEvent, showPublishEvent } = this.state;
+        // const { publish } = this.props;
+        const { actionType, showEditEvent, showDefaultEvent } = this.state;
         return (
             <React.Fragment>
                 <ListGroup>
-                    <ListGroupItem disabled={!publish} onClick={this.publishEventclicked}> publish </ListGroupItem>
-                    <ListGroupItem onClick={this.editEventClicked} id="editEvent">
-                        {' '}
-                        Edit Event{' '}
-                    </ListGroupItem>
-                    <ListGroupItem variant="danger" onClick={this.deleteEventClicked}>
-                        {' '}
-                        Delete Event{' '}
-                    </ListGroupItem>
+                    {this.getEventListItems()}
                 </ListGroup>
                 <Modal
-                    show={showPublishEvent}
+                    show={showDefaultEvent}
                     size="md"
                     aria-labelledby="xample-custom-modal-styling-title"
                     id="modalPublish"
                     centered
                 >
                     <Modal.Header id="modal_header">
-                        <Modal.Title id="modal_title"> PUBLISH EVENT </Modal.Title>
+                        <Modal.Title id="modal_title"> {actionType} Event </Modal.Title>
                     </Modal.Header>
                     <Modal.Body id="modalDeleteBody" >
-                        <PublishDialogBox close={this.closeModalPublishClicked} />
+                        <DefaultDialogBox close={this.closeDefaultDialogbox} actionType={actionType} />
 
                     </Modal.Body>
                 </Modal>
-                <Modal
+                {/* <Modal
                     show={showDeleteEvent}
                     size="md"
                     aria-labelledby="xample-custom-modal-styling-title"
@@ -98,7 +164,7 @@ class ActionBar extends Component {
                         <DeleteDialogBox close={this.closeModalDeleteClicked} />
 
                     </Modal.Body>
-                </Modal>
+                </Modal> */}
                 <Modal
                     show={showEditEvent}
                     size="lg"
@@ -119,4 +185,10 @@ class ActionBar extends Component {
     }
 }
 
-export default ActionBar;
+
+
+const mapStateToProps = (state) => ({
+    userType: state.auth.user.designtion
+});
+
+export default connect(mapStateToProps, {})(ActionBar);

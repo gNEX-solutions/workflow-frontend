@@ -23,7 +23,7 @@ export const events = [
     eventParticipants: 'ALL',
     eventBudget: '2000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'APPROVED',
+    eventApprovedStatus: 'approved',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',
@@ -63,7 +63,7 @@ export const events = [
     eventParticipants: 'ALL',
     eventBudget: '4000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'PUBLISHED',
+    eventApprovedStatus: 'published',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',
@@ -103,7 +103,7 @@ export const events = [
     eventParticipants: 'ALL',
     eventBudget: '6000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'PENDING',
+    eventApprovedStatus: 'pending',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',
@@ -143,7 +143,7 @@ export const events = [
     eventParticipants: 'ALL',
     eventBudget: '8000',
     eventDescription: 'zero',
-    eventApprovedStatus: 'APPROVED',
+    eventApprovedStatus: 'approved',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',
@@ -184,7 +184,7 @@ export const events = [
     eventBudget: '10000',
     eventDescription:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam risus neque, suscipit luctus eros eu, suscipit malesuada felis. Donec convallis aliquet urna, quis lacinia eros volutpat nec. Integer ',
-    eventApprovedStatus: 'PENDING',
+    eventApprovedStatus: 'pending',
     eventApprovalInfo: [
       {
         name: 'Dr. Ruwan wickramarachchi',
@@ -202,6 +202,29 @@ export const events = [
         status: 'A'
       }
     ],
+    eventCreatedAt: '2019-04-02T10:31:58.000+0000',
+    eventUpdatedAt: '2019-04-02T10:31:58.000+0000'
+  },
+  {
+    eventId: 5,
+    eventName: 'special party',
+    eventDate: '2019-05-15 14:40:02',
+    eventStartTime: '08:00:00',
+    eventEndTime: '11:00:00',
+    eventStatus: 'OK',
+    eventLocation: 'DIM',
+    eventCoordinatorDetails: [
+      {
+        imNumber: 'IM/2019/043',
+        name: 'kasun',
+        coordinatorUId: 18
+      }
+    ],
+    eventParticipants: 'ALL',
+    eventBudget: '2000',
+    eventDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam risus neque, suscipit luctus eros eu, suscipit malesuada felis. Donec convallis aliquet urna, quis lacinia eros volutpat nec. Integer ',
+    eventApprovedStatus: 'OK',
     eventCreatedAt: '2019-04-02T10:31:58.000+0000',
     eventUpdatedAt: '2019-04-02T10:31:58.000+0000'
   }
@@ -256,3 +279,37 @@ export const past = [
     eventUpdatedAt: '2019-04-02T10:31:58.000+0000'
   }
 ];
+
+export const explorer = [
+  {
+    eventId: 7,
+    eventName: 'Exposition',
+    eventDate: '2019-04-15 14:40:02',
+    batch: '2'
+  },
+  {
+    eventId: 9,
+    eventName: 'IMSSA agm',
+    eventDate: '2019-03-15 14:40:02',
+    batch: '1'
+  },
+  {
+    eventId: 11,
+    eventName: 'welcome',
+    eventDate: '2019-04-15 14:40:02',
+    batch: '2'
+  },
+  {
+    eventId: 13,
+    eventName: 'piritha',
+    eventDate: '2019-05-15 14:40:02',
+    batch: '3'
+  },
+  {
+    eventId: 17,
+    eventName: 'special party',
+    eventDate: '2019-04-15 14:40:02',
+    batch: '4'
+  },
+]
+

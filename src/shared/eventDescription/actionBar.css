@@ -10,3 +10,16 @@
     color:rgb(5, 5, 5);
     align-items: flex-start;
 }
+#modal_header{
+    text-align: center;
+    padding-left: 30%;
+}
+
+.actionItem{
+    background-color: whitesmoke;
+}
+
+.actionItem:hover{
+    background-color: #1CB1AC;
+    cursor: pointer;
+}

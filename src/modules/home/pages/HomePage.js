@@ -51,7 +51,7 @@ class HomePage extends React.Component {
 
   renderCalendarView = () => <CalenderSection />;
 
-  renderExplorerView = () => <EventExplorer />;
+  renderExplorerView = () => <EventExplorer onEventCalendarPress={this.handleEventCalendarPress} />;
 
   renderHistoryView = () => (
     <History onEventCalendarPress={this.handleEventCalendarPress} />

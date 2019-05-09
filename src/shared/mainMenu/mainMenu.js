@@ -4,9 +4,12 @@ import { Col, Button, Modal } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
+
 import AddNewEventComponent from '../addEventComponent/addNewEvent';
 
 import './mainMenu.css';
+import SearchFieldComponent from "../search_field/searchfieldComponent";
+import events from './serachEventService.js'
 
 class MainMenuComponent extends Component {
   state = {
@@ -99,7 +102,7 @@ class MainMenuComponent extends Component {
               onClick={this.addNewEventClicked}
             >
               <FontAwesomeIcon icon={faPlusCircle} size="2x" />
-              &nbsp; &nbsp; New Event
+              &nbsp; &nbsp;Add New Event
             </Button>
           </Col>
           <Col className="col-2" id="calender">
@@ -110,7 +113,7 @@ class MainMenuComponent extends Component {
                 className="menuOption"
               >
                 <h3>
-                  <span className=" " id={calenderStatus}>
+                  <span className=" " id="calenderMenu">
                     Event Calender
                   </span>
                 </h3>
@@ -126,7 +129,7 @@ class MainMenuComponent extends Component {
                 className="menuOption"
               >
                 <h3>
-                  <span className="" id={eventExpStatus}>
+                  <span className="" id="explorerMenu">
                     Event Explorer
                   </span>
                 </h3>
@@ -142,15 +145,21 @@ class MainMenuComponent extends Component {
                 className="menuOption"
               >
                 <h3>
-                  <span className="" id={historyStatus}>
+                  <span className="" id="histroyMenu">
                     History
                   </span>
                 </h3>
               </button>
             </div>
           </Col>
+          <div>
+            {/* dumindu's code pasted  */}
+            <div className="searchFieldComponent">
+              <SearchFieldComponent />
+            </div>
+          </div>
 
-          <Col className="col-2" id="search_box">
+          {/* <Col className="col-2" id="search_box">
             <div className="input-group mb-3" id="search_group">
               <input
                 type="text"
@@ -171,9 +180,65 @@ class MainMenuComponent extends Component {
                 </button>
               </div>
             </div>
-          </Col>
+          </Col> */}
         </div>
       </React.Fragment>
+
+
+      //   <Col className="col-1">
+
+      //   </Col>
+
+      //   <Col className="col-2">
+      //     <Button variant="success" id="add_button" >
+
+      //       <FontAwesomeIcon icon={faPlusCircle} size="2x" />
+
+      //       &nbsp; &nbsp;  New Event
+
+
+
+      //     </Button>
+      //   </Col >
+      //   <Col className="col-2" id="calender">
+      //     <div className={this.state.calenderStatus}>
+      //       <Link to={"/calender"} onClick={this.calenderCicked} >
+      //         <h3>
+      //           <span className="badge badge-light" id={this.state.calenderStatus}>Event Calender</span>
+      //         </h3>
+      //       </Link>
+      //     </div>
+
+      //   </Col>
+      //   <Col className="col-2" id="explorer">
+      //     <div id={this.state.eventExpStatus}>
+      //       <Link to={"/eventExp"} onClick={this.eventExpClicked}>
+      //         <h3>
+      //           <span className="badge badge-light" id={this.state.eventExpStatus}>Event Explorer</span>
+      //         </h3>
+      //       </Link>
+
+      //     </div>
+      //   </Col>
+      //   <Col className="col-2" id="history">
+      //     <div className={this.state.historyStatus}>
+      //       <Link to={"/history"} >
+      //         <h3>
+      //           <span className="badge badge-light" id="active">History</span>
+      //         </h3>
+      //       </Link>
+      //     </div>
+      //   </Col>
+      //   <div>
+      //     <div className="searchFieldComponent">
+      //       <SearchFieldComponent items={events}/>
+      //     </div>
+      //   </div>
+
+
+
+
+      // </React.Fragment >
     );
   }
 }
