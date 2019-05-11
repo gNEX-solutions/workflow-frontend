@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Button, Modal } from 'react-bootstrap';
-
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
-import AddNewEventComponent from '../addEventComponent/addNewEvent';
 
+import AddNewEventComponent from '../addEventComponent/addNewEvent';
+import { setSerchOverlay } from '../../store/actions/DashBoardActions';
 import './mainMenu.css';
+
+import SearchFieldComponent from '../search_field/searchfieldComponent';
+import events from './serachEventService.js';
 
 class MainMenuComponent extends Component {
   state = {
@@ -45,7 +49,9 @@ class MainMenuComponent extends Component {
   };
 
   searchButtonClicked = () => {
-    // alert('search btn clicked');
+    const { setSerchOverlay, onSearchPress } = this.props;
+    setSerchOverlay(false);
+    onSearchPress();
     console.log('search btn clicked');
   };
 
@@ -71,12 +77,15 @@ class MainMenuComponent extends Component {
       historyStatus: ''
     });
   }
+  hideOverlays = () => {
+    this.props.setSerchOverlay(false);
+  }
 
   render() {
     const { calenderStatus, eventExpStatus, historyStatus } = this.state;
     return (
       <React.Fragment>
-        <div className="row menuOuter">
+        <div className="row menuOuter" onClick={this.hideOverlays}>
           <Modal
             show={this.state.showAddNewEvent}
             size="lg"
@@ -149,8 +158,26 @@ class MainMenuComponent extends Component {
               </button>
             </div>
           </Col>
+          <div>
+            {/* dumindu's code pasted  */}
+            <div className="searchFieldComponent">
+              <SearchFieldComponent
+                onEventCalendarPress={this.props.onEventCalendarPress}
+              />
+            </div>
+          </div>
+          <div className="input-group-append">
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              id="button-search"
+              onClick={this.searchButtonClicked}
+            >
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </div>
 
-          <Col className="col-2" id="search_box">
+          {/* <Col className="col-2" id="search_box">
             <div className="input-group mb-3" id="search_group">
               <input
                 type="text"
@@ -171,11 +198,14 @@ class MainMenuComponent extends Component {
                 </button>
               </div>
             </div>
-          </Col>
+          </Col> */}
         </div>
       </React.Fragment>
     );
   }
 }
-
-export default MainMenuComponent;
+const mapStateToProps = state => ({});
+export default connect(
+  mapStateToProps,
+  { setSerchOverlay }
+)(MainMenuComponent);

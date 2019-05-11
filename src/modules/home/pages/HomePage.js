@@ -6,6 +6,7 @@ import EventExplorer from '../../eventExplorer/eventExplorer';
 import History from '../../history/history';
 import HeaderComponent from '../../../shared/header/headerComponent';
 import MainMenuCompoannent from '../../../shared/mainMenu/mainMenu';
+import SearchResults from '../../searchResults/searchResults';
 import './HomePage.styles.css';
 
 import { getEvent } from '../../../store/actions/DashBoardActions';
@@ -18,7 +19,8 @@ export const input = {
 export const VIEW_TYPES = {
   calendar: 1001,
   explorer: 1002,
-  history: 1003
+  history: 1003,
+  searchResults: 1004
 };
 
 class HomePage extends React.Component {
@@ -49,6 +51,10 @@ class HomePage extends React.Component {
     this.setState({ currentViewType: VIEW_TYPES.history });
   };
 
+  handleSearchPress = () => {
+    this.setState({ currentViewType: VIEW_TYPES.searchResults });
+  }
+
   renderCalendarView = () => <CalenderSection />;
 
   renderExplorerView = () => <EventExplorer />;
@@ -56,12 +62,14 @@ class HomePage extends React.Component {
   renderHistoryView = () => (
     <History onEventCalendarPress={this.handleEventCalendarPress} />
   );
+  renderSearchResultsView = () => <SearchResults onEventCalendarPress={this.handleEventCalendarPress} />;
 
   renderContent = () => {
     const viewMap = {
       [VIEW_TYPES.calendar]: this.renderCalendarView,
       [VIEW_TYPES.explorer]: this.renderExplorerView,
-      [VIEW_TYPES.history]: this.renderHistoryView
+      [VIEW_TYPES.history]: this.renderHistoryView,
+      [VIEW_TYPES.searchResults]: this.renderSearchResultsView
     };
     const view = viewMap[this.state.currentViewType]();
 
@@ -74,6 +82,7 @@ class HomePage extends React.Component {
               onEventCalendarPress={this.handleEventCalendarPress}
               onEventExplorerPress={this.handleEventExplorerPress}
               onEventHistoryPress={this.handleHistoryPress}
+              onSearchPress={this.handleSearchPress}
             />
             <hr size="80" />
           </div>
