@@ -81,8 +81,9 @@ class DefaultDialogBox extends Component {
       ...eventInfo,
       eventStatus: eventStatusEnums.PUBLISHED
     };
-    // console.log(JSON.stringify(modifiedEvent));
-    updateEvent(JSON.stringify(modifiedEvent));
+    // updateEvent(JSON.stringify(modifiedEvent));
+    // console.log(modifiedEvent);
+    updateEvent(modifiedEvent);
     // alert('piblish');
   }
 
