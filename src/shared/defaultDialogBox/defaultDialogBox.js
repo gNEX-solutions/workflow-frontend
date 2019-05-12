@@ -100,8 +100,7 @@ class DefaultDialogBox extends Component {
       console.log(user);
       if (info.designation === user) {
         return {
-          name: info.name,
-          designation: info.designation,
+          ...info,
           status: eventInspectorEnums.APPROVED
         };
       }
@@ -109,6 +108,9 @@ class DefaultDialogBox extends Component {
         return info;
       }
     });
+
+    // console.log(approvedCounter);
+    // console.log(eventInfo);
     if (approvedCounter < 2) {
       modifiedEvent = {
         ...eventInfo,
@@ -118,29 +120,38 @@ class DefaultDialogBox extends Component {
     else {
       modifiedEvent = {
         ...eventInfo,
-        eventStatus: eventStatusEnums.APPROVED,
+        eventStatus: eventStatusEnums.CONFIRMED,
         eventInspectorDetails: inspectorDetails
       }
     }
-    updateEvent(JSON.stringify(modifiedEvent));
+    // console.log(modifiedEvent);
+    // updateEvent(JSON.stringify(modifiedEvent));
+    updateEvent(modifiedEvent);
 
   }
 
   performReject = () => {
     const { eventInfo } = this.state;
     const { updateEvent } = this.props;
+
     const modifiedEvent = {
       ...eventInfo,
       eventStatus: eventStatusEnums.REJECTED
     }
-    console.log(modifiedEvent);
-    updateEvent(JSON.stringify(modifiedEvent));
+    // console.log(modifiedEvent);
+    // updateEvent(JSON.stringify(modifiedEvent));
+    // console.log(modifiedEvent);
+    updateEvent(modifiedEvent);
     // alert('reject');
   }
 
   performRollback = () => {
     const { eventInfo } = this.state;
     const { updateEvent } = this.props;
+    const inspectorDetails = eventInfo.eventInspectorDetails.map((info) => ({
+      ...info,
+      status: eventInspectorEnums.PENDING
+    }));
     // const inspectorDetails = updateEvent.eventInspectorDetails((info) => ({
     //   name: info.name,
     //   designation: info.designation,
@@ -149,11 +160,13 @@ class DefaultDialogBox extends Component {
     const modifiedEvent = {
       ...eventInfo,
       eventStatus: eventStatusEnums.PENDING,
-      eventInspectorDetails: []
+      eventInspectorDetails: inspectorDetails,
 
     }
-    // console.log(JSON.stringify(modifiedEvent));
-    updateEvent(JSON.stringify(modifiedEvent));
+
+    // updateEvent(JSON.stringify(modifiedEvent));
+    // console.log(modifiedEvent);
+    updateEvent(modifiedEvent);
     // alert('rollback');
   }
 

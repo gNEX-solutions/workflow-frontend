@@ -14,7 +14,7 @@ import './actionBar.css';
 const userTypes = [
     {
         type: userDesignationEnum.PRESIDENT,
-        actions: ['publish', 'edit', 'rollback', 'delete', 'reject' , 'approve']
+        actions: ['publish', 'edit', 'rollback', 'delete', 'reject', 'approve']
     },
     {
         type: userDesignationEnum.COORDINATOR,
@@ -22,6 +22,10 @@ const userTypes = [
     },
     {
         type: userDesignationEnum.HOD,
+        actions: ['approve', 'reject']
+    },
+    {
+        type: userDesignationEnum.SENIOR_TREASURER,
         actions: ['approve', 'reject']
     }
 ]

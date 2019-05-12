@@ -6,7 +6,7 @@ const initialState = {
     firstName: 'Akalanka',
     lastName: 'Jayalth',
     email: '',
-    designtion: 'PRESIDENT',
+    designtion: 'HOD',
     pictureUrl:
       'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png'
   },

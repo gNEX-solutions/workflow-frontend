@@ -22,15 +22,18 @@ class EditEvent extends Component {
     eventStatus: '',
     batch: '1',
     date: '2019-04-29',
+    eventInspectorDetails: [],
     // coordinatorName: '',
     // coordinatorImnum: '',
     // validated: false,
     coordinators: [
       {
+        coordinatorUId: '',
         name: 'dinith',
         imNumber: 'IM/2014/034'
       },
       {
+        coordinatorUId: '',
         name: 'charinda',
         imNumber: 'IM/2014/035'
       }
@@ -39,7 +42,9 @@ class EditEvent extends Component {
     description: 'sample description',
     participants: 'all 4 batches , acadamic staff',
     budget: 30000,
-    resources: 'huts , cricket equickments'
+    resources: 'huts , cricket equickments',
+    eventCreatedAt: '',
+    eventUpdatedAt: ''
   };
   // EventInfo = [];
 
@@ -57,18 +62,24 @@ class EditEvent extends Component {
       eventDate,
       eventStatus,
       eventCoordinatorDetails,
+      eventInspectorDetails,
       eventParticipants,
       eventBudget,
-      eventDescription
+      eventDescription,
+      eventCreatedAt,
+      eventUpdatedAt,
+
     } = EventInfo[0];
     coordinatorInfo = eventCoordinatorDetails.map(coordinator => ({
       name: coordinator.name,
-      imNumber: coordinator.imNumber
+      imNumber: coordinator.imNumber,
+      coordinatorUId: coordinator.coordinatorUId
     }));
     if (!coordinatorInfo[1]) {
       coordinatorInfo.push({
         name: '',
-        imNumber: ''
+        imNumber: '',
+        coordinatorUId: ''
       });
     }
 
@@ -81,10 +92,12 @@ class EditEvent extends Component {
       date: eventDate.substring(0, 10),
       eventStatus: eventStatus,
       coordinators: coordinatorInfo,
-
+      eventInspectorDetails: eventInspectorDetails,
       description: eventDescription,
       participants: eventParticipants,
-      budget: eventBudget
+      budget: eventBudget,
+      eventCreatedAt: eventCreatedAt,
+      eventUpdatedAt: eventUpdatedAt
     });
   }
 
@@ -100,10 +113,13 @@ class EditEvent extends Component {
       eventStatus,
       date,
       coordinators,
+      eventInspectorDetails,
       description,
       participants,
       budget,
       batch,
+      eventCreatedAt,
+      eventUpdatedAt,
       resources
     } = this.state;
     const timeFromMoment = moment(timeFrom, 'HH:mm');
@@ -118,23 +134,26 @@ class EditEvent extends Component {
       eventEndTime: timeTo,
       eventStatus: eventStatus,
       eventLocation: venue,
-      eventBatch: batch,
+      // eventBatch: batch,
       eventCoordinatorDetails: [
         {
           imNumber: coordinators[0].imNumber,
-          name: coordinators[0].name
+          name: coordinators[0].name,
+          coordinatorUId: coordinators[0].coordinatorUId
         },
         {
           imNumber: coordinators[1].imNumber,
-          name: coordinators[1].name
+          name: coordinators[1].name,
+          coordinatorUId: coordinators[1].coordinatorUId
         }
       ],
+      eventInspectorDetails: eventInspectorDetails,
       eventParticipants: participants,
       eventBudget: budget,
-      eventDescription: description
+      eventDescription: description,
       // eventApprovedStatus: this.EventInfo[0].eventApprovedStatus,
-      // eventCreatedAt: this.EventInfo[0].eventCreatedAt,
-      // eventUpdatedAt: this.EventInfo[0].eventUpdatedAt
+      eventCreatedAt: eventCreatedAt,
+      eventUpdatedAt: eventUpdatedAt
     };
 
     console.log(newEvent);
@@ -154,7 +173,8 @@ class EditEvent extends Component {
     } else {
       const { updateEvent } = this.props;
 
-      updateEvent(JSON.stringify(newEvent));
+      // updateEvent(JSON.stringify(newEvent));
+      updateEvent(newEvent);
       // event.preventDefault();
       // event.stopPropagation();
       this.props.close();
@@ -199,6 +219,7 @@ class EditEvent extends Component {
       this.setState({
         coordinators: [
           {
+            coordinatorUId:this.state.coordinators[0].coordinatorUId,
             name: event.target.value,
             imNumber: this.state.coordinators[0].imNumber
           },
@@ -210,6 +231,7 @@ class EditEvent extends Component {
         coordinators: [
           this.state.coordinators[0],
           {
+            coordinatorUId: this.state.coordinators[1].coordinatorUId,
             name: event.target.value,
             imNumber: this.state.coordinators[1].imNumber
           }
@@ -223,6 +245,7 @@ class EditEvent extends Component {
       this.setState({
         coordinators: [
           {
+            coordinatorUId:this.state.coordinators[0].coordinatorUId,
             name: this.state.coordinators[0].name,
             imNumber: 'IM/' + event.target.value
           },
@@ -234,6 +257,7 @@ class EditEvent extends Component {
         coordinators: [
           this.state.coordinators[0],
           {
+            coordinatorUId:this.state.coordinators[1].coordinatorUId,
             name: this.state.coordinators[1].name,
             imNumber: 'IM/' + event.target.value
           }
