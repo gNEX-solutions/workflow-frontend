@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as moment from 'moment';
 import CalenderSection from '../../calender/calender';
 import EventExplorer from '../../eventExplorer/eventExplorer';
 import History from '../../history/history';
@@ -11,8 +12,8 @@ import './HomePage.styles.css';
 import { getMonthlyEvents } from '../../../store/actions/DashBoardActions';
 
 export const input = {
-  month: '05',
-  year: '2019'
+  month: moment().format("MM"),
+  year: moment().year()
 };
 
 export const VIEW_TYPES = {
@@ -34,6 +35,7 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     const { getMonthlyEvents } = this.props;
+    console.log(input);
     // getEvent(input);
     getMonthlyEvents(input);
   }
