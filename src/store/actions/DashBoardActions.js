@@ -5,7 +5,8 @@ import {
   GET_EVENT_FAIL,
   CREATE_EVENT,
   GET_EVENT_HISTORY,
-  CHANGE_EVENT_ID
+  CHANGE_EVENT_ID,
+  GET_EXPLORER_EVENTS
 } from '../types/DashBoardTypes';
 
 export const getEvent = data => (dispatch, history) => {
@@ -34,6 +35,26 @@ export const getMonthlyEvents = data => (dispatch, history) => {
     .then(res =>
       dispatch({
         type: GET_EVENT_SUCCESS,
+        payload: res
+      })
+    )
+    .catch(err => {
+      console.log(err);
+    });
+  // payload:
+};
+
+export const getExplorerEvents = data => (dispatch, history) => {
+  console.log(data);
+  axios
+    .get('event/filter?', {
+      params: {
+        year: data.year
+      }
+    })
+    .then(res =>
+      dispatch({
+        type: GET_EXPLORER_EVENTS,
         payload: res
       })
     )

@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Row, Col, Table } from 'react-bootstrap';
 import * as moment from 'moment';
+import { connect } from 'react-redux';
 import HeaderComopnet from '../../shared/header/headerComponent';
 import MainMenuCompoannent from '../../shared/mainMenu/mainMenu';
 import './eventExplorer.css';
 import MonthEventComponent from './monthEventsComponet';
+import { getExplorerEvents } from '../../store/actions/DashBoardActions';
 
+export const input = {
+  year: moment().year()
+};
 class EventExplorer extends Component {
   state = {};
 
@@ -15,7 +20,10 @@ class EventExplorer extends Component {
   //   });
   //   return months;
   // }
-
+  componentDidMount() {
+    const { getExplorerEvents } = this.props;
+    getExplorerEvents(input);
+  }
   getMonthEventComponet = () => {
     const totalEventComponets = [];
     moment.months().forEach((mnth, mnthIndex) => {
@@ -75,4 +83,13 @@ class EventExplorer extends Component {
   }
 }
 
-export default EventExplorer;
+// export default EventExplorer;
+const mapStateToProps = (state, ownProps) => ({
+  // TODO: Map additional props here
+  // events: state.events
+});
+
+export default connect(
+  mapStateToProps,
+  { getExplorerEvents }
+)(EventExplorer);

@@ -5,7 +5,8 @@ import {
   GET_EVENT_FAIL,
   CREATE_EVENT,
   GET_EVENT_HISTORY,
-  CHANGE_EVENT_ID
+  CHANGE_EVENT_ID,
+  GET_EXPLORER_EVENTS
 } from '../types/DashBoardTypes';
 import { events, past, explorer } from './mock';
 
@@ -46,6 +47,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         selectedEventId: action.payload
+      };
+    case GET_EXPLORER_EVENTS:
+      console.log(action.payload.data)
+      return {
+        ...state,
+        expEvents: action.payload.data
       };
     default:
       return state;
