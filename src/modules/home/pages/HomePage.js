@@ -8,7 +8,7 @@ import HeaderComponent from '../../../shared/header/headerComponent';
 import MainMenuCompoannent from '../../../shared/mainMenu/mainMenu';
 import './HomePage.styles.css';
 
-import { getEvent } from '../../../store/actions/DashBoardActions';
+import { getMonthlyEvents } from '../../../store/actions/DashBoardActions';
 
 export const input = {
   month: '05',
@@ -33,8 +33,9 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    const { getEvent } = this.props;
-    getEvent(input);
+    const { getMonthlyEvents } = this.props;
+    // getEvent(input);
+    getMonthlyEvents(input);
   }
 
   handleEventCalendarPress = () => {
@@ -103,5 +104,5 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(
   mapStateToProps,
-  { getEvent }
+  { getMonthlyEvents }
 )(HomePage);

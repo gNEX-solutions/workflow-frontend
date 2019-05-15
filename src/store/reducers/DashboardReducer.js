@@ -11,7 +11,7 @@ import { events, past, explorer } from './mock';
 
 const initialState = {
   selectedEventId: null,
-  events: events,
+  events: [],
   isLoading: false,
   responseMsg: null,
   pastEvents: past,
