@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectEvent } from '../../store/actions/DashBoardActions';
+import { selectEvent, getSearchEvents } from '../../store/actions/DashBoardActions';
 import './searchfield.css';
 import { ListGroup } from 'react-bootstrap';
 // import 'bootstrap/dist/css/bootstrap.css';
@@ -16,14 +16,17 @@ class SearchFieldComponent extends React.Component {
   }
 
   onTextChanged = e => {
-    const { items } = this.props;
+
+    const { getSearchEvents } = this.props;
     const value = e.target.value;
     let suggestions = [];
+    this.setState(() => ({
+      text: value
+    }));
     if (value.length > 0) {
-      const regex = new RegExp(`^${value}`, 'i');
-      suggestions = items.filter(v => regex.test(v.eventName));
+      getSearchEvents(value);
     }
-    this.setState(() => ({ suggestions, text: value }));
+    // this.setState(() => ({ suggestions, text: value }));
   };
 
   suggestionSelected(event) {
@@ -35,11 +38,12 @@ class SearchFieldComponent extends React.Component {
   }
 
   renderSuggesions() {
-    const { suggestions } = this.state;
-    if (suggestions.length === 0) {
+    const { items } = this.props;
+    const { text } = this.state;
+    if (items.length === 0 || text === '') {
       return null;
     }
-    return suggestions.map(item => (
+    return items.map(item => (
       <ListGroup.Item onClick={() => this.suggestionSelected(item)} className="resultItem">
         {item.eventName}
       </ListGroup.Item>
@@ -67,5 +71,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { selectEvent }
+  { selectEvent, getSearchEvents }
 )(SearchFieldComponent);

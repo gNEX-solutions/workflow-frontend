@@ -23,6 +23,7 @@ export const getEvent = data => (dispatch, history) => {
     });
   // payload:
 };
+
 export const getMonthlyEvents = data => (dispatch, history) => {
   console.log(data);
   axios
@@ -30,6 +31,26 @@ export const getMonthlyEvents = data => (dispatch, history) => {
       params: {
         year: data.year,
         month: data.month
+      }
+    })
+    .then(res =>
+      dispatch({
+        type: GET_EVENT_SUCCESS,
+        payload: res
+      })
+    )
+    .catch(err => {
+      console.log(err);
+    });
+  // payload:
+};
+
+export const getSearchEvents = data => (dispatch, history) => {
+  console.log(data);
+  axios
+    .get('event/search?', {
+      params: {
+        name: data
       }
     })
     .then(res =>
