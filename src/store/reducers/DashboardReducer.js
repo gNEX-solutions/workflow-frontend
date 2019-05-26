@@ -15,7 +15,7 @@ import { events, past, explorer } from './mock';
 const initialState = {
   selectedEventId: null,
   events: events,
-  searchSuggestions: null,
+  searchSuggestions: [],
   isLoading: false,
   responseMsg: null,
   pastEvents: past,

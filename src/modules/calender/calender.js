@@ -45,25 +45,24 @@ class CalenderSection extends Component {
   };
 
   renderEventDiscription = () => {
-    const events = [...this.props.events, ...this.props.pastEvents];
-    const discription = events.map((event, index) => {
-      if (event.eventId === this.props.selectedEventId) {
-        return (
-          <React.Fragment>
-            <Row id="event_description_row">
-              <EventDescription id="event_description" event={event} />
-            </Row>
-            <Row id="app_section_row">
-              <ApprovalSection id="app_section" event={event} />
-            </Row>
-            <Row>
-              <CalenderFooter id="cal_footer" event={event} />
-            </Row>
-          </React.Fragment>
-        );
-      }
-    });
-    return discription;
+    const { events, searchEvents, expEvents, selectedEventId } = this.props;
+    const resultEvents = [...events, ...searchEvents, ...expEvents];
+    const filterEvent = resultEvents.filter(
+      event => event.eventId === selectedEventId
+    )[0];
+    return (
+      <React.Fragment>
+        <Row id="event_description_row">
+          <EventDescription id="event_description" event={filterEvent} />
+        </Row>
+        <Row id="app_section_row">
+          <ApprovalSection id="app_section" event={filterEvent} />
+        </Row>
+        <Row>
+          <CalenderFooter id="cal_footer" event={filterEvent} />
+        </Row>
+      </React.Fragment>
+    );
   };
 
   render() {
@@ -91,7 +90,9 @@ class CalenderSection extends Component {
 const mapStateToProps = state => ({
   selectedEventId: state.dashboard.selectedEventId,
   events: state.dashboard.events,
-  pastEvents: state.dashboard.pastEvents
+  pastEvents: state.dashboard.pastEvents,
+  searchEvents: state.dashboard.searchSuggestions,
+  expEvents: state.dashboard.expEvents
 });
 
 export default connect(
