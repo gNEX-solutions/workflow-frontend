@@ -57,7 +57,7 @@ export const getSearchEvents = data => (dispatch, history) => {
     })
     .then(res =>
       dispatch({
-        type: GET_EVENT_SUCCESS,
+        type: UPDATE_SEARCH_SUGGESTIONS,
         payload: res
       })
     )
@@ -160,9 +160,9 @@ export const selectEvent = data => (dispatch, history) => {
   // ({ type: CHANGE_EVENT_ID, payload: { data } });
 };
 
-export const setSearchSuggestions = data => (dispatch, history) => {
-  dispatch({ type: UPDATE_SEARCH_SUGGESTIONS, payload: data });
-}
+// export const setSearchSuggestions = data => (dispatch, history) => {
+//   dispatch({ type: UPDATE_SEARCH_SUGGESTIONS, payload: data });
+// }
 
 export const setSerchOverlay = data => (dispatch) => {
   dispatch({ type: SEARCH_OVERLAY, payload: data });

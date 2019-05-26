@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectEvent, getSearchEvents } from '../../store/actions/DashBoardActions';
-import {
-  setSearchSuggestions,
-  setSerchOverlay
-} from '../../store/actions/DashBoardActions';
+import { selectEvent, getSearchEvents, setSerchOverlay } from '../../store/actions/DashBoardActions';
+
 import './searchfield.css';
 import { ListGroup, Overlay } from 'react-bootstrap';
 // import 'bootstrap/dist/css/bootstrap.css';
@@ -22,16 +19,14 @@ class SearchFieldComponent extends React.Component {
 
   onTextChanged = e => {
 
-    const { getSearchEvents } = this.props;
-    const { items } = this.props;
-    const { setSearchSuggestions, setSerchOverlay } = this.props;
+    // const { getSearchEvents } = this.props;
+    // const { items } = this.props;
+    const { setSerchOverlay, getSearchEvents } = this.props;
     const value = e.target.value;
-    let suggestions = [];
     this.setState(() => ({
       text: value
     }));
     setSerchOverlay(true);
-    setSearchSuggestions(suggestions);
     if (value.length > 0) {
       getSearchEvents(value);
     }
@@ -50,12 +45,12 @@ class SearchFieldComponent extends React.Component {
   }
 
   renderSuggesions() {
-    const { items, searchOverlay } = this.props;
+    const { suggestions, searchOverlay } = this.props;
     const { text } = this.state;
-    if (items.length === 0 || text === '' || !searchOverlay) {
+    if (suggestions === null || text === '' || !searchOverlay) {
       return null;
     }
-    return items.map(item => (
+    return suggestions.map(item => (
       <ListGroup.Item onClick={() => this.suggestionSelected(item)} className="resultItem">
         {item.eventName}
       </ListGroup.Item>
@@ -107,5 +102,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { selectEvent, setSearchSuggestions, setSerchOverlay, getSearchEvents }
+  { selectEvent, setSerchOverlay, getSearchEvents }
 )(SearchFieldComponent);

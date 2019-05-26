@@ -6,7 +6,7 @@ import {
   CREATE_EVENT,
   GET_EVENT_HISTORY,
   CHANGE_EVENT_ID,
-  GET_EXPLORER_EVENTS
+  GET_EXPLORER_EVENTS,
   UPDATE_SEARCH_SUGGESTIONS,
   SEARCH_OVERLAY
 } from '../types/DashBoardTypes';
@@ -61,7 +61,7 @@ export default function (state = initialState, action) {
     case UPDATE_SEARCH_SUGGESTIONS:
       return {
         ...state,
-        searchSuggestions: action.payload
+        searchSuggestions: action.payload.data
       };
     case SEARCH_OVERLAY:
       return {
