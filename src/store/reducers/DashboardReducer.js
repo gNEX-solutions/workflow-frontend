@@ -7,16 +7,20 @@ import {
   GET_EVENT_HISTORY,
   CHANGE_EVENT_ID,
   GET_EXPLORER_EVENTS
+  UPDATE_SEARCH_SUGGESTIONS,
+  SEARCH_OVERLAY
 } from '../types/DashBoardTypes';
 import { events, past, explorer } from './mock';
 
 const initialState = {
   selectedEventId: null,
-  events: [],
+  events: events,
+  searchSuggestions: null,
   isLoading: false,
   responseMsg: null,
   pastEvents: past,
-  expEvents: explorer
+  expEvents: explorer,
+  searchOverlay: false
 };
 
 export default function (state = initialState, action) {
@@ -54,6 +58,17 @@ export default function (state = initialState, action) {
         ...state,
         expEvents: action.payload.data
       };
+    case UPDATE_SEARCH_SUGGESTIONS:
+      return {
+        ...state,
+        searchSuggestions: action.payload
+      };
+    case SEARCH_OVERLAY:
+      return {
+        ...state,
+        searchOverlay: action.payload
+      };
+
     default:
       return state;
   }
