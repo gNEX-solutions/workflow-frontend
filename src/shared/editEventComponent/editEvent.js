@@ -5,176 +5,144 @@ import { Col, Row, Button, Form, InputGroup, Alert } from 'react-bootstrap';
 import './editEvent.css';
 
 import * as moment from 'moment';
-import { updateEvent } from '../../store/actions/DashBoardActions';
+import { updateEvent, getMonthlyEvents, getExplorerEvents } from '../../store/actions/DashBoardActions';
+import { isNull } from 'util';
 // import sampleData from '../../services/sampleDataSet';
 // import sampleDataSet from '../../services/sampleDataSet';
 
 class EditEvent extends Component {
+  sampleEvent = {
+    eventId: 162,
+    eventName: 'Exposition2030',
+    eventDate: '2019-05-15',
+    eventStartTime: '08:00',
+    eventEndTime: '11:00',
+    eventStatus: 'PENDING',
+    eventLocation: 'DIM',
+    eventOrganizer: '1',
+    eventCoordinatorDetails: [
+      {
+        imNumber: '',
+        name: '',
+        coordinatorUId: 163333
+      },
+      {
+        imNumber: '',
+        name: '',
+        coordinatorUId: 163334
+      }
+    ],
+    eventInspectorDetails: [
+      {
+        inspecEventId: 164,
+        name: 'Ruwan Perera',
+        userId: 12,
+        designation: 'HOD',
+        status: 'PENDING'
+      },
+      {
+        inspecEventId: 165,
+        name: 'Dilani Perera',
+        userId: 22,
+        designation: 'SENIOR_TREASURER',
+        status: 'APPROVED'
+      },
+      {
+        inspecEventId: 166,
+        name: 'Akalanka Perera',
+        userId: 2,
+        designation: 'PRESIDENT',
+        status: 'APPROVED'
+      }
+    ],
+    eventParticipants: 'ALL',
+    eventBudget: '2000',
+    eventDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mattis lacus in risus gravida lobortis sed vel ex. Aliquam non tincidunt odio. Donec ac feugiat eros. Donec molestie iaculis euismod.',
+    eventCreatedAt: '2019-05-11T07:53:20.000+0000',
+    eventUpdatedAt: '2019-05-27T08:43:30.000+0000'
+  };
   state = {
     validated: false,
     showTimeAlert: false,
     showDateAlert: false,
-    eventId: '',
-    eventName: 'im cricket match',
-    venue: 'saibe grounds',
-    timeFrom: '10:45',
-    timeTo: '14:45',
-    eventStatus: '',
-    batch: '1',
-    date: '2019-04-29',
-    eventInspectorDetails: [],
-    // coordinatorName: '',
-    // coordinatorImnum: '',
-    // validated: false,
-    coordinators: [
-      {
-        coordinatorUId: '',
-        name: 'dinith',
-        imNumber: 'IM/2014/034'
-      },
-      {
-        coordinatorUId: '',
-        name: 'charinda',
-        imNumber: 'IM/2014/035'
-      }
-    ],
+    event: this.sampleEvent
+    // eventId: '',
+    // eventName: 'im cricket match',
+    // venue: 'saibe grounds',
+    // timeFrom: '10:45',
+    // timeTo: '14:45',
+    // eventStatus: '',
+    // batch: '1',
+    // date: '2019-04-29',
+    // eventInspectorDetails: [],
+    // // coordinatorName: '',
+    // // coordinatorImnum: '',
+    // // validated: false,
+    // coordinators: [
+    //   {
+    //     coordinatorUId: '',
+    //     name: 'dinith',
+    //     imNumber: 'IM/2014/034'
+    //   },
+    //   {
+    //     coordinatorUId: '',
+    //     name: 'charinda',
+    //     imNumber: 'IM/2014/035'
+    //   }
+    // ],
 
-    description: 'sample description',
-    participants: 'all 4 batches , acadamic staff',
-    budget: 30000,
-    resources: 'huts , cricket equickments',
-    eventCreatedAt: '',
-    eventUpdatedAt: ''
+    // description: 'sample description',
+    // participants: 'all 4 batches , acadamic staff',
+    // budget: 30000,
+    // resources: 'huts , cricket equickments',
+    // eventCreatedAt: '',
+    // eventUpdatedAt: ''
   };
   // EventInfo = [];
 
   componentDidMount() {
     const { selectedEventId, events } = this.props;
     const EventInfo = events.filter(event => event.eventId === selectedEventId);
-    let coordinatorInfo = [];
-    // console.log(EventInfo);
-    const {
-      eventId,
-      eventName,
-      eventLocation,
-      eventStartTime,
-      eventEndTime,
-      eventDate,
-      eventStatus,
-      eventCoordinatorDetails,
-      eventInspectorDetails,
-      eventParticipants,
-      eventBudget,
-      eventDescription,
-      eventCreatedAt,
-      eventUpdatedAt,
-
-    } = EventInfo[0];
-    coordinatorInfo = eventCoordinatorDetails.map(coordinator => ({
-      name: coordinator.name,
-      imNumber: coordinator.imNumber,
-      coordinatorUId: coordinator.coordinatorUId
-    }));
-    if (!coordinatorInfo[1]) {
-      coordinatorInfo.push({
-        name: '',
-        imNumber: '',
-        coordinatorUId: ''
-      });
-    }
-
     this.setState({
-      eventId: eventId,
-      eventName: eventName,
-      venue: eventLocation,
-      timeFrom: eventStartTime.substring(0, 5),
-      timeTo: eventEndTime.substring(0, 5),
-      date: eventDate.substring(0, 10),
-      eventStatus: eventStatus,
-      coordinators: coordinatorInfo,
-      eventInspectorDetails: eventInspectorDetails,
-      description: eventDescription,
-      participants: eventParticipants,
-      budget: eventBudget,
-      eventCreatedAt: eventCreatedAt,
-      eventUpdatedAt: eventUpdatedAt
+      event: EventInfo[0]
     });
   }
 
-  updateEventClicked = event => {
+  updateEventClicked = e => {
     console.log('running');
+    const { event } = this.state;
+    const { updateEvent, getMonthlyEvents } = this.props;
 
-    const {
-      eventId,
-      eventName,
-      venue,
-      timeFrom,
-      timeTo,
-      eventStatus,
-      date,
-      coordinators,
-      eventInspectorDetails,
-      description,
-      participants,
-      budget,
-      batch,
-      eventCreatedAt,
-      eventUpdatedAt,
-      resources
-    } = this.state;
-    const timeFromMoment = moment(timeFrom, 'HH:mm');
-    const timeToMoment = moment(timeTo, 'HH:mm');
-    const dateMoment = moment(date, 'YYYY-MM-DD');
+    const timeFromMoment = moment(event.eventStartTime, 'HH:mm');
+    const timeToMoment = moment(event.eventEndTime, 'HH:mm');
+    const dateMoment = moment(event.eventDate, 'YYYY-MM-DD');
 
-    const newEvent = {
-      eventId: eventId,
-      eventName: eventName,
-      eventDate: date,
-      eventStartTime: timeFrom,
-      eventEndTime: timeTo,
-      eventStatus: eventStatus,
-      eventLocation: venue,
-      // eventBatch: batch,
-      eventCoordinatorDetails: [
-        {
-          imNumber: coordinators[0].imNumber,
-          name: coordinators[0].name,
-          coordinatorUId: coordinators[0].coordinatorUId
-        },
-        {
-          imNumber: coordinators[1].imNumber,
-          name: coordinators[1].name,
-          coordinatorUId: coordinators[1].coordinatorUId
-        }
-      ],
-      eventInspectorDetails: eventInspectorDetails,
-      eventParticipants: participants,
-      eventBudget: budget,
-      eventDescription: description,
-      // eventApprovedStatus: this.EventInfo[0].eventApprovedStatus,
-      eventCreatedAt: eventCreatedAt,
-      eventUpdatedAt: eventUpdatedAt
-    };
 
-    console.log(newEvent);
+
+    // console.log(newEvent);
     if (timeToMoment.isBefore(timeFromMoment)) {
       this.setState({
         showTimeAlert: true
       });
-      event.preventDefault();
-      event.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
       // alert('incorrect time');
     } else if (dateMoment.isBefore(moment.now())) {
       this.setState({
         showDateAlert: true
       });
-      event.preventDefault();
-      event.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
     } else {
-      const { updateEvent } = this.props;
 
-      // updateEvent(JSON.stringify(newEvent));
-      updateEvent(newEvent);
+
+
+      updateEvent(event);
+      // getMonthlyEvents({
+      //   month: moment().month() + 1,
+      //   year: moment().year()
+      // });
       // event.preventDefault();
       // event.stopPropagation();
       this.props.close();
@@ -183,114 +151,195 @@ class EditEvent extends Component {
 
   // capturing the value changes in the input field  : dj
 
-  onNameChange = event => {
+  onNameChange = e => {
+    const { event } = this.state;
     this.setState({
-      eventName: event.target.value
+      event: {
+        ...event,
+        eventName: e.target.value
+      }
     });
   };
 
-  onVenueChange = event => {
+  onVenueChange = e => {
+    const { event } = this.state;
     this.setState({
-      venue: event.target.value
+      event: {
+        ...event,
+        eventLocation: e.target.value
+      }
     });
   };
 
-  onTimeFromChange = event => {
+  onTimeFromChange = e => {
+    const { event } = this.state;
     this.setState({
-      timeFrom: event.target.value
+      event: {
+        ...event,
+        eventStartTime: e.target.value
+      }
     });
   };
 
-  onTimeToChange = event => {
+  onTimeToChange = e => {
+    const { event } = this.state;
     this.setState({
-      timeTo: event.target.value
+      event: {
+        ...event,
+        eventEndTime: e.target.value
+      }
     });
   };
 
-  onDateChange = event => {
+  onDateChange = e => {
+    const { event } = this.state;
     this.setState({
-      date: event.target.value
+      event: {
+        ...event,
+        eventDate: e.target.value
+      }
     });
   };
 
-  onCoordinatorNamechange = (event, id) => {
+  onCoordinatorNamechange = (e, id) => {
     // console.log(id);
+    // console.log(e.target.value);
+    const { event } = this.state;
+    var coordinators = [];
     if (id === 0) {
-      this.setState({
-        coordinators: [
-          {
-            coordinatorUId:this.state.coordinators[0].coordinatorUId,
-            name: event.target.value,
-            imNumber: this.state.coordinators[0].imNumber
-          },
-          this.state.coordinators[1]
-        ]
-      });
+      coordinators = [
+        {
+          coordinatorUId: event.eventCoordinatorDetails[0].coordinatorUId,
+          name: e.target.value,
+          imNumber: event.eventCoordinatorDetails[0].imNumber
+        },
+        event.eventCoordinatorDetails[1]
+      ];
+      // this.setState({
+      //   coordinators: [
+      //     {
+      //       coordinatorUId: this.state.coordinators[0].coordinatorUId,
+      //       name: event.target.value,
+      //       imNumber: this.state.coordinators[0].imNumber
+      //     },
+      //     this.state.coordinators[1]
+      //   ]
+      // });
     } else {
-      this.setState({
-        coordinators: [
-          this.state.coordinators[0],
-          {
-            coordinatorUId: this.state.coordinators[1].coordinatorUId,
-            name: event.target.value,
-            imNumber: this.state.coordinators[1].imNumber
-          }
-        ]
-      });
+      coordinators = [
+        event.eventCoordinatorDetails[0],
+        {
+          coordinatorUId: event.eventCoordinatorDetails[1].coordinatorUId,
+          name: e.target.value,
+          imNumber: event.eventCoordinatorDetails[1].imNumber
+        }
+      ];
+      // this.setState({
+      //   coordinators: [
+      //     this.state.coordinators[0],
+      //     {
+      //       coordinatorUId: this.state.coordinators[1].coordinatorUId,
+      //       name: event.target.value,
+      //       imNumber: this.state.coordinators[1].imNumber
+      //     }
+      //   ]
+      // });
     }
+    this.setState({
+      event: {
+        ...event,
+        eventCoordinatorDetails: coordinators
+      }
+    });
   };
 
-  onCoordinatorImnumChange = (event, id) => {
+  onCoordinatorImnumChange = (e, id) => {
+    const { event } = this.state;
+    var coordinators = [];
     if (id === 0) {
-      this.setState({
-        coordinators: [
-          {
-            coordinatorUId:this.state.coordinators[0].coordinatorUId,
-            name: this.state.coordinators[0].name,
-            imNumber: 'IM/' + event.target.value
-          },
-          this.state.coordinators[1]
-        ]
-      });
+      coordinators = [
+        {
+          coordinatorUId: event.eventCoordinatorDetails[0].coordinatorUId,
+          name: event.eventCoordinatorDetails[0].name,
+          imNumber: 'IM/' + e.target.value
+        },
+        event.eventCoordinatorDetails[1]
+      ];
+      // this.setState({
+      //   coordinators: [
+      //     {
+      //       coordinatorUId: this.state.coordinators[0].coordinatorUId,
+      //       name: this.state.coordinators[0].name,
+      //       imNumber: 'IM/' + event.target.value
+      //     },
+      //     this.state.coordinators[1]
+      //   ]
+      // });
     } else {
-      this.setState({
-        coordinators: [
-          this.state.coordinators[0],
-          {
-            coordinatorUId:this.state.coordinators[1].coordinatorUId,
-            name: this.state.coordinators[1].name,
-            imNumber: 'IM/' + event.target.value
-          }
-        ]
-      });
+      coordinators = [
+        event.eventCoordinatorDetails[0],
+        {
+          coordinatorUId: event.eventCoordinatorDetails[1].coordinatorUId,
+          name: event.eventCoordinatorDetails[1].name,
+          imNumber: 'IM/' + e.target.value
+        }
+      ];
+      // this.setState({
+      //   coordinators: [
+      //     this.state.coordinators[0],
+      //     {
+      //       coordinatorUId: this.state.coordinators[1].coordinatorUId,
+      //       name: this.state.coordinators[1].name,
+      //       imNumber: 'IM/' + event.target.value
+      //     }
+      //   ]
+      // });
     }
-    // this.setState({
-    //     coordinatorImnum: 'IM/' + event.target.value
-    //   });
-  };
-
-  onBatchchange = event => {
-    // alert(event.target.value);
     this.setState({
-      batch: event.target.value
+      event: {
+        ...event,
+        eventCoordinatorDetails: coordinators
+      }
     });
   };
 
-  onDescrptionChange = event => {
+  onBatchchange = e => {
+    const { event } = this.state;
     this.setState({
-      description: event.target.value
+      event: {
+        ...event,
+        eventOrganizer: e.target.value
+      }
     });
   };
 
-  onPartcipantsChange = event => {
+  onDescrptionChange = e => {
+    const { event } = this.state;
     this.setState({
-      participants: event.target.value
+      event: {
+        ...event,
+        eventDescription: e.target.value
+      }
     });
   };
 
-  onBudgetChange = event => {
+  onPartcipantsChange = e => {
+    const { event } = this.state;
     this.setState({
-      budget: event.target.value
+      event: {
+        ...event,
+        eventParticipants: e.target.value
+      }
+    });
+  };
+
+  onBudgetChange = e => {
+    const { event } = this.state;
+    this.setState({
+      event: {
+        ...event,
+        eventBudget: e.target.value
+      }
     });
   };
 
@@ -305,27 +354,28 @@ class EditEvent extends Component {
     const { validated } = this.state;
     const {
       eventName,
-      venue,
-      timeFrom,
-      timeTo,
-      date,
-      coordinators,
-      description,
-      participants,
-      budget,
-      batch,
-      resources
-    } = this.state;
+      eventLocation,
+      eventStartTime,
+      eventEndTime,
+      eventDate,
+      eventCoordinatorDetails,
+      eventDescription,
+      eventParticipants,
+      eventBudget,
+      eventOrganizer
+      // resources
+    } = this.state.event;
     // console.log(sampleDataSet);
+    console.log(eventCoordinatorDetails[0]);
     return (
       <div>
         <div className="container-fluid">
           <Row className="row">
             <Col className="col-sm-12 col-md-12">
               {/* moved the header to the model header : dj 
-                                <div className="card-header">
-                                    <strong>{this.title}</strong>
-                                </div>   */}
+                                    <div className="card-header">
+                                        <strong>{this.title}</strong>
+                                    </div>   */}
 
               {/* <div className="card-body"> */}
               <Form
@@ -354,7 +404,7 @@ class EditEvent extends Component {
                         type="text"
                         onChange={this.onVenueChange}
                         required
-                        value={venue}
+                        value={eventLocation}
                       />
                     </Form.Group>
 
@@ -368,7 +418,7 @@ class EditEvent extends Component {
                             type="time"
                             onChange={this.onTimeFromChange}
                             required
-                            value={timeFrom}
+                            value={eventStartTime}
                           />
                         </Col>
                         <Col>
@@ -376,7 +426,7 @@ class EditEvent extends Component {
                             type="time"
                             onChange={this.onTimeToChange}
                             required
-                            value={timeTo}
+                            value={eventEndTime}
                           />
                         </Col>
                       </Row>
@@ -395,7 +445,7 @@ class EditEvent extends Component {
                         ref="date"
                         onChange={this.onDateChange}
                         required
-                        value={date}
+                        value={eventDate}
                       />
                     </Form.Group>
                     <Alert variant="danger" show={this.state.showDateAlert}>
@@ -411,7 +461,7 @@ class EditEvent extends Component {
                         type="number"
                         onChange={this.onBudgetChange}
                         required
-                        value={budget}
+                        value={eventBudget}
                       />
                     </Form.Group>
                   </Col>
@@ -420,17 +470,19 @@ class EditEvent extends Component {
 
                     <Form.Group controlId="formBasicCoordinators">
                       <Form.Label>Coordinators</Form.Label>
-                      {/* {this.getCoordinators()} */}
+
                       <Row className="coordinator_row">
                         <Col className="col-6">
                           <Form.Control
                             type="text"
                             placeholder="name"
-                            onChange={event =>
-                              this.onCoordinatorNamechange(event, 0)
-                            }
+                            onChange={e => this.onCoordinatorNamechange(e, 0)}
                             required
-                            value={coordinators[0].name}
+                            value={
+                              eventCoordinatorDetails[0]
+                                ? eventCoordinatorDetails[0].name
+                                : ''
+                            }
                           />
                         </Col>
                         <Col className="col-6">
@@ -448,7 +500,13 @@ class EditEvent extends Component {
                                 this.onCoordinatorImnumChange(event, 0)
                               }
                               required
-                              value={coordinators[0].imNumber.substring(3)}
+                              value={
+                                eventCoordinatorDetails[0]
+                                  ? eventCoordinatorDetails[0].imNumber.substring(
+                                    3
+                                  )
+                                  : ''
+                              }
                             />
                           </InputGroup>
                         </Col>
@@ -463,7 +521,9 @@ class EditEvent extends Component {
                             }
                             required
                             value={
-                              coordinators[1].name ? coordinators[1].name : ''
+                              eventCoordinatorDetails[1]
+                                ? eventCoordinatorDetails[1].name
+                                : ''
                             }
                           />
                         </Col>
@@ -483,8 +543,10 @@ class EditEvent extends Component {
                               }
                               required
                               value={
-                                coordinators[1].imNumber
-                                  ? coordinators[1].imNumber.substring(3)
+                                eventCoordinatorDetails[1]
+                                  ? eventCoordinatorDetails[1].imNumber.substring(
+                                    3
+                                  )
                                   : ''
                               }
                             />
@@ -500,7 +562,7 @@ class EditEvent extends Component {
                       <Form.Control
                         as="select"
                         onChange={this.onBatchchange}
-                        value={batch}
+                        value={eventOrganizer}
                       >
                         <option>1</option>
                         <option>2</option>
@@ -515,7 +577,7 @@ class EditEvent extends Component {
                       <Form.Control
                         as="textarea"
                         onChange={this.onDescrptionChange}
-                        value={description}
+                        value={eventDescription}
                       />
                     </Form.Group>
 
@@ -527,21 +589,21 @@ class EditEvent extends Component {
                         type="text"
                         onChange={this.onPartcipantsChange}
                         required
-                        value={participants}
+                        value={eventParticipants}
                       />
                     </Form.Group>
 
                     {/* Resources Allocations*/}
 
-                    <Form.Group controlId="formBasicResources">
-                      <Form.Label>Resources Allocations</Form.Label>
-                      <Form.Control
-                        type="text"
-                        onChange={this.onResourceChange}
-                        required
-                        value={resources}
-                      />
-                    </Form.Group>
+                    {/* <Form.Group controlId="formBasicResources">
+                          <Form.Label>Resources Allocations</Form.Label>
+                          <Form.Control
+                            type="text"
+                            onChange={this.onResourceChange}
+                            required
+                            value={resources}
+                          />
+                        </Form.Group> */}
                   </Col>
                 </Row>
                 <Row>
@@ -577,5 +639,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { updateEvent }
+  { updateEvent, getMonthlyEvents }
 )(EditEvent);

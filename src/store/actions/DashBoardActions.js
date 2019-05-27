@@ -105,15 +105,16 @@ export const createEvent = data => (dispatch, history) => {
 };
 
 export const updateEvent = data => (dispatch, history) => {
+
   console.log(data);
   axios
     .put('event/', data)
     .then(
       res =>
-        // dispatch({
-        //   type: CREATE_EVENT,
-        //   payload: res
-        // })
+        //   // dispatch({
+        //   //   type: CREATE_EVENT,
+        //   //   payload: res
+        //   // })
         console.log(res)
     )
     .catch(err => {
