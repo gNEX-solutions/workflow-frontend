@@ -38,6 +38,7 @@ class DateComponent extends Component {
     const eventInfo = this.getEventInfo()[0];
     console.log(now.month());
     let icon;
+    let pointer = '';
     let style = 'default';
     if (eventInfo != undefined) {
       if (eventInfo.eventStatus === eventStatusEnums.PUBLISHED) {
@@ -45,16 +46,20 @@ class DateComponent extends Component {
       } else if (eventInfo.eventStatus === eventStatusEnums.CONFIRMED) {
         // icon = <FontAwesomeIcon icon={faCheck} className="single_tick" />;
         icon = <Avatar src={imgConfirmed} size="20" className="single_tick" />;
+        pointer = 'dateComponent';
       } else if (eventInfo.eventStatus === eventStatusEnums.PENDING) {
         icon = <Avatar src={imgPending} size="20" className="warning" />;
+        pointer = 'dateComponent';
       } else if (eventInfo.eventStatus === eventStatusEnums.REJECTED) {
         icon = <Avatar src={imgRejected} size="20" className="warning" />;
+        pointer = 'dateComponent';
       } else {
         icon = <p id="dummy_para" />;
       }
     } else {
       icon = <p id="dummy_para" />;
     }
+
 
     if (now.year() == year && now.month() == month && now.date() == date) {
       style = 'today';
@@ -70,6 +75,7 @@ class DateComponent extends Component {
               return this.eventSelected(eventInfo.eventId);
             }
           }}
+          id={pointer}
           className={style}
         >
           <Row>

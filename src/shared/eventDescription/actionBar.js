@@ -153,7 +153,7 @@ class ActionBar extends Component {
                     centered
                 >
                     <Modal.Header id="modal_header">
-                        <Modal.Title id="modal_title"> {actionType} EVENT </Modal.Title>
+                        <Modal.Title id="modal_title"> {actionType} Event </Modal.Title>
                     </Modal.Header>
                     <Modal.Body id="modalDeleteBody" >
                         <DefaultDialogBox close={this.closeDefaultDialogbox} actionType={actionType} />

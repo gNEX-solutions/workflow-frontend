@@ -108,7 +108,7 @@ class MainMenuComponent extends Component {
               onClick={this.addNewEventClicked}
             >
               <FontAwesomeIcon icon={faPlusCircle} size="2x" />
-              &nbsp; &nbsp; New Event
+              &nbsp; &nbsp;Add New Event
             </Button>
           </Col>
           <Col className="col-2" id="calender">
@@ -119,7 +119,7 @@ class MainMenuComponent extends Component {
                 className="menuOption"
               >
                 <h3>
-                  <span className=" " id={calenderStatus}>
+                  <span className=" " id="calenderMenu">
                     Event Calender
                   </span>
                 </h3>
@@ -135,7 +135,7 @@ class MainMenuComponent extends Component {
                 className="menuOption"
               >
                 <h3>
-                  <span className="" id={eventExpStatus}>
+                  <span className="" id="explorerMenu">
                     Event Explorer
                   </span>
                 </h3>
@@ -151,7 +151,7 @@ class MainMenuComponent extends Component {
                 className="menuOption"
               >
                 <h3>
-                  <span className="" id={historyStatus}>
+                  <span className="" id="histroyMenu">
                     History
                   </span>
                 </h3>

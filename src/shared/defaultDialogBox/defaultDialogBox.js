@@ -226,11 +226,12 @@ class DefaultDialogBox extends Component {
                   onClick={this.performAction}
                   variant={actionButtonVariant}
                   id="defaultBtn"
+                  size="lg"
                 // style={{ marginLeft: 5 }}
                 >
                   {actionType}
                 </Button>
-                <Button variant="dark" onClick={this.props.close}>
+                <Button variant="outline-secondary" size="lg" onClick={this.props.close}>
                   {' '}
                   cancel{' '}
                 </Button>

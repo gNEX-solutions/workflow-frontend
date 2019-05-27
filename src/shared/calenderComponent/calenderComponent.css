@@ -7,9 +7,11 @@ table{
 }
 .table_header{
     text-align: center;
-    background-color: rgb(47, 226, 167);
+    background-color:#AFE8E6;
     font-size: 1.25rem;
     padding: 1rem;
+    font-family: Arial;
+    font-weight: 400;
     
 
 }
@@ -29,7 +31,7 @@ table{
 }
 
 .blank_date{
-    background-color: rgb(215, 229, 224);
+    background-color: #F2F2F2;
 }
 
 
