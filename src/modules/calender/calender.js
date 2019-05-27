@@ -34,12 +34,12 @@ class CalenderSection extends Component {
   };
 
   renderEvents = () => {
-    const arr = [];
-    this.props.events.map((event, index) => {
-      arr.push(
+    let arr = [];
+    arr = this.props.events.map((event, index) =>
+      (
         <EventComponent event={event} onEventClick={this.handleEventOnClick} />
-      );
-    });
+      )
+    );
 
     return arr;
   };

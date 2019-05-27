@@ -5,8 +5,8 @@ import { Col, Row, Button, Form, InputGroup, Alert } from 'react-bootstrap';
 import './editEvent.css';
 
 import * as moment from 'moment';
-import { updateEvent, getMonthlyEvents, getExplorerEvents } from '../../store/actions/DashBoardActions';
-import { isNull } from 'util';
+import { updateEvent } from '../../store/actions/DashBoardActions';
+// import { isNull } from 'util';
 // import sampleData from '../../services/sampleDataSet';
 // import sampleDataSet from '../../services/sampleDataSet';
 
@@ -112,7 +112,7 @@ class EditEvent extends Component {
   updateEventClicked = e => {
     console.log('running');
     const { event } = this.state;
-    const { updateEvent, getMonthlyEvents } = this.props;
+    const { updateEvent } = this.props;
 
     const timeFromMoment = moment(event.eventStartTime, 'HH:mm');
     const timeToMoment = moment(event.eventEndTime, 'HH:mm');
@@ -639,5 +639,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { updateEvent, getMonthlyEvents }
+  { updateEvent }
 )(EditEvent);

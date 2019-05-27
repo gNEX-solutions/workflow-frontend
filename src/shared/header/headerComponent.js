@@ -5,17 +5,17 @@ import {
   Nav,
   Form,
   Badge,
-  NavItem,
+  // NavItem,
   OverlayTrigger,
   Popover
 } from 'react-bootstrap';
-import {
-  Toolbar,
-  Typography,
-  Grid,
-  IconButton,
-  NotificationsIcon
-} from 'reactstrap';
+// import {
+//   Toolbar,
+//   Typography,
+//   Grid,
+//   IconButton,
+//   NotificationsIcon
+// } from 'reactstrap';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import Avatar from 'react-avatar';
 import NotificationPannel from './NotificationPanel';

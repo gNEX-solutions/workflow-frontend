@@ -21,15 +21,15 @@ class SearchResults extends Component {
   };
 
   renderEvents = () => {
-    const arr = [];
+    let arr = [];
 
     const { searchSuggestions } = this.props;
 
-    searchSuggestions.map((event, index) => {
-      arr.push(
+    arr = searchSuggestions.map((event, index) =>
+      (
         <EventComponent event={event} onEventClick={this.handleEventOnClick} />
-      );
-    });
+      )
+    );
 
     return arr;
   };

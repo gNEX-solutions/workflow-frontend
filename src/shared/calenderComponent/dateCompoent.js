@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCheck,
-  faCheckDouble,
-  faExclamationTriangle
+  faCheckDouble
 } from '@fortawesome/free-solid-svg-icons';
 import Avatar from 'react-avatar';
 import { connect } from 'react-redux';
@@ -40,7 +38,7 @@ class DateComponent extends Component {
     let icon;
     let pointer = '';
     let style = 'default';
-    if (eventInfo != undefined) {
+    if (eventInfo !== undefined) {
       if (eventInfo.eventStatus === eventStatusEnums.PUBLISHED) {
         icon = <FontAwesomeIcon icon={faCheckDouble} className="single_tick" />;
       } else if (eventInfo.eventStatus === eventStatusEnums.CONFIRMED) {
@@ -61,17 +59,17 @@ class DateComponent extends Component {
     }
 
 
-    if (now.year() == year && now.month() == month && now.date() == date) {
+    if (now.year() === year && now.month() === month && now.date() === date) {
       style = 'today';
     }
-    if (eventInfo != undefined && selectedEventId === eventInfo.eventId) {
+    if (eventInfo !== undefined && selectedEventId === eventInfo.eventId) {
       style = 'selected';
     }
     return (
       <React.Fragment>
         <td
           onClick={() => {
-            if (eventInfo != undefined) {
+            if (eventInfo !== undefined) {
               return this.eventSelected(eventInfo.eventId);
             }
           }}

@@ -5,7 +5,7 @@ import './calenderComponent.css';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
 import { connect } from 'react-redux';
 import {
-  selectEvent,
+  // selectEvent,
   getMonthlyEvents
 } from '../../store/actions/DashBoardActions';
 import DateCompoent from './dateCompoent';

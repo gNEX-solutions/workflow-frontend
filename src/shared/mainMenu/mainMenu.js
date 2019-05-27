@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Col, Button, Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +10,7 @@ import { setSerchOverlay } from '../../store/actions/DashBoardActions';
 import './mainMenu.css';
 
 import SearchFieldComponent from '../search_field/searchfieldComponent';
-import events from './serachEventService.js';
+// import events from './serachEventService.js';
 
 class MainMenuComponent extends Component {
   state = {

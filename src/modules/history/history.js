@@ -21,15 +21,15 @@ class HistorySection extends Component {
   };
 
   renderEvents = () => {
-    const arr = [];
+    let arr = [];
 
     const { pastEvents } = this.props;
 
-    pastEvents.map((event, index) => {
-      arr.push(
-        <EventComponent event={event} onEventClick={this.handleEventOnClick} />
-      );
-    });
+    arr = pastEvents.map((event, index) => (
+
+      <EventComponent event={event} onEventClick={this.handleEventOnClick} />
+    )
+    );
 
     return arr;
   };

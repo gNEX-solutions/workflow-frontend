@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, OverlayTrigger, Popover } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import ActionBar from './actionBar';
 import Avatar from 'react-avatar';
 import imgActionBar from '../../img/imgActionBar.svg';
@@ -14,7 +14,7 @@ class EventDescription extends Component {
   getSecondcoordinatorDetials() {
     const { eventCoordinatorDetails } = this.props.event;
     // eslint-disable-next-line no-negated-condition
-    if (eventCoordinatorDetails[1] != undefined) {
+    if (eventCoordinatorDetails[1] !== undefined) {
       return (
         <p className="eventInfo_text">
           &nbsp; &nbsp; {eventCoordinatorDetails[1].name} &nbsp; &nbsp;

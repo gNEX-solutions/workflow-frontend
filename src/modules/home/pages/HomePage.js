@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import * as moment from 'moment';
 import CalenderSection from '../../calender/calender';
 import EventExplorer from '../../eventExplorer/eventExplorer';

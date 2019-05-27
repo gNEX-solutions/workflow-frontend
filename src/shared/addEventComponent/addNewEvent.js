@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import "bootstrap/dist/css/bootstrap.css";
-import { Col, Row, Button, Form, InputGroup, Alert, FormGroup, FormLabel } from 'react-bootstrap';
+import { Col, Row, Button, Form, InputGroup, Alert } from 'react-bootstrap';
 import './newEvent.css';
 
 import { createEvent } from '../../store/actions/DashBoardActions';
@@ -20,7 +20,6 @@ class addNewEvent extends Component {
     batch: null,
     // coordinatorName: '',
     // coordinatorImnum: '',
-    validated: false,
     coordinators: [
       {
         name: '',
@@ -34,8 +33,7 @@ class addNewEvent extends Component {
 
     description: '',
     participants: '',
-    budget: '',
-    resources: ''
+    budget: ''
   };
   // sample added by dj
   createEventClicked = event => {
@@ -52,8 +50,7 @@ class addNewEvent extends Component {
       description,
       participants,
       budget,
-      batch,
-      resources
+      batch
     } = this.state;
     const timeFromMoment = moment(timeFrom, 'HH:mm');
     const timeToMoment = moment(timeTo, 'HH:mm');

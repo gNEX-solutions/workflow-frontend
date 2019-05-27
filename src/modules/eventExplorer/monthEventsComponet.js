@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 
 import { Badge } from "react-bootstrap";
-import SampleDataExp from '../../services/sampleDataEventExp';
+// import SampleDataExp from '../../services/sampleDataEventExp';
 import './monthEventcomponents.css';
 import moment from 'moment';
 import { selectEvent } from "../../store/actions/DashBoardActions";
