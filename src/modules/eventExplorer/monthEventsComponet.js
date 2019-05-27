@@ -62,10 +62,10 @@ class MonthEventCompoent extends Component {
 
     getFilteredEventList() {
         const { month, level, events } = this.props;
-        const filteredList = events.filter(({ eventDate, batch } = {}) => {
+        const filteredList = events.filter(({ eventDate, eventOrganizer } = {}) => {
             const eventMoment = moment(eventDate, 'YYYY-MM-DD');
-            // return eventMoment.month() === month && batch === level.toString();
-            return eventMoment.month() === month;
+            return eventMoment.month() === month && eventOrganizer === level.toString();
+            // return eventMoment.month() === month;
         })
             .map(({ eventId, eventName } = {}) => {
                 return (

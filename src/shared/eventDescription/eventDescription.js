@@ -33,7 +33,7 @@ class EventDescription extends Component {
       eventParticipants,
       eventDescription,
       eventBudget,
-      batch,
+      eventOrganizer,
       eventCoordinatorDetails,
       eventStatus
     } = this.props.event;
@@ -77,7 +77,7 @@ class EventDescription extends Component {
               <Col className="col-4">
                 <p className="eventInfo_text">
                   <strong className="evenInfo_title">Organised by :</strong>{' '}
-                  Year {batch}
+                  Year {eventOrganizer}
                 </p>
               </Col>
               <Col className="col-4">
