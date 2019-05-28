@@ -3,19 +3,17 @@ import React, { Component } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCheck,
-  faCheckDouble,
-  faExclamationTriangle
+  faCheckDouble
 } from '@fortawesome/free-solid-svg-icons';
 import Avatar from 'react-avatar';
 import { connect } from 'react-redux';
 import * as moment from 'moment';
+import { eventStatusEnums } from '../../enums/eventStatus';
 import { selectEvent } from '../../store/actions/DashBoardActions';
 import './dateComponent.css';
 import imgPending from '../../img/pending.svg';
-import imgDeny from '../../img/deny.svg';
+import imgRejected from '../../img/deny.svg';
 import imgConfirmed from '../../img/confirmed.svg';
-
 
 class DateComponent extends Component {
   state = {};
@@ -40,19 +38,18 @@ class DateComponent extends Component {
     let icon;
     let pointer = '';
     let style = 'default';
-    if (eventInfo != undefined) {
-      if (eventInfo.eventApprovedStatus === 'PUBLISHED') {
+    if (eventInfo !== undefined) {
+      if (eventInfo.eventStatus === eventStatusEnums.PUBLISHED) {
         icon = <FontAwesomeIcon icon={faCheckDouble} className="single_tick" />;
-        pointer = 'dateComponent';
-      } else if (eventInfo.eventApprovedStatus === 'confirmed') {
+      } else if (eventInfo.eventStatus === eventStatusEnums.CONFIRMED) {
         // icon = <FontAwesomeIcon icon={faCheck} className="single_tick" />;
-        icon = <Avatar src={imgConfirmed} size="20" className="single_tick" />
+        icon = <Avatar src={imgConfirmed} size="20" className="single_tick" />;
         pointer = 'dateComponent';
-      } else if (eventInfo.eventApprovedStatus === 'pending') {
-        icon = (
-          // <FontAwesomeIcon icon={faExclamationTriangle} className="warning" />
-          <Avatar src={imgPending} size="20" className="warning" />
-        );
+      } else if (eventInfo.eventStatus === eventStatusEnums.PENDING) {
+        icon = <Avatar src={imgPending} size="20" className="warning" />;
+        pointer = 'dateComponent';
+      } else if (eventInfo.eventStatus === eventStatusEnums.REJECTED) {
+        icon = <Avatar src={imgRejected} size="20" className="warning" />;
         pointer = 'dateComponent';
       } else {
         icon = <p id="dummy_para" />;
@@ -62,39 +59,36 @@ class DateComponent extends Component {
     }
 
 
-    if (now.year() == year && now.month() == month && now.date() == date) {
+    if (now.year() === year && now.month() === month && now.date() === date) {
       style = 'today';
     }
-    if (eventInfo != undefined && selectedEventId === eventInfo.eventId) {
+    if (eventInfo !== undefined && selectedEventId === eventInfo.eventId) {
       style = 'selected';
     }
     return (
       <React.Fragment>
         <td
           onClick={() => {
-            if (eventInfo != undefined) {
+            if (eventInfo !== undefined) {
               return this.eventSelected(eventInfo.eventId);
             }
           }}
           id={pointer}
           className={style}
         >
-
           <Row>
             {/* <Col className="col-3" /> */}
             <Col className="col-12">
               <p id="date"> {date}</p>
             </Col>
           </Row>
-          <Row >
+          <Row>
             <Col className="col-6" id="notIcon">
-
               {icon}
             </Col>
           </Row>
-
         </td>
-      </React.Fragment >
+      </React.Fragment>
     );
   }
 }

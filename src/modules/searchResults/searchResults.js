@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import EventComponent from "../../shared/eventComponent/EventComponent";
 import { selectEvent } from "../../store/actions/DashBoardActions";
-import "./history.css";
+import "./searchResults.css";
 
-class HistorySection extends Component {
+class SearchResults extends Component {
   constructor(props) {
     super(props);
 
@@ -23,27 +23,27 @@ class HistorySection extends Component {
   renderEvents = () => {
     let arr = [];
 
-    const { pastEvents } = this.props;
+    const { searchSuggestions } = this.props;
 
-    arr = pastEvents.map((event, index) => (
-
-      <EventComponent event={event} onEventClick={this.handleEventOnClick} />
-    )
+    arr = searchSuggestions.map((event, index) =>
+      (
+        <EventComponent event={event} onEventClick={this.handleEventOnClick} />
+      )
     );
 
     return arr;
   };
 
   render() {
-    const allPastEvents = this.renderEvents();
+    const allSuggestions = this.renderEvents();
 
     return (
       <React.Fragment>
         <div className="historySection row">
           <div className="historyCalendar col-md-4 ">
-            <p>history</p>
+            <p>search results</p>
           </div>
-          <div className="historyDetail col-md-8 ">{allPastEvents}</div>
+          <div className="historyDetail col-md-8 ">{allSuggestions}</div>
         </div>
       </React.Fragment>
     );
@@ -51,10 +51,10 @@ class HistorySection extends Component {
 }
 
 const mapStateToProps = state => ({
-  pastEvents: state.dashboard.pastEvents
+  searchSuggestions: state.dashboard.searchSuggestions
 });
 
 export default connect(
   mapStateToProps,
   { selectEvent }
-)(HistorySection);
+)(SearchResults);

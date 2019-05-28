@@ -4,7 +4,7 @@ import Auth from '../modules/auth/pages/Auth';
 import HomePage from '../modules/home/pages/HomePage';
 
 
-import RequireAuth from './RequireAuth';
+// import RequireAuth from './RequireAuth';
 
 export const VIEW_TYPES = {
   login: 1001,

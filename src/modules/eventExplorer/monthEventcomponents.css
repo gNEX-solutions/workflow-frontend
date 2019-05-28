@@ -1,6 +1,9 @@
 .eventInfo_badge{
     width: 15rem;
     margin-left: 2rem;
+    font-family: 'Poppins';
+    font-size: 1.25rem;
+    font-style: normal;
     /* background-color: aqua; */
 }
 .eventInfo_badge:hover{

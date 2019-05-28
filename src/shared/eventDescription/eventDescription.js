@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, OverlayTrigger, Popover } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import ActionBar from './actionBar';
 import Avatar from 'react-avatar';
 import imgActionBar from '../../img/imgActionBar.svg';
@@ -14,7 +14,7 @@ class EventDescription extends Component {
   getSecondcoordinatorDetials() {
     const { eventCoordinatorDetails } = this.props.event;
     // eslint-disable-next-line no-negated-condition
-    if (eventCoordinatorDetails[1] != undefined) {
+    if (eventCoordinatorDetails[1] !== undefined) {
       return (
         <p className="eventInfo_text">
           &nbsp; &nbsp; {eventCoordinatorDetails[1].name} &nbsp; &nbsp;
@@ -35,9 +35,9 @@ class EventDescription extends Component {
       eventParticipants,
       eventDescription,
       eventBudget,
-      batch,
+      eventOrganizer,
       eventCoordinatorDetails,
-      eventApprovedStatus
+      eventStatus
     } = this.props.event;
     const editedDate = moment(eventDate).format('Do MMMM');
     const editedTime = moment(eventStartTime, 'hh mm ss').format('hh mm A');
@@ -65,7 +65,7 @@ class EventDescription extends Component {
                 placement="left"
                 overlay={
                   <Popover id={`popover-positioned`}>
-                    <ActionBar status={eventApprovedStatus} />
+                    <ActionBar status={eventStatus} />
                   </Popover>
                 }
               >
@@ -79,8 +79,8 @@ class EventDescription extends Component {
             <Row id="basic_info_row">
               <Col className="col-4">
                 <p className="eventInfo_text">
-                  <strong className="evenInfo_title">Organised by -</strong>{' '}
-                  Year {batch}
+                  <strong className="evenInfo_title">Organised by :</strong>{' '}
+                  Year {eventOrganizer}
                 </p>
               </Col>
               <Col className="col-4">

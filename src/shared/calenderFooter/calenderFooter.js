@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faComment } from '@fortawesome/free-solid-svg-icons';
 import Avatar from 'react-avatar';
 import imgComments from "../../img/imgComments.svg";

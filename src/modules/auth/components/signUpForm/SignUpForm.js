@@ -71,25 +71,25 @@ class SignUpForm extends Component {
   };
 
   onSubmit = e => {
-    const {
-      firstName,
-      lastname,
-      username,
-      email,
-      password,
-      password2
-    } = this.state;
+    // const {
+    //   firstName,
+    //   lastname,
+    //   username,
+    //   email,
+    //   password,
+    //   password2
+    // } = this.state;
 
-    const newUser = {
-      firstName: firstName,
-      lastName: lastname,
-      username: username,
-      email: email,
-      password: password,
-      password2: password2
-    };
+    // const newUser = {
+    //   firstName: firstName,
+    //   lastName: lastname,
+    //   username: username,
+    //   email: email,
+    //   password: password,
+    //   password2: password2
+    // };
 
-    const { registerUser } = this.props;
+    // const { registerUser } = this.props;
 
     e.preventDefault();
 

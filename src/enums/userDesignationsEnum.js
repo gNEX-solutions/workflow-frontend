@@ -1,7 +1,7 @@
 export const userDesignationEnum = {
     HOD: 'HOD',
-    SENIOR_TREASURER: 'Senior Treasurer',
-    PRESIDENT: 'President',
-    SECRETARY: 'Secretary',
-    COORDINATOR: 'Coordinator'
+    SENIOR_TREASURER: 'SENIOR_TREASURER',
+    PRESIDENT: 'PRESIDENT',
+    SECRETARY: 'SECRETARY',
+    COORDINATOR: 'COORDINATOR'
 };
