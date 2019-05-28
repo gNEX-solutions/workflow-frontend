@@ -143,8 +143,8 @@ class EditEvent extends Component {
       //   month: moment().month() + 1,
       //   year: moment().year()
       // });
-      // event.preventDefault();
-      // event.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
       this.props.close();
     }
   };
@@ -205,7 +205,7 @@ class EditEvent extends Component {
     // console.log(id);
     // console.log(e.target.value);
     const { event } = this.state;
-    var coordinators = [];
+    let coordinators = [];
     if (id === 0) {
       coordinators = [
         {
@@ -226,25 +226,41 @@ class EditEvent extends Component {
       //   ]
       // });
     } else {
-      coordinators = [
-        event.eventCoordinatorDetails[0],
-        {
-          coordinatorUId: event.eventCoordinatorDetails[1].coordinatorUId,
-          name: e.target.value,
-          imNumber: event.eventCoordinatorDetails[1].imNumber
-        }
-      ];
-      // this.setState({
-      //   coordinators: [
-      //     this.state.coordinators[0],
-      //     {
-      //       coordinatorUId: this.state.coordinators[1].coordinatorUId,
-      //       name: event.target.value,
-      //       imNumber: this.state.coordinators[1].imNumber
-      //     }
-      //   ]
-      // });
+      if (event.eventCoordinatorDetails[1] === undefined) {
+        // let imNumber = event.eventCoordinatorDetails[1] ? event.eventCoordinatorDetails[1].imNumber : '';
+        coordinators = [
+          event.eventCoordinatorDetails[0],
+          {
+            //   coordinatorUId: event.eventCoordinatorDetails[1].coordinatorUId,
+            name: e.target.value,
+            imNumber: ''
+          }
+        ];
+      }
+      else {
+        let imNumber = event.eventCoordinatorDetails[1].imNumber ? event.eventCoordinatorDetails[1].imNumber : '';
+        coordinators = [
+          event.eventCoordinatorDetails[0],
+          {
+            coordinatorUId: event.eventCoordinatorDetails[1].coordinatorUId,
+            name: e.target.value,
+            imNumber: imNumber
+          }
+        ];
+      }
     }
+
+    // this.setState({
+    //   coordinators: [
+    //     this.state.coordinators[0],
+    //     {
+    //       coordinatorUId: this.state.coordinators[1].coordinatorUId,
+    //       name: event.target.value,
+    //       imNumber: this.state.coordinators[1].imNumber
+    //     }
+    //   ]
+    // });
+
     this.setState({
       event: {
         ...event,
@@ -276,14 +292,30 @@ class EditEvent extends Component {
       //   ]
       // });
     } else {
-      coordinators = [
-        event.eventCoordinatorDetails[0],
-        {
-          coordinatorUId: event.eventCoordinatorDetails[1].coordinatorUId,
-          name: event.eventCoordinatorDetails[1].name,
-          imNumber: 'IM/' + e.target.value
-        }
-      ];
+      if (event.eventCoordinatorDetails[1] === undefined) {
+        let name = event.eventCoordinatorDetails[1].name ? event.eventCoordinatorDetails[1].name : '';
+        coordinators = [
+          event.eventCoordinatorDetails[0],
+          {
+            // coordinatorUId: event.eventCoordinatorDetails[1].coordinatorUId,
+            name: name,
+            imNumber: 'IM/' + e.target.value
+          }
+        ];
+      }
+      else {
+        let name = event.eventCoordinatorDetails[1].name ? event.eventCoordinatorDetails[1].name : '';
+        coordinators = [
+
+          event.eventCoordinatorDetails[0],
+          {
+            coordinatorUId: event.eventCoordinatorDetails[1].coordinatorUId,
+            name: name,
+            imNumber: 'IM/' + e.target.value
+          }
+        ];
+      }
+
       // this.setState({
       //   coordinators: [
       //     this.state.coordinators[0],
