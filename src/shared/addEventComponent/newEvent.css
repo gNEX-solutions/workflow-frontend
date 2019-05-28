@@ -13,6 +13,9 @@
     font-size: 20px;
 
 }
+.coordinator_row {
+    padding-top: 3%;
+}
 
 #btnAdd_form{
     margin-right: 5%;

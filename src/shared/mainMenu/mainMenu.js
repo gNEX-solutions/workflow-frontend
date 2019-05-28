@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Col, Button, Modal } from 'react-bootstrap';
-
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
-import AddNewEventComponent from '../addEventComponent/addNewEvent';
 
+import AddNewEventComponent from '../addEventComponent/addNewEvent';
+import { setSerchOverlay } from '../../store/actions/DashBoardActions';
 import './mainMenu.css';
+
+import SearchFieldComponent from '../search_field/searchfieldComponent';
+// import events from './serachEventService.js';
 
 class MainMenuComponent extends Component {
   state = {
@@ -29,24 +33,29 @@ class MainMenuComponent extends Component {
       showAddNewEvent: false
     });
   };
+  modalTitle = 'Add New Event';
 
-  eventExpClicked() {
-    // alert('event exp clicked');
-    console.log('event exp clicked ');
-  }
-
-  calenderCicked() {
-    console.log('calender clicked');
+  addNewEventClicked = () => {
+    // alert('add new event');
     this.setState({
-      eventExpStatus: '',
-      calenderStatus: 'active',
-      historyStatus: ''
+      showAddNewEvent: true
     });
-  }
+  };
+
+  closeAddNewEvent = () => {
+    this.setState({
+      showAddNewEvent: false
+    });
+  };
+
+  searchButtonClicked = () => {
+    const { setSerchOverlay, onSearchPress } = this.props;
+    setSerchOverlay(false);
+    onSearchPress();
+    console.log('search btn clicked');
+  };
 
   eventExpClicked = () => {
-    // alert('event exp clicked');
-    console.log('event exp clicked ');
     const { onEventExplorerPress } = this.props;
     onEventExplorerPress();
   };
@@ -54,30 +63,29 @@ class MainMenuComponent extends Component {
   calenderCicked = () => {
     const { onEventCalendarPress } = this.props;
     onEventCalendarPress();
-    console.log('calender clicked');
-    // this.setState({
-    //   eventExpStatus: '',
-    //   calenderStatus: 'active',
-    //   historyStatus: ''
-    // });
   };
 
   historyClicked = () => {
     const { onEventHistoryPress } = this.props;
     onEventHistoryPress();
-    console.log('History clicked');
   };
 
-  searchButtonClicked = () => {
-    // alert('search btn clicked');
-    console.log('search btn clicked');
-  };
+  calenderCicked() {
+    this.setState({
+      eventExpStatus: '',
+      calenderStatus: 'active',
+      historyStatus: ''
+    });
+  }
+  hideOverlays = () => {
+    this.props.setSerchOverlay(false);
+  }
 
   render() {
     const { calenderStatus, eventExpStatus, historyStatus } = this.state;
     return (
       <React.Fragment>
-        <div className="row menuOuter">
+        <div className="row menuOuter" onClick={this.hideOverlays}>
           <Modal
             show={this.state.showAddNewEvent}
             size="lg"
@@ -94,12 +102,13 @@ class MainMenuComponent extends Component {
 
           <Col className="col-2">
             <Button
-              variant="success"
+              // variant="success"
+              className="btnAddNewEvent"
               id="add_button"
               onClick={this.addNewEventClicked}
             >
               <FontAwesomeIcon icon={faPlusCircle} size="2x" />
-              &nbsp; &nbsp; New Event
+              &nbsp; &nbsp;Add New Event
             </Button>
           </Col>
           <Col className="col-2" id="calender">
@@ -110,7 +119,7 @@ class MainMenuComponent extends Component {
                 className="menuOption"
               >
                 <h3>
-                  <span className=" " id={calenderStatus}>
+                  <span className=" " id="calenderMenu">
                     Event Calender
                   </span>
                 </h3>
@@ -126,7 +135,7 @@ class MainMenuComponent extends Component {
                 className="menuOption"
               >
                 <h3>
-                  <span className="" id={eventExpStatus}>
+                  <span className="" id="explorerMenu">
                     Event Explorer
                   </span>
                 </h3>
@@ -142,15 +151,33 @@ class MainMenuComponent extends Component {
                 className="menuOption"
               >
                 <h3>
-                  <span className="" id={historyStatus}>
+                  <span className="" id="histroyMenu">
                     History
                   </span>
                 </h3>
               </button>
             </div>
           </Col>
+          <div>
+            {/* dumindu's code pasted  */}
+            <div className="searchFieldComponent">
+              <SearchFieldComponent
+                onEventCalendarPress={this.props.onEventCalendarPress}
+              />
+            </div>
+          </div>
+          <div className="input-group-append">
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              id="button-search"
+              onClick={this.searchButtonClicked}
+            >
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </div>
 
-          <Col className="col-2" id="search_box">
+          {/* <Col className="col-2" id="search_box">
             <div className="input-group mb-3" id="search_group">
               <input
                 type="text"
@@ -171,11 +198,14 @@ class MainMenuComponent extends Component {
                 </button>
               </div>
             </div>
-          </Col>
+          </Col> */}
         </div>
       </React.Fragment>
     );
   }
 }
-
-export default MainMenuComponent;
+const mapStateToProps = state => ({});
+export default connect(
+  mapStateToProps,
+  { setSerchOverlay }
+)(MainMenuComponent);

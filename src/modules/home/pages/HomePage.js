@@ -1,24 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import * as moment from 'moment';
 import CalenderSection from '../../calender/calender';
 import EventExplorer from '../../eventExplorer/eventExplorer';
 import History from '../../history/history';
 import HeaderComponent from '../../../shared/header/headerComponent';
 import MainMenuCompoannent from '../../../shared/mainMenu/mainMenu';
+import SearchResults from '../../searchResults/searchResults';
 import './HomePage.styles.css';
 
-import { getEvent } from '../../../store/actions/DashBoardActions';
+import { getMonthlyEvents } from '../../../store/actions/DashBoardActions';
 
-export const input = {
-  month: '05',
-  year: '2019'
-};
+// export const input = {
+//   month: moment().format("MM"),
+//   year: moment().year()
+// };
 
 export const VIEW_TYPES = {
   calendar: 1001,
   explorer: 1002,
-  history: 1003
+  history: 1003,
+  searchResults: 1004
 };
 
 class HomePage extends React.Component {
@@ -31,11 +34,16 @@ class HomePage extends React.Component {
       currentViewType: VIEW_TYPES.calendar
     };
   }
+  input = {
+    month: moment().format("MM"),
+    year: moment().year()
+  };
 
   componentDidMount() {
-    const { getEvent } = this.props;
-    getEvent(input);
-    console.log('test');
+    const { getMonthlyEvents } = this.props;
+    // console.log(input);
+    // getEvent(input);
+    getMonthlyEvents(this.input);
   }
 
   handleEventCalendarPress = () => {
@@ -50,17 +58,25 @@ class HomePage extends React.Component {
     this.setState({ currentViewType: VIEW_TYPES.history });
   };
 
+  handleSearchPress = () => {
+    this.setState({ currentViewType: VIEW_TYPES.searchResults });
+  }
+
   renderCalendarView = () => <CalenderSection />;
 
-  renderExplorerView = () => <EventExplorer />;
+  renderExplorerView = () => <EventExplorer onEventCalendarPress={this.handleEventCalendarPress} />;
 
-  renderHistoryView = () => <History />;
+  renderHistoryView = () => (
+    <History onEventCalendarPress={this.handleEventCalendarPress} />
+  );
+  renderSearchResultsView = () => <SearchResults onEventCalendarPress={this.handleEventCalendarPress} />;
 
   renderContent = () => {
     const viewMap = {
       [VIEW_TYPES.calendar]: this.renderCalendarView,
       [VIEW_TYPES.explorer]: this.renderExplorerView,
-      [VIEW_TYPES.history]: this.renderHistoryView
+      [VIEW_TYPES.history]: this.renderHistoryView,
+      [VIEW_TYPES.searchResults]: this.renderSearchResultsView
     };
     const view = viewMap[this.state.currentViewType]();
 
@@ -73,6 +89,7 @@ class HomePage extends React.Component {
               onEventCalendarPress={this.handleEventCalendarPress}
               onEventExplorerPress={this.handleEventExplorerPress}
               onEventHistoryPress={this.handleHistoryPress}
+              onSearchPress={this.handleSearchPress}
             />
             <hr size="80" />
           </div>
@@ -102,5 +119,5 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(
   mapStateToProps,
-  { getEvent }
+  { getMonthlyEvents }
 )(HomePage);

@@ -4,6 +4,14 @@
 
 }
 
+.navbar {
+  background: #1CB1AC;
+}
+
+.right {
+  float: right;
+}
+
 .grow {
   flexGrow: 1;
 }
@@ -14,7 +22,7 @@
 }
 
 .AppBar {
-  background: red;
+
   position: "static";
   color: "inherit";
 }
@@ -35,30 +43,35 @@
   width: 40;
   height: 40;
 }
+.user_avatar{
+  padding-left: 1rem;
+}
 
-.UserDetails {
-  marginTop: "2%";
+.user_details {
+  margin-top: 0.5rem;
+  /* padding-left: 1rem; */
 }
 
 
 .Fname {
-  color: "white";
-  fontWeight: "bold";
-  fontSize: "80%";
+  color: antiquewhite;
+  font-weight: 900;
+  font-size: 1.25rem;
+  padding-right: 0.5rem;
 }
 
 
 .Lname {
-  color: "grey";
-  fontWeight: "bold";
-  fontSize: "80%";
+  color: rgb(83, 79, 73);
+  font-weight: 900;
+  font-size: 1.25rem;
 }
 
 
 .Designation {
-  color: "white";
-  fontStyle: "italic";
-  fontSize: "60%";
+  color: antiquewhite;
+  font-style: italic;
+  font-size: 0.8rem;
 }
 
 .header {
@@ -68,4 +81,10 @@
 #avatar {
   position: relative;
   top: -10px;
+}
+
+#popover_userProfile{
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+  max-height: 12rem;
 }

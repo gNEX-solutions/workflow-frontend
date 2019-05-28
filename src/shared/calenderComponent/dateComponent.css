@@ -1,20 +1,36 @@
 #date{
-    font-size: 23px;
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: 400;
     text-align: center;
     align-self: center;
-    /* padding-top: 15%; */
-    padding-left: 10%;
+    padding-top: 2%;
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+    padding-left: 2%;
+    min-width: 4rem;
+    font-family: Arial;
     /* color: blue; */
 }
 
 #dummy_para{
-    font-size: 15px;
+    font-size: 1rem;
 }
+
+#notIcon{
+    padding-left: 2.25rem;
+}
+
+#dateComponent:hover{
+    cursor: pointer;
+}
+
+
 
 .single_tick{
     color: green;
-    font-size: 15px;
+    font-size: 1rem;
+    text-align: right;
+    align-self: flex-end;
 }
 
 .background_icon{
@@ -27,5 +43,29 @@
 
 .warning{
     color: rgb(151, 151, 14);
-    font-size: 15px;
+    /* font-size: 0rem; */
+    padding-top: 0rem;
+    
 }
+
+.selected{
+    background-color: #1CB1AC;
+    padding-bottom: 1rem;
+    color: white;
+    
+}
+.today{
+    background-color: #E1E1E1;
+    padding-bottom: 1rem;
+    border: 2px;
+    /* bor */
+
+    /* background-image: url(''); */
+    /* opacity: 0.5; */
+}
+.default {
+    background-color: #F2F2F2;
+    padding-bottom: 1rem;
+}
+
+

@@ -1,48 +1,13 @@
-#detailed_description {
-  padding-left: 80px;
-  padding-right: 60px;
-  font-family: Poppins;
-  font-size: 10pt;
+
+#header_container {
+  /* padding-top: 0rem;
+  margin-top: 0rem; */
+  max-width: 89%;
+  font-family: 'Poppins';
 }
 
-#header_row {
-  font-family: Poppins;
-  padding-left: 50px;
-  margin-left: -50px;
-  padding-bottom: 10px;
-}
 
-#basic_info_row {
-  white-space: nowrap;
-  font-family: Poppins;
-  overflow: hidden;
-  text-overflow: clip;
-  font-size: 10pt;
-}
 
-#basic_info_row strong {
-  font-family: Poppins;
-  font-style: Bold;
-  color: #1cb1ac;
-  font-size: 10pt;
-}
-
-#description {
-  font-family: Poppins;
-  font-style: Bold;
-  color: #1cb1ac;
-  font-size: 10pt;
-}
-
-#footer {
-  font-family: Poppins;
-}
-
-#description_row {
-  padding-left: 16px;
-  padding-right: 10px;
-  font-family: Poppins;
-}
 
 .col-3 {
   white-space: nowrap;
@@ -53,7 +18,7 @@
   text-overflow: clip;
   color: #1cb1ac;
 }
-
+  
 .col-2 {
   white-space: nowrap;
   padding-left: 10px;
@@ -77,21 +42,120 @@
   margin-right: 20px;
   color: #b1b1b1;
 }
-
+/*****************  event header styling ***********/
 #event_name {
-  font-size: 18pt;
-  padding-top: -10px;
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: 'Poppins';
+  padding-top: 2.5rem;
   padding-left: -20px;
   margin-left: -10px;
   position: relative;
-  top: 36px;
+  
 }
 
-#date,
-#time,
-#venue {
-  padding-top: 40px;
+#date12 {
+  font-size: 1rem;
+  /* size: 5rem; */
+  color: rgb(8, 102, 94);
+  font-weight: 500;
+  padding-top: 3.25rem;
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+
 }
+#time{
+  font-size: 1rem;
+  color: rgb(8, 102, 94);
+  font-weight: 500;
+  padding-top: 3.25rem;
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+}
+#venue {
+  font-size: 1rem;
+  color: rgb(8, 102, 94);
+  font-weight: 500;
+  padding-top: 3.25rem;
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+}
+#actionbarIcon{
+  font-size: 1.5rem;
+  font-weight: 900;
+  color:rgb(8, 102, 94);
+  
+}
+#actionbarContainer{
+  padding-top: 3rem;
+  padding-right: -2rem;
+  padding-left: 5%;
+  /* margin-right: 0rem; */
+  /* margin-left: 2.8rem; */
+  align-content: flex-end;
+}
+#header_row {
+  font-family: Poppins;
+  padding-left: 50px;
+  margin-left: -50px;
+  padding-bottom: 10px;
+  /* padding-top: 0rem;
+  margin-top: 0rem; */
+}
+
+
+/********************* end of event header styling  */
+
+
+/***************** event body  styling ***********/
+.eventInfo_text {
+  font-size: 1rem;
+  font-family: 'Poppins';
+  /* color: brown; */
+}
+
+
+.evenInfo_title {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #0b837f;
+}
+
+
+#description_row {
+  padding-left: 16px;
+  padding-right: 10px;
+  font-family: 'Poppins';
+  /* color: bisque */
+}
+#detailed_description {
+  padding-left: 80px;
+  padding-right: 60px;
+  font-family: 'Poppins';
+   
+}
+
+#budget {
+  font-family: Poppins;
+  font-style: Bold;
+  color: #1cb1ac;
+  /* font-size: 10pt; */
+}
+#Coordinator {
+  margin-left: -50px;
+  margin-right: 50px;
+  /* color: #830b79; */
+}
+
+#footer {
+  font-family: Poppins;
+}
+
+/****************** end of event description body styling **********/
+
+
+
+
 
 #confirmpic {
   position: relative;
@@ -109,16 +173,13 @@
   margin-left: -10px;
 }
 
-#header_container {}
 
-#Coordinator {
-  margin-left: -50px;
-  margin-right: 50px;
-}
 
-p {
+
+
+/* p {
   font-size: 10pt;
-}
+} */
 
 #basic_info {
   background-color: rgba(255, 255, 255, 0.7);
@@ -131,4 +192,12 @@ p {
 
 hr {
   border-top: 2px solid #b1b1b1;
+}
+
+/* action bar icon */
+#actionbarIcon{
+  font-size: 1.5rem;
+  font-weight: 900;
+  color:darkturquoise;
+  /* background-color: black; */
 }

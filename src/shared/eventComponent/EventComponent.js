@@ -1,13 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import './Event.styles.css';
 
 class EventComponent extends React.Component {
   static defaultProps;
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   handleEventOnClick = () => {
     const { event, onEventClick } = this.props;

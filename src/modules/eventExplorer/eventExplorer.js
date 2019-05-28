@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { Row, Col, Table } from 'react-bootstrap';
-import * as moment from 'moment';
-import HeaderComopnet from '../../shared/header/headerComponent';
-import MainMenuCompoannent from '../../shared/mainMenu/mainMenu';
+import moment from 'moment';
+import { connect } from 'react-redux';
+// import HeaderComopnet from '../../shared/header/headerComponent';
+// import MainMenuCompoannent from '../../shared/mainMenu/mainMenu';
 import './eventExplorer.css';
 import MonthEventComponent from './monthEventsComponet';
+import { getExplorerEvents } from '../../store/actions/DashBoardActions';
 
+// export const input = {
+//   year: moment().year()
+// };
 class EventExplorer extends Component {
   state = {};
+  input = {
+    year: moment().year()
+  };
 
   // getMonths = () => {
   //   const months = moment.months().map((month, monthIndex) => {
@@ -15,7 +23,10 @@ class EventExplorer extends Component {
   //   });
   //   return months;
   // }
-
+  componentDidMount() {
+    const { getExplorerEvents } = this.props;
+    getExplorerEvents(this.input);
+  }
   getMonthEventComponet = () => {
     const totalEventComponets = [];
     moment.months().forEach((mnth, mnthIndex) => {
@@ -23,7 +34,7 @@ class EventExplorer extends Component {
       for (let level = 1; level <= 4; level++) {
         monthEventComonents.push(
           <td>
-            <MonthEventComponent month={mnthIndex} level={level} />
+            <MonthEventComponent month={mnthIndex} level={level} onEventCalendarPress={this.props.onEventCalendarPress} />
           </td>
         );
       }
@@ -45,34 +56,43 @@ class EventExplorer extends Component {
     return (
       <React.Fragment>
         <Row className="eventExp_row">
-          <div className="table-responsive">
-            <Col className="col-md-11 col-sm-11">
-              <Table striped bordered responsive>
-                <thead>
-                  <tr>
-                    <th> &nbsp; &nbsp;</th>
-                    <th className="table_header">
-                      <p>1st Year</p>
-                    </th>
-                    <th className="table_header">
-                      <p>2nd Year</p>
-                    </th>
-                    <th className="table_header">
-                      <p>3rd Year</p>
-                    </th>
-                    <th className="table_header">
-                      <p>4th Year</p>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>{this.getMonthEventComponet()}</tbody>
-              </Table>
-            </Col>
-          </div>
+          {/* <div className="table-responsive"> */}
+          <Col className="col-md-12 col-sm-12">
+            <Table striped bordered responsive id="main_table">
+              <thead>
+                <tr>
+                  <th> &nbsp; &nbsp;</th>
+                  <th id="table_header">
+                    <p id="table_header_text"> 1st Year</p>
+                  </th>
+                  <th id="table_header">
+                    <p id="table_header_text">2nd Year</p>
+                  </th>
+                  <th id="table_header">
+                    <p id="table_header_text">3rd Year</p>
+                  </th>
+                  <th id="table_header">
+                    <p id="table_header_text">4th Year</p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>{this.getMonthEventComponet()}</tbody>
+            </Table>
+          </Col>
+          {/* </div> */}
         </Row>
       </React.Fragment>
     );
   }
 }
 
-export default EventExplorer;
+// export default EventExplorer;
+const mapStateToProps = (state, ownProps) => ({
+  // TODO: Map additional props here
+  // events: state.events
+});
+
+export default connect(
+  mapStateToProps,
+  { getExplorerEvents }
+)(EventExplorer);

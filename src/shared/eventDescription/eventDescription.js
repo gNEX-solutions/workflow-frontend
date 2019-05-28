@@ -1,9 +1,31 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, OverlayTrigger, Popover } from 'react-bootstrap';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import ActionBar from './actionBar';
+import Avatar from 'react-avatar';
+import imgActionBar from '../../img/imgActionBar.svg';
 import './eventDescription.css';
+import * as moment from 'moment';
 
 class EventDescription extends Component {
   state = {};
+
+  getSecondcoordinatorDetials() {
+    const { eventCoordinatorDetails } = this.props.event;
+    // eslint-disable-next-line no-negated-condition
+    if (eventCoordinatorDetails[1] !== undefined) {
+      return (
+        <p className="eventInfo_text">
+          &nbsp; &nbsp; {eventCoordinatorDetails[1].name} &nbsp; &nbsp;
+          {eventCoordinatorDetails[1].imNumber}
+        </p>
+      );
+    } else {
+      return '';
+    }
+  }
+
   render() {
     const {
       eventName,
@@ -12,9 +34,13 @@ class EventDescription extends Component {
       eventLocation,
       eventParticipants,
       eventDescription,
-      eventBudget
+      eventBudget,
+      eventOrganizer,
+      eventCoordinatorDetails,
+      eventStatus
     } = this.props.event;
-
+    const editedDate = moment(eventDate).format('Do MMMM');
+    const editedTime = moment(eventStartTime, 'hh mm ss').format('hh mm A');
     return (
       <React.Fragment>
         <div id="header_container">
@@ -23,50 +49,73 @@ class EventDescription extends Component {
               <h3 id="event_name">{eventName} </h3>
             </Col>
 
-            <Col className="col-1">
-              <p id="date"> {eventDate}</p>
+            <Col className="col-2">
+              <p id="date12"> {editedDate}</p>
             </Col>
             <Col className="col-2">
-              <p id="time"> {eventStartTime} </p>
+              <p id="time"> {editedTime} </p>
             </Col>
             <Col className="col-2">
               <p id="venue">{eventLocation}</p>
+            </Col>
+            <Col className="col-1" id="actionbarContainer">
+              <OverlayTrigger
+                trigger="click"
+                key={1}
+                placement="left"
+                overlay={
+                  <Popover id={`popover-positioned`}>
+                    <ActionBar status={eventStatus} />
+                  </Popover>
+                }
+              >
+                {/* <FontAwesomeIcon icon={faEllipsisH} id="actionbarIcon" /> */}
+                <Avatar src={imgActionBar} size="30" />
+              </OverlayTrigger>
             </Col>
           </Row>
           <hr size="20" />
           <div id="basic_info">
             <Row id="basic_info_row">
               <Col className="col-4">
-                <p>
-                  <strong>Organised by</strong> : Year 1
+                <p className="eventInfo_text">
+                  <strong className="evenInfo_title">Organised by :</strong>{' '}
+                  Year {eventOrganizer}
                 </p>
               </Col>
-              <Col id="Coordinator" className="col-4">
-                <p>
-                  <strong>Coordinators</strong> : Dinith Jayabodhi
+              <Col className="col-4">
+                <p className="eventInfo_text">
+                  <strong className="evenInfo_title">Coordinators -</strong>
                 </p>
+                <p className="eventInfo_text">
+                  &nbsp; &nbsp; {eventCoordinatorDetails[0].name} &nbsp; &nbsp;{' '}
+                  {eventCoordinatorDetails[0].imNumber}
+                </p>
+
+                {this.getSecondcoordinatorDetials()}
               </Col>
-              <p>
-                <strong>Participants</strong> : {eventParticipants}
+              <p className="eventInfo_text">
+                <strong className="evenInfo_title">Participants -</strong>{' '}
+                {eventParticipants}
               </p>
               <Col className="col-4" />
             </Row>
 
             <Row id="description_row">
-              <p id="description">
-                <strong>Description </strong>
+              <p id="description" className="eventInfo_text">
+                <strong className="evenInfo_title">Description - </strong>
               </p>
-              <p id="detailed_description">{eventDescription}</p>
-              {/* <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie sapien sit amet porttitor condimentum. Curabitur aliquet ipsum arcu. Etiam consectetur odio non erat mollis, sit amet aliquam nibh faucibus. Aenean velit erat, eleifend sed risus eu, pharetra consectetur nulla. Quisque vitae lorem nec turpis pretium facilisis id sed leo. Nulla ac consequat ipsum. Praesent tincidunt turpis lobortis enim auctor.
-                        </p> */}
+              <p id="detailed_description" className="eventInfo_text">
+                {eventDescription}
+              </p>
             </Row>
 
             <Row id="footer">
               <Col className="col-8" />
               <Col className="col-4">
-                <p>
-                  <strong id="description"> Budget </strong> : Rs {eventBudget}
+                <p className="eventInfo_text">
+                  <strong className="evenInfo_title"> Budget </strong> - Rs{' '}
+                  {eventBudget}
                 </p>
               </Col>
             </Row>

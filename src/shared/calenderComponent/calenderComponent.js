@@ -3,64 +3,27 @@ import { Row, Col, Dropdown } from 'react-bootstrap';
 import * as moment from 'moment';
 import './calenderComponent.css';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
-
+import { connect } from 'react-redux';
+import {
+  // selectEvent,
+  getMonthlyEvents
+} from '../../store/actions/DashBoardActions';
 import DateCompoent from './dateCompoent';
 import TableRowComponent from './tableRowComponent';
 
 class CalenderCompoennt extends Component {
   state = {
     now: moment(),
-    year: 2019,
-    month: 1,
-    displayMonth: 'February',
+    year: moment().year(),
+    month: moment().month(),
+    displayMonth: moment().format('MMMM'),
     activeEventNum: 0
   };
   // changing the first day of the week to monday
 
-  statusArray = [
-    '',
-    '',
-    '',
-    'warn',
-    'single_check',
-    '',
-    'double_check',
-    'single_check',
-    '',
-    '',
-    'double_check',
-    'warn',
-    '',
-    '',
-    'warn',
-    '',
-    '',
-    'single_check'
-  ];
-  eventInfo = [
-    {
-      date: 2,
-      state: 'done',
-      name: 'dansala'
-    },
-    {
-      date: 12,
-      state: 'published',
-      name: 'going down'
-    },
-    {
-      date: 15,
-      state: 'confirmed',
-      name: 'csr project'
-    },
-    {
-      date: 20,
-      state: 'pending',
-      name: 'carwash'
-    }
-  ];
-
-  weekDayHeaders = moment.weekdaysShort().map(weekday => <th>{weekday}</th>);
+  weekDayHeaders = moment
+    .weekdaysMin()
+    .map(weekday => <th className="table_header">{weekday}</th>);
   daysInMonthAmount;
   firstDay; // return the first day of the month
   lastDay; // last day of the month
@@ -76,34 +39,10 @@ class CalenderCompoennt extends Component {
   }
 
   getEventInfoComponents() {
-    const eventInfoComponents = [];
-    const activeString = 'active';
-    const inactiveString = 'inactive';
-    this.eventInfo.forEach((eventInfo, i) => {
-      let eventInfoComponent;
-      if (i === this.state.activeEventNum) {
-        eventInfoComponent = (
-          <TableRowComponent
-            info={eventInfo}
-            id={i}
-            style={activeString}
-            onItemClick={this.eventItemSelected}
-          />
-        );
-      } else {
-        eventInfoComponent = (
-          <TableRowComponent
-            info={eventInfo}
-            id={i}
-            style={inactiveString}
-            onItemClick={this.eventItemSelected}
-          />
-        );
-      }
-
-      eventInfoComponents.push(eventInfoComponent);
+    const { events } = this.props;
+    return events.map(eventInfo => {
+      return <TableRowComponent info={eventInfo} key={eventInfo.eventId} />;
     });
-    return eventInfoComponents;
   }
 
   // console.log()
@@ -132,33 +71,36 @@ class CalenderCompoennt extends Component {
 
   /////////////////  event action functions ////////////////////
   yearItemSelected = year => {
+    const { getMonthlyEvents } = this.props;
+    const { month } = this.state;
+    const editedMonth = moment(month + 1, 'MM').format('MM');
+    getMonthlyEvents({
+      month: editedMonth,
+      year: year
+    });
     this.setState({
       year: year.toString()
     });
+    
     // console.log(this.state.year);
   };
   monthItemSelected = monthIndex => {
     const modifiedMonthIndex = parseInt(monthIndex) + 1;
+    const { year } = this.state;
+    const { getMonthlyEvents } = this.props;
+    getMonthlyEvents({
+      month: moment(modifiedMonthIndex, 'MM').format('MM'),
+      year: year
+    });
     this.setState({
       displayMonth: moment(modifiedMonthIndex, 'MM').format('MMMM'),
       month: monthIndex
     });
-  };
-
-  eventItemSelected = id => {
-    // console.log(id);
-    this.setState({
-      activeEventNum: id
-    });
+    
   };
 
   render() {
     this.updateMoement();
-    // console.log(this.state.year);
-    // console.log(this.state.month);
-    // console.log(this.firstDay);
-    // console.log(this.lastDay);
-    // console.log(moment().get('years'));
     const daysInMonth = [];
     const blankDaysBefore = [];
     const blankDaysAfter = [];
@@ -173,40 +115,18 @@ class CalenderCompoennt extends Component {
 
     //  blanks of the beg of the month
     for (var i = 0; i < this.firstDay; i++) {
-      blankDaysBefore.push(<td />);
+      blankDaysBefore.push(<td className="blank_date" />);
     }
 
     // month date data
     for (i = 1; i <= this.daysInMonthAmount; i++) {
-      const yearCurrent = parseInt(this.state.now.format('Y'));
-      const monthCurrent = parseInt(this.state.now.format('M'));
-      const dateCurrent = parseInt(this.state.now.format('D'));
-      const editedMonth = parseInt(this.state.month) + 1;
-      //   console.log('month :' + monthCurrent + 'year :' + yearCurrent);
-      //   console.log('mn :' + editedMonth);
-      if (
-        dateCurrent === i &&
-        monthCurrent === editedMonth &&
-        yearCurrent === this.state.year
-      ) {
-        // if (dateCurrent === i) {
-        daysInMonth.push(
-          <td className="current_date">
-            <DateCompoent date={i.toString()} status={this.statusArray[i]} />
-          </td>
-        );
-      } else {
-        daysInMonth.push(
-          <td>
-            <DateCompoent date={i.toString()} status={this.statusArray[i]} />
-          </td>
-        );
-      }
+      const { month, year } = this.state;
+      daysInMonth.push(<DateCompoent date={i} month={month} year={year} />);
     }
 
     // blanks after end of month
     for (i = 6; i > this.lastDay; i--) {
-      blankDaysAfter.push(<td />);
+      blankDaysAfter.push(<td className="blank_date" />);
     }
     // console.log(this.lastDay);
     totalDays = [...blankDaysBefore, ...daysInMonth, ...blankDaysAfter];
@@ -249,7 +169,7 @@ class CalenderCompoennt extends Component {
           </Row>
           <Row id="calender_row">
             <table
-              className="table-condensed table-bordered table-striped"
+              className="table-condensed   table-responsive"
               id="cal_table"
             >
               <thead>
@@ -275,5 +195,11 @@ class CalenderCompoennt extends Component {
     );
   }
 }
-
-export default CalenderCompoennt;
+const mapStateToProps = state => ({
+  events: state.dashboard.events,
+  selectedEventId: state.dashboard.selectedEventId
+});
+export default connect(
+  mapStateToProps,
+  { getMonthlyEvents }
+)(CalenderCompoennt);

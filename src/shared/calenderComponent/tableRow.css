@@ -1,14 +1,18 @@
 
 .inactive{
     padding-left: 5px;
+    font-family: 'Poppins';
     
     /* background-color: aqua; */
 }
 .active{
     padding-left: 5px;
-    background-color: aqua;
+    background-color: #1CB1AC;
+    color: whitesmoke;
+    font-family: 'Poppins';
+     
 }
 
 #eventInfo_date{
-    padding-left: 10%;
+    /* padding-left: 10%; */
 }

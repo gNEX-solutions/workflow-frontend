@@ -1,26 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import "bootstrap/dist/css/bootstrap.css";
-import { Col, Row, Button, Form } from 'react-bootstrap';
+import { Col, Row, Button, Form, InputGroup, Alert } from 'react-bootstrap';
 import './newEvent.css';
 
 import { createEvent } from '../../store/actions/DashBoardActions';
+import * as moment from 'moment';
 
 class addNewEvent extends Component {
   state = {
+    validated: false,
+    showTimeAlert: false,
+    showDateAlert: false,
     eventName: '',
     venue: '',
     timeFrom: null,
     timeTo: null,
     date: null,
-    coordinators: '',
+    batch: null,
+    // coordinatorName: '',
+    // coordinatorImnum: '',
+    coordinators: [
+      {
+        name: '',
+        imNumber: ''
+      },
+      {
+        name: '',
+        imNumber: ''
+      }
+    ],
+
     description: '',
     participants: '',
-    budget: '',
-    resources: ''
+    budget: ''
   };
+  // sample added by dj
+  createEventClicked = event => {
+    // console.log('running');
 
-  createEventClicked = () => {
+
     const {
       eventName,
       venue,
@@ -31,35 +50,47 @@ class addNewEvent extends Component {
       description,
       participants,
       budget,
-      resources
+      batch
     } = this.state;
+    const timeFromMoment = moment(timeFrom, 'HH:mm');
+    const timeToMoment = moment(timeTo, 'HH:mm');
+    const dateMoment = moment(date, 'YYYY-MM-DD');
 
     const newEvent = {
       eventName: eventName,
-      eventDate: '2019-05-15 14:40:02',
-      eventStartTime: '08:00:00',
-      eventEndTime: '11:00:00',
-      eventStatus: 'OK',
+      eventDate: date,
+      eventStartTime: timeFrom,
+      eventEndTime: timeTo,
       eventLocation: venue,
-      eventCoordinatorDetails: [
-        {
-          imNumber: 'IM/2019/043',
-          name: 'kasun'
-        }
-      ],
-      eventParticipants: 'ALL',
+      eventCoordinatorDetails: coordinators,
+      eventBatch: batch,
+      eventParticipants: participants,
       eventBudget: budget,
-      eventDescription: description,
-      eventApprovedStatus: 'OK',
-      eventCreatedAt: '2019-02-15T09:10:02.000+0000',
-      eventUpdatedAt: '2019-02-15T09:10:02.000+0000'
+      eventDescription: description
     };
 
-    console.log(newEvent);
-    const { createEvent } = this.props;
-    createEvent(newEvent);
-
-    this.props.onCancel();
+    // console.log(timeFromMoment.isAfter(timeToMoment));
+    if (timeToMoment.isBefore(timeFromMoment)) {
+      this.setState({
+        showTimeAlert: true
+      });
+      event.preventDefault();
+      event.stopPropagation();
+      // alert('incorrect time');
+    } else if (dateMoment.isBefore(moment.now())) {
+      this.setState({
+        showDateAlert: true
+      });
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    else {
+      const { createEvent } = this.props;
+      createEvent(newEvent);
+      event.preventDefault();
+      event.stopPropagation();
+      this.props.onCancel();
+    }
   };
 
   // capturing the value changes in the input field  : dj
@@ -94,11 +125,64 @@ class addNewEvent extends Component {
     });
   };
 
-  onCoordinatorschange = event => {
-    this.setState({
-      coordinators: event.target.value
-    });
+  onCoordinatorNamechange = (event, id) => {
+    // console.log(id);
+    if (id === 0) {
+      this.setState({
+        coordinators: [
+          {
+            name: event.target.value,
+            imNumber: this.state.coordinators[0].imNumber
+          },
+          this.state.coordinators[1]
+        ]
+      });
+    } else {
+      this.setState({
+        coordinators: [
+          this.state.coordinators[0],
+          {
+            name: event.target.value,
+            imNumber: this.state.coordinators[1].imNumber
+          }
+        ]
+      });
+    }
   };
+
+  onCoordinatorImnumChange = (event, id) => {
+    if (id === 0) {
+      this.setState({
+        coordinators: [
+          {
+            name: this.state.coordinators[0].name,
+            imNumber: 'IM/' + event.target.value
+          },
+          this.state.coordinators[1]
+        ]
+      });
+    } else {
+      this.setState({
+        coordinators: [
+          this.state.coordinators[0],
+          {
+            name: this.state.coordinators[0].name,
+            imNumber: 'IM/' + event.target.value
+          }
+        ]
+      });
+    }
+    // this.setState({
+    //     coordinatorImnum: 'IM/' + event.target.value
+    //   });
+  };
+
+  onBatchchange = event => {
+    // alert(event.target.value);
+    this.setState({
+      batch: event.target.value
+    });
+  }
 
   onDescrptionChange = event => {
     this.setState({
@@ -125,6 +209,7 @@ class addNewEvent extends Component {
   };
   // end of caturing the value changes in the input fields
   render() {
+    const { validated } = this.state;
     return (
       <div>
         <div className="container-fluid">
@@ -136,20 +221,32 @@ class addNewEvent extends Component {
                                 </div>   */}
 
               {/* <div className="card-body"> */}
-              <Form method="#">
+              <Form
+                method="#"
+                validated={validated}
+                onSubmit={event => this.createEventClicked(event)}
+              >
                 <Row className="row">
                   <Col className="col-sm-6 col-md-6">
                     {/* Event name*/}
 
                     <Form.Group controlId="formBasicEventName">
                       <Form.Label>Event name</Form.Label>
-                      <Form.Control type="text" onChange={this.onNameChange} />
+                      <Form.Control
+                        type="text"
+                        onChange={this.onNameChange}
+                        required
+                      />
                     </Form.Group>
                     {/* Venue*/}
 
                     <Form.Group controlId="formBasicVenue">
                       <Form.Label>Venue</Form.Label>
-                      <Form.Control type="text" onChange={this.onVenueChange} />
+                      <Form.Control
+                        type="text"
+                        onChange={this.onVenueChange}
+                        required
+                      />
                     </Form.Group>
 
                     {/* Time*/}
@@ -161,16 +258,22 @@ class addNewEvent extends Component {
                           <Form.Control
                             type="time"
                             onChange={this.onTimeFromChange}
+                            required
                           />
                         </Col>
                         <Col>
                           <Form.Control
                             type="time"
                             onChange={this.onTimeToChange}
+                            required
                           />
                         </Col>
                       </Row>
                     </Form.Group>
+                    <Alert variant="danger" show={this.state.showTimeAlert}>
+                      {' '}
+                      starting time should before ending time
+                    </Alert>
 
                     {/* Planned date*/}
 
@@ -180,22 +283,107 @@ class addNewEvent extends Component {
                         type="date"
                         ref="date"
                         onChange={this.onDateChange}
+                        required
                       />
                     </Form.Group>
+                    <Alert variant="danger" show={this.state.showDateAlert}>
+                      {' '}
+                      planned date should be after today
+                    </Alert>
 
-                    {/* Coodinators*/}
 
-                    <Form.Group controlId="formBasicCoordinators">
-                      <Form.Label>Coordinators</Form.Label>
+                    {/* Budget*/}
+
+                    <Form.Group controlId="formBasicBudget">
+                      <Form.Label>Budget</Form.Label>
                       <Form.Control
-                        as="textarea"
-                        onChange={this.onCoordinatorschange}
+                        type="number"
+                        onChange={this.onBudgetChange}
+                        required
                       />
                     </Form.Group>
                   </Col>
                   <Col className="col-sm-6 col-md-6">
-                    {/* Description*/}
+                    {/* coordinators*/}
 
+                    <Form.Group controlId="formBasicCoordinators">
+                      <Form.Label>Coordinators</Form.Label>
+                      <Row className="coordinator_row">
+                        <Col className="col-6">
+                          <Form.Control
+                            type="text"
+                            placeholder="name"
+                            onChange={event =>
+                              this.onCoordinatorNamechange(event, 0)
+                            }
+                            required
+                          />
+                        </Col>
+                        <Col className="col-6">
+                          <InputGroup>
+                            <InputGroup.Prepend>
+                              <InputGroup.Text id="inputGroupPrepend">
+                                IM/
+                              </InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                              type="text"
+                              placeholder=" IM number"
+                              pattern="[0-9/]{5,8}"
+                              onChange={event =>
+                                this.onCoordinatorImnumChange(event, 0)
+                              }
+                              required
+                            />
+                          </InputGroup>
+                        </Col>
+                      </Row>
+                      <Row className="coordinator_row">
+                        <Col className="col-6">
+                          <Form.Control
+                            type="text"
+                            placeholder="name"
+                            onChange={event =>
+                              this.onCoordinatorNamechange(event, 1)
+                            }
+                            required
+                          />
+                        </Col>
+                        <Col className="col-6">
+                          <InputGroup>
+                            <InputGroup.Prepend>
+                              <InputGroup.Text id="inputGroupPrepend">
+                                IM/
+                              </InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                              type="text"
+                              placeholder=" IM number"
+                              pattern="[0-9/]{5,8}"
+                              onChange={event =>
+                                this.onCoordinatorImnumChange(event, 1)
+                              }
+                              required
+                            />
+                          </InputGroup>
+                        </Col>
+                      </Row>
+                    </Form.Group>
+
+                    {/* batch  */}
+
+                    <Form.Group controlId="formBasicBatch">
+                      <Form.Label>Batch</Form.Label>
+                      <Form.Control as="select" onChange={this.onBatchchange}>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </Form.Control>
+                    </Form.Group>
+
+
+                    {/* Description*/}
                     <Form.Group controlId="formBasicDescription">
                       <Form.Label>Description</Form.Label>
                       <Form.Control
@@ -211,18 +399,10 @@ class addNewEvent extends Component {
                       <Form.Control
                         type="text"
                         onChange={this.onPartcipantsChange}
+                        required
                       />
                     </Form.Group>
 
-                    {/* Budget*/}
-
-                    <Form.Group controlId="formBasicBudget">
-                      <Form.Label>Budget</Form.Label>
-                      <Form.Control
-                        type="number"
-                        onChange={this.onBudgetChange}
-                      />
-                    </Form.Group>
                     {/* Resources Allocations*/}
 
                     <Form.Group controlId="formBasicResources">
@@ -230,6 +410,7 @@ class addNewEvent extends Component {
                       <Form.Control
                         type="text"
                         onChange={this.onResourceChange}
+                        required
                       />
                     </Form.Group>
                   </Col>
@@ -237,8 +418,9 @@ class addNewEvent extends Component {
                 <Row>
                   <Button
                     id="btnAdd_form"
+                    type="submit"
                     className="btn btn-success"
-                    onClick={this.createEventClicked}
+                  // onClick={this.createEventClicked}
                   >
                     {' '}
                     Create Event{' '}

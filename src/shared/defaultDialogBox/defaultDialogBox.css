@@ -1,0 +1,48 @@
+.btn btn-warning {
+  margin-left: 20px;
+}
+.far fa-calendar-times {
+  size: 100px;
+}
+.defaultIcon{
+  padding-left: 0.5rem;
+  font-size: 2.5rem;
+  color: rgba(12, 129, 8, 0.993);
+}
+
+.topTextRow{
+  padding-bottom: 5%;
+  align-items: center;
+}
+
+
+#defaultDialogMainCard{
+  width: "100px";
+  margin-top: 0%;
+  /* background-color: aqua; */
+  /* margin: "auto"; */
+  /* marginTop: "0px"; */
+}
+
+#topText{
+  padding-left: 0.5rem;
+  font-size: 1.25rem;
+  align-content: center;
+}
+
+#eventInfoRow{
+  align-self: center;
+  align-content: center;
+  align-items: center;
+  padding-left: 15%;
+  padding-bottom: 5%;
+}
+#buttonRow{
+  align-items: center;
+  text-align: space-between;
+  /* background-color: aqua; */
+}
+#defaultBtn{
+  margin-left: 30%;
+  margin-right: 5%;
+}

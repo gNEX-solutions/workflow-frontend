@@ -1,11 +1,37 @@
+/*************** add new button stylings  **********/
+
+
 #add_button {
   display: flex;
   width: 80%;
   /* align-content: space-around; */
   align-items: center;
   /* background-color: rgb(24, 95, 10); */
-  font-family: Poppins;
+  font-family: 'Poppins';
 }
+.btnAddNewEvent {
+  background-color:#008E89;
+  border-radius: 0;
+}
+.btnAddNewEvent:hover{
+  background-color: #004a47;
+}
+
+/***************  menu component styling  **********/
+#calenderMenu{
+  font-family: 'Poppins';
+  font-weight: 400;
+}
+
+#explorerMenu{
+  font-family: 'Poppins';
+  font-weight: 200;
+}
+#histroyMenu{
+  font-family: 'Poppins';
+}
+
+/******** menu compoent styling ***************/
 
 #active {
   background-color: white;
@@ -26,10 +52,44 @@
   align-items: center;
 }
 
+
+
+/* the modal pop up stylings */
+#modal_title {
+  margin-left: 5%;
+  color: white;
+}
+
+#modal_header {
+  background-color: black;
+}
+
+.menuOption {
+  border: 0px;
+  background-color: transparent;
+}
+
+.menuOuter {
+  padding-top: 0.5%;
+  border-bottom: 10px;
+  border-bottom-width: 10px;
+  /* background-color: red; */
+  margin-bottom: 200px;
+  border-bottom-color: yellow
+}
+
 span {
   font-family: Poppins;
 }
 
 h3 {
   font-family: Poppins;
+
+}
+#search_group{
+    align-items: center;
+}
+
+.searchFieldComponent{
+    margin: 5px auto 0 auto;
 }

@@ -1,19 +1,29 @@
 .ApprovalSection {
   display: flex;
+  font-family: 'Poppins';
+  
 }
 
 .container {
   background-color: rgba(255, 255, 255, 0.7);
-  margin-right: 20px;
-  padding: 40px;
-  font-family: Poppins;
+  /* margin-right: 3rem; */
+  padding-right: 2rem;
+  margin-left: 0rem;
+  padding-left: 1.5rem;
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+  /* padding: 40px; */
+  font-family: 'Poppins';
   font-size: 10pt;
   border-radius: 6px;
+  max-width: 87.5%;
 }
 
 .Label {
-  font-weight: bold;
-  color: #1cb1ac;
+  font-weight: 900;
+  color:  #0b837f;
+  font-size: 1rem;
+  /* font-family: 'Courier New', Courier, monospace; */
 }
 
 img {
