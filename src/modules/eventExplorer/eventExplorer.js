@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Table } from 'react-bootstrap';
-import moment from 'moment';
+import * as moment from 'moment';
 import { connect } from 'react-redux';
 // import HeaderComopnet from '../../shared/header/headerComponent';
 // import MainMenuCompoannent from '../../shared/mainMenu/mainMenu';
