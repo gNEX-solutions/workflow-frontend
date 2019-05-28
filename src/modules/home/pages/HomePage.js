@@ -12,10 +12,10 @@ import './HomePage.styles.css';
 
 import { getMonthlyEvents } from '../../../store/actions/DashBoardActions';
 
-export const input = {
-  month: moment().format("MM"),
-  year: moment().year()
-};
+// export const input = {
+//   month: moment().format("MM"),
+//   year: moment().year()
+// };
 
 export const VIEW_TYPES = {
   calendar: 1001,
@@ -34,12 +34,16 @@ class HomePage extends React.Component {
       currentViewType: VIEW_TYPES.calendar
     };
   }
+  input = {
+    month: moment().format("MM"),
+    year: moment().year()
+  };
 
   componentDidMount() {
     const { getMonthlyEvents } = this.props;
-    console.log(input);
+    // console.log(input);
     // getEvent(input);
-    getMonthlyEvents(input);
+    getMonthlyEvents(this.input);
   }
 
   handleEventCalendarPress = () => {

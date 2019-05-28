@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Table } from 'react-bootstrap';
-import * as moment from 'moment';
+import moment from 'moment';
 import { connect } from 'react-redux';
 // import HeaderComopnet from '../../shared/header/headerComponent';
 // import MainMenuCompoannent from '../../shared/mainMenu/mainMenu';
@@ -8,11 +8,14 @@ import './eventExplorer.css';
 import MonthEventComponent from './monthEventsComponet';
 import { getExplorerEvents } from '../../store/actions/DashBoardActions';
 
-export const input = {
-  year: moment().year()
-};
+// export const input = {
+//   year: moment().year()
+// };
 class EventExplorer extends Component {
   state = {};
+  input = {
+    year: moment().year()
+  };
 
   // getMonths = () => {
   //   const months = moment.months().map((month, monthIndex) => {
@@ -22,7 +25,7 @@ class EventExplorer extends Component {
   // }
   componentDidMount() {
     const { getExplorerEvents } = this.props;
-    getExplorerEvents(input);
+    getExplorerEvents(this.input);
   }
   getMonthEventComponet = () => {
     const totalEventComponets = [];
