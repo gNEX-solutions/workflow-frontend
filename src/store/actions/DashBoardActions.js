@@ -13,7 +13,7 @@ import {
 
 export const getEvent = data => (dispatch, history) => {
   axios
-    .post('eventapi/events', data)
+    .post('https://tecops-backend.herokuapp.com/eventapi/events', data)
     .then(res =>
       dispatch({
         type: GET_EVENT_SUCCESS,
