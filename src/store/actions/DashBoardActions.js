@@ -15,6 +15,7 @@ export const getEvent = data => (dispatch, history) => {
   axios
     .post('https://tecops-backend.herokuapp.com/eventapi/events', data)
     .then(res =>
+      // console.log(res)
       dispatch({
         type: GET_EVENT_SUCCESS,
         payload: res
@@ -29,7 +30,7 @@ export const getEvent = data => (dispatch, history) => {
 export const getMonthlyEvents = data => (dispatch, history) => {
   console.log(data);
   axios
-    .get('event/filter?', {
+    .get('https://tecops-backend.herokuapp.com/event/filter?', {
       params: {
         year: data.year,
         month: data.month
@@ -40,6 +41,7 @@ export const getMonthlyEvents = data => (dispatch, history) => {
         type: GET_EVENT_SUCCESS,
         payload: res
       })
+      // console.log(res)
     )
     .catch(err => {
       console.log(err);
