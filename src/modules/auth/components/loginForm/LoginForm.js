@@ -6,6 +6,7 @@ import TextFieldGroup from '../../../../shared/TextFieldGroup/TextFieldGroup';
 import validateInput from '../LoginValidation';
 import { login } from '../../../../store/actions/AuthActions';
 import './LoginForm.styles.css';
+import { Redirect } from 'react-router';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class LoginForm extends Component {
     this.state = {
       username: '',
       password: '',
-      errors: {}
+      errors: {},
+      isValid: false
     };
   }
 
@@ -24,28 +26,37 @@ class LoginForm extends Component {
   }
 
   isValid = () => {
-    const { errors, isValid } = validateInput(this.state);
+    // const { errors, isValid } = validateInput(this.state);
 
-    if (!isValid) {
-      this.setState({
-        errors
-      });
+    // if (!isValid) {
+    //   this.setState({
+    //     errors
+    //   });
+    // }
+
+    // return isValid;
+    const { username, password } = this.state;
+
+    if (username === "dinith" && password === "din1234") {
+      return true;
     }
-
-    return isValid;
   };
 
   onSubmit = e => {
     const { login } = this.props;
-
-    e.preventDefault();
+    console.log("submit clicked by dj");
+    // e.preventDefault();
 
     if (this.isValid()) {
       this.setState({
         errors: {},
-        isLoading: true
+        isLoading: true,
+        isValid: true
       });
-      login(this.state);
+      // login(this.state);
+      // return (
+      //   <Redirect to="/done"/>
+      // )
     }
   };
 
@@ -56,7 +67,10 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { errors, username, password, isLoading } = this.state;
+    const { errors, username, password, isLoading, isValid } = this.state;
+    if (isValid) {
+      return <Redirect to='/dashboard' />
+    }
 
     return (
       <div>
@@ -71,7 +85,7 @@ class LoginForm extends Component {
             error={errors.username}
             onChange={this.onChange}
             placeholder="Email"
-            // type="email"
+          // type="email"
           />
           <TextFieldGroup
             field="password"

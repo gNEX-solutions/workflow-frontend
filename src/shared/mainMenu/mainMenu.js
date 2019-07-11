@@ -150,11 +150,11 @@ class MainMenuComponent extends Component {
                 onClick={this.historyClicked}
                 className="menuOption"
               >
-                <h3>
+                {/* <h3>
                   <span className="" id="histroyMenu">
                     History
                   </span>
-                </h3>
+                </h3> */}
               </button>
             </div>
           </Col>

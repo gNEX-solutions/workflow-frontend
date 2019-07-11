@@ -10,10 +10,12 @@ import {
   UPDATE_SEARCH_SUGGESTIONS,
   SEARCH_OVERLAY
 } from '../types/DashBoardTypes';
+const URL = "https://tecops-backend.herokuapp.com";
+// const URL = "";
 
 export const getEvent = data => (dispatch, history) => {
   axios
-    .post('https://tecops-backend.herokuapp.com/eventapi/events', data)
+    .post(URL + '/eventapi/events', data)
     .then(res =>
       // console.log(res)
       dispatch({
@@ -30,7 +32,7 @@ export const getEvent = data => (dispatch, history) => {
 export const getMonthlyEvents = data => (dispatch, history) => {
   console.log(data);
   axios
-    .get('https://tecops-backend.herokuapp.com/event/filter?', {
+    .get(URL + '/event/filter?', {
       params: {
         year: data.year,
         month: data.month
@@ -52,7 +54,7 @@ export const getMonthlyEvents = data => (dispatch, history) => {
 export const getSearchEvents = data => (dispatch, history) => {
   console.log(data);
   axios
-    .get('event/search?', {
+    .get(URL + '/event/search?', {
       params: {
         name: data
       }
@@ -70,9 +72,9 @@ export const getSearchEvents = data => (dispatch, history) => {
 };
 
 export const getExplorerEvents = data => (dispatch, history) => {
-  console.log(data);
+  console.log('ee data ' + data);
   axios
-    .get('event/filter?', {
+    .get(URL + '/event/filter?', {
       params: {
         year: data.year
       }
@@ -92,7 +94,7 @@ export const getExplorerEvents = data => (dispatch, history) => {
 export const createEvent = data => (dispatch, history) => {
   console.log(data);
   axios
-    .post('event/', data)
+    .post(URL + '/event/', data)
     .then(res =>
       // dispatch({
       //   type: CREATE_EVENT,
@@ -110,7 +112,7 @@ export const updateEvent = data => (dispatch, history) => {
 
   console.log(data);
   axios
-    .put('event/', data)
+    .put(URL + '/event/', data)
     .then(
       res =>
         //   // dispatch({
@@ -128,7 +130,7 @@ export const updateEvent = data => (dispatch, history) => {
 export const deleteEvent = data => (dispatch, history) => {
   console.log(data);
   axios
-    .delete('event/' + data)
+    .delete(URL + '/event/' + data)
     .then(res =>
       //   dispatch({
       //     type: CREATE_EVENT,
@@ -144,7 +146,7 @@ export const deleteEvent = data => (dispatch, history) => {
 
 export const getPastEvents = data => (dispatch, history) => {
   axios
-    .post('eventapi/eventpast', data)
+    .post(URL + '/eventapi/eventpast', data)
     .then(res =>
       dispatch({
         type: GET_EVENT_HISTORY,
