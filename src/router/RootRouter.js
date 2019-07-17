@@ -19,6 +19,7 @@ const RootRouter = () => (
     {/* <Route exact path={RouteTypes.login} component={AuthLogin} /> */}
     {/* <Route path="/auth/callback" component={AuthCallback} /> */}
     {/* <PrivateRoute path="/" component={MainPage} /> */}
+    {/* updated  the routing path */}
     <Route
       path="/"
       render={props => <Auth {...props} viewType={VIEW_TYPES.login} />}
