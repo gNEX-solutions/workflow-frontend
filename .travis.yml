@@ -9,9 +9,8 @@ script:
   - npm run build
 notifications:
   slack:
-    on_success: always
+    on_failure: always
   email:
-    - charinda04@gmail.com 
     - jdinith72@gmail.com 
   on_failure: always
   on_success: always
