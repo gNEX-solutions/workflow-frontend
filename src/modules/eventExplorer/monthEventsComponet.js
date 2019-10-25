@@ -59,6 +59,10 @@ class MonthEventCompoent extends Component {
         this.props.onEventCalendarPress();
     }
 
+    onNewEventClicked = (event) => {
+        return event ;
+    }
+
 // get the set of  filtered events according to the month and the batch 
 
     getFilteredEventList() {
