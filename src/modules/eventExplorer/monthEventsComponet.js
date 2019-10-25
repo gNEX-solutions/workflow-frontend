@@ -16,41 +16,41 @@ import { connect } from 'react-redux';
 class MonthEventCompoent extends Component {
     state = {};
 
-    // }
-    // eventsArray = [
-    //     {
-    //         eventId: "1",
-    //         eventName: "im dansela",
-    //         eventDate: new Date('2019-2-13'),
-    //         eventOrganizers: "1"
-    //     },
-    //     {
-    //         eventId: "3",
-    //         eventName: "symposium",
-    //         eventDate: new Date('2019-2-13'),
-    //         eventOrganizers: "4"
-    //     },
-    //     {
-    //         eventId: "211",
-    //         eventName: "im piritha",
-    //         eventDate: new Date('2019-3-13'),
-    //         eventOrganizers: "3"
-    //     },
-    //     {
-    //         eventId: "4",
-    //         eventName: "hack x",
-    //         eventDate: new Date('2019-4-13'),
-    //         eventOrganizers: "2"
-    //     },
-    //     {
+    }
+    eventsArray = [
+        {
+            eventId: "1",
+            eventName: "im dansela",
+            eventDate: new Date('2019-2-13'),
+            eventOrganizers: "1"
+        },
+        {
+            eventId: "3",
+            eventName: "symposium",
+            eventDate: new Date('2019-2-13'),
+            eventOrganizers: "4"
+        },
+        {
+            eventId: "211",
+            eventName: "im piritha",
+            eventDate: new Date('2019-3-13'),
+            eventOrganizers: "3"
+        },
+        {
+            eventId: "4",
+            eventName: "hack x",
+            eventDate: new Date('2019-4-13'),
+            eventOrganizers: "2"
+        },
+        {
 
-    //         eventId: "5",
-    //         eventName: "agm",
-    //         eventDate: new Date('2019-2-13'),
-    //         eventOrganizers: "1"
+            eventId: "5",
+            eventName: "agm",
+            eventDate: new Date('2019-2-13'),
+            eventOrganizers: "1"
 
-    //     }
-    // ]
+        }
+    ]
 
 
     onEventClicked = (event) => {
