@@ -54,18 +54,23 @@ class MonthEventCompoent extends Component {
 
 
     onEventClicked = (event) => {
-        // alert('comp clicked');
-        console.log(event.target.id);
+       
         this.props.selectEvent(parseInt(event.target.id));
         this.props.onEventCalendarPress();
     }
 
+// get the set of  filtered events according to the month and the batch 
+
     getFilteredEventList() {
         const { month, level, events } = this.props;
+        
+        //  filtering the aevents accoding to the evnet date and the batch 
         const filteredList = events.filter(({ eventDate, batch } = {}) => {
             const eventMoment = moment(eventDate, 'YYYY-MM-DD HH-mm-ss');
             return eventMoment.month() === month && batch === level.toString();
-        }).map(({ eventId, eventName } = {}) => {
+        })
+        // converting the filtered data into a badge ui and exporting the badge ui 
+        .map(({ eventId, eventName } = {}) => {
             return (
                 <h3 key={eventId}>
                     <Badge pill variant="info" onClick={this.onEventClicked}
@@ -82,6 +87,7 @@ class MonthEventCompoent extends Component {
 
     render() {
         // this.getFilteredEventList();
+        // return the events collection of fileter event ui components
         return (
             <React.Fragment>
                 {this.getFilteredEventList()}
